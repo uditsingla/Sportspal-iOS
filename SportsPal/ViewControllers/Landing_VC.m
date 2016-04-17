@@ -68,7 +68,8 @@
 
 - (IBAction)clkLogin:(id)sender
 {
-    
+    UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+    [self.navigationController pushViewController:homeVC animated:YES];
 }
 - (IBAction)clkSignUp:(id)sender
 {

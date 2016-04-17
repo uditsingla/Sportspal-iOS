@@ -28,14 +28,16 @@
     //crashlytics
     [Fabric with:@[[Crashlytics class]]];
     
-    UIViewController *viewController;
-    viewController = [kLoginStoryboard instantiateViewControllerWithIdentifier: @"landing_vc"];
+    UIViewController *viewController = [kLoginStoryboard instantiateViewControllerWithIdentifier: @"landing_vc"];
+    
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    
     UIViewController *leftSlider = [kMainStoryboard instantiateViewControllerWithIdentifier: @"leftslider"];
     container = [MFSideMenuContainerViewController
                  containerWithCenterViewController:navController
                  leftMenuViewController:leftSlider
                  rightMenuViewController:nil];
+    
     self.window.rootViewController = container;
     
     objLoader=[[LabeledActivityIndicatorView alloc] initWithController:navController andText:@"Loading"];

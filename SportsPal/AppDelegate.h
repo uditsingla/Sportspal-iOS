@@ -22,7 +22,7 @@
 
 @property(nonatomic,strong) MFSideMenuContainerViewController *container;
 @property(nonatomic,strong) LabeledActivityIndicatorView *objLoader;
--(BOOL)checkInternetConnectivity;
+//-(BOOL)checkInternetConnectivity;
 
 @end
 
