@@ -53,6 +53,10 @@
             NSLog(@"  %@", name);
         }
     }
+    
+    //Tab bar 
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:56/255.00 green:142/255.00 blue:60/255.00 alpha:1]];
+
     //[[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
     return YES;

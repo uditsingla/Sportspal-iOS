@@ -9,6 +9,12 @@
 #import "News_VC.h"
 
 @interface News_VC ()
+{
+    
+    __weak IBOutlet UITableView *tblNews;
+    
+    NSMutableArray *arrNews;
+}
 - (IBAction)clkSlider:(id)sender;
 
 @end
@@ -16,9 +22,22 @@
 @implementation News_VC
 
 - (void)viewDidLoad {
+    
+    
+    arrNews = [NSMutableArray arrayWithObjects:@"news 1 ",@"news 2",@"news 3",@"news 4", nil];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+    [super viewWillAppear:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -37,5 +56,44 @@
 #pragma mark - Click Methods
 - (IBAction)clkSlider:(id)sender {
     [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
+}
+
+#pragma mark - Delegates and Tatasource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"CellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.backgroundColor = [UIColor blackColor];
+    cell.contentView.backgroundColor = [UIColor blackColor];
+    cell.textLabel.text = [arrNews objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    
+    tblNews.backgroundColor = [UIColor blackColor];
+    return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
+{
+    return 1;
+}
+
+// number of row in the section, I assume there is only 1 row
+- (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
+{
+    return [arrNews count];
+}
+
+
+#pragma mark - UITableViewDelegate
+// when user tap the row, what action you want to perform
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected %ld row", (long)indexPath.row);
 }
 @end
