@@ -6,9 +6,25 @@
 //  Copyright © 2016 SportsPal. All rights reserved.
 //
 
+#define sportname 1
+#define teamname 2
+#define date 3
+#define time 4
+#define address 5
+
 #import "Add_VC.h"
 
+
 @interface Add_VC ()
+{
+    __weak IBOutlet UIButton *btnTime;
+    __weak IBOutlet UIButton *btnTeamName;
+    __weak IBOutlet UIButton *btnAddress;
+    __weak IBOutlet UIButton *btnDate;
+    __weak IBOutlet UIButton *btnSportName;
+}
+- (IBAction)clkButton:(id)sender;
+
 
 @end
 
@@ -34,4 +50,22 @@
 }
 */
 
+- (IBAction)clkButton:(id)sender {
+    
+    if (sportname) {
+        
+    }
+    else if (teamname){
+        
+    }
+    else if (date){
+        
+    }
+    else if (time){
+        
+    }
+    else if (address){
+        
+    }
+}
 @end

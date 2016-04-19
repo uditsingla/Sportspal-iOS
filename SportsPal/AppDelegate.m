@@ -59,6 +59,8 @@
 
     //[[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
+    //Status Bar Color
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
 

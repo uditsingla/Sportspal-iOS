@@ -33,8 +33,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
     [super viewWillAppear:YES];
 }
 
@@ -58,7 +56,7 @@
     [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
 }
 
-#pragma mark - Delegates and Tatasource
+#pragma mark - Delegates and Datasource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -69,12 +67,11 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    cell.backgroundColor = [UIColor blackColor];
-    cell.contentView.backgroundColor = [UIColor blackColor];
+    cell.contentView.backgroundColor = [UIColor yellowColor];
     cell.textLabel.text = [arrNews objectAtIndex:indexPath.row];
     cell.textLabel.textColor = [UIColor whiteColor];
     
-    tblNews.backgroundColor = [UIColor blackColor];
+    tblNews.backgroundColor = [UIColor greenColor];
     return cell;
 }
 
@@ -83,7 +80,6 @@
     return 1;
 }
 
-// number of row in the section, I assume there is only 1 row
 - (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
 {
     return [arrNews count];

@@ -97,6 +97,9 @@
 		4675AC5C1CC3EF5B0013FEE3 /* Add_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC5B1CC3EF5B0013FEE3 /* Add_VC.m */; };
 		4675AC5F1CC3EF760013FEE3 /* Chats_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC5E1CC3EF760013FEE3 /* Chats_VC.m */; };
 		4675AC621CC3EF8A0013FEE3 /* People_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC611CC3EF8A0013FEE3 /* People_VC.m */; };
+		46F161E71CC6A70F00F36EE9 /* TB_Play_Players.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F161E61CC6A70F00F36EE9 /* TB_Play_Players.m */; };
+		46F161EA1CC6A73400F36EE9 /* TB_Play_Sports.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F161E91CC6A73400F36EE9 /* TB_Play_Sports.m */; };
+		46F161ED1CC6A77900F36EE9 /* TB_Play_Teams.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F161EC1CC6A77900F36EE9 /* TB_Play_Teams.m */; };
 		46F3153D1CC103BB00AAA588 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46F3153C1CC103BB00AAA588 /* Launch Screen.storyboard */; };
 		46F315411CC1050100AAA588 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 46F315401CC1050100AAA588 /* splash.png */; };
 		46F315441CC1090B00AAA588 /* Landing_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F315431CC1090B00AAA588 /* Landing_VC.m */; };
@@ -255,6 +258,12 @@
 		4675AC5E1CC3EF760013FEE3 /* Chats_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chats_VC.m; sourceTree = "<group>"; };
 		4675AC601CC3EF8A0013FEE3 /* People_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = People_VC.h; sourceTree = "<group>"; };
 		4675AC611CC3EF8A0013FEE3 /* People_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People_VC.m; sourceTree = "<group>"; };
+		46F161E51CC6A70F00F36EE9 /* TB_Play_Players.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_Play_Players.h; sourceTree = "<group>"; };
+		46F161E61CC6A70F00F36EE9 /* TB_Play_Players.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TB_Play_Players.m; sourceTree = "<group>"; };
+		46F161E81CC6A73400F36EE9 /* TB_Play_Sports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_Play_Sports.h; sourceTree = "<group>"; };
+		46F161E91CC6A73400F36EE9 /* TB_Play_Sports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TB_Play_Sports.m; sourceTree = "<group>"; };
+		46F161EB1CC6A77900F36EE9 /* TB_Play_Teams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_Play_Teams.h; sourceTree = "<group>"; };
+		46F161EC1CC6A77900F36EE9 /* TB_Play_Teams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TB_Play_Teams.m; sourceTree = "<group>"; };
 		46F3153C1CC103BB00AAA588 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		46F315401CC1050100AAA588 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		46F315421CC1090B00AAA588 /* Landing_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Landing_VC.h; sourceTree = "<group>"; };
@@ -491,6 +500,19 @@
 			path = "Tab bar icons 75 x 75";
 			sourceTree = "<group>";
 		};
+		46F161E41CC6A62100F36EE9 /* TableviewCells */ = {
+			isa = PBXGroup;
+			children = (
+				46F161E51CC6A70F00F36EE9 /* TB_Play_Players.h */,
+				46F161E61CC6A70F00F36EE9 /* TB_Play_Players.m */,
+				46F161E81CC6A73400F36EE9 /* TB_Play_Sports.h */,
+				46F161E91CC6A73400F36EE9 /* TB_Play_Sports.m */,
+				46F161EB1CC6A77900F36EE9 /* TB_Play_Teams.h */,
+				46F161EC1CC6A77900F36EE9 /* TB_Play_Teams.m */,
+			);
+			path = TableviewCells;
+			sourceTree = "<group>";
+		};
 		46F3153E1CC104CA00AAA588 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +696,7 @@
 		46F62CEA1C90ABA900A61B47 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				46F161E41CC6A62100F36EE9 /* TableviewCells */,
 				4675ABD61CC3D4730013FEE3 /* TabBar_VC */,
 				46F315421CC1090B00AAA588 /* Landing_VC.h */,
 				46F315431CC1090B00AAA588 /* Landing_VC.m */,
@@ -988,12 +1011,15 @@
 				46F62CD11C90901400A61B47 /* AppDelegate.m in Sources */,
 				46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */,
 				46F62D371C93624C00A61B47 /* Login.m in Sources */,
+				46F161E71CC6A70F00F36EE9 /* TB_Play_Players.m in Sources */,
 				4675AC621CC3EF8A0013FEE3 /* People_VC.m in Sources */,
 				4675AC591CC3EF490013FEE3 /* Play_VC.m in Sources */,
+				46F161EA1CC6A73400F36EE9 /* TB_Play_Sports.m in Sources */,
 				46F3157E1CC23A8600AAA588 /* CustomViewViewController.m in Sources */,
 				46F62CDA1C90901400A61B47 /* SportsPal.xcdatamodeld in Sources */,
 				46F315741CC168BC00AAA588 /* LeftSlider.m in Sources */,
 				46F62D3A1C93626C00A61B47 /* SignUp.m in Sources */,
+				46F161ED1CC6A77900F36EE9 /* TB_Play_Teams.m in Sources */,
 				46F62CCE1C90901400A61B47 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

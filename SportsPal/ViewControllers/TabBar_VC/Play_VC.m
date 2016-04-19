@@ -123,10 +123,11 @@
 }
 */
 
-#pragma mark - Delegates and Tatasource
+#pragma mark - Delegates and Datasource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     
     if (tableView == tblSports) {
         
@@ -137,7 +138,7 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         
-        cell.contentView.backgroundColor = [UIColor redColor];
+        cell.contentView.backgroundColor = [UIColor blackColor];
         cell.textLabel.text = [arrSports objectAtIndex:indexPath.row];
         cell.textLabel.textColor = [UIColor whiteColor];
         
@@ -154,7 +155,7 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         
-        cell.contentView.backgroundColor = [UIColor blueColor];
+        cell.contentView.backgroundColor = [UIColor blackColor];
         cell.textLabel.text = [arrPlayers objectAtIndex:indexPath.row];
         cell.textLabel.textColor = [UIColor whiteColor];
         
@@ -171,7 +172,7 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         
-        cell.contentView.backgroundColor = [UIColor greenColor];
+        cell.contentView.backgroundColor = [UIColor blackColor];
         cell.textLabel.text = [arrTeams objectAtIndex:indexPath.row];
         cell.textLabel.textColor = [UIColor whiteColor];
         
@@ -199,6 +200,11 @@
     }
     
     return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
