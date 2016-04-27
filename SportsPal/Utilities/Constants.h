@@ -10,9 +10,13 @@
 #define Constants_h
 
 /*Color schemes*/
-#define kBaseUrlPath @"http://52.90.86.216:3000/"
+#define kBaseUrlPath @"http://sportspal.in/api/"
 
 #define kBaseUrl [NSURL URLWithString:kBaseUrlPath]
+
+#define loginPath @"users/login"
+
+#define registerPath @"users/add"
 
 //TextField
 #define TF_BorderColor  [UIColor redColor];
@@ -54,7 +58,11 @@
 #import "MFSideMenu.h"
 #import "LabeledActivityIndicatorView.h"
 #import "AppDelegate.h"
-
+#import "ModelManager.h"
 
 #import "CustomViewViewController.h"
+
+#define model_manager ((ModelManager *)[ModelManager modelManager])
+#define kAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+
 #endif /* Constants_h */

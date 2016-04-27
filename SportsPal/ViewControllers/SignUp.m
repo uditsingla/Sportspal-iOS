@@ -28,6 +28,8 @@
     
     
     __weak IBOutlet UIButton *btnSignUp;
+    
+    NSString *selectedGender;
 }
 
 - (IBAction)clkGender:(id)sender;
@@ -63,6 +65,7 @@
     btnSignUp.backgroundColor = BrightGreen;
     [[btnSignUp layer] setCornerRadius:3.0f];
 
+    selectedGender = @"";
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -73,7 +76,89 @@
 }
 
 - (IBAction)clkSignUp:(id)sender {
+    
+    if ([[txtFirstName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtLastName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtRePassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[bntBirthdate.titleLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[selectedGender stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [txtPassword.text isEqualToString:txtRePassword.text])
+    {
+        
+        [kAppDelegate.objLoader show];
+        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email", txtPassword.text, @"password",bntBirthdate.titleLabel.text,@"dob", selectedGender,@"gender",@"71.045678",@"latitude", @"28.096579",@"longitude", @"ios", @"device_type", @"1234hsdgfdf4", @"device_token", nil];
+        
+        [model_manager.loginManager userSignUp:signUpInfo completion:^(NSDictionary *dictJson, NSError *error) {
+            [kAppDelegate.objLoader hide];
+            if(!error)
+            {
+                if([[dictJson valueForKey:@"message"] isEqualToString:@"User registered successfully "])
+                {
+                    //user registered successfully
+                    UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+                    [self.navigationController pushViewController:homeVC animated:YES];
+                }
+                else
+                {
+                    [self showAlert:[dictJson valueForKey:@"message"]];
+                }
+            }
+        }];
+    }
+    else if([[txtFirstName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    {
+        [self showAlert:@"Please enter firstname"];
+    }
+    else if([[txtLastName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    {
+        [self showAlert:@"Please enter lastname"];
+    }
+    else if([[txtEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    {
+        [self showAlert:@"Please enter email"];
+    }
+    else if([[txtPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    {
+        [self showAlert:@"Please enter password"];
+    }
+    else if([[txtRePassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    {
+        [self showAlert:@"Please enter password again"];
+    }
+    else if(![txtPassword.text isEqualToString:txtRePassword.text])
+    {
+        [self showAlert:@"Please enter same password"];
+    }
+    else if([[bntBirthdate.titleLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    {
+        [self showAlert:@"Please enter date of birth"];
+    }
+    else if([[selectedGender stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    {
+        [self showAlert:@"Please select gender"];
+    }
+    
 }
+
+-(void)showAlert:(NSString *)errorMsg
+{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Error"
+                                  message:errorMsg
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleCancel
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             //   [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+}
+
 
 #pragma mark - UItextField Delegates
 
@@ -97,11 +182,13 @@
     UIButton *btn = (UIButton*)sender;
     if(btn.tag == 1)
     {
+        selectedGender = @"female";
         [btnFemale setImage:[UIImage imageNamed:@"female_green.png"] forState:UIControlStateNormal];
         [btnMale setImage:[UIImage imageNamed:@"male_white.png"] forState:UIControlStateNormal];
     }
     else
     {
+        selectedGender = @"male";
         [btnMale setImage:[UIImage imageNamed:@"male_green.png"] forState:UIControlStateNormal];
         [btnFemale setImage:[UIImage imageNamed:@"female_white.png"] forState:UIControlStateNormal];
     }

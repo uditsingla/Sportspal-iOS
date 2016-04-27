@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4639FD571CD13F860020D00B /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4639FD4D1CD13F860020D00B /* LoginManager.m */; };
+		4639FD581CD13F860020D00B /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4639FD501CD13F860020D00B /* RequestManager.m */; };
+		4639FD591CD13F860020D00B /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4639FD531CD13F860020D00B /* ModelManager.m */; };
+		4639FD5A1CD13F860020D00B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 4639FD561CD13F860020D00B /* User.m */; };
+		4639FD5D1CD157E20020D00B /* ProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4639FD5C1CD157E20020D00B /* ProfileManager.m */; };
 		4661DDFB1CC54C020005C567 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF11CC54C020005C567 /* add@2x.png */; };
 		4661DDFC1CC54C020005C567 /* add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF21CC54C020005C567 /* add@3x.png */; };
 		4661DDFD1CC54C020005C567 /* chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF31CC54C020005C567 /* chats@2x.png */; };
@@ -162,6 +167,16 @@
 
 /* Begin PBXFileReference section */
 		2DFD5DE52734736C4BB3FDD2 /* Pods-SportsPal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.debug.xcconfig"; sourceTree = "<group>"; };
+		4639FD4C1CD13F860020D00B /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		4639FD4D1CD13F860020D00B /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		4639FD4F1CD13F860020D00B /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
+		4639FD501CD13F860020D00B /* RequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManager.m; sourceTree = "<group>"; };
+		4639FD521CD13F860020D00B /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelManager.h; sourceTree = "<group>"; };
+		4639FD531CD13F860020D00B /* ModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelManager.m; sourceTree = "<group>"; };
+		4639FD551CD13F860020D00B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		4639FD561CD13F860020D00B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		4639FD5B1CD157E20020D00B /* ProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileManager.h; sourceTree = "<group>"; };
+		4639FD5C1CD157E20020D00B /* ProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileManager.m; sourceTree = "<group>"; };
 		4661DDF11CC54C020005C567 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
 		4661DDF21CC54C020005C567 /* add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@3x.png"; sourceTree = "<group>"; };
 		4661DDF31CC54C020005C567 /* chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chats@2x.png"; sourceTree = "<group>"; };
@@ -354,6 +369,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4639FD4B1CD13F860020D00B /* Login Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4639FD4C1CD13F860020D00B /* LoginManager.h */,
+				4639FD4D1CD13F860020D00B /* LoginManager.m */,
+			);
+			path = "Login Manager";
+			sourceTree = "<group>";
+		};
+		4639FD4E1CD13F860020D00B /* RequestManager */ = {
+			isa = PBXGroup;
+			children = (
+				4639FD4F1CD13F860020D00B /* RequestManager.h */,
+				4639FD501CD13F860020D00B /* RequestManager.m */,
+			);
+			path = RequestManager;
+			sourceTree = "<group>";
+		};
+		4639FD511CD13F860020D00B /* ModelManager */ = {
+			isa = PBXGroup;
+			children = (
+				4639FD521CD13F860020D00B /* ModelManager.h */,
+				4639FD531CD13F860020D00B /* ModelManager.m */,
+			);
+			path = ModelManager;
+			sourceTree = "<group>";
+		};
+		4639FD541CD13F860020D00B /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				4639FD551CD13F860020D00B /* User.h */,
+				4639FD561CD13F860020D00B /* User.m */,
+				4639FD5B1CD157E20020D00B /* ProfileManager.h */,
+				4639FD5C1CD157E20020D00B /* ProfileManager.m */,
+			);
+			path = UserModel;
+			sourceTree = "<group>";
+		};
 		4661DDF01CC54C020005C567 /* TabBar_icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,6 +726,10 @@
 		46F62CE81C90ABA900A61B47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4639FD4B1CD13F860020D00B /* Login Manager */,
+				4639FD4E1CD13F860020D00B /* RequestManager */,
+				4639FD511CD13F860020D00B /* ModelManager */,
+				4639FD541CD13F860020D00B /* UserModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -998,9 +1055,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				46F62CFB1C90B61100A61B47 /* TemplateVC.m in Sources */,
+				4639FD5A1CD13F860020D00B /* User.m in Sources */,
+				4639FD571CD13F860020D00B /* LoginManager.m in Sources */,
 				4675AC5C1CC3EF5B0013FEE3 /* Add_VC.m in Sources */,
 				46F3156B1CC125A100AAA588 /* LabeledActivityIndicatorView.m in Sources */,
 				46F315781CC18E6E00AAA588 /* ResetPassword.m in Sources */,
+				4639FD5D1CD157E20020D00B /* ProfileManager.m in Sources */,
 				46F62CD41C90901400A61B47 /* ViewController.m in Sources */,
 				4675ABCB1CC398E10013FEE3 /* Prefrences.m in Sources */,
 				4675AC561CC3EF330013FEE3 /* News_VC.m in Sources */,
@@ -1010,6 +1070,7 @@
 				46F62D3D1C93627800A61B47 /* Home.m in Sources */,
 				46F62CD11C90901400A61B47 /* AppDelegate.m in Sources */,
 				46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */,
+				4639FD591CD13F860020D00B /* ModelManager.m in Sources */,
 				46F62D371C93624C00A61B47 /* Login.m in Sources */,
 				46F161E71CC6A70F00F36EE9 /* TB_Play_Players.m in Sources */,
 				4675AC621CC3EF8A0013FEE3 /* People_VC.m in Sources */,
@@ -1017,6 +1078,7 @@
 				46F161EA1CC6A73400F36EE9 /* TB_Play_Sports.m in Sources */,
 				46F3157E1CC23A8600AAA588 /* CustomViewViewController.m in Sources */,
 				46F62CDA1C90901400A61B47 /* SportsPal.xcdatamodeld in Sources */,
+				4639FD581CD13F860020D00B /* RequestManager.m in Sources */,
 				46F315741CC168BC00AAA588 /* LeftSlider.m in Sources */,
 				46F62D3A1C93626C00A61B47 /* SignUp.m in Sources */,
 				46F161ED1CC6A77900F36EE9 /* TB_Play_Teams.m in Sources */,

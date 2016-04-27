@@ -41,12 +41,64 @@
 
 - (IBAction)clk_Login:(id)sender {
     
-//    UIViewController *homeVC = [kLoginStoryboard instantiateInitialViewController];
-//    [kLoginStoryboard instantiateViewControllerWithIdentifier:@"login"];
-//    [self.navigationController pushViewController:[self goToController:@"history"] animated:NO];
-//    
-//    [self.navigationController pushViewController:homeVC animated:YES];
+    if ([[txtEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 )
+    {
+        
+        [kAppDelegate.objLoader show];
+        
+        NSDictionary *loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtEmail.text, @"email", txtPassword.text, @"password", @"ios", @"device_type", @"1234hsdgfdf4", @"device_token", nil];
+        
+        [model_manager.loginManager userLogin:loginInfo completion:^(NSDictionary *dictJson, NSError *error) {
+            [kAppDelegate.objLoader hide];
+            if(!error)
+            {
+                if([[dictJson valueForKey:@"message"] isKindOfClass:[NSDictionary class]])
+                {
+                    //user registered successfully
+                    UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+                    [self.navigationController pushViewController:homeVC animated:YES];
+                }
+                else
+                {
+                    [self showAlert:[dictJson valueForKey:@"message"]];
+                }
+            }
+            
+        }];
+    }
+    else if([[txtEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+        [self showAlert:@"Please enter email"];
+    else if([[txtPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+        [self showAlert:@"Please enter password"];
+
+    
 }
+
+-(void)showAlert:(NSString *)errorMsg
+{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Error"
+                                  message:errorMsg
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleCancel
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             //   [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+}
+
+
 - (IBAction)clk_ForgotPassword:(id)sender {
 }
 - (IBAction)clk_Back:(id)sender
