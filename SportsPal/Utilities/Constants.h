@@ -15,8 +15,8 @@
 #define kBaseUrl [NSURL URLWithString:kBaseUrlPath]
 
 #define loginPath @"users/login"
-
 #define registerPath @"users/add"
+#define resetPasswordPath @"users/resetPassword"
 
 //TextField
 #define TF_BorderColor  [UIColor redColor];

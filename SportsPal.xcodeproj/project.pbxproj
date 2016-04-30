@@ -163,6 +163,9 @@
 		46F62D3D1C93627800A61B47 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3C1C93627800A61B47 /* Home.m */; };
 		46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3F1C9362F600A61B47 /* TableViewTemplate.m */; };
 		4785B6D8446AC7646ECB1EE5 /* libPods-SportsPal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */; };
+		A66693841CD4CFD800195DE7 /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693831CD4CFD800195DE7 /* TeamManager.m */; };
+		A66693871CD4D00800195DE7 /* PlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693861CD4D00800195DE7 /* PlayerManager.m */; };
+		A666938A1CD4D02800195DE7 /* SportsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693891CD4D02800195DE7 /* SportsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -354,6 +357,12 @@
 		46F62D3F1C9362F600A61B47 /* TableViewTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewTemplate.m; sourceTree = "<group>"; };
 		46F62D541C95480500A61B47 /* SportsPal-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SportsPal-Prefix.pch"; sourceTree = "<group>"; };
 		5ED572898767DCE339BA8964 /* Pods-SportsPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.release.xcconfig"; sourceTree = "<group>"; };
+		A66693821CD4CFD800195DE7 /* TeamManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamManager.h; sourceTree = "<group>"; };
+		A66693831CD4CFD800195DE7 /* TeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamManager.m; sourceTree = "<group>"; };
+		A66693851CD4D00800195DE7 /* PlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManager.h; sourceTree = "<group>"; };
+		A66693861CD4D00800195DE7 /* PlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerManager.m; sourceTree = "<group>"; };
+		A66693881CD4D02800195DE7 /* SportsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportsManager.h; sourceTree = "<group>"; };
+		A66693891CD4D02800195DE7 /* SportsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportsManager.m; sourceTree = "<group>"; };
 		DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SportsPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -726,6 +735,9 @@
 		46F62CE81C90ABA900A61B47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A666937F1CD4CFBB00195DE7 /* TeamManager */,
+				A66693801CD4CFBB00195DE7 /* PlayerManager */,
+				A66693811CD4CFBB00195DE7 /* SportsManager */,
 				4639FD4B1CD13F860020D00B /* Login Manager */,
 				4639FD4E1CD13F860020D00B /* RequestManager */,
 				4639FD511CD13F860020D00B /* ModelManager */,
@@ -785,6 +797,33 @@
 				DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A666937F1CD4CFBB00195DE7 /* TeamManager */ = {
+			isa = PBXGroup;
+			children = (
+				A66693821CD4CFD800195DE7 /* TeamManager.h */,
+				A66693831CD4CFD800195DE7 /* TeamManager.m */,
+			);
+			path = TeamManager;
+			sourceTree = "<group>";
+		};
+		A66693801CD4CFBB00195DE7 /* PlayerManager */ = {
+			isa = PBXGroup;
+			children = (
+				A66693851CD4D00800195DE7 /* PlayerManager.h */,
+				A66693861CD4D00800195DE7 /* PlayerManager.m */,
+			);
+			path = PlayerManager;
+			sourceTree = "<group>";
+		};
+		A66693811CD4CFBB00195DE7 /* SportsManager */ = {
+			isa = PBXGroup;
+			children = (
+				A66693881CD4D02800195DE7 /* SportsManager.h */,
+				A66693891CD4D02800195DE7 /* SportsManager.m */,
+			);
+			path = SportsManager;
 			sourceTree = "<group>";
 		};
 		F859CE6D968A25B51939F7FE /* Pods */ = {
@@ -1070,12 +1109,15 @@
 				46F62D3D1C93627800A61B47 /* Home.m in Sources */,
 				46F62CD11C90901400A61B47 /* AppDelegate.m in Sources */,
 				46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */,
+				A666938A1CD4D02800195DE7 /* SportsManager.m in Sources */,
 				4639FD591CD13F860020D00B /* ModelManager.m in Sources */,
 				46F62D371C93624C00A61B47 /* Login.m in Sources */,
 				46F161E71CC6A70F00F36EE9 /* TB_Play_Players.m in Sources */,
 				4675AC621CC3EF8A0013FEE3 /* People_VC.m in Sources */,
+				A66693871CD4D00800195DE7 /* PlayerManager.m in Sources */,
 				4675AC591CC3EF490013FEE3 /* Play_VC.m in Sources */,
 				46F161EA1CC6A73400F36EE9 /* TB_Play_Sports.m in Sources */,
+				A66693841CD4CFD800195DE7 /* TeamManager.m in Sources */,
 				46F3157E1CC23A8600AAA588 /* CustomViewViewController.m in Sources */,
 				46F62CDA1C90901400A61B47 /* SportsPal.xcdatamodeld in Sources */,
 				4639FD581CD13F860020D00B /* RequestManager.m in Sources */,

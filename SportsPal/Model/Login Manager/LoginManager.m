@@ -53,9 +53,22 @@
     } ];
 }
 
--(void)validateUsername:(NSString*)username
+-(void)resetPassword:(NSString*)email completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 {
-    
+    NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:email,@"email", nil];
+    [RequestManager asynchronousRequestWithPath:resetPasswordPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+     {
+         
+         if(statusCode==200)
+         {
+             completionBlock(json,nil);
+         }
+         else
+             completionBlock(nil,nil);
+         
+         NSLog(@"Here comes the json %@",json);
+     } ];
+
 }
 
 -(void)userSignUp:(NSDictionary *)dictParam  completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock

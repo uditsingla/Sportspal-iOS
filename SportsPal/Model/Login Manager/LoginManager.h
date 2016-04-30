@@ -15,15 +15,17 @@
     
 }
 
-//user signup with email
+//user signup
 -(void)userSignUp:(NSDictionary *)dictParam  completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 ;
 
 //signin
 - (void)userLogin:(NSDictionary *)dictParam completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
--(void)validateUsername:(NSString*)username;
+//reset password
+-(void)resetPassword:(NSString*)email completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
+//logout
 -(void)logout;
 
 @end
