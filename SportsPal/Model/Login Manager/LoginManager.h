@@ -20,19 +20,10 @@
 ;
 
 //signin
--(void)authorizeUser:(NSDictionary *)dictParam;
+- (void)userLogin:(NSDictionary *)dictParam completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)validateUsername:(NSString*)username;
 
--(void)verifyCode:(NSDictionary *)dictParam;
-
--(void)resendVerificationCode:(NSDictionary *)dictParam;
-
 -(void)logout;
-
-
-- (void)userLogin:(NSDictionary *)dictParam completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
-
-
 
 @end
