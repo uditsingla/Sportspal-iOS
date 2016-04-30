@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -23,6 +24,9 @@
 @property(nonatomic,strong) MFSideMenuContainerViewController *container;
 @property(nonatomic,strong) LabeledActivityIndicatorView *objLoader;
 //-(BOOL)checkInternetConnectivity;
+
+@property(nonatomic,strong) CLLocationManager *location_Manager;
+@property(nonatomic,strong) CLLocation *myLocation;
 
 @end
 

@@ -77,30 +77,7 @@
 
 - (IBAction)clkSignUp:(id)sender {
     
-    if ([[txtFirstName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtLastName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtRePassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[bntBirthdate.titleLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[selectedGender stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [txtPassword.text isEqualToString:txtRePassword.text])
-    {
-        
-        [kAppDelegate.objLoader show];
-        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email", txtPassword.text, @"password",bntBirthdate.titleLabel.text,@"dob", selectedGender,@"gender",@"71.045678",@"latitude", @"28.096579",@"longitude", @"ios", @"device_type", @"1234hsdgfdf4", @"device_token", nil];
-        
-        [model_manager.loginManager userSignUp:signUpInfo completion:^(NSDictionary *dictJson, NSError *error) {
-            [kAppDelegate.objLoader hide];
-            if(!error)
-            {
-                if([[dictJson valueForKey:@"message"] isEqualToString:@"User registered successfully "])
-                {
-                    //user registered successfully
-                    UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
-                    [self.navigationController pushViewController:homeVC animated:YES];
-                }
-                else
-                {
-                    [self showAlert:[dictJson valueForKey:@"message"]];
-                }
-            }
-        }];
-    }
-    else if([[txtFirstName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    if([[txtFirstName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
     {
         [self showAlert:@"Please enter firstname"];
     }
@@ -111,6 +88,10 @@
     else if([[txtEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
     {
         [self showAlert:@"Please enter email"];
+    }
+    else if(![self validateEmailWithString:txtEmail.text])
+    {
+        [self showAlert:@"Please enter valid email"];
     }
     else if([[txtPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
     {
@@ -132,7 +113,54 @@
     {
         [self showAlert:@"Please select gender"];
     }
-    
+    else
+    {
+        [kAppDelegate.objLoader show];
+        
+        double latitude,longitude;
+        if(kAppDelegate.myLocation)
+        {
+            latitude = kAppDelegate.myLocation.coordinate.latitude;
+            longitude = kAppDelegate.myLocation.coordinate.longitude;
+        }
+        else
+        {
+            latitude = 0;
+            longitude = 0;
+        }
+        
+        NSString *deviceToken=@"";
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"])
+        {
+            deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"];
+        }
+        
+        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email", txtPassword.text, @"password",bntBirthdate.titleLabel.text,@"dob", selectedGender,@"gender",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", @"ios", @"device_type", deviceToken, @"device_token", nil];
+        
+        [model_manager.loginManager userSignUp:signUpInfo completion:^(NSDictionary *dictJson, NSError *error) {
+            [kAppDelegate.objLoader hide];
+            if(!error)
+            {
+                if([[dictJson valueForKey:@"message"] isEqualToString:@"User registered successfully "])
+                {
+                    //user registered successfully
+                    UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+                    [self.navigationController pushViewController:homeVC animated:YES];
+                }
+                else
+                {
+                    [self showAlert:[dictJson valueForKey:@"message"]];
+                }
+            }
+        }];
+    }
+}
+
+- (BOOL)validateEmailWithString:(NSString*)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
 }
 
 -(void)showAlert:(NSString *)errorMsg

@@ -76,7 +76,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Maps permission</string>
+	<string>SportsPal would like to use your Location Services.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>

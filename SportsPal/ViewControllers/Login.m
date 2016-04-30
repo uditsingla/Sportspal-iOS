@@ -43,6 +43,11 @@
     
     if ([[txtEmail.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 && [[txtPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] != 0 )
     {
+        if(![self validateEmailWithString:txtEmail.text])
+        {
+            [self showAlert:@"Please enter valid email"];
+            return;
+        }
         
         [kAppDelegate.objLoader show];
         
@@ -72,6 +77,13 @@
         [self showAlert:@"Please enter password"];
 
     
+}
+
+- (BOOL)validateEmailWithString:(NSString*)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
 }
 
 -(void)showAlert:(NSString *)errorMsg

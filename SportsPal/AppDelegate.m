@@ -21,6 +21,7 @@
 @implementation AppDelegate
 @synthesize container;
 @synthesize objLoader;
+@synthesize location_Manager,myLocation;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -61,8 +62,80 @@
     
     //Status Bar Color
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    //initializing location manager
+    location_Manager = [[CLLocationManager alloc] init];
+    location_Manager.delegate = self;
+    location_Manager.distanceFilter = kCLLocationAccuracyHundredMeters;
+    location_Manager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+        [location_Manager requestWhenInUseAuthorization];
+    
+    //enable push notification
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
+    
     return YES;
 }
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSLog(@"My token is: %@", deviceToken);
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"token---%@",token);
+    
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"PushDeviceToken"];
+    
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Failed to register with error: %@", error);
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"received notification%@",userInfo.description);
+    
+    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+    if(state == UIApplicationStateActive)
+    {
+    }
+    else if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
+    {
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    if (locations == nil)
+        return;
+    
+    myLocation = [locations objectAtIndex:0];
+       
+    // Stop Location Manager
+    [location_Manager stopUpdatingLocation];
+}
+
+
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    NSLog(@"%d AUTH STATUS",status);
+    
+    [location_Manager startUpdatingLocation];
+    
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
