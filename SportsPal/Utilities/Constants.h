@@ -18,6 +18,9 @@
 #define registerPath @"users/add"
 #define resetPasswordPath @"users/resetPassword"
 
+#define getSportsPath @"sports"
+#define getGamesPath @"games"
+
 //TextField
 #define TF_BorderColor  [UIColor redColor];
 #define TF_BGColor  [UIColor colorWithRed:16/255.00 green:124/255.00 blue:213/255.00 alpha:1];

@@ -3,21 +3,21 @@
 
 @implementation User
 
-@synthesize strUsername,strFirstName,strLastName,strFullName,strUserID,strProfilePic,strGender,strDOB,strEmail;
+@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        strUsername = @"";
-        strFirstName = @"";
-        strLastName = @"";
-        strFullName = @"";
-        strUserID = @"";
-        strProfilePic = @"";
-        strGender = @"";
-        strDOB = @"";
-        strEmail = @"";
+        username = @"";
+        firstName = @"";
+        lastName = @"";
+        fullName = @"";
+        userID = @"";
+        profilePic = @"";
+        gender = @"";
+        dob = @"";
+        email = @"";
     }
     return self;
 }

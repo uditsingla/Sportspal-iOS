@@ -141,7 +141,7 @@
             [kAppDelegate.objLoader hide];
             if(!error)
             {
-                if([[dictJson valueForKey:@"message"] isEqualToString:@"User registered successfully "])
+                if([[dictJson valueForKey:@"success"] boolValue])
                 {
                     //user registered successfully
                     UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];

@@ -4,13 +4,13 @@
 
 @interface User : NSObject
 
-@property (nonatomic, strong) NSString *strUsername;
-@property (nonatomic, strong) NSString *strFirstName;
-@property (nonatomic, strong) NSString *strLastName;
-@property (nonatomic, strong) NSString *strFullName;
-@property (nonatomic, strong) NSString *strUserID;
-@property (nonatomic, strong) NSString *strProfilePic;
-@property (nonatomic, strong) NSString *strGender;
-@property (nonatomic, strong) NSString *strDOB;
-@property (nonatomic, strong) NSString *strEmail;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) NSString *fullName;
+@property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *profilePic;
+@property (nonatomic, strong) NSString *gender;
+@property (nonatomic, strong) NSString *dob;
+@property (nonatomic, strong) NSString *email;
 @end

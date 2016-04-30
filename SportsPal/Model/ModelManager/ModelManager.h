@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LoginManager.h"
 #import "ProfileManager.h"
+#import "SportsManager.h"
 
 @interface ModelManager : NSObject
 
@@ -17,4 +18,5 @@
 @property(strong,nonatomic) LoginManager *loginManager;
 @property(strong,nonatomic) RequestManager *requestManager;
 @property(strong,nonatomic) ProfileManager *profileManager;
+@property(strong,nonatomic) SportsManager *sportsManager;
 @end

@@ -166,6 +166,8 @@
 		A66693841CD4CFD800195DE7 /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693831CD4CFD800195DE7 /* TeamManager.m */; };
 		A66693871CD4D00800195DE7 /* PlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693861CD4D00800195DE7 /* PlayerManager.m */; };
 		A666938A1CD4D02800195DE7 /* SportsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693891CD4D02800195DE7 /* SportsManager.m */; };
+		A666938D1CD4FD4F00195DE7 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = A666938C1CD4FD4F00195DE7 /* Game.m */; };
+		A66693901CD5241D00195DE7 /* Sport.m in Sources */ = {isa = PBXBuildFile; fileRef = A666938F1CD5241D00195DE7 /* Sport.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -363,6 +365,10 @@
 		A66693861CD4D00800195DE7 /* PlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerManager.m; sourceTree = "<group>"; };
 		A66693881CD4D02800195DE7 /* SportsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportsManager.h; sourceTree = "<group>"; };
 		A66693891CD4D02800195DE7 /* SportsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportsManager.m; sourceTree = "<group>"; };
+		A666938B1CD4FD4F00195DE7 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		A666938C1CD4FD4F00195DE7 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		A666938E1CD5241D00195DE7 /* Sport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sport.h; sourceTree = "<group>"; };
+		A666938F1CD5241D00195DE7 /* Sport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sport.m; sourceTree = "<group>"; };
 		DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SportsPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -822,6 +828,10 @@
 			children = (
 				A66693881CD4D02800195DE7 /* SportsManager.h */,
 				A66693891CD4D02800195DE7 /* SportsManager.m */,
+				A666938B1CD4FD4F00195DE7 /* Game.h */,
+				A666938C1CD4FD4F00195DE7 /* Game.m */,
+				A666938E1CD5241D00195DE7 /* Sport.h */,
+				A666938F1CD5241D00195DE7 /* Sport.m */,
 			);
 			path = SportsManager;
 			sourceTree = "<group>";
@@ -1105,6 +1115,7 @@
 				4675AC561CC3EF330013FEE3 /* News_VC.m in Sources */,
 				46F315441CC1090B00AAA588 /* Landing_VC.m in Sources */,
 				4675AC5F1CC3EF760013FEE3 /* Chats_VC.m in Sources */,
+				A666938D1CD4FD4F00195DE7 /* Game.m in Sources */,
 				46F315751CC168BC00AAA588 /* LeftSliderCell.m in Sources */,
 				46F62D3D1C93627800A61B47 /* Home.m in Sources */,
 				46F62CD11C90901400A61B47 /* AppDelegate.m in Sources */,
@@ -1116,6 +1127,7 @@
 				4675AC621CC3EF8A0013FEE3 /* People_VC.m in Sources */,
 				A66693871CD4D00800195DE7 /* PlayerManager.m in Sources */,
 				4675AC591CC3EF490013FEE3 /* Play_VC.m in Sources */,
+				A66693901CD5241D00195DE7 /* Sport.m in Sources */,
 				46F161EA1CC6A73400F36EE9 /* TB_Play_Sports.m in Sources */,
 				A66693841CD4CFD800195DE7 /* TeamManager.m in Sources */,
 				46F3157E1CC23A8600AAA588 /* CustomViewViewController.m in Sources */,

@@ -36,7 +36,7 @@ static ModelManager *modelManager = nil;
         self.loginManager=[[LoginManager alloc] init];
         self.requestManager=[[RequestManager alloc] init];
         self.profileManager=[[ProfileManager alloc] init];
-
+        self.sportsManager=[[SportsManager alloc] init];
     }
     return self;
 }

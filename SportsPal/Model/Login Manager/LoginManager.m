@@ -34,17 +34,20 @@
         
         if(statusCode==200)
         {
-            completionBlock(json,nil);
-            
-            if([[json valueForKey:@"message"] isKindOfClass:[NSDictionary class]])
+            if([[json valueForKey:@"success"] boolValue])
             {
-                model_manager.profileManager.owner.strUserID = [[json valueForKey:@"message"] valueForKey:@"id"];
-                model_manager.profileManager.owner.strFirstName = [[json valueForKey:@"message"] valueForKey:@"first_name"];
-                model_manager.profileManager.owner.strLastName = [[json valueForKey:@"message"] valueForKey:@"last_name"];
-                model_manager.profileManager.owner.strGender = [[json valueForKey:@"message"] valueForKey:@"gender"];
-                model_manager.profileManager.owner.strProfilePic = [[json valueForKey:@"message"] valueForKey:@"image"];
-                model_manager.profileManager.owner.strEmail = [[json valueForKey:@"message"] valueForKey:@"email"];
+                model_manager.profileManager.owner.userID = [[json valueForKey:@"message"] valueForKey:@"id"];
+                model_manager.profileManager.owner.firstName = [[json valueForKey:@"message"] valueForKey:@"first_name"];
+                model_manager.profileManager.owner.lastName = [[json valueForKey:@"message"] valueForKey:@"last_name"];
+                model_manager.profileManager.owner.gender = [[json valueForKey:@"message"] valueForKey:@"gender"];
+                model_manager.profileManager.owner.profilePic = [[json valueForKey:@"message"] valueForKey:@"image"];
+                model_manager.profileManager.owner.email = [[json valueForKey:@"message"] valueForKey:@"email"];
+                
+                [model_manager.sportsManager getSports:nil];
+                [model_manager.sportsManager getAvailableGames:nil];
             }
+            
+            completionBlock(json,nil);
         }
         else
             completionBlock(nil,nil);
@@ -61,6 +64,11 @@
          
          if(statusCode==200)
          {
+             if([[json valueForKey:@"success"] boolValue])
+             {
+                 
+             }
+             
              completionBlock(json,nil);
          }
          else
@@ -77,7 +85,13 @@
     [RequestManager asynchronousRequestWithPath:registerPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
      {
          if(statusCode==200)
+         {
+             if([[json valueForKey:@"success"] boolValue])
+             {
+                 
+             }
              completionBlock(json,nil);
+         }
          else
              completionBlock(nil,nil);         NSLog(@"Here comes the json %@",json);
      } ];

@@ -7,6 +7,10 @@
 //
 
 #import "Play_VC.h"
+#import "TB_Play_Players.h"
+#import "TB_Play_Sports.h"
+#import "TB_Play_Teams.h"
+#import "Game.h"
 
 @interface Play_VC ()
 {
@@ -43,7 +47,9 @@
     
     arrPlayers = [NSMutableArray arrayWithObjects:@"Player 1 ",@"Player 2",@"Player 3",@"Player 4", nil];
     
-    arrSports = [NSMutableArray arrayWithObjects:@"Sports 1 ",@"Sports 2",@"Sports 3",@"Sports 4", nil];
+    //arrSports = [NSMutableArray arrayWithObjects:@"Sports 1 ",@"Sports 2",@"Sports 3",@"Sports 4", nil];
+    arrSports = model_manager.sportsManager.arrayGames;
+    
     arrTeams =[NSMutableArray arrayWithObjects:@"Team 1 ",@"Team 2",@"Team 3",@"Team 4", nil];
     
     
@@ -84,6 +90,8 @@
         tblPlayers.hidden = YES;
         tblTeams.hidden = YES;
         tblSearch.hidden = YES;
+        
+        [tblSports reloadData];
     }
     else if (selectedSegment == 1)
     {
@@ -132,15 +140,17 @@
     if (tableView == tblSports) {
         
         static NSString *CellIdentifier = @"CellIdentifier";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        TB_Play_Sports *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell = [[TB_Play_Sports alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         
+        Game *game = [arrSports objectAtIndex:indexPath.row];
+        
         cell.contentView.backgroundColor = [UIColor blackColor];
-        cell.textLabel.text = [arrSports objectAtIndex:indexPath.row];
-        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.lblName.text = game.sportName;
+        cell.lblName.textColor = [UIColor whiteColor];
         
         return cell;
 

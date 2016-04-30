@@ -67,5 +67,60 @@
     else if (address){
         
     }
+    
+    [self createNewGame];
 }
+
+-(void)createNewGame
+{
+    Game *game = [Game new];
+    game.sportID = @"1";
+    game.sportName = @"Cricket";
+    game.creator = model_manager.profileManager.owner;
+    game.gameType = GameTypeIndividual;
+    game.geoLocation = kAppDelegate.myLocation.coordinate;
+    
+    [kAppDelegate.objLoader show];
+    
+    [model_manager.sportsManager createNewGame:game completion:^(NSDictionary *dictJson, NSError *error) {
+        [kAppDelegate.objLoader hide];
+        if(!error)
+        {
+            if([[dictJson valueForKey:@"success"] boolValue])
+            {
+                //game created successfully
+                [self showAlert:[dictJson valueForKey:@"message"]];
+            }
+            else
+            {
+                [self showAlert:[dictJson valueForKey:@"message"]];
+            }
+        }
+    }];
+}
+
+-(void)showAlert:(NSString *)errorMsg
+{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Error"
+                                  message:errorMsg
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleCancel
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             //   [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+}
+
 @end
