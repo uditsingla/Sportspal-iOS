@@ -15,6 +15,7 @@ pod 'MFSideMenu', '~> 0.5'
 pod 'AFNetworking', '~> 3.0'
 pod 'SDWebImage', '~> 3.7'
 pod 'PubNub', '~> 4.3'
+pod 'GoogleMaps'
 
 end
 

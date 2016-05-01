@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "SVGeocoder.h"
 
 @interface ProfileManager : NSObject
 
 @property (nonatomic, strong) User *owner;
+@property(strong,nonatomic) SVPlacemark *svp_LocationInfo;
 
 -(void)resetModelData;
 @end

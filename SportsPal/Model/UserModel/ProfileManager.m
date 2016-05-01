@@ -10,7 +10,7 @@
 
 @implementation ProfileManager
 
-@synthesize owner;
+@synthesize owner,svp_LocationInfo;
 
 - (id)init
 {

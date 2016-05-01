@@ -174,6 +174,17 @@
 		A666938D1CD4FD4F00195DE7 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = A666938C1CD4FD4F00195DE7 /* Game.m */; };
 		A66693901CD5241D00195DE7 /* Sport.m in Sources */ = {isa = PBXBuildFile; fileRef = A666938F1CD5241D00195DE7 /* Sport.m */; };
 		A6C953771CD616DA0046F1A9 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953761CD616DA0046F1A9 /* Team.m */; };
+		A6C953861CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C9537A1CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A6C953871CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C9537C1CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A6C953881CD68D650046F1A9 /* SPGooglePlacesAutocompleteUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C9537E1CD68D650046F1A9 /* SPGooglePlacesAutocompleteUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A6C953891CD68D650046F1A9 /* SPGooglePlacesPlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953801CD68D650046F1A9 /* SPGooglePlacesPlaceDetailQuery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A6C9538A1CD68D650046F1A9 /* SVGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953831CD68D650046F1A9 /* SVGeocoder.m */; };
+		A6C9538B1CD68D650046F1A9 /* SVPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953851CD68D650046F1A9 /* SVPlacemark.m */; };
+		A6C9538F1CD68D840046F1A9 /* SetLocationScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C9538E1CD68D840046F1A9 /* SetLocationScreen.m */; };
+		A6C953981CD69A4B0046F1A9 /* map_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6C953941CD69A4B0046F1A9 /* map_location@2x.png */; };
+		A6C953991CD69A4B0046F1A9 /* map_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6C953951CD69A4B0046F1A9 /* map_location@3x.png */; };
+		A6C9539A1CD69A4B0046F1A9 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6C953961CD69A4B0046F1A9 /* marker@2x.png */; };
+		A6C9539B1CD69A4B0046F1A9 /* marker@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6C953971CD69A4B0046F1A9 /* marker@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -383,6 +394,24 @@
 		A666938F1CD5241D00195DE7 /* Sport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sport.m; sourceTree = "<group>"; };
 		A6C953751CD616DA0046F1A9 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
 		A6C953761CD616DA0046F1A9 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
+		A6C953791CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompletePlace.h; sourceTree = "<group>"; };
+		A6C9537A1CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompletePlace.m; sourceTree = "<group>"; };
+		A6C9537B1CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompleteQuery.h; sourceTree = "<group>"; };
+		A6C9537C1CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompleteQuery.m; sourceTree = "<group>"; };
+		A6C9537D1CD68D650046F1A9 /* SPGooglePlacesAutocompleteUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompleteUtilities.h; sourceTree = "<group>"; };
+		A6C9537E1CD68D650046F1A9 /* SPGooglePlacesAutocompleteUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesAutocompleteUtilities.m; sourceTree = "<group>"; };
+		A6C9537F1CD68D650046F1A9 /* SPGooglePlacesPlaceDetailQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesPlaceDetailQuery.h; sourceTree = "<group>"; };
+		A6C953801CD68D650046F1A9 /* SPGooglePlacesPlaceDetailQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesPlaceDetailQuery.m; sourceTree = "<group>"; };
+		A6C953821CD68D650046F1A9 /* SVGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGeocoder.h; sourceTree = "<group>"; };
+		A6C953831CD68D650046F1A9 /* SVGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGeocoder.m; sourceTree = "<group>"; };
+		A6C953841CD68D650046F1A9 /* SVPlacemark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPlacemark.h; sourceTree = "<group>"; };
+		A6C953851CD68D650046F1A9 /* SVPlacemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPlacemark.m; sourceTree = "<group>"; };
+		A6C9538D1CD68D840046F1A9 /* SetLocationScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLocationScreen.h; sourceTree = "<group>"; };
+		A6C9538E1CD68D840046F1A9 /* SetLocationScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLocationScreen.m; sourceTree = "<group>"; };
+		A6C953941CD69A4B0046F1A9 /* map_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@2x.png"; sourceTree = "<group>"; };
+		A6C953951CD69A4B0046F1A9 /* map_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@3x.png"; sourceTree = "<group>"; };
+		A6C953961CD69A4B0046F1A9 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
+		A6C953971CD69A4B0046F1A9 /* marker@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@3x.png"; sourceTree = "<group>"; };
 		DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SportsPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -611,6 +640,7 @@
 		46F3153E1CC104CA00AAA588 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				A6C953931CD69A4B0046F1A9 /* SetLocation */,
 				4661DE051CC54D330005C567 /* Common */,
 				4675ABD71CC3E69B0013FEE3 /* TabBar_vc */,
 				4675ABD11CC39A220013FEE3 /* Reset */,
@@ -798,6 +828,7 @@
 		46F62CEA1C90ABA900A61B47 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A6C9538C1CD68D840046F1A9 /* SetLocationScreen */,
 				46D7CA151CD6305500DF8B35 /* ViewController */,
 				46F161E41CC6A62100F36EE9 /* TableviewCells */,
 				4675ABD61CC3D4730013FEE3 /* TabBar_VC */,
@@ -820,6 +851,8 @@
 		46F62CEB1C90ABE500A61B47 /* 3rdPartyLib */ = {
 			isa = PBXGroup;
 			children = (
+				A6C953781CD68D650046F1A9 /* Google Places Autocomplete */,
+				A6C953811CD68D650046F1A9 /* SVGeocoder */,
 				46F315681CC125A100AAA588 /* Custom Loader */,
 			);
 			path = 3rdPartyLib;
@@ -864,6 +897,52 @@
 				A666938F1CD5241D00195DE7 /* Sport.m */,
 			);
 			path = SportsManager;
+			sourceTree = "<group>";
+		};
+		A6C953781CD68D650046F1A9 /* Google Places Autocomplete */ = {
+			isa = PBXGroup;
+			children = (
+				A6C953791CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.h */,
+				A6C9537A1CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m */,
+				A6C9537B1CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.h */,
+				A6C9537C1CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.m */,
+				A6C9537D1CD68D650046F1A9 /* SPGooglePlacesAutocompleteUtilities.h */,
+				A6C9537E1CD68D650046F1A9 /* SPGooglePlacesAutocompleteUtilities.m */,
+				A6C9537F1CD68D650046F1A9 /* SPGooglePlacesPlaceDetailQuery.h */,
+				A6C953801CD68D650046F1A9 /* SPGooglePlacesPlaceDetailQuery.m */,
+			);
+			path = "Google Places Autocomplete";
+			sourceTree = "<group>";
+		};
+		A6C953811CD68D650046F1A9 /* SVGeocoder */ = {
+			isa = PBXGroup;
+			children = (
+				A6C953821CD68D650046F1A9 /* SVGeocoder.h */,
+				A6C953831CD68D650046F1A9 /* SVGeocoder.m */,
+				A6C953841CD68D650046F1A9 /* SVPlacemark.h */,
+				A6C953851CD68D650046F1A9 /* SVPlacemark.m */,
+			);
+			path = SVGeocoder;
+			sourceTree = "<group>";
+		};
+		A6C9538C1CD68D840046F1A9 /* SetLocationScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A6C9538D1CD68D840046F1A9 /* SetLocationScreen.h */,
+				A6C9538E1CD68D840046F1A9 /* SetLocationScreen.m */,
+			);
+			path = SetLocationScreen;
+			sourceTree = "<group>";
+		};
+		A6C953931CD69A4B0046F1A9 /* SetLocation */ = {
+			isa = PBXGroup;
+			children = (
+				A6C953941CD69A4B0046F1A9 /* map_location@2x.png */,
+				A6C953951CD69A4B0046F1A9 /* map_location@3x.png */,
+				A6C953961CD69A4B0046F1A9 /* marker@2x.png */,
+				A6C953971CD69A4B0046F1A9 /* marker@3x.png */,
+			);
+			path = SetLocation;
 			sourceTree = "<group>";
 		};
 		F859CE6D968A25B51939F7FE /* Pods */ = {
@@ -942,6 +1021,7 @@
 				4661DE4B1CC54EAA0005C567 /* corporate@3x.png in Resources */,
 				46F3158D1CC2546D00AAA588 /* logo@2x.png in Resources */,
 				4661DE641CC54EAA0005C567 /* birthday@2x.png in Resources */,
+				A6C9539A1CD69A4B0046F1A9 /* marker@2x.png in Resources */,
 				46F315621CC1181200AAA588 /* login_bg@2x.png in Resources */,
 				4661DE4E1CC54EAA0005C567 /* members@3x.png in Resources */,
 				4661DE511CC54EAA0005C567 /* description@2x.png in Resources */,
@@ -1019,6 +1099,8 @@
 				46F3154C1CC10DC900AAA588 /* 1@2x.png in Resources */,
 				4661DE481CC54EAA0005C567 /* birthday@3x.png in Resources */,
 				4661DE571CC54EAA0005C567 /* down@2x.png in Resources */,
+				A6C953981CD69A4B0046F1A9 /* map_location@2x.png in Resources */,
+				A6C9539B1CD69A4B0046F1A9 /* marker@3x.png in Resources */,
 				46F315A61CC2BA9A00AAA588 /* male_white@3x.png in Resources */,
 				4661DE631CC54EAA0005C567 /* team@2x.png in Resources */,
 				46D7CA1F1CD6781200DF8B35 /* checkOn@2x.png in Resources */,
@@ -1050,6 +1132,7 @@
 				4661DE491CC54EAA0005C567 /* star2@3x.png in Resources */,
 				4675ABE91CC3E69B0013FEE3 /* icon_chat@2x.png in Resources */,
 				46F3155C1CC1108400AAA588 /* signup@2x.png in Resources */,
+				A6C953991CD69A4B0046F1A9 /* map_location@3x.png in Resources */,
 				46F315511CC10DC900AAA588 /* 3@3x.png in Resources */,
 				46D7CA201CD6781200DF8B35 /* checkOn@3x.png in Resources */,
 				46F315921CC2546D00AAA588 /* signup_long@3x.png in Resources */,
@@ -1139,8 +1222,10 @@
 			files = (
 				46F62CFB1C90B61100A61B47 /* TemplateVC.m in Sources */,
 				4639FD5A1CD13F860020D00B /* User.m in Sources */,
+				A6C953871CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				4639FD571CD13F860020D00B /* LoginManager.m in Sources */,
 				4675AC5C1CC3EF5B0013FEE3 /* Add_VC.m in Sources */,
+				A6C953881CD68D650046F1A9 /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				46D7CA181CD6309900DF8B35 /* AddTeam.m in Sources */,
 				46F3156B1CC125A100AAA588 /* LabeledActivityIndicatorView.m in Sources */,
 				A6C953771CD616DA0046F1A9 /* Team.m in Sources */,
@@ -1154,10 +1239,13 @@
 				A666938D1CD4FD4F00195DE7 /* Game.m in Sources */,
 				46F315751CC168BC00AAA588 /* LeftSliderCell.m in Sources */,
 				46F62D3D1C93627800A61B47 /* Home.m in Sources */,
+				A6C9538A1CD68D650046F1A9 /* SVGeocoder.m in Sources */,
 				46F62CD11C90901400A61B47 /* AppDelegate.m in Sources */,
+				A6C9538B1CD68D650046F1A9 /* SVPlacemark.m in Sources */,
 				46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */,
 				A666938A1CD4D02800195DE7 /* SportsManager.m in Sources */,
 				4639FD591CD13F860020D00B /* ModelManager.m in Sources */,
+				A6C9538F1CD68D840046F1A9 /* SetLocationScreen.m in Sources */,
 				46F62D371C93624C00A61B47 /* Login.m in Sources */,
 				46F161E71CC6A70F00F36EE9 /* TB_Play_Players.m in Sources */,
 				4675AC621CC3EF8A0013FEE3 /* People_VC.m in Sources */,
@@ -1169,8 +1257,10 @@
 				46F3157E1CC23A8600AAA588 /* CustomViewViewController.m in Sources */,
 				46F62CDA1C90901400A61B47 /* SportsPal.xcdatamodeld in Sources */,
 				4639FD581CD13F860020D00B /* RequestManager.m in Sources */,
+				A6C953891CD68D650046F1A9 /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
 				46F315741CC168BC00AAA588 /* LeftSlider.m in Sources */,
 				46F62D3A1C93626C00A61B47 /* SignUp.m in Sources */,
+				A6C953861CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				46F161ED1CC6A77900F36EE9 /* TB_Play_Teams.m in Sources */,
 				46F62CCE1C90901400A61B47 /* main.m in Sources */,
 			);
@@ -1284,6 +1374,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SportsPal/3rdPartyLib/GoogleMap",
+					Framework,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SportsPal/SportsPal-Prefix.pch";
 				INFOPLIST_FILE = SportsPal/Info.plist;
@@ -1300,6 +1395,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SportsPal/3rdPartyLib/GoogleMap",
+					Framework,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SportsPal/SportsPal-Prefix.pch";
 				INFOPLIST_FILE = SportsPal/Info.plist;

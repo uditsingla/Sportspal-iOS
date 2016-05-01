@@ -11,7 +11,7 @@
 //crashlytics
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-
+#import <GoogleMaps/GoogleMaps.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface AppDelegate ()
@@ -85,6 +85,8 @@
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
          (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
     }
+    
+    [GMSServices provideAPIKey:@"AIzaSyC_oR6-tLr-orKRbomItDCA4UAjUsecm0c"];
     
     return YES;
 }

@@ -50,8 +50,8 @@
     //arrSports = [NSMutableArray arrayWithObjects:@"Sports 1 ",@"Sports 2",@"Sports 3",@"Sports 4", nil];
     arrSports = model_manager.sportsManager.arrayGames;
     
-    arrTeams =[NSMutableArray arrayWithObjects:@"Team 1 ",@"Team 2",@"Team 3",@"Team 4", nil];
-    
+    //arrTeams =[NSMutableArray arrayWithObjects:@"Team 1 ",@"Team 2",@"Team 3",@"Team 4", nil];
+    arrTeams = model_manager.teamManager.arrayTeams;
     
     arrSearchResult = [NSMutableArray new];
     arrTempSearch = [NSMutableArray new];
@@ -153,6 +153,9 @@
         cell.lblName.text = game.sportName;
         cell.lblName.textColor = [UIColor whiteColor];
         
+        cell.lblGame1.text = game.time;
+        cell.lblGame2.text = game.date;
+        
         return cell;
 
     }
@@ -160,16 +163,16 @@
     else if (tableView == tblPlayers) {
         
         static NSString *CellIdentifier = @"CellIdentifier";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        TB_Play_Players *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell = [[TB_Play_Players alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         
         cell.contentView.backgroundColor = [UIColor blackColor];
-        cell.textLabel.text = [arrPlayers objectAtIndex:indexPath.row];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        
+        cell.lblName.text = @"";
+        cell.lblName.textColor = [UIColor whiteColor];
+
         return cell;
 
     }
@@ -177,15 +180,19 @@
     else if (tableView == tblTeams) {
         
         static NSString *CellIdentifier = @"CellIdentifier";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        TB_Play_Teams *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            cell = [[TB_Play_Teams alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         
+        Team *team = [arrTeams objectAtIndex:indexPath.row];
+        
         cell.contentView.backgroundColor = [UIColor blackColor];
-        cell.textLabel.text = [arrTeams objectAtIndex:indexPath.row];
-        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.lblName.text = team.teamName;
+        cell.lblName.textColor = [UIColor whiteColor];
+        
+        cell.lblGame1.text = team.sportName;
         
         return cell;
 

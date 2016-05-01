@@ -9,15 +9,16 @@
 
 
 
-#define sportname 1
-#define teamname 2
+#define ksportname 1
+#define kteamname 2
 #define kdate 3
-#define time 4
-#define address 5
+#define ktime 4
+#define kaddress 5
 
 #import "Add_VC.h"
 #import "AddTeam.h"
 #import "Sport.h"
+#import "SetLocationScreen.h"
 
 
 @interface Add_VC ()
@@ -95,6 +96,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [segmentcotrol setSelectedSegmentIndex:0];
+    
+    if(model_manager.profileManager.svp_LocationInfo)
+        btnAddress.titleLabel.text = model_manager.profileManager.svp_LocationInfo.formattedAddress;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,14 +123,14 @@
     UIButton *btn = (UIButton*)sender;
     
     
-    if (btn.tag == sportname)
+    if (btn.tag == ksportname)
     {
-        pickerselected = sportname;
+        pickerselected = ksportname;
         pickerSports.hidden = NO;
         toolBar.hidden = NO;
         
     }
-    else if (btn.tag == teamname){
+    else if (btn.tag == kteamname){
         UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Team Name"
                                                                                   message: @"Choose your teamname"
                                                                            preferredStyle:UIAlertControllerStyleAlert];
@@ -157,17 +161,18 @@
         
         
     }
-    else if (btn.tag == time){
+    else if (btn.tag == ktime){
         
-        pickerselected = time;
+        pickerselected = ktime;
         pikerTime.hidden = NO;
         toolBar.hidden = NO;
     }
-    else if (btn.tag == address){
+    else if (btn.tag == kaddress){
         
+        SetLocationScreen *obj = [SetLocationScreen new];
+        [self.navigationController pushViewController:obj animated:YES];
     }
     
-    //[self createNewGame];
 }
 
 
@@ -188,7 +193,10 @@
     game.sportName = strSportName;
     game.creator = model_manager.profileManager.owner;
     game.gameType = GameTypeIndividual;
+    game.date = strDate;
+    game.time = strTime;
     game.geoLocation = kAppDelegate.myLocation.coordinate;
+    game.address = btnAddress.titleLabel.text;
     
     [kAppDelegate.objLoader show];
     
@@ -212,7 +220,7 @@
 -(void)showAlert:(NSString *)errorMsg
 {
     UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Error"
+                                  alertControllerWithTitle:@""
                                   message:errorMsg
                                   preferredStyle:UIAlertControllerStyleAlert];
     
@@ -285,7 +293,7 @@
 
 -(void)selectDateTime:(id)sender
 {
-    if (pickerselected == sportname)
+    if (pickerselected == ksportname)
     {
         [btnSportName setTitle:strSportName forState:UIControlStateNormal];
     }
@@ -293,7 +301,7 @@
     {
         [btnDate setTitle:strDate forState:UIControlStateNormal];
     }
-    else if (pickerselected == time)
+    else if (pickerselected == ktime)
     {
         [btnTime setTitle:strTime forState:UIControlStateNormal];
     }
@@ -324,6 +332,8 @@
 
 - (IBAction)clkSave:(id)sender {
     
+    if(segmentcotrol.selectedSegmentIndex==0)
+        [self createNewGame];
 }
 
 
