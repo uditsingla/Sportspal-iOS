@@ -13,4 +13,10 @@
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *dob;
 @property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSMutableArray *arrayPreferredSports;
+
+-(void)getPreferredSports:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)addPreferredSports:(NSArray*)arraySports :(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
 @end

@@ -10,6 +10,8 @@
 #import "LoginManager.h"
 #import "ProfileManager.h"
 #import "SportsManager.h"
+#import "TeamManager.h"
+#import "PlayerManager.h"
 
 @interface ModelManager : NSObject
 
@@ -19,4 +21,6 @@
 @property(strong,nonatomic) RequestManager *requestManager;
 @property(strong,nonatomic) ProfileManager *profileManager;
 @property(strong,nonatomic) SportsManager *sportsManager;
+@property(strong,nonatomic) TeamManager *teamManager;
+@property(strong,nonatomic) PlayerManager *playerManager;
 @end

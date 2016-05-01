@@ -173,6 +173,7 @@
 		A666938A1CD4D02800195DE7 /* SportsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693891CD4D02800195DE7 /* SportsManager.m */; };
 		A666938D1CD4FD4F00195DE7 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = A666938C1CD4FD4F00195DE7 /* Game.m */; };
 		A66693901CD5241D00195DE7 /* Sport.m in Sources */ = {isa = PBXBuildFile; fileRef = A666938F1CD5241D00195DE7 /* Sport.m */; };
+		A6C953771CD616DA0046F1A9 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953761CD616DA0046F1A9 /* Team.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -380,6 +381,8 @@
 		A666938C1CD4FD4F00195DE7 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		A666938E1CD5241D00195DE7 /* Sport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sport.h; sourceTree = "<group>"; };
 		A666938F1CD5241D00195DE7 /* Sport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sport.m; sourceTree = "<group>"; };
+		A6C953751CD616DA0046F1A9 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		A6C953761CD616DA0046F1A9 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SportsPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -835,6 +838,8 @@
 			children = (
 				A66693821CD4CFD800195DE7 /* TeamManager.h */,
 				A66693831CD4CFD800195DE7 /* TeamManager.m */,
+				A6C953751CD616DA0046F1A9 /* Team.h */,
+				A6C953761CD616DA0046F1A9 /* Team.m */,
 			);
 			path = TeamManager;
 			sourceTree = "<group>";
@@ -1138,6 +1143,7 @@
 				4675AC5C1CC3EF5B0013FEE3 /* Add_VC.m in Sources */,
 				46D7CA181CD6309900DF8B35 /* AddTeam.m in Sources */,
 				46F3156B1CC125A100AAA588 /* LabeledActivityIndicatorView.m in Sources */,
+				A6C953771CD616DA0046F1A9 /* Team.m in Sources */,
 				46F315781CC18E6E00AAA588 /* ResetPassword.m in Sources */,
 				4639FD5D1CD157E20020D00B /* ProfileManager.m in Sources */,
 				46F62CD41C90901400A61B47 /* ViewController.m in Sources */,

@@ -43,8 +43,11 @@
                 model_manager.profileManager.owner.profilePic = [[json valueForKey:@"message"] valueForKey:@"image"];
                 model_manager.profileManager.owner.email = [[json valueForKey:@"message"] valueForKey:@"email"];
                 
-                [model_manager.sportsManager getSports:nil];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"AutoLogin"];
+                
+                
                 [model_manager.sportsManager getAvailableGames:nil];
+                [model_manager.profileManager.owner getPreferredSports:nil];
             }
             
             completionBlock(json,nil);
@@ -98,9 +101,35 @@
 
 }
 
--(void)logout
+-(void)logout:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
+    NSString *deviceToken=@"";
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"])
+    {
+        deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"];
+    }
+
+    NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:@"ios",@"device_type", deviceToken,@"device_token", nil];
     
+    [RequestManager asynchronousRequestWithPath:logoutPath requestType:RequestTypeDELETE params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+     {
+         if(statusCode==200)
+         {
+             if([[json valueForKey:@"success"] boolValue])
+             {
+                 [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"AutoLogin"];
+                 //clear model data
+                 [model_manager.profileManager resetModelData];
+                 [model_manager.sportsManager resetModelData];
+                 [model_manager.playerManager resetModelData];
+                 [model_manager.teamManager resetModelData];
+             }
+             completionBlock(json,nil);
+         }
+         else
+             completionBlock(nil,nil);         NSLog(@"Here comes the json %@",json);
+     } ];
+
 }
 
 /*

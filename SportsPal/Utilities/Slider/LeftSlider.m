@@ -148,6 +148,21 @@
     {
         NSLog(@"Logout");
         //[appdelegate.container.centerViewController popToRootViewControllerAnimated:YES];
+        [kAppDelegate.objLoader show];
+        [model_manager.loginManager logout:^(NSDictionary *dictJson, NSError *error) {
+            [kAppDelegate.objLoader hide];
+            if(!error)
+            {
+                if([[dictJson valueForKey:@"success"] boolValue])
+                {
+                    [kAppDelegate.container.centerViewController popToRootViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [self showAlert:[dictJson valueForKey:@"message"]];
+                }
+            }
+        }];
 
     }
     else {
@@ -159,6 +174,31 @@
     
     
 }
+
+-(void)showAlert:(NSString *)errorMsg
+{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Error"
+                                  message:errorMsg
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleCancel
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             //   [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+}
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

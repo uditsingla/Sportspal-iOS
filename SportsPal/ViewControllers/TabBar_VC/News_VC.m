@@ -28,8 +28,18 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self callInitialServices];
 }
 
+-(void)callInitialServices
+{
+    [kAppDelegate.objLoader show];
+    [model_manager.sportsManager getSports:^(NSDictionary *dictJson, NSError *error) {
+        [kAppDelegate.objLoader hide];
+    }];
+    
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {

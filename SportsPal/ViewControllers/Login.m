@@ -37,6 +37,7 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 - (IBAction)clk_Login:(id)sender {
@@ -51,7 +52,13 @@
         
         [kAppDelegate.objLoader show];
         
-        NSDictionary *loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtEmail.text, @"email", txtPassword.text, @"password", @"ios", @"device_type", @"1234hsdgfdf4", @"device_token", nil];
+        NSString *deviceToken=@"";
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"])
+        {
+            deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"];
+        }
+        
+        NSDictionary *loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtEmail.text, @"email", txtPassword.text, @"password", @"ios", @"device_type", deviceToken, @"device_token", nil];
         
         [model_manager.loginManager userLogin:loginInfo completion:^(NSDictionary *dictJson, NSError *error) {
             [kAppDelegate.objLoader hide];

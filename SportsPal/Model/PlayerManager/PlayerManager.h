@@ -10,4 +10,6 @@
 
 @interface PlayerManager : NSObject
 
+-(void)resetModelData;
+
 @end

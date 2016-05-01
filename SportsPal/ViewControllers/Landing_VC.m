@@ -32,9 +32,16 @@
     [updateBCK fire];
     
     [super viewDidLoad];
-    
-
     // Do any additional setup after loading the view.
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"AutoLogin"])
+    {
+        UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+        [self.navigationController pushViewController:homeVC animated:NO];
+        
+        [model_manager.sportsManager getAvailableGames:nil];
+        [model_manager.profileManager.owner getPreferredSports:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
