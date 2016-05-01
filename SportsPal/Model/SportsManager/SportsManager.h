@@ -20,4 +20,6 @@
 
 -(void)createNewGame:(Game*)game completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
+-(void)resetModelData;
+
 @end

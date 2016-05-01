@@ -90,7 +90,6 @@
         tblPlayers.hidden = YES;
         tblTeams.hidden = YES;
         tblSearch.hidden = YES;
-        
         [tblSports reloadData];
     }
     else if (selectedSegment == 1)
@@ -99,6 +98,7 @@
         tblPlayers.hidden = NO;
         tblTeams.hidden = YES;
         tblSearch.hidden = YES;
+        [tblPlayers reloadData];
     }
     else
     {
@@ -106,6 +106,7 @@
         tblPlayers.hidden = YES;
         tblTeams.hidden = NO;
         tblSearch.hidden = YES;
+        [tblTeams reloadData];
     }
 }
 

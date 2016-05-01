@@ -21,4 +21,10 @@
     return self;
 }
 
+-(void)resetModelData
+{
+    owner = nil;
+    owner = [User new];
+}
+
 @end

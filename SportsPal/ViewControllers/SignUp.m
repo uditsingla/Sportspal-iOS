@@ -144,8 +144,30 @@
                 if([[dictJson valueForKey:@"success"] boolValue])
                 {
                     //user registered successfully
-                    UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
-                    [self.navigationController pushViewController:homeVC animated:YES];
+                    
+                    //login now
+                    [kAppDelegate.objLoader show];
+                    
+                    NSDictionary *loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtEmail.text, @"email", txtPassword.text, @"password", @"ios", @"device_type", deviceToken, @"device_token", nil];
+                    
+                    [model_manager.loginManager userLogin:loginInfo completion:^(NSDictionary *dictJson, NSError *error) {
+                        [kAppDelegate.objLoader hide];
+                        if(!error)
+                        {
+                            if([[dictJson valueForKey:@"success"] boolValue])
+                            {
+                                //user registered successfully
+                                UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+                                [self.navigationController pushViewController:homeVC animated:YES];
+                            }
+                            else
+                            {
+                                [self showAlert:[dictJson valueForKey:@"message"]];
+                            }
+                        }
+                        
+                    }];
+
                 }
                 else
                 {

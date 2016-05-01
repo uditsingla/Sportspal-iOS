@@ -26,6 +26,6 @@
 -(void)resetPassword:(NSString*)email completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 //logout
--(void)logout;
+-(void)logout:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 @end
