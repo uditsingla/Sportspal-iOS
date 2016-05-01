@@ -1,13 +1,10 @@
 //
-//  Add_VC.m
+//  AddTeam.m
 //  SportsPal
 //
-//  Created by Abhishek Singla on 17/04/16.
+//  Created by Abhishek Singla on 01/05/16.
 //  Copyright © 2016 SportsPal. All rights reserved.
 //
-
-
-
 
 #define sportname 1
 #define teamname 2
@@ -15,14 +12,10 @@
 #define time 4
 #define address 5
 
-#import "Add_VC.h"
 #import "AddTeam.h"
-#import "Sport.h"
 
-
-@interface Add_VC ()
+@interface AddTeam ()
 {
-    
     __weak IBOutlet UIPickerView *pickerSports;
     __weak IBOutlet UIDatePicker *pikerDate;
     __weak IBOutlet UIDatePicker *pikerTime;
@@ -41,16 +34,14 @@
     UIToolbar *toolBar;
     
     __weak IBOutlet UISegmentedControl *segmentcotrol;
-    
 }
+
 - (IBAction)clkButton:(id)sender;
 - (IBAction)clkSegment:(UISegmentedControl*)sender;
-- (IBAction)clkSave:(id)sender;
 
 @end
 
-@implementation Add_VC
-
+@implementation AddTeam
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -79,22 +70,19 @@
     
     pikerTime.backgroundColor=[UIColor whiteColor];
     pikerTime.backgroundColor=[UIColor whiteColor];
-
+    
     
     
     [segmentcotrol addTarget:self
-                         action:@selector(clkSegment:)
-               forControlEvents:UIControlEventValueChanged];
-
+                      action:@selector(clkSegment:)
+            forControlEvents:UIControlEventValueChanged];
+    
+    [segmentcotrol setSelectedSegmentIndex:1];
+    
     
     [self hideAllPickers];
-
-
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [segmentcotrol setSelectedSegmentIndex:0];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,15 +90,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)clkButton:(id)sender {
     
@@ -136,18 +115,18 @@
             textField.clearButtonMode = UITextFieldViewModeWhileEditing;
             textField.borderStyle = UITextBorderStyleRoundedRect;
         }];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             NSArray * textfields = alertController.textFields;
             UITextField * namefield = textfields[0];
-                
+            
             strTeamname = namefield.text;
-                
+            
             [btnTeamName setTitle:strTeamname forState:UIControlStateNormal];
             NSLog(@"%@",namefield.text);
             
         }]];
         [self presentViewController:alertController animated:YES completion:nil];
-
+        
     }
     else if (btn.tag == kdate){
         
@@ -248,16 +227,17 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-
-    Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
-    return  sport.sportName;
+    
+//    Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
+//    return  sport.sportName;
+    return @"";
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
-    strSportName=  sport.sportName;
-    strSportID = sport.sportID;
+//    Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
+//    strSportName=  sport.sportName;
+//    strSportID = sport.sportID;
     
     NSLog(@"Sport Name : %@",strSportName);
 }
@@ -310,23 +290,24 @@
     if (selectedSegment == 0)
     {
         NSLog(@"sport");
+        [self.navigationController popViewControllerAnimated:NO];
     }
     
-    else if (selectedSegment == 1)
-    {
-        NSLog(@"team");
-        
-        AddTeam *addTeam = [kMainStoryboard instantiateViewControllerWithIdentifier:@"addteam"];
-        [self.navigationController pushViewController:addTeam animated:NO];
-
-    }
 }
+
 
 - (IBAction)clkSave:(id)sender {
-    
 }
 
 
+/*
+#pragma mark - Navigation
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

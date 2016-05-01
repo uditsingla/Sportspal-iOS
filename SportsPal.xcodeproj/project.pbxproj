@@ -102,6 +102,11 @@
 		4675AC5C1CC3EF5B0013FEE3 /* Add_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC5B1CC3EF5B0013FEE3 /* Add_VC.m */; };
 		4675AC5F1CC3EF760013FEE3 /* Chats_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC5E1CC3EF760013FEE3 /* Chats_VC.m */; };
 		4675AC621CC3EF8A0013FEE3 /* People_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC611CC3EF8A0013FEE3 /* People_VC.m */; };
+		46D7CA181CD6309900DF8B35 /* AddTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D7CA171CD6309900DF8B35 /* AddTeam.m */; };
+		46D7CA1D1CD6781200DF8B35 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D7CA191CD6781200DF8B35 /* check@2x.png */; };
+		46D7CA1E1CD6781200DF8B35 /* check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D7CA1A1CD6781200DF8B35 /* check@3x.png */; };
+		46D7CA1F1CD6781200DF8B35 /* checkOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D7CA1B1CD6781200DF8B35 /* checkOn@2x.png */; };
+		46D7CA201CD6781200DF8B35 /* checkOn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D7CA1C1CD6781200DF8B35 /* checkOn@3x.png */; };
 		46F161E71CC6A70F00F36EE9 /* TB_Play_Players.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F161E61CC6A70F00F36EE9 /* TB_Play_Players.m */; };
 		46F161EA1CC6A73400F36EE9 /* TB_Play_Sports.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F161E91CC6A73400F36EE9 /* TB_Play_Sports.m */; };
 		46F161ED1CC6A77900F36EE9 /* TB_Play_Teams.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F161EC1CC6A77900F36EE9 /* TB_Play_Teams.m */; };
@@ -278,6 +283,12 @@
 		4675AC5E1CC3EF760013FEE3 /* Chats_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chats_VC.m; sourceTree = "<group>"; };
 		4675AC601CC3EF8A0013FEE3 /* People_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = People_VC.h; sourceTree = "<group>"; };
 		4675AC611CC3EF8A0013FEE3 /* People_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People_VC.m; sourceTree = "<group>"; };
+		46D7CA161CD6309900DF8B35 /* AddTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTeam.h; sourceTree = "<group>"; };
+		46D7CA171CD6309900DF8B35 /* AddTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTeam.m; sourceTree = "<group>"; };
+		46D7CA191CD6781200DF8B35 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		46D7CA1A1CD6781200DF8B35 /* check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@3x.png"; sourceTree = "<group>"; };
+		46D7CA1B1CD6781200DF8B35 /* checkOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkOn@2x.png"; sourceTree = "<group>"; };
+		46D7CA1C1CD6781200DF8B35 /* checkOn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkOn@3x.png"; sourceTree = "<group>"; };
 		46F161E51CC6A70F00F36EE9 /* TB_Play_Players.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_Play_Players.h; sourceTree = "<group>"; };
 		46F161E61CC6A70F00F36EE9 /* TB_Play_Players.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TB_Play_Players.m; sourceTree = "<group>"; };
 		46F161E81CC6A73400F36EE9 /* TB_Play_Sports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_Play_Sports.h; sourceTree = "<group>"; };
@@ -447,6 +458,10 @@
 			isa = PBXGroup;
 			children = (
 				4661DE6E1CC54F270005C567 /* notification@2x.png */,
+				46D7CA191CD6781200DF8B35 /* check@2x.png */,
+				46D7CA1A1CD6781200DF8B35 /* check@3x.png */,
+				46D7CA1B1CD6781200DF8B35 /* checkOn@2x.png */,
+				46D7CA1C1CD6781200DF8B35 /* checkOn@3x.png */,
 				4661DE6F1CC54F270005C567 /* notification@3x.png */,
 				4661DE0E1CC54EAA0005C567 /* challenge@2x.png */,
 				4661DE0F1CC54EAA0005C567 /* km@2x.png */,
@@ -566,6 +581,15 @@
 				4675ABE71CC3E69B0013FEE3 /* icon_team@3x.png */,
 			);
 			path = "Tab bar icons 75 x 75";
+			sourceTree = "<group>";
+		};
+		46D7CA151CD6305500DF8B35 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				46D7CA161CD6309900DF8B35 /* AddTeam.h */,
+				46D7CA171CD6309900DF8B35 /* AddTeam.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		46F161E41CC6A62100F36EE9 /* TableviewCells */ = {
@@ -771,6 +795,7 @@
 		46F62CEA1C90ABA900A61B47 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				46D7CA151CD6305500DF8B35 /* ViewController */,
 				46F161E41CC6A62100F36EE9 /* TableviewCells */,
 				4675ABD61CC3D4730013FEE3 /* TabBar_VC */,
 				46F315421CC1090B00AAA588 /* Landing_VC.h */,
@@ -920,6 +945,7 @@
 				46F315A91CC2CAD200AAA588 /* forgetpassword@2x.png in Resources */,
 				46F3156E1CC1668100AAA588 /* Main.storyboard in Resources */,
 				4661DE611CC54EAA0005C567 /* sports_Pic@2x.png in Resources */,
+				46D7CA1D1CD6781200DF8B35 /* check@2x.png in Resources */,
 				4661DE4F1CC54EAA0005C567 /* occupation@2x.png in Resources */,
 				46F3158A1CC2546D00AAA588 /* back@3x.png in Resources */,
 				46F315631CC1181200AAA588 /* login_bg@3x.png in Resources */,
@@ -990,6 +1016,7 @@
 				4661DE571CC54EAA0005C567 /* down@2x.png in Resources */,
 				46F315A61CC2BA9A00AAA588 /* male_white@3x.png in Resources */,
 				4661DE631CC54EAA0005C567 /* team@2x.png in Resources */,
+				46D7CA1F1CD6781200DF8B35 /* checkOn@2x.png in Resources */,
 				46F315AE1CC2D46E00AAA588 /* OpenSans-Light.ttf in Resources */,
 				46F315A31CC2BA9A00AAA588 /* male_green@2x.png in Resources */,
 				4661DDFF1CC54C020005C567 /* newsfeed@2x.png in Resources */,
@@ -1009,6 +1036,7 @@
 				4661DE5E1CC54EAA0005C567 /* corporate@2x.png in Resources */,
 				4661DE591CC54EAA0005C567 /* lock@2x.png in Resources */,
 				4675ABF11CC3E69B0013FEE3 /* icon_news@3x.png in Resources */,
+				46D7CA1E1CD6781200DF8B35 /* check@3x.png in Resources */,
 				4675ABEE1CC3E69B0013FEE3 /* icon_team@2x.png in Resources */,
 				4661DE0C1CC54E300005C567 /* pin_bar@2x.png in Resources */,
 				46F315B21CC2D71700AAA588 /* Tw Cen MT.ttf in Resources */,
@@ -1018,6 +1046,7 @@
 				4675ABE91CC3E69B0013FEE3 /* icon_chat@2x.png in Resources */,
 				46F3155C1CC1108400AAA588 /* signup@2x.png in Resources */,
 				46F315511CC10DC900AAA588 /* 3@3x.png in Resources */,
+				46D7CA201CD6781200DF8B35 /* checkOn@3x.png in Resources */,
 				46F315921CC2546D00AAA588 /* signup_long@3x.png in Resources */,
 				46F315911CC2546D00AAA588 /* signup_long@2x.png in Resources */,
 				46F315A01CC2BA9A00AAA588 /* female_green@3x.png in Resources */,
@@ -1107,6 +1136,7 @@
 				4639FD5A1CD13F860020D00B /* User.m in Sources */,
 				4639FD571CD13F860020D00B /* LoginManager.m in Sources */,
 				4675AC5C1CC3EF5B0013FEE3 /* Add_VC.m in Sources */,
+				46D7CA181CD6309900DF8B35 /* AddTeam.m in Sources */,
 				46F3156B1CC125A100AAA588 /* LabeledActivityIndicatorView.m in Sources */,
 				46F315781CC18E6E00AAA588 /* ResetPassword.m in Sources */,
 				4639FD5D1CD157E20020D00B /* ProfileManager.m in Sources */,
