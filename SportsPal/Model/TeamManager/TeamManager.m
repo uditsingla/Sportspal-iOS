@@ -10,13 +10,14 @@
 
 @implementation TeamManager
 
-@synthesize arrayTeams;
+@synthesize arrayTeams,arraySearchedTeams;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         arrayTeams = [NSMutableArray new];
+        arraySearchedTeams = [NSMutableArray new];
     }
     return self;
 }
@@ -88,6 +89,61 @@
                  team.teamID = [[json valueForKey:@"data"] valueForKey:@"team_id"];
                  
                  [arrayTeams addObject:team];
+             }
+             
+             if(completionBlock)
+                 completionBlock(json,nil);
+         }
+         else if(completionBlock)
+             completionBlock(nil,nil);
+         
+         NSLog(@"Here comes the json %@",json);
+     } ];
+}
+
+-(void)searchTeamWithSportID:(NSString*)sportID andCreatorID:(NSString*)creatorID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
+{
+    NSMutableDictionary *dictParam = [NSMutableDictionary new];
+    
+    if(sportID)
+        [dictParam setValue:sportID forKey:@"sport_id"];
+    
+    if(creatorID)
+        [dictParam setValue:creatorID forKey:@"creator_id"];
+    
+    [RequestManager asynchronousRequestWithPath:searchTeamsPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+     {
+         
+         if(statusCode==200)
+         {
+             if([[json valueForKey:@"success"] boolValue])
+             {
+                 NSArray *arrTeams = [json valueForKey:@"message"];
+                 [arraySearchedTeams removeAllObjects];
+                 
+                 for (int i=0; i < arrTeams.count; i++) {
+                     
+                     Team *team = [Team new];
+                     team.teamID = [[arrTeams objectAtIndex:i] valueForKey:@"id"];
+                     team.sportID = [[arrTeams objectAtIndex:i] valueForKey:@"sport_id"];
+                     team.sportName = [[[arrTeams objectAtIndex:i] valueForKey:@"sport"] valueForKey:@"name"];
+                     team.teamName = [[arrTeams objectAtIndex:i] valueForKey:@"team_name"];
+                     team.memberLimit = [[[arrTeams objectAtIndex:i] valueForKey:@"members_limit"] intValue];
+                     team.geoLocation = CLLocationCoordinate2DMake([[[arrTeams objectAtIndex:i] valueForKey:@"latitude"] doubleValue], [[[arrTeams objectAtIndex:i] valueForKey:@"longitude"] doubleValue]);
+                     team.address = [[arrTeams objectAtIndex:i] valueForKey:@"address"];
+                     if([[[arrTeams objectAtIndex:i] valueForKey:@"team_type"] isEqualToString:@"private"])
+                         team.teamType = TeamTypePrivate;
+                     else
+                         team.teamType = TeamTypeCorporate;
+                     
+                     team.creator.userID = [[arrTeams objectAtIndex:i] valueForKey:@"creator_id"];
+                     team.creator.firstName = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"first_name"];
+                     team.creator.lastName = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"last_name"];
+                     team.creator.email = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"email"];
+                     
+                     [arraySearchedTeams addObject:team];
+                 }
+                 
              }
              
              if(completionBlock)

@@ -168,6 +168,10 @@
 		46F62D3D1C93627800A61B47 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3C1C93627800A61B47 /* Home.m */; };
 		46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3F1C9362F600A61B47 /* TableViewTemplate.m */; };
 		4785B6D8446AC7646ECB1EE5 /* libPods-SportsPal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */; };
+		A610D89A1CD7D3F0008DED71 /* map_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8961CD7D3F0008DED71 /* map_location@2x.png */; };
+		A610D89B1CD7D3F0008DED71 /* map_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8971CD7D3F0008DED71 /* map_location@3x.png */; };
+		A610D89C1CD7D3F0008DED71 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8981CD7D3F0008DED71 /* marker@2x.png */; };
+		A610D89D1CD7D3F0008DED71 /* marker@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8991CD7D3F0008DED71 /* marker@3x.png */; };
 		A66693841CD4CFD800195DE7 /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693831CD4CFD800195DE7 /* TeamManager.m */; };
 		A66693871CD4D00800195DE7 /* PlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693861CD4D00800195DE7 /* PlayerManager.m */; };
 		A666938A1CD4D02800195DE7 /* SportsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693891CD4D02800195DE7 /* SportsManager.m */; };
@@ -181,10 +185,6 @@
 		A6C9538A1CD68D650046F1A9 /* SVGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953831CD68D650046F1A9 /* SVGeocoder.m */; };
 		A6C9538B1CD68D650046F1A9 /* SVPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953851CD68D650046F1A9 /* SVPlacemark.m */; };
 		A6C9538F1CD68D840046F1A9 /* SetLocationScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C9538E1CD68D840046F1A9 /* SetLocationScreen.m */; };
-		A6C953981CD69A4B0046F1A9 /* map_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6C953941CD69A4B0046F1A9 /* map_location@2x.png */; };
-		A6C953991CD69A4B0046F1A9 /* map_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6C953951CD69A4B0046F1A9 /* map_location@3x.png */; };
-		A6C9539A1CD69A4B0046F1A9 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6C953961CD69A4B0046F1A9 /* marker@2x.png */; };
-		A6C9539B1CD69A4B0046F1A9 /* marker@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A6C953971CD69A4B0046F1A9 /* marker@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -382,6 +382,10 @@
 		46F62D3F1C9362F600A61B47 /* TableViewTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewTemplate.m; sourceTree = "<group>"; };
 		46F62D541C95480500A61B47 /* SportsPal-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SportsPal-Prefix.pch"; sourceTree = "<group>"; };
 		5ED572898767DCE339BA8964 /* Pods-SportsPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.release.xcconfig"; sourceTree = "<group>"; };
+		A610D8961CD7D3F0008DED71 /* map_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@2x.png"; sourceTree = "<group>"; };
+		A610D8971CD7D3F0008DED71 /* map_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@3x.png"; sourceTree = "<group>"; };
+		A610D8981CD7D3F0008DED71 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
+		A610D8991CD7D3F0008DED71 /* marker@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@3x.png"; sourceTree = "<group>"; };
 		A66693821CD4CFD800195DE7 /* TeamManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamManager.h; sourceTree = "<group>"; };
 		A66693831CD4CFD800195DE7 /* TeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamManager.m; sourceTree = "<group>"; };
 		A66693851CD4D00800195DE7 /* PlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManager.h; sourceTree = "<group>"; };
@@ -408,10 +412,6 @@
 		A6C953851CD68D650046F1A9 /* SVPlacemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPlacemark.m; sourceTree = "<group>"; };
 		A6C9538D1CD68D840046F1A9 /* SetLocationScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLocationScreen.h; sourceTree = "<group>"; };
 		A6C9538E1CD68D840046F1A9 /* SetLocationScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLocationScreen.m; sourceTree = "<group>"; };
-		A6C953941CD69A4B0046F1A9 /* map_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@2x.png"; sourceTree = "<group>"; };
-		A6C953951CD69A4B0046F1A9 /* map_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@3x.png"; sourceTree = "<group>"; };
-		A6C953961CD69A4B0046F1A9 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
-		A6C953971CD69A4B0046F1A9 /* marker@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@3x.png"; sourceTree = "<group>"; };
 		DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SportsPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -937,10 +937,10 @@
 		A6C953931CD69A4B0046F1A9 /* SetLocation */ = {
 			isa = PBXGroup;
 			children = (
-				A6C953941CD69A4B0046F1A9 /* map_location@2x.png */,
-				A6C953951CD69A4B0046F1A9 /* map_location@3x.png */,
-				A6C953961CD69A4B0046F1A9 /* marker@2x.png */,
-				A6C953971CD69A4B0046F1A9 /* marker@3x.png */,
+				A610D8961CD7D3F0008DED71 /* map_location@2x.png */,
+				A610D8971CD7D3F0008DED71 /* map_location@3x.png */,
+				A610D8981CD7D3F0008DED71 /* marker@2x.png */,
+				A610D8991CD7D3F0008DED71 /* marker@3x.png */,
 			);
 			path = SetLocation;
 			sourceTree = "<group>";
@@ -1021,7 +1021,6 @@
 				4661DE4B1CC54EAA0005C567 /* corporate@3x.png in Resources */,
 				46F3158D1CC2546D00AAA588 /* logo@2x.png in Resources */,
 				4661DE641CC54EAA0005C567 /* birthday@2x.png in Resources */,
-				A6C9539A1CD69A4B0046F1A9 /* marker@2x.png in Resources */,
 				46F315621CC1181200AAA588 /* login_bg@2x.png in Resources */,
 				4661DE4E1CC54EAA0005C567 /* members@3x.png in Resources */,
 				4661DE511CC54EAA0005C567 /* description@2x.png in Resources */,
@@ -1064,6 +1063,7 @@
 				4661DE4C1CC54EAA0005C567 /* key@3x.png in Resources */,
 				4661DE421CC54EAA0005C567 /* members@2x.png in Resources */,
 				4675ABF21CC3E69B0013FEE3 /* icon_people@3x.png in Resources */,
+				A610D89D1CD7D3F0008DED71 /* marker@3x.png in Resources */,
 				4661DE431CC54EAA0005C567 /* occupation@3x.png in Resources */,
 				4661DE6D1CC54EAA0005C567 /* unlock@3x.png in Resources */,
 				4661DE5F1CC54EAA0005C567 /* unlock@2x.png in Resources */,
@@ -1078,6 +1078,7 @@
 				4661DE091CC54D330005C567 /* menu@3x.png in Resources */,
 				4675ABEF1CC3E69B0013FEE3 /* icon_add@3x.png in Resources */,
 				46F315A41CC2BA9A00AAA588 /* male_green@3x.png in Resources */,
+				A610D89B1CD7D3F0008DED71 /* map_location@3x.png in Resources */,
 				4661DE6A1CC54EAA0005C567 /* key@2x.png in Resources */,
 				4661DE661CC54EAA0005C567 /* challenge@3x.png in Resources */,
 				4661DE541CC54EAA0005C567 /* favOn@2x.png in Resources */,
@@ -1089,18 +1090,18 @@
 				46F315951CC2555700AAA588 /* bg_signup@2x.png in Resources */,
 				46F315671CC1195000AAA588 /* login_long@3x.png in Resources */,
 				4661DE651CC54EAA0005C567 /* team_Pic@2x.png in Resources */,
+				A610D89C1CD7D3F0008DED71 /* marker@2x.png in Resources */,
 				4661DDFB1CC54C020005C567 /* add@2x.png in Resources */,
 				4661DE551CC54EAA0005C567 /* sports@2x.png in Resources */,
 				46F315581CC1108400AAA588 /* facebook@2x.png in Resources */,
 				4661DE041CC54C020005C567 /* profile@3x.png in Resources */,
 				4661DE701CC54F270005C567 /* notification@2x.png in Resources */,
+				A610D89A1CD7D3F0008DED71 /* map_location@2x.png in Resources */,
 				46F315961CC2555700AAA588 /* bg_signup@3x.png in Resources */,
 				46F315A51CC2BA9A00AAA588 /* male_white@2x.png in Resources */,
 				46F3154C1CC10DC900AAA588 /* 1@2x.png in Resources */,
 				4661DE481CC54EAA0005C567 /* birthday@3x.png in Resources */,
 				4661DE571CC54EAA0005C567 /* down@2x.png in Resources */,
-				A6C953981CD69A4B0046F1A9 /* map_location@2x.png in Resources */,
-				A6C9539B1CD69A4B0046F1A9 /* marker@3x.png in Resources */,
 				46F315A61CC2BA9A00AAA588 /* male_white@3x.png in Resources */,
 				4661DE631CC54EAA0005C567 /* team@2x.png in Resources */,
 				46D7CA1F1CD6781200DF8B35 /* checkOn@2x.png in Resources */,
@@ -1132,7 +1133,6 @@
 				4661DE491CC54EAA0005C567 /* star2@3x.png in Resources */,
 				4675ABE91CC3E69B0013FEE3 /* icon_chat@2x.png in Resources */,
 				46F3155C1CC1108400AAA588 /* signup@2x.png in Resources */,
-				A6C953991CD69A4B0046F1A9 /* map_location@3x.png in Resources */,
 				46F315511CC10DC900AAA588 /* 3@3x.png in Resources */,
 				46D7CA201CD6781200DF8B35 /* checkOn@3x.png in Resources */,
 				46F315921CC2546D00AAA588 /* signup_long@3x.png in Resources */,

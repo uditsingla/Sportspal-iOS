@@ -13,12 +13,15 @@
 
 @property(nonatomic,strong) NSMutableArray *arraySports;
 @property(nonatomic,strong) NSMutableArray *arrayGames;
+@property(nonatomic,strong) NSMutableArray *arraySearchedGames;
 
 -(void)getSports:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)getAvailableGames:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)createNewGame:(Game*)game completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)searchNewGameWithSportID:(NSString*)sportID andUserID:(NSString*)userID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)resetModelData;
 
