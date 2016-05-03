@@ -13,6 +13,7 @@
 #define address 5
 
 #import "AddTeam.h"
+#import "Add_VC.h"
 
 @interface AddTeam ()
 {
@@ -35,6 +36,7 @@
     
     __weak IBOutlet UISegmentedControl *segmentcotrol;
 }
+- (IBAction)clkSlider:(id)sender;
 
 - (IBAction)clkButton:(id)sender;
 - (IBAction)clkSegment:(UISegmentedControl*)sender;
@@ -85,11 +87,25 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+   // NSLog(@"%@",self.navigationController.viewControllers);
+//    self.tabBarController.tabBar.hidden = NO;
+//    self.hidesBottomBarWhenPushed = NO;
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+- (IBAction)clkSlider:(id)sender {
+    [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
+}
 
 - (IBAction)clkButton:(id)sender {
     
@@ -290,8 +306,28 @@
     if (selectedSegment == 0)
     {
         NSLog(@"sport");
-        [self.navigationController popViewControllerAnimated:NO];
-    }
+        //[self.navigationController popViewControllerAnimated:NO];
+        
+        NSArray *arrControlers = self.tabBarController.viewControllers;
+        
+        Add_VC *addTeam = [kMainStoryboard instantiateViewControllerWithIdentifier:@"add_vc"];
+        
+        addTeam.title=@"ADD";
+        addTeam.tabBarItem.image=[UIImage imageNamed:@"add.png"];
+        
+        
+        UIViewController *thisIsTheViewControllerIWantToSetNow = addTeam;
+        int indexForViewControllerYouWantToReplace = 2;
+        
+        NSMutableArray *tabbarViewControllers = [arrControlers mutableCopy];
+        
+        [tabbarViewControllers replaceObjectAtIndex:indexForViewControllerYouWantToReplace withObject:thisIsTheViewControllerIWantToSetNow];
+        
+
+        
+        self.tabBarController.viewControllers = tabbarViewControllers;
+        
+        }
     
 }
 

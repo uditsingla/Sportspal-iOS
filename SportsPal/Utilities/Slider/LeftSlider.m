@@ -29,17 +29,17 @@
     // Do any additional setup after loading the view.
     
     arrMenuItems = [NSArray arrayWithObjects:@"Home",
-                    @"Appointments",
-                    @"History",
                     @"Logout",nil];
     
-    arrMenuItemsImages = [NSArray arrayWithObjects:@"home.png",
-                          @"ads.png",
-                          @"special.png",
-                          @"item.png",
+    
+    arrMenuItemsImages = [NSArray arrayWithObjects:@"left_menu_home_icon.png",
+                          @"left_menu_logout_icon.png",
                           nil];
+
     
     
+    
+    self.view.backgroundColor = [UIColor blackColor];
     //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
 
 }
@@ -70,7 +70,7 @@
     //LeftSliderCell *cell = [tableView dequeueReusableCellWithIdentifier:_simpleTableIdentifier forIndexPath:indexPath];
     
     LeftSliderCell *cell = (LeftSliderCell*)[tableView dequeueReusableCellWithIdentifier:_simpleTableIdentifier];
-
+    
     
     // Configure the cell...
     if(cell==nil)
@@ -82,10 +82,11 @@
     
     //Menu lable
     //UILabel *lblMenu = (UILabel*)[cell.contentView viewWithTag:klblMenuItem];
-   // NSLog(@"lbl text : %@",[arrMenuItems objectAtIndex:indexPath.row]);
-//    cell.lblMenuItem.backgroundColor = GreenColor;
-//    cell.lblMenuItem.textColor = LightGreyColor;
+    // NSLog(@"lbl text : %@",[arrMenuItems objectAtIndex:indexPath.row]);
+    cell.lblMenuItem.backgroundColor = [UIColor clearColor];
+    cell.lblMenuItem.textColor = [UIColor whiteColor];
     cell.lblMenuItem.text = [arrMenuItems objectAtIndex:indexPath.row] ;
+    cell.imgMenuItem.contentMode = UIViewContentModeCenter;
     
     
     //Menu Image
@@ -94,7 +95,7 @@
     //NSString *imgBundlePath=[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[]];
     cell.imgMenuItem.image = [UIImage imageNamed:[arrMenuItemsImages objectAtIndex:indexPath.row]];
     
-    //cell.backgroundColor = BlackBackground;
+    cell.backgroundColor = [UIColor blackColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;

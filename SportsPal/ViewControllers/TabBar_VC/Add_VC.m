@@ -47,6 +47,7 @@
 - (IBAction)clkButton:(id)sender;
 - (IBAction)clkSegment:(UISegmentedControl*)sender;
 - (IBAction)clkSave:(id)sender;
+- (IBAction)clkSlider:(id)sender;
 
 @end
 
@@ -95,6 +96,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
     [segmentcotrol setSelectedSegmentIndex:0];
     
     if(model_manager.profileManager.svp_LocationInfo)
@@ -295,6 +297,14 @@
 {
     if (pickerselected == ksportname)
     {
+        if (strSportName == nil)
+        {
+            Sport *sport = [[ModelManager modelManager].sportsManager.arraySports objectAtIndex:0];
+            
+            strSportName = sport.sportName;
+            strSportID = sport.sportID;
+        }
+        
         [btnSportName setTitle:strSportName forState:UIControlStateNormal];
     }
     else if (pickerselected == kdate)
@@ -324,8 +334,22 @@
     {
         NSLog(@"team");
         
+        
+        NSLog(@"Tabbar controlles : %@",self.tabBarController.viewControllers);
+        
+        NSArray *arrControlers = self.tabBarController.viewControllers;
+        
         AddTeam *addTeam = [kMainStoryboard instantiateViewControllerWithIdentifier:@"addteam"];
-        [self.navigationController pushViewController:addTeam animated:NO];
+
+        
+        UIViewController *thisIsTheViewControllerIWantToSetNow = addTeam;
+        int indexForViewControllerYouWantToReplace = 2;
+        
+        NSMutableArray *tabbarViewControllers = [arrControlers mutableCopy];
+        
+        [tabbarViewControllers replaceObjectAtIndex:indexForViewControllerYouWantToReplace withObject:thisIsTheViewControllerIWantToSetNow];
+        
+        self.tabBarController.viewControllers = tabbarViewControllers;
 
     }
 }
@@ -334,6 +358,10 @@
     
     if(segmentcotrol.selectedSegmentIndex==0)
         [self createNewGame];
+}
+
+- (IBAction)clkSlider:(id)sender {
+    [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
 }
 
 

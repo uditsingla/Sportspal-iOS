@@ -29,11 +29,17 @@
     
     __weak IBOutlet UIButton *btnSignUp;
     
-    NSString *selectedGender;
+    __weak IBOutlet UIDatePicker *pickerDate;
+    
+    NSString *selectedGender,*strDOB;
+    
+    UIToolbar *toolBar;
+
 }
 
 - (IBAction)clkGender:(id)sender;
 
+- (IBAction)clkBirthDate:(id)sender;
 
 @end
 
@@ -42,6 +48,10 @@
 
 - (void)viewDidLoad
 {
+    
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
     [self.navigationController setNavigationBarHidden:YES];
     
     [CustomViewViewController customTextField:txtFirstName placeholder:@"First Name" rightView:nil];
@@ -67,8 +77,32 @@
 
     selectedGender = @"";
     
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,pickerDate.frame.origin.y-44,pickerDate.frame.size.width,44)];
+    [toolBar setBarStyle:UIBarStyleBlackOpaque];
+    toolBar.backgroundColor = [UIColor grayColor];
+    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                      style:UIBarButtonItemStyleDone target:self action:@selector(selectDateTime:)];
+    toolBar.items = @[barButtonDone];
+    barButtonDone.tintColor=[UIColor whiteColor];
+    [self.view addSubview:toolBar];
+    
+    [pickerDate addTarget:self action:@selector(dateChanged:)               forControlEvents:UIControlEventValueChanged];
+    
+    pickerDate.backgroundColor = [UIColor whiteColor];
+    
+    [self hideAllPickers];
+}
+
+
+-(void)hideAllPickers
+{
+    pickerDate.hidden = YES;
+    toolBar.hidden = YES;
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
 }
 
 - (IBAction)clkBack:(id)sender {
@@ -243,4 +277,29 @@
         [btnFemale setImage:[UIImage imageNamed:@"female_white.png"] forState:UIControlStateNormal];
     }
 }
+
+- (IBAction)clkBirthDate:(id)sender
+{
+    pickerDate.hidden = NO;
+    toolBar.hidden = NO;
+}
+
+-(void)selectDateTime:(id)sender
+{
+    [bntBirthdate setTitle:strDOB forState:UIControlStateNormal];
+    
+    [self hideAllPickers];
+}
+
+- (void)dateChanged:(UIDatePicker *)datePicker
+{
+    NSLog(@"value: %@",[NSDate date]);
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    
+    strDOB = [dateFormatter stringFromDate:datePicker.date];
+    
+}
+
+
 @end

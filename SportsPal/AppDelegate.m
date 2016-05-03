@@ -34,6 +34,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
     
     UIViewController *leftSlider = [kMainStoryboard instantiateViewControllerWithIdentifier: @"leftslider"];
+    
     container = [MFSideMenuContainerViewController
                  containerWithCenterViewController:navController
                  leftMenuViewController:leftSlider
