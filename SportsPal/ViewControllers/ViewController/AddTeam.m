@@ -8,37 +8,43 @@
 
 #define sportname 1
 #define teamname 2
-#define kdate 3
-#define time 4
-#define address 5
+#define teamtype 3
+#define teamsize 4
 
 #import "AddTeam.h"
 #import "Add_VC.h"
 
+#import "Sport.h"
+
 @interface AddTeam ()
 {
     __weak IBOutlet UIPickerView *pickerSports;
-    __weak IBOutlet UIDatePicker *pikerDate;
-    __weak IBOutlet UIDatePicker *pikerTime;
+    __weak IBOutlet UIPickerView *pickerType;
     
-    __weak IBOutlet UIButton *btnTime;
-    __weak IBOutlet UIButton *btnTeamName;
-    __weak IBOutlet UIButton *btnAddress;
-    __weak IBOutlet UIButton *btnDate;
     __weak IBOutlet UIButton *btnSportName;
+    __weak IBOutlet UIButton *btnTeamName;
+    __weak IBOutlet UIButton *btnTeamType;
+    __weak IBOutlet UIButton *btnTeamSize;
     
-    NSString *strSportName,*strSportID,*strTeamname;
+    __weak IBOutlet UILabel *lblteamCurrentMembers;
+    __weak IBOutlet UILabel *lblteamMaxMembers;
+
+
     
-    NSString *strDate,*strTime;
+    NSString *strSportName,*strSportID,*strTeamname,*strTeamType;
+    int teamSize;
     
     int pickerselected;
     UIToolbar *toolBar;
     
     __weak IBOutlet UISegmentedControl *segmentcotrol;
+    
+    NSArray *arraySportsType;
 }
 - (IBAction)clkSlider:(id)sender;
 
 - (IBAction)clkButton:(id)sender;
+
 - (IBAction)clkSegment:(UISegmentedControl*)sender;
 
 @end
@@ -49,13 +55,8 @@
     // Do any additional setup after loading the view.
     
     
-    [pikerDate addTarget:self action:@selector(dateChanged:)               forControlEvents:UIControlEventValueChanged];
-    
-    [pikerTime addTarget:self action:@selector(timeChanged:)               forControlEvents:UIControlEventValueChanged];
-    
-    
     //
-    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,pikerDate.frame.origin.y-44,pikerDate.frame.size.width,44)];
+    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,pickerSports.frame.origin.y-44,pickerSports.frame.size.width,44)];
     [toolBar setBarStyle:UIBarStyleBlackOpaque];
     toolBar.backgroundColor = [UIColor grayColor];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
@@ -67,13 +68,7 @@
     
     [UIView appearanceWhenContainedIn:[UITableView class], [UIDatePicker class], nil].backgroundColor =[UIColor colorWithWhite:1 alpha:0];
     
-    pikerDate.backgroundColor=[UIColor whiteColor];
-    pikerDate.backgroundColor=[UIColor whiteColor];//Another view on which you subview picker
-    
-    pikerTime.backgroundColor=[UIColor whiteColor];
-    pikerTime.backgroundColor=[UIColor whiteColor];
-    
-    
+
     
     [segmentcotrol addTarget:self
                       action:@selector(clkSegment:)
@@ -83,6 +78,8 @@
     
     
     [self hideAllPickers];
+    
+    arraySportsType = [NSArray arrayWithObjects:@"Corporate",@"Private", nil];
     
     
 }
@@ -144,21 +141,40 @@
         [self presentViewController:alertController animated:YES completion:nil];
         
     }
-    else if (btn.tag == kdate){
+    else if (btn.tag == teamtype)
+    {
         
-        pickerselected = kdate;
-        pikerDate.hidden = NO;
+        pickerselected = teamtype;
+        pickerType.hidden = NO;
         toolBar.hidden = NO;
         
         
     }
-    else if (btn.tag == time){
-        
-        pickerselected = time;
-        pikerTime.hidden = NO;
-        toolBar.hidden = NO;
-    }
-    else if (btn.tag == address){
+    
+    else if (btn.tag == teamsize)
+    {
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Team Size"
+                                                                                  message: @"Max number of members"
+                                                                           preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"Team Size";
+            textField.textColor = [UIColor blueColor];
+            textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            textField.borderStyle = UITextBorderStyleRoundedRect;
+        }];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            NSArray * textfields = alertController.textFields;
+            UITextField * namefield = textfields[0];
+            
+            teamSize = [namefield.text intValue];
+            
+            [btnTeamSize setTitle:namefield.text forState:UIControlStateNormal];
+            
+            lblteamMaxMembers.text = [NSString stringWithFormat:@"MAX. SIZE (%@)",namefield.text];
+            NSLog(@"%@",namefield.text);
+            
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
         
     }
     
@@ -170,13 +186,12 @@
 {
     
     pickerSports.hidden =YES;
-    pikerDate.hidden = YES;
-    pikerTime.hidden = YES;
+    pickerType.hidden = YES;
     toolBar.hidden = YES;
     
 }
 
--(void)createNewGame
+-(void)createNewTeam
 {
     Game *game = [Game new];
     game.sportID = strSportID;
@@ -238,64 +253,50 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 
 {
-    return  [ModelManager modelManager].sportsManager.arraySports.count;
+    if (pickerView == pickerSports) {
+        return  [ModelManager modelManager].sportsManager.arraySports.count;
+    }
+    else if (pickerView == pickerType)
+        return 2;
+    
+    return 0;
+    
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     
-//    Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
-//    return  sport.sportName;
+    if (pickerView == pickerSports) {
+        Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
+            return  sport.sportName;
+    }
+    else if (pickerView == pickerType)
+    {
+        return arraySportsType[row];
+    }
+
     return @"";
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-//    Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
-//    strSportName=  sport.sportName;
-//    strSportID = sport.sportID;
+    
+    if (pickerView == pickerSports)
+    {
+        Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
+        strSportName=  sport.sportName;
+        strSportID = sport.sportID;
+    }
+    
+    else if (pickerView == pickerType)
+    {
+        strTeamType = arraySportsType[row];
+    }
     
     NSLog(@"Sport Name : %@",strSportName);
 }
 
 
-- (void)dateChanged:(UIDatePicker *)datePicker
-{
-    NSLog(@"value: %@",[NSDate date]);
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    
-    strDate = [dateFormatter stringFromDate:datePicker.date];
-    
-}
-
-- (void)timeChanged:(UIDatePicker *)datePicker
-{
-    NSLog(@"value: %@",[NSDate date]);
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"hh:mm a"];
-    
-    strTime = [dateFormatter stringFromDate:datePicker.date];
-    
-}
-
--(void)selectDateTime:(id)sender
-{
-    if (pickerselected == sportname)
-    {
-        [btnSportName setTitle:strSportName forState:UIControlStateNormal];
-    }
-    else if (pickerselected == kdate)
-    {
-        [btnDate setTitle:strDate forState:UIControlStateNormal];
-    }
-    else if (pickerselected == time)
-    {
-        [btnTime setTitle:strTime forState:UIControlStateNormal];
-    }
-    
-    [self hideAllPickers];
-}
 
 
 #pragma mark - Segment control
@@ -332,10 +333,50 @@
 }
 
 
-- (IBAction)clkSave:(id)sender {
+- (IBAction)clkSave:(id)sender
+{
+    
+    if ([self validateData])
+    {
+        [self createNewTeam];
+    }
+    
+}
+
+-(BOOL)validateData
+{
+    return YES;
 }
 
 
+
+-(void)selectDateTime:(id)sender
+{
+    if (pickerselected == sportname)
+    {
+        if (strSportName == nil)
+        {
+            Sport *sport = [[ModelManager modelManager].sportsManager.arraySports objectAtIndex:0];
+            
+            strSportName = sport.sportName;
+            strSportID = sport.sportID;
+        }
+        
+        [btnSportName setTitle:strSportName forState:UIControlStateNormal];
+    }
+    
+    else if (pickerselected == teamtype)
+    {
+        if (strTeamType == nil)
+        {
+            strTeamType = arraySportsType[0];
+        }
+        [btnTeamType setTitle:strTeamType forState:UIControlStateNormal];
+    }
+
+    
+    [self hideAllPickers];
+}
 /*
 #pragma mark - Navigation
 
