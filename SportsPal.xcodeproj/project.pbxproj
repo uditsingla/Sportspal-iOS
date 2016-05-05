@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		463591921CDB59D200DF83A8 /* cricket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 463591911CDB59D200DF83A8 /* cricket@2x.png */; };
+		463591951CDB648700DF83A8 /* TB_News.m in Sources */ = {isa = PBXBuildFile; fileRef = 463591941CDB648700DF83A8 /* TB_News.m */; };
+		463591981CDBF50D00DF83A8 /* TB_AddTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 463591971CDBF50D00DF83A8 /* TB_AddTeam.m */; };
 		4639FD571CD13F860020D00B /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4639FD4D1CD13F860020D00B /* LoginManager.m */; };
 		4639FD581CD13F860020D00B /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4639FD501CD13F860020D00B /* RequestManager.m */; };
 		4639FD591CD13F860020D00B /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4639FD531CD13F860020D00B /* ModelManager.m */; };
@@ -193,6 +196,11 @@
 
 /* Begin PBXFileReference section */
 		2DFD5DE52734736C4BB3FDD2 /* Pods-SportsPal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.debug.xcconfig"; sourceTree = "<group>"; };
+		463591911CDB59D200DF83A8 /* cricket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cricket@2x.png"; sourceTree = "<group>"; };
+		463591931CDB648700DF83A8 /* TB_News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_News.h; sourceTree = "<group>"; };
+		463591941CDB648700DF83A8 /* TB_News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TB_News.m; sourceTree = "<group>"; };
+		463591961CDBF50D00DF83A8 /* TB_AddTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_AddTeam.h; sourceTree = "<group>"; };
+		463591971CDBF50D00DF83A8 /* TB_AddTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TB_AddTeam.m; sourceTree = "<group>"; };
 		4639FD4C1CD13F860020D00B /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		4639FD4D1CD13F860020D00B /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		4639FD4F1CD13F860020D00B /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
@@ -435,6 +443,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		463591901CDB571A00DF83A8 /* SportsImages */ = {
+			isa = PBXGroup;
+			children = (
+				463591911CDB59D200DF83A8 /* cricket@2x.png */,
+			);
+			path = SportsImages;
+			sourceTree = "<group>";
+		};
 		4639FD4B1CD13F860020D00B /* Login Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +655,8 @@
 			children = (
 				46D7CA161CD6309900DF8B35 /* AddTeam.h */,
 				46D7CA171CD6309900DF8B35 /* AddTeam.m */,
+				463591961CDBF50D00DF83A8 /* TB_AddTeam.h */,
+				463591971CDBF50D00DF83A8 /* TB_AddTeam.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -646,6 +664,8 @@
 		46F161E41CC6A62100F36EE9 /* TableviewCells */ = {
 			isa = PBXGroup;
 			children = (
+				463591931CDB648700DF83A8 /* TB_News.h */,
+				463591941CDB648700DF83A8 /* TB_News.m */,
 				46F161E51CC6A70F00F36EE9 /* TB_Play_Players.h */,
 				46F161E61CC6A70F00F36EE9 /* TB_Play_Players.m */,
 				46F161E81CC6A73400F36EE9 /* TB_Play_Sports.h */,
@@ -659,6 +679,7 @@
 		46F3153E1CC104CA00AAA588 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				463591901CDB571A00DF83A8 /* SportsImages */,
 				464263911CD9249C002CEDBC /* LeftMenu */,
 				A6C953931CD69A4B0046F1A9 /* SetLocation */,
 				4661DE051CC54D330005C567 /* Common */,
@@ -1148,6 +1169,7 @@
 				4661DE5E1CC54EAA0005C567 /* corporate@2x.png in Resources */,
 				4661DE591CC54EAA0005C567 /* lock@2x.png in Resources */,
 				4675ABF11CC3E69B0013FEE3 /* icon_news@3x.png in Resources */,
+				463591921CDB59D200DF83A8 /* cricket@2x.png in Resources */,
 				46D7CA1E1CD6781200DF8B35 /* check@3x.png in Resources */,
 				4675ABEE1CC3E69B0013FEE3 /* icon_team@2x.png in Resources */,
 				4661DE0C1CC54E300005C567 /* pin_bar@2x.png in Resources */,
@@ -1258,10 +1280,12 @@
 				46F62CD41C90901400A61B47 /* ViewController.m in Sources */,
 				4675ABCB1CC398E10013FEE3 /* Prefrences.m in Sources */,
 				4675AC561CC3EF330013FEE3 /* News_VC.m in Sources */,
+				463591981CDBF50D00DF83A8 /* TB_AddTeam.m in Sources */,
 				46F315441CC1090B00AAA588 /* Landing_VC.m in Sources */,
 				4675AC5F1CC3EF760013FEE3 /* Chats_VC.m in Sources */,
 				A666938D1CD4FD4F00195DE7 /* Game.m in Sources */,
 				46F315751CC168BC00AAA588 /* LeftSliderCell.m in Sources */,
+				463591951CDB648700DF83A8 /* TB_News.m in Sources */,
 				46F62D3D1C93627800A61B47 /* Home.m in Sources */,
 				A6C9538A1CD68D650046F1A9 /* SVGeocoder.m in Sources */,
 				46F62CD11C90901400A61B47 /* AppDelegate.m in Sources */,

@@ -25,6 +25,7 @@
     __weak IBOutlet UISearchBar *searchbar;
     
     
+    __weak IBOutlet UILabel *lblPlay;
     __weak IBOutlet UIButton *btnSearch;
 }
 - (IBAction)clkSearch:(id)sender;
@@ -56,12 +57,10 @@
     arrSearchResult = [NSMutableArray new];
     arrTempSearch = [NSMutableArray new];
     
+    [self hideAllViews];
+    lblPlay.hidden = NO;
     
-    tblSearch.hidden = YES;
-    searchbar.hidden = YES;
-    tblTeams.hidden = YES;
-    tblSports.hidden = YES;
-    
+
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -77,37 +76,42 @@
     
     searchbar.hidden = NO;
     btnSearch.hidden = YES;
+    lblPlay.hidden = YES;
 }
 
-- (IBAction)clkSegment:(UISegmentedControl*)sender {
-    
+- (IBAction)clkSegment:(UISegmentedControl*)sender
+{
+    [self hideAllViews];
     
     NSInteger selectedSegment = sender.selectedSegmentIndex;
     
     if (selectedSegment == 0)
     {
+
         tblSports.hidden = NO;
-        tblPlayers.hidden = YES;
-        tblTeams.hidden = YES;
-        tblSearch.hidden = YES;
         [tblSports reloadData];
     }
     else if (selectedSegment == 1)
     {
-        tblSports.hidden = YES;
         tblPlayers.hidden = NO;
-        tblTeams.hidden = YES;
-        tblSearch.hidden = YES;
+
         [tblPlayers reloadData];
     }
     else
     {
-        tblSports.hidden = YES;
-        tblPlayers.hidden = YES;
+
         tblTeams.hidden = NO;
-        tblSearch.hidden = YES;
         [tblTeams reloadData];
     }
+}
+
+-(void)hideAllViews
+{
+    tblSports.hidden = YES;
+    tblPlayers.hidden = YES;
+    tblTeams.hidden = YES;
+    tblSearch.hidden = YES;
+    searchbar.hidden = YES;
 }
 
 - (IBAction)clkNotifications:(id)sender
@@ -151,10 +155,13 @@
         
         cell.contentView.backgroundColor = [UIColor blackColor];
         cell.lblName.text = game.sportName;
-        cell.lblName.textColor = [UIColor whiteColor];
+       // cell.lblName.textColor = [UIColor whiteColor];
         
+        NSLog(@"time : %@, %@",game.time,game.date);
         cell.lblGame1.text = game.time;
         cell.lblGame2.text = game.date;
+        
+        cell.imgBackground.image = [UIImage imageNamed:@"cricket.png"];
         
         return cell;
 
@@ -222,7 +229,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 120;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
@@ -283,6 +290,18 @@
 
 #pragma mark - Searchbar Delegates
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if([searchText isEqualToString:@""] || searchText==nil) {
+        
+        tblSearch.hidden = YES;
+        
+        [searchBar resignFirstResponder];
+    }
+
+}
+
+
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
@@ -308,6 +327,7 @@
     searchbar.text = @"";
     searchbar.hidden = YES;
     btnSearch.hidden = NO;
+    lblPlay.hidden = NO;
     [searchbar resignFirstResponder];
 }
 

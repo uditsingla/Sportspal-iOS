@@ -15,6 +15,7 @@
 #import "Add_VC.h"
 
 #import "Sport.h"
+#import "TB_AddTeam.h"
 
 @interface AddTeam ()
 {
@@ -24,12 +25,13 @@
     __weak IBOutlet UIButton *btnSportName;
     __weak IBOutlet UIButton *btnTeamName;
     __weak IBOutlet UIButton *btnTeamType;
-    __weak IBOutlet UIButton *btnTeamSize;
     
     __weak IBOutlet UILabel *lblteamCurrentMembers;
-    __weak IBOutlet UILabel *lblteamMaxMembers;
 
 
+    
+    __weak IBOutlet UIScrollView *scrollview;
+    __weak IBOutlet UIScrollView *tblTeam;
     
     NSString *strSportName,*strSportID,*strTeamname,*strTeamType;
     int teamSize;
@@ -40,6 +42,12 @@
     __weak IBOutlet UISegmentedControl *segmentcotrol;
     
     NSArray *arraySportsType;
+    
+    NSMutableArray *arrTeamPlayers;
+    
+    
+    __weak IBOutlet NSLayoutConstraint *contentviewHeight;
+    
 }
 - (IBAction)clkSlider:(id)sender;
 
@@ -82,6 +90,29 @@
     arraySportsType = [NSArray arrayWithObjects:@"Corporate",@"Private", nil];
     
     
+    
+    scrollview.backgroundColor = [UIColor clearColor];
+    
+    arrTeamPlayers = [NSMutableArray new];
+    
+    [arrTeamPlayers addObject:@"Sachin"];
+    [arrTeamPlayers addObject:@"Abhi"];
+    [arrTeamPlayers addObject:@"Rohit"];
+    [arrTeamPlayers addObject:@"Sachin"];
+    [arrTeamPlayers addObject:@"Abhi"];
+    [arrTeamPlayers addObject:@"Rohit"];
+    [arrTeamPlayers addObject:@"Sachin"];
+    [arrTeamPlayers addObject:@"Abhi"];
+    [arrTeamPlayers addObject:@"Rohit"];
+    [arrTeamPlayers addObject:@"Sachin"];
+    [arrTeamPlayers addObject:@"Abhi"];
+    [arrTeamPlayers addObject:@"Rohit"];
+    [arrTeamPlayers addObject:@"Add Player"];
+    
+    NSLog(@"scroll content height %f",scrollview.contentSize.height);
+    
+    int heightContent = (int)arrTeamPlayers.count*44;
+    contentviewHeight.constant = 185+heightContent;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -148,33 +179,6 @@
         pickerType.hidden = NO;
         toolBar.hidden = NO;
         
-        
-    }
-    
-    else if (btn.tag == teamsize)
-    {
-        UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Team Size"
-                                                                                  message: @"Max number of members"
-                                                                           preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = @"Team Size";
-            textField.textColor = [UIColor blueColor];
-            textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-            textField.borderStyle = UITextBorderStyleRoundedRect;
-        }];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            NSArray * textfields = alertController.textFields;
-            UITextField * namefield = textfields[0];
-            
-            teamSize = [namefield.text intValue];
-            
-            [btnTeamSize setTitle:namefield.text forState:UIControlStateNormal];
-            
-            lblteamMaxMembers.text = [NSString stringWithFormat:@"MAX. SIZE (%@)",namefield.text];
-            NSLog(@"%@",namefield.text);
-            
-        }]];
-        [self presentViewController:alertController animated:YES completion:nil];
         
     }
     
@@ -377,6 +381,84 @@
     
     [self hideAllPickers];
 }
+
+
+#pragma mark - Delegates and Datasource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+        
+        static NSString *CellIdentifier = @"CellIdentifier";
+        TB_AddTeam *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil)
+        {
+            cell = [[TB_AddTeam alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+    
+    
+    cell.imgProfile.layer.cornerRadius = 15;
+    cell.imgProfile.layer.masksToBounds = YES;
+    cell.lblName.text = [arrTeamPlayers objectAtIndex:indexPath.row];
+    
+    
+    
+    if (indexPath.row == (arrTeamPlayers.count-1)) {
+        cell.imgProfile.image = [UIImage imageNamed:@"add.png"];
+    }
+    else{
+        
+    }
+    
+//        Game *game = [arrSports objectAtIndex:indexPath.row];
+//        
+//        cell.contentView.backgroundColor = [UIColor blackColor];
+//        cell.lblName.text = game.sportName;
+//        // cell.lblName.textColor = [UIColor whiteColor];
+//        
+//        NSLog(@"time : %@, %@",game.time,game.date);
+//        cell.lblGame1.text = game.time;
+//        cell.lblGame2.text = game.date;
+//        
+//        cell.imgBackground.image = [UIImage imageNamed:@"cricket.png"];
+    
+    tblTeam.backgroundColor = [UIColor clearColor];
+    cell.contentView.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    return cell;
+
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
+{
+    return 1;
+}
+
+// number of row in the section, I assume there is only 1 row
+- (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
+{
+    return [arrTeamPlayers count];
+}
+\
+#pragma mark - UITableViewDelegate
+// when user tap the row, what action you want to perform
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected %ld row", (long)indexPath.row);
+    
+     if (indexPath.row == (arrTeamPlayers.count-1)) {
+         NSLog(@"Add new player called");
+     }
+}
+
 /*
 #pragma mark - Navigation
 

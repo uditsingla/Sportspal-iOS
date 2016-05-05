@@ -7,6 +7,7 @@
 //
 
 #import "News_VC.h"
+#import "TB_News.h"
 
 @interface News_VC ()
 {
@@ -71,17 +72,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TB_News *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[TB_News alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    cell.contentView.backgroundColor = [UIColor yellowColor];
-    cell.textLabel.text = [arrNews objectAtIndex:indexPath.row];
-    cell.textLabel.textColor = [UIColor whiteColor];
+    //cell.contentView.backgroundColor = [UIColor yellowColor];
+    cell.imgBackground.image = [UIImage imageNamed:@"cricket.png"];
+    cell.lblName.text = [arrNews objectAtIndex:indexPath.row];
+    cell.lblName.textColor = [UIColor blueColor];
     
-    tblNews.backgroundColor = [UIColor greenColor];
+    //tblNews.backgroundColor = [UIColor greenColor];
     return cell;
 }
 
