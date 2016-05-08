@@ -10,6 +10,10 @@
 
 @interface PlayerManager : NSObject
 
+@property(nonatomic,strong) NSMutableArray *arrayPlayers;
+
+-(void)getNearByUsers:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
 -(void)resetModelData;
 
 @end

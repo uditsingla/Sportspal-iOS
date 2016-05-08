@@ -137,6 +137,41 @@
     else if ([keyName caseInsensitiveCompare:@"Share"] == NSOrderedSame)
     {   
         //[appdelegate.container.centerViewController pushViewController:[self goToController:@"appointments"] animated:NO];
+        
+        // grab an item we want to share
+        //UIImage *image = [UIImage imageNamed:@"xyz"];
+        NSString *message = @"Check out our new app SportsPal";
+        NSArray *items = @[message];
+        
+        // build an activity view controller
+        UIActivityViewController *controller = [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
+        
+        // access the completion handler
+        controller.completionWithItemsHandler = ^(NSString *activityType,
+                                                  BOOL completed,
+                                                  NSArray *returnedItems,
+                                                  NSError *error){
+            // react to the completion
+            if (completed) {
+                
+                // user shared an item
+                NSLog(@"We used activity type%@", activityType);
+                
+            } else {
+                
+                // user cancelled
+                NSLog(@"We didn't want to share anything after all.");
+            }
+            
+            if (error) {
+                NSLog(@"An Error occured: %@, %@", error.localizedDescription, error.localizedFailureReason);
+            }
+        };
+        
+        // and present it
+        [self presentViewController:controller animated:YES completion:^{
+            // executes after the user selects something
+        }];
     }
     
 

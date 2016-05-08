@@ -7,6 +7,7 @@
 //
 
 #import "Prefrences.h"
+#import "Sport.h"
 
 @interface Prefrences ()
 {
@@ -29,12 +30,13 @@
     
     arrSelectedPrefrences = [NSMutableArray new];
     
-    [arrSelectedPrefrences addObject:@"Cricket"];
-    [arrSelectedPrefrences addObject:@"BadMinton"];
-    [arrSelectedPrefrences addObject:@"Football"];
-    [arrSelectedPrefrences addObject:@"Swimming"];
-    [arrSelectedPrefrences addObject:@"Boxing"];
-    [arrSelectedPrefrences addObject:@"Shoting"];
+    tblPrefrences.backgroundColor = [UIColor clearColor];
+    
+    [kAppDelegate.objLoader show];
+    [model_manager.sportsManager getSports:^(NSDictionary *dictJson, NSError *error) {
+        [kAppDelegate.objLoader hide];
+        [tblPrefrences reloadData];
+    }];
     
     
     // Do any additional setup after loading the view.
@@ -54,9 +56,52 @@
 - (IBAction)clkDone:(id)sender
 {
     NSLog(@"done");
+    if(arrSelectedPrefrences.count>0)
+    {
+        [kAppDelegate.objLoader show];
+        [model_manager.profileManager.owner addPreferredSports:arrSelectedPrefrences :^(NSDictionary *dictJson, NSError *error) {
+            [kAppDelegate.objLoader hide];
+            if(!error)
+            {
+                if([[dictJson valueForKey:@"success"] boolValue])
+                {
+                    //goto home screen
+                    UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+                    [self.navigationController pushViewController:homeVC animated:YES];
+                }
+                else
+                {
+                    [self showAlert:[dictJson valueForKey:@"message"]];
+                }
+            }
+
+        }];
+    }
 }
 
-
+-(void)showAlert:(NSString *)errorMsg
+{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Error"
+                                  message:errorMsg
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleCancel
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             //   [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+}
 
 #pragma mark - Delegates and Tatasource
 
@@ -71,10 +116,9 @@
     
     cell.backgroundColor = [UIColor clearColor];
     cell.contentView.backgroundColor = [UIColor clearColor];
-    cell.textLabel.text = [arrSelectedPrefrences objectAtIndex:indexPath.row];
+    cell.textLabel.text = ((Sport*)[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]).sportName;
     cell.textLabel.textColor = [UIColor whiteColor];
     
-    tblPrefrences.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
@@ -86,7 +130,7 @@
 // number of row in the section, I assume there is only 1 row
 - (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
 {
-    return [arrSelectedPrefrences count];
+    return [model_manager.sportsManager.arraySports count];
 }
 
 
@@ -95,6 +139,23 @@
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %d row", indexPath.row);
+    if([arrSelectedPrefrences containsObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]])
+    {
+        [arrSelectedPrefrences removeObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]];
+    }
+    else
+    {
+        [arrSelectedPrefrences addObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]];
+    }
+    
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([arrSelectedPrefrences containsObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]])
+    {
+        [arrSelectedPrefrences removeObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]];
+    }
 }
 /*
 #pragma mark - Navigation

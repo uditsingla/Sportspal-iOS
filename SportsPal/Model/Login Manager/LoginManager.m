@@ -45,8 +45,11 @@
                 
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"AutoLogin"];
                 
+                [[NSUserDefaults standardUserDefaults] setValue:model_manager.profileManager.owner.userID forKey:@"userID"];
                 
+                [model_manager.playerManager getNearByUsers:nil];
                 [model_manager.sportsManager getAvailableGames:nil];
+                [model_manager.teamManager getAvailableTeams:nil];
                 [model_manager.profileManager.owner getPreferredSports:nil];
             }
             
@@ -118,6 +121,7 @@
              if([[json valueForKey:@"success"] boolValue])
              {
                  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"AutoLogin"];
+                 [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"userID"];
                  //clear model data
                  [model_manager.profileManager resetModelData];
                  [model_manager.sportsManager resetModelData];

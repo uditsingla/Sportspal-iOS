@@ -17,6 +17,8 @@
     self = [super init];
     if (self) {
         owner = [User new];
+        if([[NSUserDefaults standardUserDefaults] valueForKey:@"userID"])
+            owner.userID = [[NSUserDefaults standardUserDefaults] valueForKey:@"userID"];
     }
     return self;
 }

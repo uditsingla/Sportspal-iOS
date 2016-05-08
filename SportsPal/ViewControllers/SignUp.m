@@ -191,8 +191,12 @@
                             if([[dictJson valueForKey:@"success"] boolValue])
                             {
                                 //user registered successfully
-                                UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+//                                UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+//                                [self.navigationController pushViewController:homeVC animated:YES];
+                                
+                                UIViewController *homeVC = [kLoginStoryboard instantiateViewControllerWithIdentifier:@"prefrences"];
                                 [self.navigationController pushViewController:homeVC animated:YES];
+                                
                             }
                             else
                             {

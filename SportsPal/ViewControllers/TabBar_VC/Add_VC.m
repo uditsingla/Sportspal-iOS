@@ -210,6 +210,20 @@
             {
                 //game created successfully
                 [self showAlert:[dictJson valueForKey:@"message"]];
+                
+                [btnSportName setTitle:@"SPORT" forState:UIControlStateNormal];
+                [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
+                [btnDate setTitle:@"DD/MM/YYYY" forState:UIControlStateNormal];
+                [btnTime setTitle:@"HH:MM" forState:UIControlStateNormal];
+                [btnAddress setTitle:@"PICK ADDRESS" forState:UIControlStateNormal];
+                
+                
+                strSportName = @"";
+                strSportID = @"";
+                strTeamname = @"";
+                strDate = @"";
+                strTime = @"";
+                
             }
             else
             {

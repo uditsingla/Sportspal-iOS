@@ -4,7 +4,7 @@
 
 @implementation User
 
-@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,arrayPreferredSports;
+@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,arrayPreferredSports,arrayGames,arrayTeams;
 
 - (id)init
 {
@@ -20,6 +20,8 @@
         dob = @"";
         email = @"";
         arrayPreferredSports = [NSMutableArray new];
+        arrayGames = [NSMutableArray new];
+        arrayTeams = [NSMutableArray new];
     }
     return self;
 }

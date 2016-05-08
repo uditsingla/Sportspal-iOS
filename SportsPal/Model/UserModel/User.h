@@ -15,6 +15,9 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSMutableArray *arrayPreferredSports;
 
+@property (nonatomic, strong) NSMutableArray *arrayGames;
+@property (nonatomic, strong) NSMutableArray *arrayTeams;
+
 -(void)getPreferredSports:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)addPreferredSports:(NSArray*)arraySports :(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;

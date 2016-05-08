@@ -46,7 +46,8 @@
                          action:@selector(clkSegment:)
                forControlEvents:UIControlEventValueChanged];
     
-    arrPlayers = [NSMutableArray arrayWithObjects:@"Player 1 ",@"Player 2",@"Player 3",@"Player 4", nil];
+    //arrPlayers = [NSMutableArray arrayWithObjects:@"Player 1 ",@"Player 2",@"Player 3",@"Player 4", nil];
+    arrPlayers = model_manager.playerManager.arrayPlayers;
     
     //arrSports = [NSMutableArray arrayWithObjects:@"Sports 1 ",@"Sports 2",@"Sports 3",@"Sports 4", nil];
     arrSports = model_manager.sportsManager.arrayGames;
@@ -64,6 +65,13 @@
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [tblSports reloadData];
+    [tblPlayers reloadData];
+    [tblTeams reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -180,8 +188,10 @@
             cell = [[TB_Play_Players alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
         
+        User *player = [arrPlayers objectAtIndex:indexPath.row];
+        
         cell.contentView.backgroundColor = [UIColor blackColor];
-        cell.lblName.text = @"";
+        cell.lblName.text = [NSString stringWithFormat:@"%@ %@",[player.firstName capitalizedString],[player.lastName capitalizedString]];
         cell.lblName.textColor = [UIColor whiteColor];
 
         return cell;

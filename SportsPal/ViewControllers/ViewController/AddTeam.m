@@ -16,6 +16,7 @@
 
 #import "Sport.h"
 #import "TB_AddTeam.h"
+#import "Team.h"
 
 @interface AddTeam ()
 {
@@ -121,6 +122,75 @@
 //    self.hidesBottomBarWhenPushed = NO;
 }
 
+-(void)createNewTeam
+{
+    Team *team = [Team new];
+    team.sportID = strSportID;
+    team.sportName = strSportName;
+    team.creator = model_manager.profileManager.owner;
+    if([strTeamType isEqualToString:@"Private"])
+        team.teamType = TeamTypePrivate;
+    else if([strTeamType isEqualToString:@"Corporate"])
+        team.teamType = TeamTypeCorporate;
+    else
+        team.teamType = TeamTypePrivate;
+    team.teamName = strTeamname;
+    team.memberLimit = teamSize;
+    
+    
+    [kAppDelegate.objLoader show];
+    
+    [model_manager.teamManager createNewTeam:team completion:^(NSDictionary *dictJson, NSError *error) {
+        [kAppDelegate.objLoader hide];
+        if(!error)
+        {
+            if([[dictJson valueForKey:@"success"] boolValue])
+            {
+                //game created successfully
+                [self showAlert:[dictJson valueForKey:@"message"]];
+                
+                [btnSportName setTitle:@"TEAM SPORT" forState:UIControlStateNormal];
+                [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
+                [btnTeamType setTitle:@"TEAM TYPE" forState:UIControlStateNormal];
+                
+                strSportID = @"";
+                strSportName = @"";
+                strTeamType = @"";
+                strTeamname = @"";
+                teamSize = 0;
+            }
+            else
+            {
+                [self showAlert:[dictJson valueForKey:@"message"]];
+            }
+        }
+    }];
+}
+
+-(void)showAlert:(NSString *)errorMsg
+{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@""
+                                  message:errorMsg
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleCancel
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             //   [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -192,57 +262,6 @@
     
 }
 
--(void)createNewTeam
-{
-    Game *game = [Game new];
-    game.sportID = strSportID;
-    game.sportName = strSportName;
-    game.creator = model_manager.profileManager.owner;
-    game.gameType = GameTypeIndividual;
-    game.geoLocation = kAppDelegate.myLocation.coordinate;
-    
-    [kAppDelegate.objLoader show];
-    
-    [model_manager.sportsManager createNewGame:game completion:^(NSDictionary *dictJson, NSError *error) {
-        [kAppDelegate.objLoader hide];
-        if(!error)
-        {
-            if([[dictJson valueForKey:@"success"] boolValue])
-            {
-                //game created successfully
-                [self showAlert:[dictJson valueForKey:@"message"]];
-            }
-            else
-            {
-                [self showAlert:[dictJson valueForKey:@"message"]];
-            }
-        }
-    }];
-}
-
--(void)showAlert:(NSString *)errorMsg
-{
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Error"
-                                  message:errorMsg
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    
-    
-    [self presentViewController:alert animated:YES completion:nil];
-    
-    
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleCancel
-                         handler:^(UIAlertAction * action)
-                         {
-                             //Do some thing here
-                             //   [view dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    [alert addAction:ok];
-    
-}
 
 #pragma mark PickerView DataSource
 
