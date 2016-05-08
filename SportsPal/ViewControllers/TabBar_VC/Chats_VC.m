@@ -9,7 +9,11 @@
 #import "Chats_VC.h"
 
 @interface Chats_VC ()
+{
+    
+}
 
+- (IBAction)clkSlider:(id)sender;
 @end
 
 @implementation Chats_VC
@@ -23,6 +27,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (IBAction)clkSlider:(id)sender
+{
+[self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
+}
+
 
 /*
 #pragma mark - Navigation

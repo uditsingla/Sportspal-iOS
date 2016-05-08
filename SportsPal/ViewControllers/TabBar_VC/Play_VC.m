@@ -87,6 +87,10 @@
     
     if (selectedSegment == 0)
     {
+//        [ModelManager modelManager].sportsManager getAvailableGames:^(NSDictionary *dictJson, NSError *error)
+//        {
+//            code
+//        }
 
         tblSports.hidden = NO;
         [tblSports reloadData];

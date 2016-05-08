@@ -9,7 +9,6 @@
             <string>TwCenMT-Regular</string>
             <string>TwCenMT-Regular</string>
             <string>TwCenMT-Regular</string>
-            <string>TwCenMT-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -579,14 +578,13 @@
                                     <outlet property="delegate" destination="yzb-8L-BcS" id="5Re-qP-bZ4"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfW-fc-hHr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfW-fc-hHr">
                                 <rect key="frame" x="279" y="20" width="37" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="37" id="7T9-3f-z71"/>
                                     <constraint firstAttribute="height" constant="30" id="u0g-zZ-6kv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TwCenMT-Regular" family="Tw Cen MT" pointSize="16"/>
-                                <state key="normal" title="Done">
+                                <state key="normal" image="check.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -638,6 +636,7 @@
     <resources>
         <image name="back.png" width="10" height="16"/>
         <image name="bg_signup.png" width="360" height="640"/>
+        <image name="check.png" width="26" height="22"/>
         <image name="facebook.png" width="313" height="45"/>
         <image name="female_white.png" width="32" height="32"/>
         <image name="forgetpassword.png" width="19" height="18"/>

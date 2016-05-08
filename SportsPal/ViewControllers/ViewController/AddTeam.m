@@ -97,22 +97,19 @@
     
     [arrTeamPlayers addObject:@"Sachin"];
     [arrTeamPlayers addObject:@"Abhi"];
-    [arrTeamPlayers addObject:@"Rohit"];
-    [arrTeamPlayers addObject:@"Sachin"];
-    [arrTeamPlayers addObject:@"Abhi"];
-    [arrTeamPlayers addObject:@"Rohit"];
-    [arrTeamPlayers addObject:@"Sachin"];
-    [arrTeamPlayers addObject:@"Abhi"];
-    [arrTeamPlayers addObject:@"Rohit"];
-    [arrTeamPlayers addObject:@"Sachin"];
-    [arrTeamPlayers addObject:@"Abhi"];
-    [arrTeamPlayers addObject:@"Rohit"];
-    [arrTeamPlayers addObject:@"Add Player"];
+//    [arrTeamPlayers addObject:@"Rohit"];
+//    [arrTeamPlayers addObject:@"Sachin"];
+//    [arrTeamPlayers addObject:@"Abhi"];
+//    [arrTeamPlayers addObject:@"Rohit"];
+//    [arrTeamPlayers addObject:@"Sachin"];
+
     
     NSLog(@"scroll content height %f",scrollview.contentSize.height);
     
     int heightContent = (int)arrTeamPlayers.count*44;
     contentviewHeight.constant = 185+heightContent;
+    
+    //contentviewHeight.constant = 2000;
 }
 
 - (void)viewWillAppear:(BOOL)animated

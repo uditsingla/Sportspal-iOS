@@ -28,11 +28,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    arrMenuItems = [NSArray arrayWithObjects:@"Home",
+    arrMenuItems = [NSArray arrayWithObjects:@"Home",@"Share",
                     @"Logout",nil];
     
     
     arrMenuItemsImages = [NSArray arrayWithObjects:@"left_menu_home_icon.png",
+                          @"left_menu_logout_icon.png",
                           @"left_menu_logout_icon.png",
                           nil];
 
@@ -133,17 +134,12 @@
         
         //[appdelegate.container.centerViewController pushViewController:[self goToController:@"home"] animated:NO];
     }
-    else if ([keyName caseInsensitiveCompare:@"Appointments"] == NSOrderedSame)
+    else if ([keyName caseInsensitiveCompare:@"Share"] == NSOrderedSame)
     {   
         //[appdelegate.container.centerViewController pushViewController:[self goToController:@"appointments"] animated:NO];
     }
     
-    else if ([keyName caseInsensitiveCompare:@"History"] == NSOrderedSame){
-        NSLog(@"History");
-        
-         //[appdelegate.container.centerViewController pushViewController:[self goToController:@"history"] animated:NO];
-        
-    }
+
     
     else if ([keyName caseInsensitiveCompare:@"Logout"] == NSOrderedSame)
     {
