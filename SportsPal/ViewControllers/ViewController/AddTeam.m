@@ -111,6 +111,18 @@
     contentviewHeight.constant = 185+heightContent;
     
     //contentviewHeight.constant = 2000;
+    
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    UITabBarItem *myItem = [tabBar.items objectAtIndex:2];
+    
+    [myItem initWithTitle:@"ADD" image:[UIImage imageNamed:@"add.png"] selectedImage:[UIImage imageNamed:@"add.png"]];
+    
+//    [myItem setFinishedSelectedImage:[UIImage imageNamed:@"add.png"]
+//           withFinishedUnselectedImage:[UIImage imageNamed:@"add.png"]];
+//    myItem.title = @"ADD";
+    
+
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
