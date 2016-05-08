@@ -40,6 +40,7 @@
     __weak IBOutlet UIImageView *bgImage;
 
     
+    __weak IBOutlet UIButton *btnCurrentLoction;
 }
 - (IBAction)clkLeftSlider:(id)sender;
 - (IBAction)clkupdate:(id)sender;
@@ -92,6 +93,7 @@
     
     btnPrefrence.backgroundColor = GreenColor;
     btnLocation.backgroundColor = GreenColor ;
+    btnCurrentLoction.backgroundColor = GreenColor;
     
     toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,pickerDate.frame.origin.y-44,pickerDate.frame.size.width,44)];
     [toolBar setBarStyle:UIBarStyleBlackOpaque];

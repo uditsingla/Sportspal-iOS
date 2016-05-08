@@ -10,10 +10,15 @@
 
 
 #define ksportname 1
-#define kteamname 2
-#define kdate 3
-#define ktime 4
-#define kaddress 5
+#define kgametype 2
+#define kteamname 3
+#define kgamename 4
+#define kdate 5
+#define ktime 6
+#define kaddress 7
+
+
+
 
 #import "Add_VC.h"
 #import "AddTeam.h"
@@ -24,17 +29,22 @@
 @interface Add_VC ()
 {
     
+    __weak IBOutlet UIPickerView *pickerTeamName;
+    __weak IBOutlet UIPickerView *pickerGameType;
     __weak IBOutlet UIPickerView *pickerSports;
     __weak IBOutlet UIDatePicker *pikerDate;
     __weak IBOutlet UIDatePicker *pikerTime;
     
     __weak IBOutlet UIButton *btnTime;
-    __weak IBOutlet UIButton *btnTeamName;
+    __weak IBOutlet UIButton *btnGameName;
     __weak IBOutlet UIButton *btnAddress;
     __weak IBOutlet UIButton *btnDate;
     __weak IBOutlet UIButton *btnSportName;
     
-    NSString *strSportName,*strSportID,*strTeamname;
+    __weak IBOutlet UIButton *btnGameType;
+    __weak IBOutlet UIButton *btnTeamName;
+    
+    NSString *strSportName,*strSportID,*strGameName;
     
     NSString *strDate,*strTime;
     
@@ -42,6 +52,20 @@
     UIToolbar *toolBar;
     
     __weak IBOutlet UISegmentedControl *segmentcotrol;
+    
+    
+    __weak IBOutlet NSLayoutConstraint *contTeamName;
+    __weak IBOutlet NSLayoutConstraint *contImageTeamName;
+    
+    __weak IBOutlet NSLayoutConstraint *contBtngap;
+    __weak IBOutlet NSLayoutConstraint *contImageGap;
+    
+    NSArray *arrGameType;
+    NSMutableArray *arrTeamName;
+    
+    NSString *strGameType,*strTeamName;
+    
+    
     
 }
 - (IBAction)clkButton:(id)sender;
@@ -53,7 +77,8 @@
 
 @implementation Add_VC
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -88,6 +113,10 @@
                          action:@selector(clkSegment:)
                forControlEvents:UIControlEventValueChanged];
 
+    
+    arrGameType = [NSArray arrayWithObjects:@"Individual",@"Team", nil];
+    
+    arrTeamName = [NSMutableArray new];
     
     [self hideAllPickers];
 
@@ -127,12 +156,29 @@
     
     if (btn.tag == ksportname)
     {
+        
         pickerselected = ksportname;
+        
         pickerSports.hidden = NO;
         toolBar.hidden = NO;
         
     }
-    else if (btn.tag == kteamname){
+    else if (btn.tag == kgametype)
+    {
+        pickerselected = kgametype;
+        pickerGameType.hidden = NO;
+        toolBar.hidden = NO;
+
+    }
+    else if (btn.tag == kteamname)
+    {
+        pickerselected = kteamname;
+        pickerTeamName.hidden = NO;
+        toolBar.hidden = NO;
+        
+    }
+    
+    else if (btn.tag == kgamename){
         UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Team Name"
                                                                                   message: @"Choose your teamname"
                                                                            preferredStyle:UIAlertControllerStyleAlert];
@@ -146,9 +192,9 @@
             NSArray * textfields = alertController.textFields;
             UITextField * namefield = textfields[0];
                 
-            strTeamname = namefield.text;
+            strGameName = namefield.text;
                 
-            [btnTeamName setTitle:strTeamname forState:UIControlStateNormal];
+            [btnGameName setTitle:strGameName forState:UIControlStateNormal];
             NSLog(@"%@",namefield.text);
             
         }]];
@@ -180,7 +226,8 @@
 
 -(void)hideAllPickers
 {
-    
+    pickerGameType.hidden =YES;
+    pickerTeamName.hidden = YES;
     pickerSports.hidden =YES;
     pikerDate.hidden = YES;
     pikerTime.hidden = YES;
@@ -253,23 +300,82 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 
 {
+    if(pickerView == pickerSports)
     return  [ModelManager modelManager].sportsManager.arraySports.count;
+    
+    else if(pickerView == pickerGameType)
+    return arrGameType.count;
+    
+    else if (pickerView == pickerTeamName)
+    return arrTeamName.count;
+    
+    return 0;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
+    
+    if(pickerView == pickerSports)
+    {
+        Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
+        return  sport.sportName;
+    }
+    
+    else if(pickerView == pickerGameType)
+    {
+        return arrGameType[row];
 
-    Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
-    return  sport.sportName;
+    }
+    
+    else if (pickerView == pickerTeamName)
+    {
+        return arrTeamName[row];
+    }
+    return  @"";
+    
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
-    strSportName=  sport.sportName;
-    strSportID = sport.sportID;
     
-    NSLog(@"Sport Name : %@",strSportName);
+    
+   // NSLog(@"Sport Name : %@",strSportName);
+    
+    
+    
+    if(pickerView == pickerSports)
+    {
+        Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
+        strSportName=  sport.sportName;
+        strSportID = sport.sportID;
+    }
+    
+    else if(pickerView == pickerGameType)
+    {
+        strGameType =  arrGameType[row];
+        
+        if ([strGameType isEqualToString:@"Individual"])
+        {
+            contTeamName.constant = 0;
+            contImageTeamName.constant = 0;
+            contImageGap.constant = 0;
+            contBtngap.constant = 0;
+        }
+        else
+        {
+            contTeamName.constant = 25;
+            contImageTeamName.constant = 23;
+            contBtngap.constant = 15;
+            contBtngap.constant = 17;
+        }
+        
+        
+    }
+    
+    else if (pickerView == pickerTeamName)
+    {
+        strTeamName = arrTeamName[row];
+    }
 }
 
 
@@ -307,6 +413,32 @@
         
         [btnSportName setTitle:strSportName forState:UIControlStateNormal];
     }
+    
+    else if (pickerselected == kgametype)
+    {
+        if (strGameType == nil)
+        {
+            strGameType = [arrGameType objectAtIndex:0];
+            contTeamName.constant = 0;
+            contImageTeamName.constant = 0;
+
+        }
+        [btnGameType setTitle:strGameType forState:UIControlStateNormal];
+        
+    }
+    
+    else if (pickerselected == kteamname)
+    {
+        
+        if (strTeamName == nil)
+        {
+            strTeamName = [arrTeamName objectAtIndex:0];
+        }
+        [btnTeamName setTitle:strTeamName forState:UIControlStateNormal];
+    }
+    
+   
+    
     else if (pickerselected == kdate)
     {
         [btnDate setTitle:strDate forState:UIControlStateNormal];
