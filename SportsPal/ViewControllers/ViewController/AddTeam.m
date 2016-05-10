@@ -49,6 +49,7 @@
     
     __weak IBOutlet NSLayoutConstraint *contentviewHeight;
     
+    __weak IBOutlet UIView *toolBarSuperView;
 }
 - (IBAction)clkSlider:(id)sender;
 
@@ -65,14 +66,14 @@
     
     
     //
-    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,pickerSports.frame.origin.y-44,pickerSports.frame.size.width,44)];
+    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
     [toolBar setBarStyle:UIBarStyleBlackOpaque];
     toolBar.backgroundColor = [UIColor grayColor];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                       style:UIBarButtonItemStyleDone target:self action:@selector(selectDateTime:)];
     toolBar.items = @[barButtonDone];
     barButtonDone.tintColor=[UIColor whiteColor];
-    [self.view addSubview:toolBar];
+    [toolBarSuperView addSubview:toolBar];
     //
     
     [UIView appearanceWhenContainedIn:[UITableView class], [UIDatePicker class], nil].backgroundColor =[UIColor colorWithWhite:1 alpha:0];
@@ -225,7 +226,7 @@
     {
         pickerselected = sportname;
         pickerSports.hidden = NO;
-        toolBar.hidden = NO;
+        toolBarSuperView.hidden = NO;
         
     }
     else if (btn.tag == teamname){
@@ -256,7 +257,7 @@
         
         pickerselected = teamtype;
         pickerType.hidden = NO;
-        toolBar.hidden = NO;
+        toolBarSuperView.hidden = NO;
         
         
     }
@@ -270,7 +271,7 @@
     
     pickerSports.hidden =YES;
     pickerType.hidden = YES;
-    toolBar.hidden = YES;
+    toolBarSuperView.hidden = YES;
     
 }
 

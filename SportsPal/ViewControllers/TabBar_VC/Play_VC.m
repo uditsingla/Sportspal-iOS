@@ -167,13 +167,15 @@
         
         cell.contentView.backgroundColor = [UIColor blackColor];
         cell.lblName.text = game.sportName;
+        
+        NSLog(@"Game name : %@",game.sportName);
        // cell.lblName.textColor = [UIColor whiteColor];
         
-        NSLog(@"time : %@, %@",game.time,game.date);
+        //NSLog(@"time : %@, %@",game.time,game.date);
         cell.lblGame1.text = game.time;
         cell.lblGame2.text = game.date;
         
-        cell.imgBackground.image = [UIImage imageNamed:@"cricket.png"];
+        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",game.sportName]];
         
         return cell;
 

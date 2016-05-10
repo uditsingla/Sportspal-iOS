@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8aY-66-DuM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8aY-66-DuM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Tw Cen MT.ttf">
@@ -396,6 +396,13 @@
                                     <constraint firstItem="eI2-SN-Ua8" firstAttribute="leading" secondItem="bmf-PP-tkp" secondAttribute="leading" id="wht-hM-ggU"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlM-4e-QfO">
+                                <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="pYU-ak-HSr"/>
+                                </constraints>
+                            </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="uI2-X6-kKb">
                                 <rect key="frame" x="0.0" y="176" width="320" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -407,6 +414,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="p9G-KI-GjR" secondAttribute="trailing" id="4Eg-VU-aPX"/>
+                            <constraint firstItem="tlM-4e-QfO" firstAttribute="width" secondItem="uI2-X6-kKb" secondAttribute="width" id="5ut-Uk-TF1"/>
                             <constraint firstItem="eI2-SN-Ua8" firstAttribute="width" secondItem="u5m-Vd-ZWW" secondAttribute="width" id="9Q5-HE-1Zl"/>
                             <constraint firstItem="G7t-b5-Ais" firstAttribute="top" secondItem="p9G-KI-GjR" secondAttribute="bottom" id="AWC-g7-8hL"/>
                             <constraint firstItem="uI2-X6-kKb" firstAttribute="centerY" secondItem="u5m-Vd-ZWW" secondAttribute="centerY" id="GJ4-IN-L95"/>
@@ -414,6 +422,8 @@
                             <constraint firstItem="eI2-SN-Ua8" firstAttribute="height" secondItem="u5m-Vd-ZWW" secondAttribute="height" priority="250" id="PT8-dj-uPl"/>
                             <constraint firstItem="bmf-PP-tkp" firstAttribute="top" secondItem="u5m-Vd-ZWW" secondAttribute="top" id="PZT-mP-BrL"/>
                             <constraint firstAttribute="trailing" secondItem="bmf-PP-tkp" secondAttribute="trailing" id="SpG-gd-VjN"/>
+                            <constraint firstItem="uI2-X6-kKb" firstAttribute="top" secondItem="tlM-4e-QfO" secondAttribute="bottom" id="Xrv-We-gNT"/>
+                            <constraint firstItem="tlM-4e-QfO" firstAttribute="centerX" secondItem="uI2-X6-kKb" secondAttribute="centerX" id="Yju-8h-iqO"/>
                             <constraint firstItem="G7t-b5-Ais" firstAttribute="top" secondItem="bmf-PP-tkp" secondAttribute="bottom" id="aMB-aa-Nh4"/>
                             <constraint firstItem="p9G-KI-GjR" firstAttribute="top" secondItem="u5m-Vd-ZWW" secondAttribute="top" id="geY-BZ-qhf"/>
                             <constraint firstItem="bmf-PP-tkp" firstAttribute="leading" secondItem="u5m-Vd-ZWW" secondAttribute="leading" id="sKS-GM-uIM"/>
@@ -428,6 +438,7 @@
                         <outlet property="btnSignUp" destination="Kcn-PS-v3z" id="9zR-Os-ahU"/>
                         <outlet property="pickerDate" destination="uI2-X6-kKb" id="NmR-pA-nMo"/>
                         <outlet property="scroll" destination="bmf-PP-tkp" id="J54-g7-Pig"/>
+                        <outlet property="toolBarSuperView" destination="tlM-4e-QfO" id="EdM-tE-OrD"/>
                         <outlet property="txtEmail" destination="aLC-zV-bAF" id="EMF-pK-VvL"/>
                         <outlet property="txtFirstName" destination="S78-31-eUd" id="zM6-kh-U75"/>
                         <outlet property="txtLastName" destination="nd7-oT-1SN" id="UjJ-WG-aO2"/>

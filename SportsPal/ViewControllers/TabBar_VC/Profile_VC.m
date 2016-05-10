@@ -41,6 +41,9 @@
 
     
     __weak IBOutlet UIButton *btnCurrentLoction;
+    
+    __weak IBOutlet UIView *toolBarSuperView;
+
 }
 - (IBAction)clkLeftSlider:(id)sender;
 - (IBAction)clkupdate:(id)sender;
@@ -95,14 +98,14 @@
     btnLocation.backgroundColor = GreenColor ;
     btnCurrentLoction.backgroundColor = GreenColor;
     
-    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,pickerDate.frame.origin.y-44,pickerDate.frame.size.width,44)];
+    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
     [toolBar setBarStyle:UIBarStyleBlackOpaque];
     toolBar.backgroundColor = [UIColor grayColor];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                       style:UIBarButtonItemStyleDone target:self action:@selector(selectDateTime:)];
     toolBar.items = @[barButtonDone];
     barButtonDone.tintColor=[UIColor whiteColor];
-    [self.view addSubview:toolBar];
+    [toolBarSuperView addSubview:toolBar];
     
     [pickerDate addTarget:self action:@selector(dateChanged:)               forControlEvents:UIControlEventValueChanged];
     
@@ -130,7 +133,7 @@
 -(void)hideAllPickers
 {
     pickerDate.hidden = YES;
-    toolBar.hidden = YES;
+    toolBarSuperView.hidden = YES;
     
     [scrollview setContentOffset:CGPointMake(0, 0)];
 }
@@ -233,7 +236,7 @@
 - (IBAction)clkDOB:(id)sender
 {
     pickerDate.hidden = NO;
-    toolBar.hidden = NO;
+    toolBarSuperView.hidden = NO;
     
     
 }

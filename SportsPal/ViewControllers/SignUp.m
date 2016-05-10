@@ -34,6 +34,9 @@
     NSString *selectedGender,*strDOB;
     
     UIToolbar *toolBar;
+    
+    __weak IBOutlet UIView *toolBarSuperView;
+
 
 }
 
@@ -78,14 +81,14 @@
     selectedGender = @"";
     
     
-    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,pickerDate.frame.origin.y-44,pickerDate.frame.size.width,44)];
+    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
     [toolBar setBarStyle:UIBarStyleBlackOpaque];
     toolBar.backgroundColor = [UIColor grayColor];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                       style:UIBarButtonItemStyleDone target:self action:@selector(selectDateTime:)];
     toolBar.items = @[barButtonDone];
     barButtonDone.tintColor=[UIColor whiteColor];
-    [self.view addSubview:toolBar];
+    [toolBarSuperView addSubview:toolBar];
     
     [pickerDate addTarget:self action:@selector(dateChanged:)               forControlEvents:UIControlEventValueChanged];
     
@@ -98,7 +101,7 @@
 -(void)hideAllPickers
 {
     pickerDate.hidden = YES;
-    toolBar.hidden = YES;
+    toolBarSuperView.hidden = YES;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -110,6 +113,9 @@
 }
 
 - (IBAction)clkSignUp:(id)sender {
+    
+    [self hideAllPickers];
+    
     
     if([[txtFirstName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
     {
@@ -253,6 +259,8 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [scroll setContentOffset:CGPointMake(0.0, 256) animated:YES];
+    
+    [self hideAllPickers];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -284,8 +292,9 @@
 
 - (IBAction)clkBirthDate:(id)sender
 {
+    [self.view endEditing:YES];
     pickerDate.hidden = NO;
-    toolBar.hidden = NO;
+    toolBarSuperView.hidden = NO;
 }
 
 -(void)selectDateTime:(id)sender

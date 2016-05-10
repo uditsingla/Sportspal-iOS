@@ -67,6 +67,7 @@
     
     
     
+    __weak IBOutlet UIView *toolBarSuperView;
 }
 - (IBAction)clkButton:(id)sender;
 - (IBAction)clkSegment:(UISegmentedControl*)sender;
@@ -89,14 +90,14 @@
     
     
     //
-    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,pikerDate.frame.origin.y-44,pikerDate.frame.size.width,44)];
+    toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
     [toolBar setBarStyle:UIBarStyleBlackOpaque];
     toolBar.backgroundColor = [UIColor grayColor];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                       style:UIBarButtonItemStyleDone target:self action:@selector(selectDateTime:)];
     toolBar.items = @[barButtonDone];
     barButtonDone.tintColor=[UIColor whiteColor];
-    [self.view addSubview:toolBar];
+    [toolBarSuperView addSubview:toolBar];
     //
     
     [UIView appearanceWhenContainedIn:[UITableView class], [UIDatePicker class], nil].backgroundColor =[UIColor colorWithWhite:1 alpha:0];
@@ -160,21 +161,21 @@
         pickerselected = ksportname;
         
         pickerSports.hidden = NO;
-        toolBar.hidden = NO;
+        toolBarSuperView.hidden = NO;
         
     }
     else if (btn.tag == kgametype)
     {
         pickerselected = kgametype;
         pickerGameType.hidden = NO;
-        toolBar.hidden = NO;
+        toolBarSuperView.hidden = NO;
 
     }
     else if (btn.tag == kteamname)
     {
         pickerselected = kteamname;
         pickerTeamName.hidden = NO;
-        toolBar.hidden = NO;
+        toolBarSuperView.hidden = NO;
         
     }
     
@@ -205,7 +206,7 @@
         
         pickerselected = kdate;
         pikerDate.hidden = NO;
-        toolBar.hidden = NO;
+        toolBarSuperView.hidden = NO;
         
         
     }
@@ -213,7 +214,7 @@
         
         pickerselected = ktime;
         pikerTime.hidden = NO;
-        toolBar.hidden = NO;
+        toolBarSuperView.hidden = NO;
     }
     else if (btn.tag == kaddress){
         
@@ -231,7 +232,7 @@
     pickerSports.hidden =YES;
     pikerDate.hidden = YES;
     pikerTime.hidden = YES;
-    toolBar.hidden = YES;
+    toolBarSuperView.hidden = YES;
     
 }
 
@@ -267,7 +268,7 @@
                 
                 strSportName = @"";
                 strSportID = @"";
-                strTeamname = @"";
+                strTeamName = @"";
                 strDate = @"";
                 strTime = @"";
                 
