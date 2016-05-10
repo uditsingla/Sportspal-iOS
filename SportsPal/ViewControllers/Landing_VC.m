@@ -42,6 +42,7 @@
         [model_manager.playerManager getNearByUsers:nil];
         [model_manager.sportsManager getAvailableGames:nil];
         [model_manager.teamManager getAvailableTeams:nil];
+        [model_manager.profileManager.owner getUserDetails:nil];
         [model_manager.profileManager.owner getPreferredSports:nil];
     }
 }

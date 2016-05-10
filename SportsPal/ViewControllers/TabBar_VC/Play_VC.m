@@ -11,6 +11,7 @@
 #import "TB_Play_Sports.h"
 #import "TB_Play_Teams.h"
 #import "Game.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface Play_VC ()
 {
@@ -27,6 +28,9 @@
     
     __weak IBOutlet UILabel *lblPlay;
     __weak IBOutlet UIButton *btnSearch;
+    
+    AFHTTPRequestOperation *postAutoComplete;
+    AFHTTPRequestOperationManager *manager;
 }
 - (IBAction)clkSearch:(id)sender;
 - (IBAction)clkSegment:(UISegmentedControl*)sender;
@@ -40,7 +44,6 @@
 - (void)viewDidLoad
 {
     //Segmented Controll
-    
     
     [segmentedcontrol addTarget:self
                          action:@selector(clkSegment:)
@@ -61,7 +64,9 @@
     [self hideAllViews];
     lblPlay.hidden = NO;
     
-
+    tblPlayers.hidden = NO;
+    
+    manager = [AFHTTPRequestOperationManager manager];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -299,7 +304,25 @@
     }
     else if (theTableView == tblSearch)
     {
-        
+        if(segmentedcontrol.selectedSegmentIndex==0)
+        {
+            //search games
+            [model_manager.sportsManager searchNewGameWithSportID:@"" andUserID:model_manager.profileManager.owner.userID completion:^(NSDictionary *dictJson, NSError *error) {
+                
+            }];
+        }
+        else if(segmentedcontrol.selectedSegmentIndex==1)
+        {
+            //search players
+            
+        }
+        else if(segmentedcontrol.selectedSegmentIndex==2)
+        {
+            //search teams
+            [model_manager.teamManager searchTeamWithSportID:@"" andCreatorID:model_manager.profileManager.owner.userID completion:^(NSDictionary *dictJson, NSError *error) {
+                
+            }];
+        }
     }
 }
 
@@ -308,12 +331,39 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    if([searchText isEqualToString:@""] || searchText==nil) {
-        
+    
+    if ([[searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
+    {
         tblSearch.hidden = YES;
-        
-        [searchBar resignFirstResponder];
+        [arrSearchResult removeAllObjects];
+        [tblSearch reloadData];
     }
+    
+    if(postAutoComplete)
+        [postAutoComplete cancel];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:model_manager.profileManager.owner.userID,@"user_id",searchText,@"search_term",nil];
+    
+    postAutoComplete = [manager POST:[NSString stringWithFormat:@"%@games/getAutoFill",kBaseUrlPath] parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //doing something
+        if(((NSArray*)responseObject).count>0 && [searchBar isFirstResponder])
+        {
+            tblSearch.hidden = NO;
+            [arrSearchResult removeAllObjects];
+            [arrSearchResult addObjectsFromArray:(NSArray*)responseObject];
+            
+            [tblSearch reloadData];
+        }
+        else
+        {
+            tblSearch.hidden = YES;
+            [arrSearchResult removeAllObjects];
+            [tblSearch reloadData];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // error handling.
+    }];
+
 
 }
 

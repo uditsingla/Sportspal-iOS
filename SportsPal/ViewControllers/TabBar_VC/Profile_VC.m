@@ -7,6 +7,9 @@
 //
 
 #import "Profile_VC.h"
+#import "Prefrences.h"
+#import "SetLocationScreen.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface Profile_VC ()
 {
@@ -115,6 +118,22 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    txtEmail.text = model_manager.profileManager.owner.email;
+    txtFirstName.text = model_manager.profileManager.owner.firstName;
+    txtLastName.text = model_manager.profileManager.owner.lastName;
+    [profilePic sd_setImageWithURL:[NSURL URLWithString:model_manager.profileManager.owner.profilePic] placeholderImage:[UIImage imageNamed:@""]];
+    if(model_manager.profileManager.svp_LocationInfo)
+        [btnLocation setTitle:model_manager.profileManager.svp_LocationInfo.formattedAddress forState:UIControlStateNormal];
+    [btnDOB setTitle:model_manager.profileManager.owner.dob forState:UIControlStateNormal];
+    if([model_manager.profileManager.owner.gender isEqualToString:@"male"])
+        [self clkGender:btnMale];
+    else
+        [self clkGender:btnFemale];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -165,69 +184,69 @@
     {
         [self showAlert:@"Please select gender"];
     }
-    else
-    {
-        [kAppDelegate.objLoader show];
-        
-        double latitude,longitude;
-        if(kAppDelegate.myLocation)
-        {
-            latitude = kAppDelegate.myLocation.coordinate.latitude;
-            longitude = kAppDelegate.myLocation.coordinate.longitude;
-        }
-        else
-        {
-            latitude = 0;
-            longitude = 0;
-        }
-        
-        NSString *deviceToken=@"";
-        if([[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"])
-        {
-            deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"];
-        }
-        
-        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email",btnDOB.titleLabel.text,@"dob", selectedGender,@"gender",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", @"ios", @"device_type", deviceToken, @"device_token", nil];
-        
-        [model_manager.loginManager userSignUp:signUpInfo completion:^(NSDictionary *dictJson, NSError *error) {
-            [kAppDelegate.objLoader hide];
-            if(!error)
-            {
-                if([[dictJson valueForKey:@"success"] boolValue])
-                {
-                    //user registered successfully
-                    
-                    //login now
-                    [kAppDelegate.objLoader show];
-                    
-                    NSDictionary *loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtEmail.text, @"email", @"ios", @"device_type", deviceToken, @"device_token", nil];
-                    
-                    [model_manager.loginManager userLogin:loginInfo completion:^(NSDictionary *dictJson, NSError *error) {
-                        [kAppDelegate.objLoader hide];
-                        if(!error)
-                        {
-                            if([[dictJson valueForKey:@"success"] boolValue])
-                            {
-                                //user registered successfully
-                                UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
-                                [self.navigationController pushViewController:homeVC animated:YES];
-                            }
-                            else
-                            {
-                                [self showAlert:[dictJson valueForKey:@"message"]];
-                            }
-                        }
-                        
-                    }];
-                    
-                }
-                else
-                {
-                    [self showAlert:[dictJson valueForKey:@"message"]];
-                }
-            }
-        }];
-    }
+//    else
+//    {
+//        [kAppDelegate.objLoader show];
+//        
+//        double latitude,longitude;
+//        if(kAppDelegate.myLocation)
+//        {
+//            latitude = kAppDelegate.myLocation.coordinate.latitude;
+//            longitude = kAppDelegate.myLocation.coordinate.longitude;
+//        }
+//        else
+//        {
+//            latitude = 0;
+//            longitude = 0;
+//        }
+//        
+//        NSString *deviceToken=@"";
+//        if([[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"])
+//        {
+//            deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"];
+//        }
+//        
+//        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email",btnDOB.titleLabel.text,@"dob", selectedGender,@"gender",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", @"ios", @"device_type", deviceToken, @"device_token", nil];
+//        
+//        [model_manager.loginManager userSignUp:signUpInfo completion:^(NSDictionary *dictJson, NSError *error) {
+//            [kAppDelegate.objLoader hide];
+//            if(!error)
+//            {
+//                if([[dictJson valueForKey:@"success"] boolValue])
+//                {
+//                    //user registered successfully
+//                    
+//                    //login now
+//                    [kAppDelegate.objLoader show];
+//                    
+//                    NSDictionary *loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtEmail.text, @"email", @"ios", @"device_type", deviceToken, @"device_token", nil];
+//                    
+//                    [model_manager.loginManager userLogin:loginInfo completion:^(NSDictionary *dictJson, NSError *error) {
+//                        [kAppDelegate.objLoader hide];
+//                        if(!error)
+//                        {
+//                            if([[dictJson valueForKey:@"success"] boolValue])
+//                            {
+//                                //user registered successfully
+//                                UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+//                                [self.navigationController pushViewController:homeVC animated:YES];
+//                            }
+//                            else
+//                            {
+//                                [self showAlert:[dictJson valueForKey:@"message"]];
+//                            }
+//                        }
+//                        
+//                    }];
+//                    
+//                }
+//                else
+//                {
+//                    [self showAlert:[dictJson valueForKey:@"message"]];
+//                }
+//            }
+//        }];
+//    }
 }
 
 - (IBAction)clkProfilePic:(id)sender {
@@ -259,9 +278,15 @@
 }
 
 - (IBAction)clkPrefrencess:(id)sender {
+    Prefrences *homeVC = [kLoginStoryboard instantiateViewControllerWithIdentifier:@"prefrences"];
+    homeVC.isFromProfileView = YES;
+    [self.navigationController pushViewController:homeVC animated:YES];
 }
 
 - (IBAction)clkLocation:(id)sender {
+    
+    SetLocationScreen *obj = [SetLocationScreen new];
+    [self.navigationController pushViewController:obj animated:YES];
 }
 
 - (IBAction)clkCurrentLocation:(id)sender {

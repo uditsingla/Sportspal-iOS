@@ -44,9 +44,9 @@ PODS:
     - PubNub/Core (= 4.3.0)
   - PubNub/Core (4.3.0):
     - CocoaLumberjack (= 2.2.0)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -72,6 +72,6 @@ SPEC CHECKSUMS:
   GoogleMaps: 8935220056a6cc8e9ca298b4da4ae530620aa71b
   MFSideMenu: 268122e6894f2747fc3a2b48578100b232506c60
   PubNub: a05f2a2c6cc1f637a0c473f236c4671c0b8c09b1
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
 COCOAPODS: 0.39.0

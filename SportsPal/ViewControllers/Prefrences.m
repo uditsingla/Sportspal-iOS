@@ -23,12 +23,17 @@
 
 @implementation Prefrences
 
+@synthesize isFromProfileView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     //[self.navigationController setNavigationBarHidden:NO];
     
     arrSelectedPrefrences = [NSMutableArray new];
+    
+    if(model_manager.profileManager.owner.arrayPreferredSports.count>0)
+        [arrSelectedPrefrences addObjectsFromArray:model_manager.profileManager.owner.arrayPreferredSports];
     
     tblPrefrences.backgroundColor = [UIColor clearColor];
     
@@ -38,7 +43,7 @@
         [tblPrefrences reloadData];
     }];
     
-    
+    [tblPrefrences reloadData];
     // Do any additional setup after loading the view.
 }
 
@@ -65,9 +70,17 @@
             {
                 if([[dictJson valueForKey:@"success"] boolValue])
                 {
-                    //goto home screen
-                    UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
-                    [self.navigationController pushViewController:homeVC animated:YES];
+                    if(isFromProfileView)
+                    {
+                        //go back
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    else
+                    {
+                        //goto home screen
+                        UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+                        [self.navigationController pushViewController:homeVC animated:YES];
+                    }
                 }
                 else
                 {
@@ -119,6 +132,17 @@
     cell.textLabel.text = ((Sport*)[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]).sportName;
     cell.textLabel.textColor = [UIColor whiteColor];
     
+    
+    NSPredicate *_predicate = [NSPredicate predicateWithFormat:@"sportID == %@", ((Sport*)[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]).sportID];
+    NSArray *filteredRecords = [arrSelectedPrefrences filteredArrayUsingPredicate:_predicate];
+    
+    if(filteredRecords.count>0)
+    {
+        cell.backgroundColor = [UIColor lightGrayColor];
+    }
+    else
+        cell.backgroundColor = [UIColor clearColor];
+    
     return cell;
 }
 
@@ -139,23 +163,33 @@
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %d row", indexPath.row);
-    if([arrSelectedPrefrences containsObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]])
+    NSPredicate *_predicate = [NSPredicate predicateWithFormat:@"sportID == %@", ((Sport*)[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]).sportID];
+    NSArray *filteredRecords = [arrSelectedPrefrences filteredArrayUsingPredicate:_predicate];
+    
+    if(filteredRecords.count>0)
     {
-        [arrSelectedPrefrences removeObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]];
+        [arrSelectedPrefrences removeObject:[filteredRecords objectAtIndex:0]];
     }
     else
     {
         [arrSelectedPrefrences addObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]];
     }
     
+    [tblPrefrences reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([arrSelectedPrefrences containsObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]])
+    
+    NSPredicate *_predicate = [NSPredicate predicateWithFormat:@"sportID == %@", ((Sport*)[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]).sportID];
+    NSArray *filteredRecords = [arrSelectedPrefrences filteredArrayUsingPredicate:_predicate];
+    
+    if(filteredRecords.count>0)
     {
-        [arrSelectedPrefrences removeObject:[model_manager.sportsManager.arraySports objectAtIndex:indexPath.row]];
+        [arrSelectedPrefrences removeObject:[filteredRecords objectAtIndex:0]];
     }
+    
+    [tblPrefrences reloadData];
 }
 /*
 #pragma mark - Navigation
