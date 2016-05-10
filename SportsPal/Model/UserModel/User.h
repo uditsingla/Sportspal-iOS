@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSMutableArray *arrayGames;
 @property (nonatomic, strong) NSMutableArray *arrayTeams;
 
+-(void)getUserDetails:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
 -(void)getPreferredSports:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)addPreferredSports:(NSArray*)arraySports :(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;

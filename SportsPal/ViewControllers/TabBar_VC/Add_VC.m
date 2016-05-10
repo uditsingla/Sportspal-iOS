@@ -267,7 +267,7 @@
                 
                 strSportName = @"";
                 strSportID = @"";
-                strTeamname = @"";
+                strTeamName = @"";
                 strDate = @"";
                 strTime = @"";
                 

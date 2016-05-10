@@ -179,6 +179,9 @@
 		A610D89B1CD7D3F0008DED71 /* map_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8971CD7D3F0008DED71 /* map_location@3x.png */; };
 		A610D89C1CD7D3F0008DED71 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8981CD7D3F0008DED71 /* marker@2x.png */; };
 		A610D89D1CD7D3F0008DED71 /* marker@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8991CD7D3F0008DED71 /* marker@3x.png */; };
+		A6604E1A1CE25E0600F8C7AF /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6604E171CE25E0600F8C7AF /* AFHTTPRequestOperation.m */; };
+		A6604E1B1CE25E0600F8C7AF /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6604E191CE25E0600F8C7AF /* AFHTTPRequestOperationManager.m */; };
+		A6604E1E1CE2619600F8C7AF /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6604E1D1CE2619600F8C7AF /* AFURLConnectionOperation.m */; };
 		A66693841CD4CFD800195DE7 /* TeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693831CD4CFD800195DE7 /* TeamManager.m */; };
 		A66693871CD4D00800195DE7 /* PlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693861CD4D00800195DE7 /* PlayerManager.m */; };
 		A666938A1CD4D02800195DE7 /* SportsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693891CD4D02800195DE7 /* SportsManager.m */; };
@@ -402,6 +405,12 @@
 		A610D8971CD7D3F0008DED71 /* map_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@3x.png"; sourceTree = "<group>"; };
 		A610D8981CD7D3F0008DED71 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
 		A610D8991CD7D3F0008DED71 /* marker@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@3x.png"; sourceTree = "<group>"; };
+		A6604E161CE25E0600F8C7AF /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		A6604E171CE25E0600F8C7AF /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		A6604E181CE25E0600F8C7AF /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		A6604E191CE25E0600F8C7AF /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		A6604E1C1CE2619600F8C7AF /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		A6604E1D1CE2619600F8C7AF /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
 		A66693821CD4CFD800195DE7 /* TeamManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamManager.h; sourceTree = "<group>"; };
 		A66693831CD4CFD800195DE7 /* TeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamManager.m; sourceTree = "<group>"; };
 		A66693851CD4D00800195DE7 /* PlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManager.h; sourceTree = "<group>"; };
@@ -892,6 +901,7 @@
 		46F62CEB1C90ABE500A61B47 /* 3rdPartyLib */ = {
 			isa = PBXGroup;
 			children = (
+				A6604E151CE25E0600F8C7AF /* AFNetworkingManager */,
 				A6C953781CD68D650046F1A9 /* Google Places Autocomplete */,
 				A6C953811CD68D650046F1A9 /* SVGeocoder */,
 				46F315681CC125A100AAA588 /* Custom Loader */,
@@ -905,6 +915,19 @@
 				DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A6604E151CE25E0600F8C7AF /* AFNetworkingManager */ = {
+			isa = PBXGroup;
+			children = (
+				A6604E1C1CE2619600F8C7AF /* AFURLConnectionOperation.h */,
+				A6604E1D1CE2619600F8C7AF /* AFURLConnectionOperation.m */,
+				A6604E161CE25E0600F8C7AF /* AFHTTPRequestOperation.h */,
+				A6604E171CE25E0600F8C7AF /* AFHTTPRequestOperation.m */,
+				A6604E181CE25E0600F8C7AF /* AFHTTPRequestOperationManager.h */,
+				A6604E191CE25E0600F8C7AF /* AFHTTPRequestOperationManager.m */,
+			);
+			path = AFNetworkingManager;
 			sourceTree = "<group>";
 		};
 		A666937F1CD4CFBB00195DE7 /* TeamManager */ = {
@@ -1268,6 +1291,7 @@
 			files = (
 				46F62CFB1C90B61100A61B47 /* TemplateVC.m in Sources */,
 				4639FD5A1CD13F860020D00B /* User.m in Sources */,
+				A6604E1A1CE25E0600F8C7AF /* AFHTTPRequestOperation.m in Sources */,
 				A6C953871CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.m in Sources */,
 				4639FD571CD13F860020D00B /* LoginManager.m in Sources */,
 				4675AC5C1CC3EF5B0013FEE3 /* Add_VC.m in Sources */,
@@ -1281,6 +1305,7 @@
 				4675ABCB1CC398E10013FEE3 /* Prefrences.m in Sources */,
 				4675AC561CC3EF330013FEE3 /* News_VC.m in Sources */,
 				463591981CDBF50D00DF83A8 /* TB_AddTeam.m in Sources */,
+				A6604E1E1CE2619600F8C7AF /* AFURLConnectionOperation.m in Sources */,
 				46F315441CC1090B00AAA588 /* Landing_VC.m in Sources */,
 				4675AC5F1CC3EF760013FEE3 /* Chats_VC.m in Sources */,
 				A666938D1CD4FD4F00195DE7 /* Game.m in Sources */,
@@ -1306,6 +1331,7 @@
 				46F62CDA1C90901400A61B47 /* SportsPal.xcdatamodeld in Sources */,
 				4639FD581CD13F860020D00B /* RequestManager.m in Sources */,
 				A6C953891CD68D650046F1A9 /* SPGooglePlacesPlaceDetailQuery.m in Sources */,
+				A6604E1B1CE25E0600F8C7AF /* AFHTTPRequestOperationManager.m in Sources */,
 				46F315741CC168BC00AAA588 /* LeftSlider.m in Sources */,
 				46F62D3A1C93626C00A61B47 /* SignUp.m in Sources */,
 				A6C953861CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m in Sources */,

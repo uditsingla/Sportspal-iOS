@@ -10,4 +10,5 @@
 
 @interface Prefrences : UIViewController
 
+@property (nonatomic,assign)BOOL isFromProfileView;
 @end
