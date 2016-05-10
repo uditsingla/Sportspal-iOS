@@ -54,17 +54,18 @@
     __weak IBOutlet UISegmentedControl *segmentcotrol;
     
     
-    __weak IBOutlet NSLayoutConstraint *contTeamName;
-    __weak IBOutlet NSLayoutConstraint *contImageTeamName;
+    __weak IBOutlet NSLayoutConstraint *constraintHeight;
+    //__weak IBOutlet NSLayoutConstraint *contImageTeamName;
     
-    __weak IBOutlet NSLayoutConstraint *contBtngap;
-    __weak IBOutlet NSLayoutConstraint *contImageGap;
+    //__weak IBOutlet NSLayoutConstraint *contBtngap;
+    //__weak IBOutlet NSLayoutConstraint *contImageGap;
     
     NSArray *arrGameType;
     NSMutableArray *arrTeamName;
     
     NSString *strGameType,*strTeamName;
     
+    __weak IBOutlet UIView *magicView;
     
     
     __weak IBOutlet UIView *toolBarSuperView;
@@ -371,17 +372,20 @@
         
         if ([strGameType isEqualToString:@"Individual"])
         {
-            contTeamName.constant = 0;
-            contImageTeamName.constant = 0;
-            contImageGap.constant = 0;
-            contBtngap.constant = 0;
+            constraintHeight.constant = 0;
+            magicView.hidden = YES;
+//            contImageTeamName.constant = 0;
+//            contImageGap.constant = 0;
+//            contBtngap.constant = 0;
         }
         else
         {
-            contTeamName.constant = 25;
-            contImageTeamName.constant = 23;
-            contBtngap.constant = 15;
-            contBtngap.constant = 17;
+            constraintHeight.constant = 40;
+            magicView.hidden = NO;
+
+//            contImageTeamName.constant = 23;
+//            contBtngap.constant = 15;
+//            contBtngap.constant = 17;
         }
         
         
@@ -434,8 +438,9 @@
         if (strGameType == nil)
         {
             strGameType = [arrGameType objectAtIndex:0];
-            contTeamName.constant = 0;
-            contImageTeamName.constant = 0;
+            
+            constraintHeight.constant = 0;
+            magicView.hidden = YES;
 
         }
         [btnGameType setTitle:strGameType forState:UIControlStateNormal];
