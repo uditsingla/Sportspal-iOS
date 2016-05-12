@@ -48,6 +48,8 @@
 
 @implementation SignUp
 
+@synthesize fbDetails;
+
 
 - (void)viewDidLoad
 {
@@ -95,6 +97,37 @@
     pickerDate.backgroundColor = [UIColor whiteColor];
     
     [self hideAllPickers];
+    
+    if(fbDetails)
+    {
+        if([fbDetails valueForKey:@"email"])
+            txtEmail.text = [fbDetails valueForKey:@"email"];
+        
+        if([fbDetails valueForKey:@"first_name"])
+            txtFirstName.text = [fbDetails valueForKey:@"first_name"];
+        
+        if([fbDetails valueForKey:@"last_name"])
+            txtLastName.text = [fbDetails valueForKey:@"last_name"];
+        
+        if([fbDetails valueForKey:@"gender"])
+        {
+            selectedGender = [fbDetails valueForKey:@"gender"];
+            
+            if([selectedGender isEqualToString:@"female"])
+            {
+                selectedGender = @"female";
+                [btnFemale setImage:[UIImage imageNamed:@"female_green.png"] forState:UIControlStateNormal];
+                [btnMale setImage:[UIImage imageNamed:@"male_white.png"] forState:UIControlStateNormal];
+            }
+            else
+            {
+                selectedGender = @"male";
+                [btnMale setImage:[UIImage imageNamed:@"male_green.png"] forState:UIControlStateNormal];
+                [btnFemale setImage:[UIImage imageNamed:@"female_white.png"] forState:UIControlStateNormal];
+            }
+
+        }
+    }
 }
 
 

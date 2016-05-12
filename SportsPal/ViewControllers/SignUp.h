@@ -10,4 +10,6 @@
 
 @interface SignUp : UIViewController
 
+@property(nonatomic,strong) NSDictionary *fbDetails;
+
 @end
