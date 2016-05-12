@@ -28,11 +28,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    arrMenuItems = [NSArray arrayWithObjects:@"Home",@"Share",
+    arrMenuItems = [NSArray arrayWithObjects:@"Home",@"Share",@"Settings",
                     @"Logout",nil];
     
     
     arrMenuItemsImages = [NSArray arrayWithObjects:@"left_menu_home_icon.png",
+                          @"left_menu_logout_icon.png",
                           @"left_menu_logout_icon.png",
                           @"left_menu_logout_icon.png",
                           nil];
@@ -107,18 +108,18 @@
 
 -(UIViewController *)goToController:(NSString*)identifier
 {
-//    UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
-//    
-//    NSMutableArray *controllers =[navigationController.viewControllers mutableCopy];
-//    while (controllers.count>1)
-//    {
-//        [controllers removeLastObject];
-//    }
-//    navigationController.viewControllers = controllers;
-//
-//    
-//    UIViewController *viewcontroller = [mainstoryboard instantiateViewControllerWithIdentifier: identifier];
-    return nil;
+    UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+    
+    NSMutableArray *controllers =[navigationController.viewControllers mutableCopy];
+    while (controllers.count>1)
+    {
+        [controllers removeLastObject];
+    }
+    navigationController.viewControllers = controllers;
+
+    
+    UIViewController *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier: identifier];
+    return viewcontroller;
 }
 
 
@@ -132,7 +133,7 @@
     if([keyName caseInsensitiveCompare:@"Home"] == NSOrderedSame){
         NSLog(@"Home");
         
-        //[appdelegate.container.centerViewController pushViewController:[self goToController:@"home"] animated:NO];
+        [kAppDelegate.container.centerViewController pushViewController:[self goToController:@"home"] animated:NO];
     }
     else if ([keyName caseInsensitiveCompare:@"Share"] == NSOrderedSame)
     {   
@@ -175,7 +176,11 @@
     }
     
 
-    
+    else if ([keyName caseInsensitiveCompare:@"Settings"] == NSOrderedSame)
+    {
+        [kAppDelegate.container.centerViewController pushViewController:[self goToController:@"settings"] animated:NO];
+        
+    }
     else if ([keyName caseInsensitiveCompare:@"Logout"] == NSOrderedSame)
     {
         NSLog(@"Logout");

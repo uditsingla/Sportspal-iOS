@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface TB_Play_Players : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *imgBackground;
 @property (weak, nonatomic) IBOutlet UIImageView *imgRating;
-@property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblSkillLevel;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblGame1;
 @property (weak, nonatomic) IBOutlet UILabel *lblGame2;
 

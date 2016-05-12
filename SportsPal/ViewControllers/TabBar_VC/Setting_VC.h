@@ -1,13 +1,13 @@
 //
-//  Profile_VC.h
+//  People_VC.h
 //  SportsPal
 //
-//  Created by Abhishek Singla on 13/05/16.
+//  Created by Abhishek Singla on 17/04/16.
 //  Copyright © 2016 SportsPal. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface Profile_VC : UIViewController
+@interface Setting_VC : UIViewController
 
 @end

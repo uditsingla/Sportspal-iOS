@@ -131,7 +131,8 @@
     [segmentcotrol setSelectedSegmentIndex:0];
     
     if(model_manager.profileManager.svp_LocationInfo)
-        btnAddress.titleLabel.text = model_manager.profileManager.svp_LocationInfo.formattedAddress;
+        [btnAddress setTitle:model_manager.profileManager.svp_LocationInfo.formattedAddress forState:UIControlStateNormal];
+        
 }
 
 - (void)didReceiveMemoryWarning {

@@ -60,6 +60,7 @@
 		464263971CD9249C002CEDBC /* left_menu_home_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464263931CD9249C002CEDBC /* left_menu_home_icon@3x.png */; };
 		464263981CD9249C002CEDBC /* left_menu_logout_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464263941CD9249C002CEDBC /* left_menu_logout_icon@3x.png */; };
 		464263991CD9249C002CEDBC /* left_menu_logout_iocn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 464263951CD9249C002CEDBC /* left_menu_logout_iocn@2x.png */; };
+		46466AE91CE51779000B750D /* Profile_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 46466AE81CE51779000B750D /* Profile_VC.m */; };
 		4661DDFB1CC54C020005C567 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF11CC54C020005C567 /* add@2x.png */; };
 		4661DDFC1CC54C020005C567 /* add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF21CC54C020005C567 /* add@3x.png */; };
 		4661DDFD1CC54C020005C567 /* chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF31CC54C020005C567 /* chats@2x.png */; };
@@ -149,7 +150,7 @@
 		4675AC591CC3EF490013FEE3 /* Play_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC581CC3EF490013FEE3 /* Play_VC.m */; };
 		4675AC5C1CC3EF5B0013FEE3 /* Add_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC5B1CC3EF5B0013FEE3 /* Add_VC.m */; };
 		4675AC5F1CC3EF760013FEE3 /* Chats_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC5E1CC3EF760013FEE3 /* Chats_VC.m */; };
-		4675AC621CC3EF8A0013FEE3 /* Profile_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC611CC3EF8A0013FEE3 /* Profile_VC.m */; };
+		4675AC621CC3EF8A0013FEE3 /* Setting_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4675AC611CC3EF8A0013FEE3 /* Setting_VC.m */; };
 		46D7CA181CD6309900DF8B35 /* AddTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D7CA171CD6309900DF8B35 /* AddTeam.m */; };
 		46D7CA1D1CD6781200DF8B35 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D7CA191CD6781200DF8B35 /* check@2x.png */; };
 		46D7CA1E1CD6781200DF8B35 /* check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D7CA1A1CD6781200DF8B35 /* check@3x.png */; };
@@ -300,6 +301,8 @@
 		464263931CD9249C002CEDBC /* left_menu_home_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_menu_home_icon@3x.png"; sourceTree = "<group>"; };
 		464263941CD9249C002CEDBC /* left_menu_logout_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_menu_logout_icon@3x.png"; sourceTree = "<group>"; };
 		464263951CD9249C002CEDBC /* left_menu_logout_iocn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_menu_logout_iocn@2x.png"; sourceTree = "<group>"; };
+		46466AE71CE51779000B750D /* Profile_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile_VC.h; sourceTree = "<group>"; };
+		46466AE81CE51779000B750D /* Profile_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile_VC.m; sourceTree = "<group>"; };
 		4661DDF11CC54C020005C567 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
 		4661DDF21CC54C020005C567 /* add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@3x.png"; sourceTree = "<group>"; };
 		4661DDF31CC54C020005C567 /* chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chats@2x.png"; sourceTree = "<group>"; };
@@ -394,8 +397,8 @@
 		4675AC5B1CC3EF5B0013FEE3 /* Add_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Add_VC.m; sourceTree = "<group>"; };
 		4675AC5D1CC3EF760013FEE3 /* Chats_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chats_VC.h; sourceTree = "<group>"; };
 		4675AC5E1CC3EF760013FEE3 /* Chats_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chats_VC.m; sourceTree = "<group>"; };
-		4675AC601CC3EF8A0013FEE3 /* Profile_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile_VC.h; sourceTree = "<group>"; };
-		4675AC611CC3EF8A0013FEE3 /* Profile_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile_VC.m; sourceTree = "<group>"; };
+		4675AC601CC3EF8A0013FEE3 /* Setting_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting_VC.h; sourceTree = "<group>"; };
+		4675AC611CC3EF8A0013FEE3 /* Setting_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting_VC.m; sourceTree = "<group>"; };
 		46D7CA161CD6309900DF8B35 /* AddTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTeam.h; sourceTree = "<group>"; };
 		46D7CA171CD6309900DF8B35 /* AddTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTeam.m; sourceTree = "<group>"; };
 		46D7CA191CD6781200DF8B35 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
@@ -739,14 +742,16 @@
 			children = (
 				4675AC541CC3EF330013FEE3 /* News_VC.h */,
 				4675AC551CC3EF330013FEE3 /* News_VC.m */,
+				46466AE71CE51779000B750D /* Profile_VC.h */,
+				46466AE81CE51779000B750D /* Profile_VC.m */,
 				4675AC571CC3EF490013FEE3 /* Play_VC.h */,
 				4675AC581CC3EF490013FEE3 /* Play_VC.m */,
 				4675AC5A1CC3EF5B0013FEE3 /* Add_VC.h */,
 				4675AC5B1CC3EF5B0013FEE3 /* Add_VC.m */,
 				4675AC5D1CC3EF760013FEE3 /* Chats_VC.h */,
 				4675AC5E1CC3EF760013FEE3 /* Chats_VC.m */,
-				4675AC601CC3EF8A0013FEE3 /* Profile_VC.h */,
-				4675AC611CC3EF8A0013FEE3 /* Profile_VC.m */,
+				4675AC601CC3EF8A0013FEE3 /* Setting_VC.h */,
+				4675AC611CC3EF8A0013FEE3 /* Setting_VC.m */,
 			);
 			path = TabBar_VC;
 			sourceTree = "<group>";
@@ -1470,6 +1475,7 @@
 				A6C953881CD68D650046F1A9 /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
 				46D7CA181CD6309900DF8B35 /* AddTeam.m in Sources */,
 				46F3156B1CC125A100AAA588 /* LabeledActivityIndicatorView.m in Sources */,
+				46466AE91CE51779000B750D /* Profile_VC.m in Sources */,
 				A6C953771CD616DA0046F1A9 /* Team.m in Sources */,
 				46F315781CC18E6E00AAA588 /* ResetPassword.m in Sources */,
 				4639FD5D1CD157E20020D00B /* ProfileManager.m in Sources */,
@@ -1493,7 +1499,7 @@
 				A6C9538F1CD68D840046F1A9 /* SetLocationScreen.m in Sources */,
 				46F62D371C93624C00A61B47 /* Login.m in Sources */,
 				46F161E71CC6A70F00F36EE9 /* TB_Play_Players.m in Sources */,
-				4675AC621CC3EF8A0013FEE3 /* Profile_VC.m in Sources */,
+				4675AC621CC3EF8A0013FEE3 /* Setting_VC.m in Sources */,
 				A66693871CD4D00800195DE7 /* PlayerManager.m in Sources */,
 				4675AC591CC3EF490013FEE3 /* Play_VC.m in Sources */,
 				A66693901CD5241D00195DE7 /* Sport.m in Sources */,

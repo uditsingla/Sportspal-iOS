@@ -198,8 +198,12 @@
         User *player = [arrPlayers objectAtIndex:indexPath.row];
         
         cell.contentView.backgroundColor = [UIColor blackColor];
-        cell.lblName.text = [NSString stringWithFormat:@"%@ %@",[player.firstName capitalizedString],[player.lastName capitalizedString]];
+        cell.lblName.text = [NSString stringWithFormat:@"%@ %@",[player.firstName uppercaseString],[player.lastName uppercaseString]];
         cell.lblName.textColor = [UIColor whiteColor];
+        
+        
+
+//        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[player.arrayPreferredSports objectAtIndex:0]]];
 
         return cell;
 

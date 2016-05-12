@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     
+    [[UITabBar appearance] setBarTintColor:[UIColor clearColor]];
     
     arrNews = [NSMutableArray arrayWithObjects:@"news 1 ",@"news 2",@"news 3",@"news 4", nil];
     
