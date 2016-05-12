@@ -37,7 +37,7 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.11.0):
     - FBSDKCoreKit
-  - GoogleMaps (1.13.1)
+  - GoogleMaps (1.13.2)
   - MFSideMenu (0.5.5)
   - PubNub (4.3.0):
     - CocoaLumberjack (= 2.2.0)
@@ -69,7 +69,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
   FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
   FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
-  GoogleMaps: 8935220056a6cc8e9ca298b4da4ae530620aa71b
+  GoogleMaps: b20a103ff307f58392e603cf142e59d7e30374c1
   MFSideMenu: 268122e6894f2747fc3a2b48578100b232506c60
   PubNub: a05f2a2c6cc1f637a0c473f236c4671c0b8c09b1
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9

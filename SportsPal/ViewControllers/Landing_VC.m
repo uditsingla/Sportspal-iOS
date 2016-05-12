@@ -7,6 +7,7 @@
 //
 
 #import "Landing_VC.h"
+#import "SignUp.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
@@ -95,11 +96,16 @@
     {
         NSLog(@"Token is available : %@",[[FBSDKAccessToken currentAccessToken]tokenString]);
         
-        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"id, name, link, first_name, last_name, picture.type(large), email, birthday, bio ,location ,friends ,hometown , friendlists"}]
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"id, name, link, first_name, last_name, picture.type(large), email, birthday, bio , gender"}]
          startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
              if (!error)
              {
                  NSLog(@"resultis:%@",result);
+                 
+                 //goto sign up screen
+                 SignUp *homeVC = [kLoginStoryboard instantiateViewControllerWithIdentifier:@"signUp"];
+                 homeVC.fbDetails = (NSDictionary*)result;
+                [self.navigationController pushViewController:homeVC animated:YES];
              }
              else
              {
