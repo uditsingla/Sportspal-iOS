@@ -10,13 +10,14 @@
 
 @implementation Game
 
-@synthesize gameID,sportID,sportName,teamID,date,time,geoLocation,address,gameType,creator;
+@synthesize gameID,gameName,sportID,sportName,teamID,date,time,geoLocation,address,gameType,creator;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         gameID = @"";
+        gameName = @"";
         sportID = @"";
         sportName = @"";
         teamID = @"";

@@ -101,15 +101,22 @@
      } ];
 }
 
--(void)searchTeamWithSportID:(NSString*)sportID andCreatorID:(NSString*)creatorID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
+-(void)searchTeamWithSearchTerm:(NSString*)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
     NSMutableDictionary *dictParam = [NSMutableDictionary new];
     
-    if(sportID)
-        [dictParam setValue:sportID forKey:@"sport_id"];
+    [dictParam setValue:model_manager.profileManager.owner.userID forKey:@"user_id"];
     
-    if(creatorID)
-        [dictParam setValue:creatorID forKey:@"creator_id"];
+    [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"is_preferred"];
+    
+    [dictParam setValue:[NSNumber numberWithBool:NO] forKey:@"is_nearby"];
+    
+    if(searchTerm)
+    {
+        [dictParam setValue:searchTerm forKey:@"keyword"];
+        [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"is_keyword"];
+    }
+
     
     [RequestManager asynchronousRequestWithPath:searchTeamsPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
      {

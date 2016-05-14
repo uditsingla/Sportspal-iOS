@@ -17,6 +17,7 @@ typedef NS_ENUM(int, GameType)
 @interface Game : NSObject
 
 @property (nonatomic, strong) NSString *gameID;
+@property (nonatomic, strong) NSString *gameName;
 @property (nonatomic, strong) NSString *sportID;
 @property (nonatomic, strong) NSString *sportName;
 @property (nonatomic, strong) NSString *teamID;

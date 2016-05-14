@@ -63,7 +63,7 @@
     NSArray *arrGameType;
     NSMutableArray *arrTeamName;
     
-    NSString *strGameType,*strTeamName;
+    NSString *strGameType,*strTeamName,*strTeamID;
     
     __weak IBOutlet UIView *magicView;
     
@@ -175,6 +175,15 @@
     }
     else if (btn.tag == kteamname)
     {
+        if(arrTeamName.count==0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No team available" message:@"Please create new team first." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            
+            strGameType = @"Individual";
+            [btnGameType setTitle:@"Individual" forState:UIControlStateNormal];
+            return;
+        }
         pickerselected = kteamname;
         pickerTeamName.hidden = NO;
         toolBarSuperView.hidden = NO;
@@ -244,7 +253,14 @@
     game.sportID = strSportID;
     game.sportName = strSportName;
     game.creator = model_manager.profileManager.owner;
-    game.gameType = GameTypeIndividual;
+    game.gameName = strGameName;
+    if([strGameType isEqualToString:@"Individual"])
+        game.gameType = GameTypeIndividual;
+    else
+    {
+        game.gameType = GameTypeTeam;
+        game.teamID = strTeamID;
+    }
     game.date = strDate;
     game.time = strTime;
     game.geoLocation = kAppDelegate.myLocation.coordinate;
@@ -266,6 +282,8 @@
                 [btnDate setTitle:@"DD/MM/YYYY" forState:UIControlStateNormal];
                 [btnTime setTitle:@"HH:MM" forState:UIControlStateNormal];
                 [btnAddress setTitle:@"PICK ADDRESS" forState:UIControlStateNormal];
+                [btnGameName setTitle:@"GAME NAME" forState:UIControlStateNormal];
+                [btnGameType setTitle:@"GAME TYPE" forState:UIControlStateNormal];
                 
                 
                 strSportName = @"";
@@ -273,7 +291,9 @@
                 strTeamName = @"";
                 strDate = @"";
                 strTime = @"";
-                
+                strGameName = @"";
+                strGameType = @"";
+                strTeamID = @"";
             }
             else
             {

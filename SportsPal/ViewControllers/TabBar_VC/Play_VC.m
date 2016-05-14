@@ -141,6 +141,29 @@
     [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
 }
 
+-(void)showAlert:(NSString *)errorMsg
+{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@""
+                                  message:errorMsg
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleCancel
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             //   [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+}
 
 
 /*
@@ -311,9 +334,7 @@
         if(segmentedcontrol.selectedSegmentIndex==0)
         {
             //search games
-            [model_manager.sportsManager searchNewGameWithSportID:@"" andUserID:model_manager.profileManager.owner.userID completion:^(NSDictionary *dictJson, NSError *error) {
-                
-            }];
+
         }
         else if(segmentedcontrol.selectedSegmentIndex==1)
         {
@@ -323,9 +344,7 @@
         else if(segmentedcontrol.selectedSegmentIndex==2)
         {
             //search teams
-            [model_manager.teamManager searchTeamWithSportID:@"" andCreatorID:model_manager.profileManager.owner.userID completion:^(NSDictionary *dictJson, NSError *error) {
-                
-            }];
+            
         }
     }
 }
@@ -343,30 +362,30 @@
         [tblSearch reloadData];
     }
     
-    if(postAutoComplete)
-        [postAutoComplete cancel];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:model_manager.profileManager.owner.userID,@"user_id",searchText,@"search_term",nil];
-    
-    postAutoComplete = [manager POST:[NSString stringWithFormat:@"%@games/getAutoFill",kBaseUrlPath] parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //doing something
-        if(((NSArray*)responseObject).count>0 && [searchBar isFirstResponder])
-        {
-            tblSearch.hidden = NO;
-            [arrSearchResult removeAllObjects];
-            [arrSearchResult addObjectsFromArray:(NSArray*)responseObject];
-            
-            [tblSearch reloadData];
-        }
-        else
-        {
-            tblSearch.hidden = YES;
-            [arrSearchResult removeAllObjects];
-            [tblSearch reloadData];
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // error handling.
-    }];
+//    if(postAutoComplete)
+//        [postAutoComplete cancel];
+//    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:model_manager.profileManager.owner.userID,@"user_id",searchText,@"search_term",nil];
+//    
+//    postAutoComplete = [manager POST:[NSString stringWithFormat:@"%@games/getAutoFill",kBaseUrlPath] parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        //doing something
+//        if(((NSArray*)responseObject).count>0 && [searchBar isFirstResponder])
+//        {
+//            tblSearch.hidden = NO;
+//            [arrSearchResult removeAllObjects];
+//            [arrSearchResult addObjectsFromArray:(NSArray*)responseObject];
+//            
+//            [tblSearch reloadData];
+//        }
+//        else
+//        {
+//            tblSearch.hidden = YES;
+//            [arrSearchResult removeAllObjects];
+//            [tblSearch reloadData];
+//        }
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        // error handling.
+//    }];
 
 
 }
@@ -375,6 +394,75 @@
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+    
+    if(segmentedcontrol.selectedSegmentIndex==0)
+    {
+        //search games
+        if(searchBar.text.length>0)
+        {
+            [kAppDelegate.objLoader show];
+            [model_manager.sportsManager searchGameWithSearchTerm:searchBar.text completion:^(NSDictionary *dictJson, NSError *error) {
+                
+                [kAppDelegate.objLoader hide];
+                if(!error)
+                {
+                    if([[dictJson valueForKey:@"success"] boolValue])
+                    {
+                        if(model_manager.sportsManager.arraySearchedGames.count>0)
+                            arrSports = model_manager.sportsManager.arraySearchedGames;
+                        [tblSports reloadData];
+                    }
+                    else
+                    {
+                        [self showAlert:[dictJson valueForKey:@"message"]];
+                    }
+                }
+            }];
+        }
+        else
+        {
+            arrSports = model_manager.sportsManager.arrayGames;
+            [tblSports reloadData];
+        }
+        
+    }
+    else if(segmentedcontrol.selectedSegmentIndex==1)
+    {
+        //search players
+        
+    }
+    else if(segmentedcontrol.selectedSegmentIndex==2)
+    {
+        if(searchBar.text.length>0)
+        {
+            [kAppDelegate.objLoader show];
+            [model_manager.teamManager searchTeamWithSearchTerm:searchBar.text completion:^(NSDictionary *dictJson, NSError *error)
+            {
+                
+                [kAppDelegate.objLoader hide];
+                if(!error)
+                {
+                    if([[dictJson valueForKey:@"success"] boolValue])
+                    {
+                        if(model_manager.teamManager.arraySearchedTeams.count>0)
+                            arrTeams = model_manager.teamManager.arraySearchedTeams;
+                        [tblTeams reloadData];
+                    }
+                    else
+                    {
+                        [self showAlert:[dictJson valueForKey:@"message"]];
+                    }
+                }
+            }];
+        }
+        else
+        {
+            arrTeams = model_manager.teamManager.arrayTeams;
+            [tblTeams reloadData];
+        }
+
+    }
+    
 }
 
 
@@ -382,7 +470,7 @@
     
     if([text isEqualToString:@"\n"])
     {
-        tblSearch.hidden = NO;
+//        tblSearch.hidden = NO;
         [tblSearch reloadData];
         [searchBar resignFirstResponder];
         return NO;

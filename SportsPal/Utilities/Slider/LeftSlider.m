@@ -108,16 +108,6 @@
 
 -(UIViewController *)goToController:(NSString*)identifier
 {
-    UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
-    
-    NSMutableArray *controllers =[navigationController.viewControllers mutableCopy];
-    while (controllers.count>1)
-    {
-        [controllers removeLastObject];
-    }
-    navigationController.viewControllers = controllers;
-
-    
     UIViewController *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier: identifier];
     return viewcontroller;
 }
@@ -133,7 +123,16 @@
     if([keyName caseInsensitiveCompare:@"Home"] == NSOrderedSame){
         NSLog(@"Home");
         
-        [kAppDelegate.container.centerViewController pushViewController:[self goToController:@"home"] animated:NO];
+        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+        
+        NSMutableArray *controllers =[navigationController.viewControllers mutableCopy];
+        while (controllers.count>2)
+        {
+            [controllers removeLastObject];
+        }
+        navigationController.viewControllers = controllers;
+        
+        //[kAppDelegate.container.centerViewController pushViewController:[self goToController:@"home"] animated:NO];
     }
     else if ([keyName caseInsensitiveCompare:@"Share"] == NSOrderedSame)
     {   
