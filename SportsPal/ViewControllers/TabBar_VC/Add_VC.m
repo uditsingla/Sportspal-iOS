@@ -61,7 +61,7 @@
     //__weak IBOutlet NSLayoutConstraint *contImageGap;
     
     NSArray *arrGameType;
-    NSMutableArray *arrTeamName;
+    //NSMutableArray *arrTeamName;
     
     NSString *strGameType,*strTeamName,*strTeamID;
     
@@ -118,7 +118,7 @@
     
     arrGameType = [NSArray arrayWithObjects:@"Individual",@"Team", nil];
     
-    arrTeamName = [NSMutableArray new];
+    //arrTeamName = [NSMutableArray new];
     
     [self hideAllPickers];
 
@@ -175,7 +175,7 @@
     }
     else if (btn.tag == kteamname)
     {
-        if(arrTeamName.count==0)
+        if(model_manager.profileManager.owner.arrayTeams.count==0)
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No team available" message:@"Please create new team first." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [alert show];
@@ -344,7 +344,7 @@
     return arrGameType.count;
     
     else if (pickerView == pickerTeamName)
-    return arrTeamName.count;
+    return model_manager.profileManager.owner.arrayTeams.count;
     
     return 0;
 }
@@ -366,7 +366,7 @@
     
     else if (pickerView == pickerTeamName)
     {
-        return arrTeamName[row];
+        return ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
     }
     return  @"";
     
@@ -414,7 +414,8 @@
     
     else if (pickerView == pickerTeamName)
     {
-        strTeamName = arrTeamName[row];
+        strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
+        strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamID;
     }
 }
 
@@ -473,7 +474,8 @@
         
         if (strTeamName == nil)
         {
-            strTeamName = [arrTeamName objectAtIndex:0];
+            strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[0]).teamName;
+            strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[0]).teamID;
         }
         [btnTeamName setTitle:strTeamName forState:UIControlStateNormal];
     }

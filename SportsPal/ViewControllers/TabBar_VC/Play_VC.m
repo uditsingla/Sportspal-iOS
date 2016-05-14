@@ -429,10 +429,38 @@
     else if(segmentedcontrol.selectedSegmentIndex==1)
     {
         //search players
+        if(searchBar.text.length>0)
+        {
+            [kAppDelegate.objLoader show];
+            [model_manager.playerManager searchPlayerWithSearchTerm:searchBar.text completion:^(NSDictionary *dictJson, NSError *error)
+             {
+                 
+                 [kAppDelegate.objLoader hide];
+                 if(!error)
+                 {
+                     if([[dictJson valueForKey:@"success"] boolValue])
+                     {
+                         if(model_manager.playerManager.arraySearchedPlayers.count>0)
+                             arrPlayers = model_manager.playerManager.arraySearchedPlayers;
+                         [tblPlayers reloadData];
+                     }
+                     else
+                     {
+                         [self showAlert:[dictJson valueForKey:@"message"]];
+                     }
+                 }
+             }];
+        }
+        else
+        {
+            arrPlayers = model_manager.playerManager.arrayPlayers;
+            [tblPlayers reloadData];
+        }
         
     }
     else if(segmentedcontrol.selectedSegmentIndex==2)
     {
+        //search teams
         if(searchBar.text.length>0)
         {
             [kAppDelegate.objLoader show];

@@ -174,6 +174,7 @@
                  game.gameID = [[json valueForKey:@"data"] valueForKey:@"game_id"];
                  
                  [arrayGames addObject:game];
+                 [model_manager.profileManager.owner.arrayGames addObject:game];
              }
              
              if(completionBlock)

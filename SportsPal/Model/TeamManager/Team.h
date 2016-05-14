@@ -27,4 +27,6 @@ typedef NS_ENUM(int, TeamType)
 @property (nonatomic, strong) User *creator;
 @property (nonatomic, assign) TeamType teamType;
 
+@property (nonatomic, strong) NSMutableArray *arrayMembers;
+
 @end

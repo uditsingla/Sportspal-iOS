@@ -10,7 +10,7 @@
 
 @implementation Team
 
-@synthesize teamID,sportID,sportName,teamName,memberLimit,geoLocation,address,teamType,creator;
+@synthesize teamID,sportID,sportName,teamName,memberLimit,geoLocation,address,teamType,creator,arrayMembers;
 
 - (id)init
 {
@@ -25,6 +25,8 @@
         address = @"";
         teamType = TeamTypePrivate;
         creator = [User new];
+        
+        arrayMembers = [NSMutableArray new];
     }
     return self;
 }

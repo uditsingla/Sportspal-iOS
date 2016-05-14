@@ -77,7 +77,7 @@
     else
         teamType = @"corporate";
     
-    NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:team.sportID,@"sport_id",team.creator.userID,@"creator_id",teamType,@"team_type",team.teamName,@"team_name",[NSNumber numberWithInt:team.memberLimit],@"members_limit",[NSNumber numberWithDouble: team.geoLocation.latitude],@"latitude",[NSNumber numberWithDouble: team.geoLocation.longitude],@"longitude",team.address,@"address", nil];
+    NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:team.sportID,@"sport_id",team.creator.userID,@"creator_id",teamType,@"team_type",team.teamName,@"team_name",[NSNumber numberWithInt:team.memberLimit],@"members_limit",[NSNumber numberWithDouble: team.geoLocation.latitude],@"latitude",[NSNumber numberWithDouble: team.geoLocation.longitude],@"longitude",team.address,@"address",team.arrayMembers,@"team_members", nil];
     
     [RequestManager asynchronousRequestWithPath:teamsPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
      {
@@ -89,6 +89,7 @@
                  team.teamID = [[json valueForKey:@"data"] valueForKey:@"team_id"];
                  
                  [arrayTeams addObject:team];
+                 [model_manager.profileManager.owner.arrayTeams addObject:team];
              }
              
              if(completionBlock)

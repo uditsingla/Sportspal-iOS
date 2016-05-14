@@ -100,6 +100,9 @@
     
     if(fbDetails)
     {
+        txtPassword.enabled = NO;
+        txtRePassword.enabled = NO;
+        
         if([fbDetails valueForKey:@"email"])
             txtEmail.text = [fbDetails valueForKey:@"email"];
         
@@ -166,15 +169,15 @@
     {
         [self showAlert:@"Please enter valid email"];
     }
-    else if([[txtPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    else if([[txtPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0 && fbDetails==nil)
     {
         [self showAlert:@"Please enter password"];
     }
-    else if([[txtRePassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    else if([[txtRePassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0 && fbDetails==nil)
     {
         [self showAlert:@"Please enter password again"];
     }
-    else if(![txtPassword.text isEqualToString:txtRePassword.text])
+    else if(![txtPassword.text isEqualToString:txtRePassword.text] && fbDetails==nil)
     {
         [self showAlert:@"Please enter same password"];
     }
@@ -208,7 +211,11 @@
             deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"];
         }
         
-        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email", txtPassword.text, @"password",bntBirthdate.titleLabel.text,@"dob", selectedGender,@"gender",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", @"ios", @"device_type", deviceToken, @"device_token", nil];
+        NSDictionary *signUpInfo;
+        if(fbDetails)
+            signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email", [fbDetails valueForKey:@"id"], @"social_id",bntBirthdate.titleLabel.text,@"dob", selectedGender,@"gender",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", @"ios", @"device_type", deviceToken, @"device_token", nil];
+        else
+            signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email", txtPassword.text, @"password",bntBirthdate.titleLabel.text,@"dob", selectedGender,@"gender",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", @"ios", @"device_type", deviceToken, @"device_token", nil];
         
         [model_manager.loginManager userSignUp:signUpInfo completion:^(NSDictionary *dictJson, NSError *error) {
             [kAppDelegate.objLoader hide];

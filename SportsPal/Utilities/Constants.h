@@ -24,6 +24,7 @@
 #define searchGamesPath @"games/search"
 #define teamsPath @"teams"
 #define searchTeamsPath @"teams/search"
+#define searchPlayersPath @"users/search"
 
 //TextField
 #define TF_BorderColor  [UIColor redColor];
