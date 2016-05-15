@@ -11,7 +11,9 @@
 #import "TB_Play_Sports.h"
 #import "TB_Play_Teams.h"
 #import "Game.h"
+#import "Sport.h"
 #import "AFHTTPRequestOperationManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface Play_VC ()
 {
@@ -217,6 +219,7 @@
         Game *game = [arrSports objectAtIndex:indexPath.row];
         
         cell.contentView.backgroundColor = [UIColor blackColor];
+        cell.lblGameName = game.gameName;
         cell.lblName.text = game.sportName;
         
         NSLog(@"Game name : %@",game.sportName);
@@ -247,9 +250,30 @@
         cell.lblName.text = [NSString stringWithFormat:@"%@ %@",[player.firstName uppercaseString],[player.lastName uppercaseString]];
         cell.lblName.textColor = [UIColor whiteColor];
         
+        cell.lblSkillLevel.text = @"Pro";
+        if(player.arrayPreferredSports.count>0)
+        {
+            cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName]];
+            if(player.arrayPreferredSports.count>1)
+            {
+                cell.lblGame1.text = ((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName;
+                cell.lblGame2.text = ((Sport*)[player.arrayPreferredSports objectAtIndex:1]).sportName;
+            }
+            else
+            {
+                cell.lblGame1.text = @"";
+                cell.lblGame2.text = ((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName;
+            }
+        }
+        else
+        {
+            cell.imgBackground.image = [UIImage imageNamed:@"rockclimbing.png"];
+            cell.lblGame1.text = @"";
+            cell.lblGame2.text = @"";
+        }
         
-
-//        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[player.arrayPreferredSports objectAtIndex:0]]];
+        if(player.profilePic.length>0)
+            [cell.imgBackground sd_setImageWithURL:[NSURL URLWithString:player.profilePic] placeholderImage:[UIImage imageNamed:@"members.png"]];
 
         return cell;
 
