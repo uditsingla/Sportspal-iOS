@@ -685,10 +685,12 @@
                  if([[dictJson valueForKey:@"success"] boolValue])
                  {
                      if(users.count>0)
+                     {
                          arrSearchResult = users;
-                     [tblSearchResult reloadData];
-                     tblSearchResult.hidden = NO;
-                     [self.view bringSubviewToFront:tblSearchResult];
+                         [tblSearchResult reloadData];
+                         tblSearchResult.hidden = NO;
+                         [self.view bringSubviewToFront:tblSearchResult];
+                     }
                  }
                  else
                  {

@@ -68,6 +68,7 @@
                      self.profilePic = [[json valueForKey:@"message"] valueForKey:@"image"];
                      self.email = [[json valueForKey:@"message"] valueForKey:@"email"];
                      self.dob = [[json valueForKey:@"message"] valueForKey:@"dob"];
+                    self.bio = [[json valueForKey:@"message"] valueForKey:@"bio"];
                      
                      NSArray *arrSports = [[json valueForKey:@"message"] valueForKey:@"sports_preferences"];
                      if(arrSports.count>0)
@@ -76,7 +77,7 @@
                          
                          Sport *sport = [Sport new];
                          sport.sportID = [[arrSports objectAtIndex:j] valueForKey:@"sport_id"];
-                         //sport.sportName = [[[arrSports objectAtIndex:j] valueForKey:@"Sports"] valueForKey:@"name"];
+                         sport.sportName = [[[arrSports objectAtIndex:j] valueForKey:@"sport"] valueForKey:@"name"];
                          
                          [self.arrayPreferredSports addObject:sport];
                      }

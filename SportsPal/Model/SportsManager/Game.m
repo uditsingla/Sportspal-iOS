@@ -10,7 +10,7 @@
 
 @implementation Game
 
-@synthesize gameID,gameName,sportID,sportName,teamID,date,time,geoLocation,address,gameType,creator;
+@synthesize gameID,gameName,sportID,sportName,teamID,date,time,geoLocation,address,gameType,creator,distance;
 
 - (id)init
 {
@@ -25,6 +25,7 @@
         time = @"";
         geoLocation = CLLocationCoordinate2DMake(0, 0);
         address = @"";
+        distance = @"";
         gameType = GameTypeIndividual;
         creator = [User new];
     }
