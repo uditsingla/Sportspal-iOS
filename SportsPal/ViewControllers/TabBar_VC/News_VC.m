@@ -8,6 +8,7 @@
 
 #import "News_VC.h"
 #import "TB_News.h"
+#import "Login.h"
 
 @interface News_VC ()
 {
@@ -26,6 +27,27 @@
 
 - (void)viewDidLoad {
     
+    
+    //remove Login Controller
+    
+    UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
+    
+    NSMutableArray *controllers =[navigationController.viewControllers mutableCopy];
+    
+    
+    for (int i = 0; i < [controllers count]; i++)
+    {
+        UIViewController *vc = [controllers objectAtIndex:i];
+        if ([vc isKindOfClass:[Login class]])
+        {
+            [controllers removeObjectAtIndex:i];
+            break;
+            
+        }
+    }
+    
+    navigationController.viewControllers = controllers;
+    //
     [[UITabBar appearance] setBarTintColor:[UIColor clearColor]];
     
     arrNews = [NSMutableArray arrayWithObjects:@"Six lessons that Patanjali teaches India's FMCG sector",@"DECATHLON City Square Mall Opening",@"NIKE HYPERADAPT 1.0 MANIFESTS THE UNIMAGINABLE", nil];

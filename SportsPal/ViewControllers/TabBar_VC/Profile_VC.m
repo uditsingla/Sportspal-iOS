@@ -42,7 +42,13 @@
     // Do any additional setup after loading the view.
     
     if(user==nil)
+    {
         user = model_manager.profileManager.owner;
+    }
+    else
+    {
+        
+    }
     
     lblName.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
     

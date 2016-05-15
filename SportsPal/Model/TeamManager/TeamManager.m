@@ -113,7 +113,7 @@
     
     [dictParam setValue:model_manager.profileManager.owner.userID forKey:@"user_id"];
     
-    [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"is_preferred"];
+    [dictParam setValue:[NSNumber numberWithBool:NO] forKey:@"is_preferred"];
     
     [dictParam setValue:[NSNumber numberWithBool:NO] forKey:@"is_nearby"];
     

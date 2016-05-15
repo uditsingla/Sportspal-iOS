@@ -118,6 +118,8 @@
     barButtonDone.tintColor=[UIColor whiteColor];
     [toolBarSuperView addSubview:toolBar];
     
+    pickerDate.datePickerMode = UIDatePickerModeDate;
+    
     [pickerDate addTarget:self action:@selector(dateChanged:)               forControlEvents:UIControlEventValueChanged];
     
     pickerDate.backgroundColor = [UIColor whiteColor];

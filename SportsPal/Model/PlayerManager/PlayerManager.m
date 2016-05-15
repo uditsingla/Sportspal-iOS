@@ -136,7 +136,7 @@
     
     //[dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"is_preferred"];
     
-    [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"is_nearby"];
+    [dictParam setValue:[NSNumber numberWithBool:NO] forKey:@"is_nearby"];
     
     if(searchTerm)
     {
@@ -171,7 +171,7 @@
                          
                          Sport *sport = [Sport new];
                          sport.sportID = [[arrSports objectAtIndex:j] valueForKey:@"sport_id"];
-                         //sport.sportName = [[[arrSports objectAtIndex:j] valueForKey:@"Sports"] valueForKey:@"name"];
+                         //sport.sportName = [[[arrSports objectAtIndex:j] valueForKey:@"sport"] valueForKey:@"name"];
                          
                          [user.arrayPreferredSports addObject:sport];
                      }

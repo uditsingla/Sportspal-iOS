@@ -67,6 +67,7 @@
                 if([[dictJson valueForKey:@"success"] boolValue])
                 {
                     //user registered successfully
+                                        
                     UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
                     [self.navigationController pushViewController:homeVC animated:YES];
                 }
