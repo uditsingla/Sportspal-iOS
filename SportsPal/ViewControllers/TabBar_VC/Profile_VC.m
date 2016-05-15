@@ -94,10 +94,16 @@
     [contentView addSubview:txtViewDescription];
     txtViewDescription.font = [UIFont fontWithName:@"OpenSans" size:12];
     txtViewDescription.backgroundColor =[UIColor clearColor];
-    txtViewDescription.text = @"aflkjgflagljkgaljkgljkfglkjwfglkjagfkagflkjagfkljfgladwkfgdlkfglkdjfgafglkjfgdlskjfgdslkjgh;dsjkgf;hf;sdgf;dsg:ldsl";
+    txtViewDescription.text = @"I Love to play Sports, it helps me to improve my health and fitness and from now onwards anyone can join my game on SPORTSPAL.. its helping me to find people who are nearby and also like to play same games which I do ...its Amazing";
     txtViewDescription.userInteractionEnabled = NO;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [[NSUserDefaults standardUserDefaults]setValue:@"" forKey:@"isLocation"];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

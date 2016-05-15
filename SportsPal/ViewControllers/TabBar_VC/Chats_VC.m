@@ -23,6 +23,12 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [[NSUserDefaults standardUserDefaults]setValue:@"" forKey:@"isLocation"];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

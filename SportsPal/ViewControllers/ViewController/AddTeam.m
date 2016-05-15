@@ -149,6 +149,8 @@
 {
     [super viewWillAppear:YES];
     
+    [[NSUserDefaults standardUserDefaults]setValue:@"" forKey:@"isLocation"];
+
    // NSLog(@"%@",self.navigationController.viewControllers);
 //    self.tabBarController.tabBar.hidden = NO;
 //    self.hidesBottomBarWhenPushed = NO;
@@ -189,6 +191,9 @@
                 //game created successfully
                 [self showAlert:[dictJson valueForKey:@"message"]];
                 
+                
+                [self resetAllContent];
+                /*
                 [btnSportName setTitle:@"TEAM SPORT" forState:UIControlStateNormal];
                 [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
                 [btnTeamType setTitle:@"TEAM TYPE" forState:UIControlStateNormal];
@@ -198,7 +203,7 @@
                 strTeamType = @"";
                 strTeamname = @"";
                 teamSize = 0;
-                
+                */
                 [arrTeamPlayers removeAllObjects];
                 [tblTeam reloadData];
             }
@@ -327,6 +332,7 @@
     [tblSearchResult reloadData];
     
     strSportName = nil;
+    strSportID = nil;
     strTeamname = nil;
     strTeamType = nil;
     

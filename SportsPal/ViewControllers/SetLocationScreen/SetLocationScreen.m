@@ -153,7 +153,7 @@
     
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(35, 18, self.view.frame.size.width - 70, 42)];
     
-    searchBar.placeholder = @"search location";
+    searchBar.placeholder = @"Search Location";
     [self.view addSubview:searchBar];
     
     searchBar.delegate = self;
@@ -221,8 +221,8 @@
     //tbl_predictions.separatorColor = [UIColor clearColor];
     tbl_predictions.backgroundColor=[UIColor whiteColor];
     tbl_predictions.hidden=YES;
-    tbl_predictions.layer.borderColor = [UIColor colorWithRed:65/255.0 green:195/255.0 blue:214/255.0 alpha:1].CGColor;
-    tbl_predictions.layer.borderWidth = 1.5;
+    tbl_predictions.layer.borderColor = [UIColor grayColor].CGColor;
+    tbl_predictions.layer.borderWidth = 1;
     [self.view addSubview:tbl_predictions];
     
     
@@ -606,9 +606,8 @@ idleAtCameraPosition:(GMSCameraPosition *)position
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-
 {
-    
+    searchBar.placeholder = @"";
     //[searchBar alwaysEnableSearch];
     
 }

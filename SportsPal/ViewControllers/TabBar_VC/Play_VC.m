@@ -30,6 +30,9 @@
     __weak IBOutlet UIButton *btnSearch;
     __weak IBOutlet UIButton *btnMenu;
     
+    
+    UITextField *txfSearchField;
+    
     AFHTTPRequestOperation *postAutoComplete;
     AFHTTPRequestOperationManager *manager;
 }
@@ -70,11 +73,22 @@
     manager = [AFHTTPRequestOperationManager manager];
     
     [super viewDidLoad];
+    
+    searchbar.barTintColor = DullGreen;
+
+    txfSearchField = [searchbar valueForKey:@"_searchField"];
+    txfSearchField.backgroundColor = [UIColor blackColor];
+    txfSearchField.textColor = [UIColor whiteColor];
+    
+//    searchbar.backgroundColor = [UIColor blackColor];
     // Do any additional setup after loading the view.
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
+    [[NSUserDefaults standardUserDefaults]setValue:@"" forKey:@"isLocation"];
+
     [tblSports reloadData];
     [tblPlayers reloadData];
     [tblTeams reloadData];
@@ -136,6 +150,8 @@
     tblTeams.hidden = YES;
     tblSearch.hidden = YES;
     searchbar.hidden = YES;
+    txfSearchField.text = @"";
+    [txfSearchField resignFirstResponder];
 }
 
 - (IBAction)clkNotifications:(id)sender
