@@ -223,7 +223,7 @@
 //            deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"];
 //        }
         
-        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email",btnDOB.titleLabel.text,@"dob", selectedGender,@"gender",StrEncoded,@"image", txtViewDescription.text,@"bio", nil];
+        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email",btnDOB.titleLabel.text,@"dob", selectedGender,@"gender",StrEncoded,@"image", txtViewDescription.text,@"bio",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", nil];
         
         [model_manager.profileManager.owner updateUserDetails:signUpInfo completion:^(NSDictionary *dictJson, NSError *error) {
             [kAppDelegate.objLoader hide];
@@ -361,7 +361,7 @@
 -(void)showAlert:(NSString *)errorMsg
 {
     UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Error"
+                                  alertControllerWithTitle:@"Alert"
                                   message:errorMsg
                                   preferredStyle:UIAlertControllerStyleAlert];
     
