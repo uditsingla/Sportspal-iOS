@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Profile_VC : UIViewController
+@interface Profile_VC : UIViewController<UITextViewDelegate>
 
 @end

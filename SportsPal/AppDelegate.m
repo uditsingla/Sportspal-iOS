@@ -46,7 +46,7 @@
     
     [self.window makeKeyAndVisible];
     
-    /*
+    
     for (NSString* family in [UIFont familyNames])
     {
         NSLog(@"%@", family);
@@ -56,7 +56,7 @@
             NSLog(@"  %@", name);
         }
     }
-     */
+     
     
     //Tab bar 
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:56/255.00 green:142/255.00 blue:60/255.00 alpha:1]];

@@ -28,6 +28,7 @@
     
     __weak IBOutlet UILabel *lblPlay;
     __weak IBOutlet UIButton *btnSearch;
+    __weak IBOutlet UIButton *btnMenu;
     
     AFHTTPRequestOperation *postAutoComplete;
     AFHTTPRequestOperationManager *manager;
@@ -84,12 +85,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)resetViews
+{
+    searchbar.hidden = YES;
+    btnSearch.hidden = NO;
+    lblPlay.hidden = NO;
+    btnMenu.hidden = NO;
+
+}
+
 #pragma mark - custom methods
 - (IBAction)clkSearch:(id)sender {
     
     searchbar.hidden = NO;
     btnSearch.hidden = YES;
     lblPlay.hidden = YES;
+    btnMenu.hidden = YES;
 }
 
 - (IBAction)clkSegment:(UISegmentedControl*)sender
@@ -100,23 +111,19 @@
     
     if (selectedSegment == 0)
     {
-//        [ModelManager modelManager].sportsManager getAvailableGames:^(NSDictionary *dictJson, NSError *error)
-//        {
-//            code
-//        }
-
+        [self resetViews];
         tblSports.hidden = NO;
         [tblSports reloadData];
     }
     else if (selectedSegment == 1)
     {
+        [self resetViews];
         tblPlayers.hidden = NO;
-
         [tblPlayers reloadData];
     }
     else
     {
-
+        [self resetViews];
         tblTeams.hidden = NO;
         [tblTeams reloadData];
     }
@@ -397,6 +404,7 @@
     searchbar.text = @"";
     searchbar.hidden = YES;
     btnSearch.hidden = NO;
+    btnMenu.hidden = NO;
     lblPlay.hidden = NO;
     [searchbar resignFirstResponder];
 }

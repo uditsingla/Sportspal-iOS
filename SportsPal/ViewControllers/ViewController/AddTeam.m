@@ -44,12 +44,27 @@
     
     NSArray *arraySportsType;
     
-    NSMutableArray *arrTeamPlayers;
+    NSMutableArray *arrTeamPlayers,*arrSearchResult;
+    
     
     
     __weak IBOutlet NSLayoutConstraint *contentviewHeight;
     
     __weak IBOutlet UIView *toolBarSuperView;
+    
+    __weak IBOutlet UIImageView *imgSelectedImage;
+    
+    __weak IBOutlet UISearchBar *searchbar;
+    
+    __weak IBOutlet UITableView *tblSearchResult;
+    
+    
+    __weak IBOutlet UIButton *btnMenu;
+    __weak IBOutlet UILabel *lblTittle;
+    __weak IBOutlet UIButton *btnSave;
+   
+    
+    
 }
 - (IBAction)clkSlider:(id)sender;
 
@@ -70,7 +85,7 @@
     [toolBar setBarStyle:UIBarStyleBlackOpaque];
     toolBar.backgroundColor = [UIColor grayColor];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                      style:UIBarButtonItemStyleDone target:self action:@selector(selectDateTime:)];
+                                                                      style:UIBarButtonItemStyleDone target:self action:@selector(clkDone:)];
     toolBar.items = @[barButtonDone];
     barButtonDone.tintColor=[UIColor whiteColor];
     [toolBarSuperView addSubview:toolBar];
@@ -96,6 +111,7 @@
     scrollview.backgroundColor = [UIColor clearColor];
     
     arrTeamPlayers = [NSMutableArray new];
+    arrSearchResult = [NSMutableArray new];
     
     [arrTeamPlayers addObject:@"Sachin"];
     [arrTeamPlayers addObject:@"Abhi"];
@@ -118,12 +134,8 @@
     
     [myItem initWithTitle:@"ADD" image:[UIImage imageNamed:@"add.png"] selectedImage:[UIImage imageNamed:@"add.png"]];
     
-//    [myItem setFinishedSelectedImage:[UIImage imageNamed:@"add.png"]
-//           withFinishedUnselectedImage:[UIImage imageNamed:@"add.png"]];
-//    myItem.title = @"ADD";
+    imgSelectedImage.hidden = YES;
     
-
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -133,6 +145,13 @@
    // NSLog(@"%@",self.navigationController.viewControllers);
 //    self.tabBarController.tabBar.hidden = NO;
 //    self.hidesBottomBarWhenPushed = NO;
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:YES];
+    [self hideAllPickers];
+    [self resetAllContent];
 }
 
 -(void)createNewTeam
@@ -268,13 +287,39 @@
 
 -(void)hideAllPickers
 {
-    
     pickerSports.hidden =YES;
     pickerType.hidden = YES;
     toolBarSuperView.hidden = YES;
+    searchbar.hidden = YES;
+    tblSearchResult.hidden = YES;
+    
+    searchbar.text = @"";
     
 }
 
+-(void)resetAllContent
+{
+    [self hideAllPickers];
+    
+    imgSelectedImage.hidden = YES;
+    
+    btnMenu.hidden = NO;
+    lblTittle.hidden = NO;
+    btnSave.hidden = NO;
+    
+    searchbar.hidden = YES;
+    tblSearchResult.hidden = YES;
+    
+    strSportName = nil;
+    strTeamname = nil;
+    strTeamType = nil;
+    
+    
+    [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
+    [btnTeamType setTitle:@"TEAM TYPE" forState:UIControlStateNormal];
+    [btnSportName setTitle:@"TEAM SPORT" forState:UIControlStateNormal];
+
+}
 
 #pragma mark PickerView DataSource
 
@@ -383,7 +428,7 @@
 
 
 
--(void)selectDateTime:(id)sender
+-(void)clkDone:(id)sender
 {
     if (pickerselected == sportname)
     {
@@ -394,6 +439,10 @@
             strSportName = sport.sportName;
             strSportID = sport.sportID;
         }
+        
+        imgSelectedImage.hidden = NO;
+        NSString *strImageName = [strSportName lowercaseString];
+        imgSelectedImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageName]];
         
         [btnSportName setTitle:strSportName forState:UIControlStateNormal];
     }
@@ -417,7 +466,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    if (tableView == tblSearchResult) {
+        static NSString *CellIdentifier = @"CellIdentifier";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
+        if (cell == nil)
+        {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        
+        
+        cell.textLabel.text = [arrSearchResult objectAtIndex:indexPath.row];
+        
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        
+        return cell;
+
+    }
+    else
+    {
         static NSString *CellIdentifier = @"CellIdentifier";
         TB_AddTeam *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
@@ -425,44 +496,49 @@
         {
             cell = [[TB_AddTeam alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         }
-    
-    
-    cell.imgProfile.layer.cornerRadius = 15;
-    cell.imgProfile.layer.masksToBounds = YES;
-    cell.lblName.text = [arrTeamPlayers objectAtIndex:indexPath.row];
-    
-    
-    
-    if (indexPath.row == (arrTeamPlayers.count-1)) {
-        cell.imgProfile.image = [UIImage imageNamed:@"add.png"];
-    }
-    else{
         
+        
+        cell.imgProfile.layer.cornerRadius = 15;
+        cell.imgProfile.layer.masksToBounds = YES;
+        cell.lblName.text = [arrTeamPlayers objectAtIndex:indexPath.row];
+        
+        
+        
+        if (indexPath.row == (arrTeamPlayers.count-1)) {
+            cell.imgProfile.image = [UIImage imageNamed:@"add.png"];
+        }
+        else{
+            
+        }
+        
+        //        Game *game = [arrSports objectAtIndex:indexPath.row];
+        //
+        //        cell.contentView.backgroundColor = [UIColor blackColor];
+        //        cell.lblName.text = game.sportName;
+        //        // cell.lblName.textColor = [UIColor whiteColor];
+        //
+        //        NSLog(@"time : %@, %@",game.time,game.date);
+        //        cell.lblGame1.text = game.time;
+        //        cell.lblGame2.text = game.date;
+        //
+        //        cell.imgBackground.image = [UIImage imageNamed:@"cricket.png"];
+        
+        tblTeam.backgroundColor = [UIColor clearColor];
+        cell.contentView.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        
+        return cell;
+
     }
     
-//        Game *game = [arrSports objectAtIndex:indexPath.row];
-//        
-//        cell.contentView.backgroundColor = [UIColor blackColor];
-//        cell.lblName.text = game.sportName;
-//        // cell.lblName.textColor = [UIColor whiteColor];
-//        
-//        NSLog(@"time : %@, %@",game.time,game.date);
-//        cell.lblGame1.text = game.time;
-//        cell.lblGame2.text = game.date;
-//        
-//        cell.imgBackground.image = [UIImage imageNamed:@"cricket.png"];
-    
-    tblTeam.backgroundColor = [UIColor clearColor];
-    cell.contentView.backgroundColor = [UIColor clearColor];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
-    return cell;
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == tblSearchResult) {
+        return 30;
+    }
     return 44;
 }
 
@@ -474,20 +550,119 @@
 // number of row in the section, I assume there is only 1 row
 - (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
 {
+    if (theTableView == tblSearchResult) {
+        return [arrSearchResult count];
+    }
     return [arrTeamPlayers count];
 }
-\
+
 #pragma mark - UITableViewDelegate
 // when user tap the row, what action you want to perform
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %ld row", (long)indexPath.row);
+    if(theTableView ==  tblSearchResult)
+    {
+        NSLog(@"Search Result Selected");
+        btnMenu.hidden = NO;
+        lblTittle.hidden = NO;
+        btnSave.hidden = NO;
+        searchbar.hidden = YES;
+        tblSearchResult.hidden = YES;
+    }
+    else{
+        if (indexPath.row == (arrTeamPlayers.count-1)) {
+            NSLog(@"Add new player called");
+            
+            btnMenu.hidden = YES;
+            lblTittle.hidden = YES;
+            btnSave.hidden = YES;
+            searchbar.hidden = NO;
+            tblSearchResult.hidden = NO;
+            
+        }
+    }
     
-     if (indexPath.row == (arrTeamPlayers.count-1)) {
-         NSLog(@"Add new player called");
-     }
+
 }
 
+
+
+#pragma mark - Searchbar Delegates
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    
+    if ([[searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
+    {
+        tblSearchResult.hidden = YES;
+        //[arrSearchResult removeAllObjects];
+        [tblSearchResult reloadData];
+    }
+    
+    /*
+    if(postAutoComplete)
+        [postAutoComplete cancel];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:model_manager.profileManager.owner.userID,@"user_id",searchText,@"search_term",nil];
+    
+    postAutoComplete = [manager POST:[NSString stringWithFormat:@"%@games/getAutoFill",kBaseUrlPath] parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //doing something
+        if(((NSArray*)responseObject).count>0 && [searchBar isFirstResponder])
+        {
+            tblSearch.hidden = NO;
+            [arrSearchResult removeAllObjects];
+            [arrSearchResult addObjectsFromArray:(NSArray*)responseObject];
+            
+            [tblSearch reloadData];
+        }
+        else
+        {
+            tblSearch.hidden = YES;
+            [arrSearchResult removeAllObjects];
+            [tblSearch reloadData];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // error handling.
+    }];
+     
+     */
+    
+    
+}
+
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+
+-(BOOL) searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"])
+    {
+        tblSearchResult.hidden = NO;
+        [tblSearchResult reloadData];
+        [searchBar resignFirstResponder];
+        return NO;
+    }
+    return YES;
+
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+    tblSearchResult.hidden = YES;
+    searchbar.text = @"";
+    searchbar.hidden = YES;
+    
+    btnMenu.hidden = NO;
+    lblTittle.hidden = NO;
+    btnSave.hidden = NO;
+    
+    [searchbar resignFirstResponder];
+}
 /*
 #pragma mark - Navigation
 

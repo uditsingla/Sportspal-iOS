@@ -20,8 +20,9 @@
     __weak IBOutlet UIButton *btnFav;
     
     
-    __weak IBOutlet UITextView *txtDescription;
     __weak IBOutlet UILabel *lblAge;
+    
+    __weak IBOutlet UIView *contentView;
     
 }
 - (IBAction)clkFav:(id)sender;
@@ -36,7 +37,67 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    int dynamicY = lblAge.frame.origin.y;
+    for(int i=0; i<7; i++)
+    {
+        
+        UIView *viewSport = [[UIView alloc]init];
+        
+        float viewHeight = 25;
+        
+        
+        
+        
+        //create image view and Lable
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 15, 15)];
+        imageView.image = [UIImage imageNamed:@"sports.png"];
+        imageView.contentMode =UIViewContentModeScaleAspectFit;
+        [viewSport addSubview:imageView];
+        
+        
+        //Uilable
+        
+        NSString *sportName = [[NSString stringWithFormat:@"Cricket"]uppercaseString];
+        
+        UILabel *lblSportName = [[UILabel alloc]initWithFrame:CGRectMake(25, 0, 95, 25)];
+        lblSportName.font = [UIFont fontWithName:@"OpenSans" size:12];
+        lblSportName.backgroundColor = [UIColor clearColor];
+        lblSportName.text = sportName;
+        lblSportName.textColor = [UIColor whiteColor];
+        [viewSport addSubview:lblSportName];
+        
+        //------------
+        
+        
+        if (i % 2)
+        {
+            dynamicY  += 40;
+            viewSport.frame = CGRectMake(15, dynamicY, 120, viewHeight) ;
+        }
+        
+        else
+        {
+            viewSport.frame = CGRectMake(self.view.frame.size.width- 140, dynamicY, 120, viewHeight) ;
+        }
+
+        viewSport.backgroundColor = [UIColor clearColor];
+        [contentView addSubview:viewSport];
+    }
+    
+    dynamicY +=30;
+    
+    UITextView *txtViewDescription = [[UITextView alloc]initWithFrame:CGRectMake(20, dynamicY, self.view.frame.size.width-40, 160)];
+    txtViewDescription.textColor = [UIColor whiteColor];
+    txtViewDescription.delegate = self;
+    [contentView addSubview:txtViewDescription];
+    txtViewDescription.font = [UIFont fontWithName:@"OpenSans" size:12];
+    txtViewDescription.backgroundColor =[UIColor clearColor];
+    txtViewDescription.text = @"aflkjgflagljkgaljkgljkfglkjwfglkjagfkagflkjagfkljfgladwkfgdlkfglkdjfgafglkjfgdlskjfgdslkjgh;dsjkgf;hf;sdgf;dsg:ldsl";
+    txtViewDescription.userInteractionEnabled = NO;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

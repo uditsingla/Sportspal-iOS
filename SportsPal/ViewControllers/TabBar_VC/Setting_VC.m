@@ -45,7 +45,13 @@
     
     __weak IBOutlet UIButton *btnCurrentLoction;
     
+    __weak IBOutlet UITextView *txtViewDescription;
     __weak IBOutlet UIView *toolBarSuperView;
+    
+    UIImagePickerController *imgPicker;
+
+    
+    
 
 }
 - (IBAction)clkLeftSlider:(id)sender;
@@ -115,6 +121,15 @@
     pickerDate.backgroundColor = [UIColor whiteColor];
     
     [self hideAllPickers];
+    
+    imgPicker = [[UIImagePickerController alloc] init];
+    imgPicker.delegate = self;
+    imgPicker.allowsEditing = YES;
+    
+    
+    profilePic.image  = [UIImage imageNamed:@"members.png"];
+    profilePic.backgroundColor = [UIColor greenColor];
+    
 
 }
 
@@ -250,6 +265,61 @@
 }
 
 - (IBAction)clkProfilePic:(id)sender {
+    
+    UIAlertController * view=   [UIAlertController
+                                 alertControllerWithTitle:@"Upload Profile Pic"
+                                 message:@"Choose your preffernce"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* camera = [UIAlertAction
+                         actionWithTitle:@"Camera"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                             
+                             //[self presentedViewController:imgPicker animation:YES];
+
+
+                             [self presentViewController:imgPicker animated:YES completion:NULL];
+
+                             
+                             [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    
+    UIAlertAction* gallery = [UIAlertAction
+                         actionWithTitle:@"Gallery"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             
+                             imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                             
+                             //[self presentImagePickerWithCamera:YES];
+                             [self presentViewController:imgPicker animated:YES completion:NULL];
+
+                             
+                             [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    
+    [view addAction:camera];
+    [view addAction:gallery];
+    [view addAction:cancel];
+    [self presentViewController:view animated:YES completion:nil];
 }
 
 - (IBAction)clkDOB:(id)sender
@@ -346,6 +416,42 @@
     [scrollview setContentOffset:CGPointMake(0.0, 0.0) animated:YES];
     
 }
+
+#pragma mark image picker delegates
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    profilePic.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+//{
+//    
+////    profilePic.image = image;
+////    [picker dismissViewControllerAnimated:YES completion:nil];
+//    
+//    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+//    sprofilePic.image = chosenImage;
+//    
+//    [picker dismissViewControllerAnimated:YES completion:NULL];
+//    
+//    
+//    NSLog(@"Came into imagepicker ");
+//}
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Cancel");
+}
+
 
 
 

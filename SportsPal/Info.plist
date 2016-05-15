@@ -49,6 +49,7 @@
 	<string>SportsPal</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>New Athletic M54.ttf</string>
 		<string>Tw Cen MT.ttf</string>
 		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-Light.ttf</string>

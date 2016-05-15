@@ -69,6 +69,9 @@
     
     
     __weak IBOutlet UIView *toolBarSuperView;
+    
+    
+    __weak IBOutlet UIImageView *imgSelectedImage;
 }
 - (IBAction)clkButton:(id)sender;
 - (IBAction)clkSegment:(UISegmentedControl*)sender;
@@ -95,7 +98,7 @@
     [toolBar setBarStyle:UIBarStyleBlackOpaque];
     toolBar.backgroundColor = [UIColor grayColor];
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                      style:UIBarButtonItemStyleDone target:self action:@selector(selectDateTime:)];
+                                                                      style:UIBarButtonItemStyleDone target:self action:@selector(clkDone:)];
     toolBar.items = @[barButtonDone];
     barButtonDone.tintColor=[UIColor whiteColor];
     [toolBarSuperView addSubview:toolBar];
@@ -123,6 +126,9 @@
     [self hideAllPickers];
 
 
+    if (strSportName == nil) {
+        imgSelectedImage.hidden = YES;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -133,6 +139,10 @@
     if(model_manager.profileManager.svp_LocationInfo)
         [btnAddress setTitle:model_manager.profileManager.svp_LocationInfo.formattedAddress forState:UIControlStateNormal];
         
+}
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self resetAllContent];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -164,6 +174,8 @@
         
         pickerSports.hidden = NO;
         toolBarSuperView.hidden = NO;
+        
+        
         
     }
     else if (btn.tag == kgametype)
@@ -236,6 +248,28 @@
     pikerTime.hidden = YES;
     toolBarSuperView.hidden = YES;
     
+}
+
+-(void)resetAllContent
+{
+    [self hideAllPickers];
+    imgSelectedImage.hidden = YES;
+    strSportName = nil;
+    strSportID = nil;
+    strGameName = nil;
+    strDate = nil;
+    strTime = nil;
+    strGameType = nil;
+    strTeamName = nil;
+    
+    [btnSportName setTitle:@"SPORT" forState:UIControlStateNormal];
+    [btnGameType setTitle:@"GAME TYPE" forState:UIControlStateNormal];
+    [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
+    [btnGameName setTitle:@"GAME NAME" forState:UIControlStateNormal];
+    [btnDate setTitle:@"DD/MM/YYYY" forState:UIControlStateNormal];
+    [btnTime setTitle:@"HH:MM" forState:UIControlStateNormal];
+    [btnAddress setTitle:@"PICK ADDRESS" forState:UIControlStateNormal];
+
 }
 
 -(void)createNewGame
@@ -419,7 +453,7 @@
     
 }
 
--(void)selectDateTime:(id)sender
+-(void)clkDone:(id)sender
 {
     if (pickerselected == ksportname)
     {
@@ -430,6 +464,10 @@
             strSportName = sport.sportName;
             strSportID = sport.sportID;
         }
+        
+        imgSelectedImage.hidden = NO;
+        NSString *strImageName = [strSportName lowercaseString];
+        imgSelectedImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageName]];
         
         [btnSportName setTitle:strSportName forState:UIControlStateNormal];
     }
