@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSkillLevel;
 @property (weak, nonatomic) IBOutlet UILabel *lblGame1;
 @property (weak, nonatomic) IBOutlet UILabel *lblGame2;
+@property (weak, nonatomic) IBOutlet UILabel *lblGameName;
 
 @end

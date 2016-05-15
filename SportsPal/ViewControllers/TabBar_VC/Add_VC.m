@@ -63,7 +63,7 @@
     NSArray *arrGameType;
     //NSMutableArray *arrTeamName;
     
-    NSString *strGameType,*strTeamName,*strTeamID;
+    NSString *strGameType,*strTeamName,*strTeamID,*strLocation;
     
     __weak IBOutlet UIView *magicView;
     
@@ -134,16 +134,28 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    
+    
     [segmentcotrol setSelectedSegmentIndex:0];
     
-    if(model_manager.profileManager.svp_LocationInfo)
-        [btnAddress setTitle:model_manager.profileManager.svp_LocationInfo.formattedAddress forState:UIControlStateNormal];
+    
+//    NSLog(@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"isLocation"]);
+    
+    if ([[[NSUserDefaults standardUserDefaults]valueForKey:@"isLocation"] isEqualToString:@"locationclicked"])
+    {
+        if(model_manager.profileManager.svp_LocationInfo)
+            [btnAddress setTitle:model_manager.profileManager.svp_LocationInfo.formattedAddress forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self resetAllContent];
+    }
+    
         
 }
--(void)viewDidDisappear:(BOOL)animated
-{
-    [self resetAllContent];
-}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -241,6 +253,9 @@
     }
     else if (btn.tag == kaddress){
         
+        
+        [[NSUserDefaults standardUserDefaults]setValue:@"locationclicked" forKey:@"isLocation"];
+        
         SetLocationScreen *obj = [SetLocationScreen new];
         [self.navigationController pushViewController:obj animated:YES];
     }
@@ -270,6 +285,9 @@
     strTime = nil;
     strGameType = nil;
     strTeamName = nil;
+    
+    constraintHeight.constant = 40;
+    magicView.hidden = NO;
     
     [btnSportName setTitle:@"SPORT" forState:UIControlStateNormal];
     [btnGameType setTitle:@"GAME TYPE" forState:UIControlStateNormal];
@@ -311,6 +329,7 @@
                 //game created successfully
                 [self showAlert:[dictJson valueForKey:@"message"]];
                 
+               /*
                 [btnSportName setTitle:@"SPORT" forState:UIControlStateNormal];
                 [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
                 [btnDate setTitle:@"DD/MM/YYYY" forState:UIControlStateNormal];
@@ -328,6 +347,9 @@
                 strGameName = @"";
                 strGameType = @"";
                 strTeamID = @"";
+                */
+                
+                [self resetAllContent];
             }
             else
             {
