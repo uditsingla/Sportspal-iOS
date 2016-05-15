@@ -7,6 +7,7 @@
 //
 
 #import "Profile_VC.h"
+#import "Sport.h"
 
 @interface Profile_VC ()
 {
@@ -34,14 +35,23 @@
 
 @implementation Profile_VC
 
+@synthesize user;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    if(user==nil)
+        user = model_manager.profileManager.owner;
+    
+    lblName.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
+    
+    lblAge.text = user.dob;
     
     int dynamicY = lblAge.frame.origin.y;
-    for(int i=0; i<7; i++)
+    for(int i=0; i<user.arrayPreferredSports.count; i++)
     {
+        imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",((Sport*)[user.arrayPreferredSports objectAtIndex:0]).sportName]];
         
         UIView *viewSport = [[UIView alloc]init];
         
@@ -59,7 +69,7 @@
         
         //Uilable
         
-        NSString *sportName = [[NSString stringWithFormat:@"Cricket"]uppercaseString];
+        NSString *sportName = [[NSString stringWithFormat:@"%@",((Sport*)[user.arrayPreferredSports objectAtIndex:i]).sportName] uppercaseString];
         
         UILabel *lblSportName = [[UILabel alloc]initWithFrame:CGRectMake(25, 0, 95, 25)];
         lblSportName.font = [UIFont fontWithName:@"OpenSans" size:12];
@@ -94,7 +104,7 @@
     [contentView addSubview:txtViewDescription];
     txtViewDescription.font = [UIFont fontWithName:@"OpenSans" size:12];
     txtViewDescription.backgroundColor =[UIColor clearColor];
-    txtViewDescription.text = @"I Love to play Sports, it helps me to improve my health and fitness and from now onwards anyone can join my game on SPORTSPAL.. its helping me to find people who are nearby and also like to play same games which I do ...its Amazing";
+    txtViewDescription.text = user.bio;
     txtViewDescription.userInteractionEnabled = NO;
 }
 

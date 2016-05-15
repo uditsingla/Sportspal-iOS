@@ -14,6 +14,7 @@
 #import "Sport.h"
 #import "AFHTTPRequestOperationManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Profile_VC.h"
 
 @interface Play_VC ()
 {
@@ -231,10 +232,11 @@
         Game *game = [arrSports objectAtIndex:indexPath.row];
         
         cell.contentView.backgroundColor = [UIColor blackColor];
-        cell.lblGameName = game.gameName;
+        cell.lblGameName.text = game.gameName;
         cell.lblName.text = game.sportName;
+        cell.lblSkillLevel.text = game.distance;
         
-        NSLog(@"Game name : %@",game.sportName);
+        NSLog(@"Game name : %@",game.gameName);
        // cell.lblName.textColor = [UIColor whiteColor];
         
         //NSLog(@"time : %@, %@",game.time,game.date);
@@ -268,13 +270,13 @@
             cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName]];
             if(player.arrayPreferredSports.count>1)
             {
-                cell.lblGame1.text = ((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName;
-                cell.lblGame2.text = ((Sport*)[player.arrayPreferredSports objectAtIndex:1]).sportName;
+                cell.lblGame1.text = [NSString stringWithFormat:@"#%@",((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName];
+                cell.lblGame2.text = [NSString stringWithFormat:@"#%@",((Sport*)[player.arrayPreferredSports objectAtIndex:1]).sportName];
             }
             else
             {
                 cell.lblGame1.text = @"";
-                cell.lblGame2.text = ((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName;
+                cell.lblGame2.text = [NSString stringWithFormat:@"#%@",((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName];
             }
         }
         else
@@ -307,6 +309,10 @@
         cell.lblName.textColor = [UIColor whiteColor];
         
         cell.lblGame1.text = team.sportName;
+        
+        cell.lblGame2.text = team.address;
+        
+        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",team.sportName]];
         
         return cell;
 
@@ -378,7 +384,9 @@
     NSLog(@"selected %ld row", (long)indexPath.row);
     if (theTableView == tblPlayers)
     {
-        
+        Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
+        viewcontroller.user = (User*)[arrPlayers objectAtIndex:indexPath.row];
+        [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:NO];
     }
     else if (theTableView == tblTeams)
     {

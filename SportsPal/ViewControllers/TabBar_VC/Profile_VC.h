@@ -10,4 +10,5 @@
 
 @interface Profile_VC : UIViewController<UITextViewDelegate>
 
+@property (nonatomic,strong) User *user;
 @end
