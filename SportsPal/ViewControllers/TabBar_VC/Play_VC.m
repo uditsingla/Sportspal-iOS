@@ -74,12 +74,24 @@
     
     [super viewDidLoad];
     
-    searchbar.barTintColor = DullGreen;
+    searchbar.barTintColor = [UIColor blackColor];
 
     txfSearchField = [searchbar valueForKey:@"_searchField"];
     txfSearchField.backgroundColor = [UIColor blackColor];
     txfSearchField.textColor = [UIColor whiteColor];
     
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                                  [UIColor grayColor],
+                                                                                                  UITextAttributeTextColor,
+                                                                                                  nil,
+                                                                                                  UITextAttributeTextShadowColor,
+                                                                                                  [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
+                                                                                                  UITextAttributeTextShadowOffset,
+                                                                                                  nil]
+                                                                                        forState:UIControlStateNormal];
+    
+    //segmentedcontrol.tintColor = [UIColor colorWithRed:139/255.00 green:195/255.00 blue:74/255.00 alpha:1];
 //    searchbar.backgroundColor = [UIColor blackColor];
     // Do any additional setup after loading the view.
 }
