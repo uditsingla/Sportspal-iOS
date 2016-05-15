@@ -4,7 +4,7 @@
 
 @implementation User
 
-@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,arrayPreferredSports,arrayGames,arrayTeams;
+@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,bio,arrayPreferredSports,arrayGames,arrayTeams;
 
 - (id)init
 {
@@ -19,11 +19,37 @@
         gender = @"";
         dob = @"";
         email = @"";
+        bio = @"";
         arrayPreferredSports = [NSMutableArray new];
         arrayGames = [NSMutableArray new];
         arrayTeams = [NSMutableArray new];
     }
     return self;
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    
+    if (copy)
+    {
+        // Set primitives
+        [copy setUsername:self.username];
+        [copy setFirstName:self.firstName];
+        [copy setLastName:self.lastName];
+        [copy setFullName:self.fullName];
+        [copy setProfilePic:self.profilePic];
+        [copy setUserID:self.userID];
+        [copy setGender:self.gender];
+        [copy setDob:self.dob];
+        [copy setDob:self.email];
+        
+        [copy setArrayPreferredSports:self.arrayPreferredSports];
+        [copy setArrayGames:self.arrayGames];
+        [copy setArrayTeams:self.arrayTeams];
+    }
+    
+    return copy;
 }
 
 -(void)getUserDetails:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
@@ -113,6 +139,35 @@
                      
                      
                  
+             }
+             
+             if(completionBlock)
+                 completionBlock(json,nil);
+         }
+         else if(completionBlock)
+             completionBlock(nil,nil);
+         
+         NSLog(@"Here comes the json %@",json);
+     } ];
+}
+
+-(void)updateUserDetails:(NSDictionary*)dictParam completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
+{
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/index/%@",self.userID] requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+     {
+         
+         if(statusCode==200)
+         {
+             if([[json valueForKey:@"success"] boolValue])
+             {
+                 self.firstName = [dictParam valueForKey:@"first_name"];
+                 self.lastName = [dictParam valueForKey:@"last_name"];
+                 self.email = [dictParam valueForKey:@"email"];
+                 self.dob = [dictParam valueForKey:@"dob"];
+                 self.gender = [dictParam valueForKey:@"gender"];
+                 self.bio = [dictParam valueForKey:@"bio"];
+                 
+                 [model_manager.profileManager.owner getUserDetails:nil];
              }
              
              if(completionBlock)

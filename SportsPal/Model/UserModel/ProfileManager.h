@@ -15,5 +15,7 @@
 @property (nonatomic, strong) User *owner;
 @property(strong,nonatomic) SVPlacemark *svp_LocationInfo;
 
+-(void)searchUsersWithSearchTerm:(NSString*)searchTerm completion:(void(^)(NSDictionary *dictJson, NSMutableArray *users, NSError *error))completionBlock;
+
 -(void)resetModelData;
 @end

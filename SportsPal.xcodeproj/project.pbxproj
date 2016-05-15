@@ -254,6 +254,7 @@
 		A666938A1CD4D02800195DE7 /* SportsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A66693891CD4D02800195DE7 /* SportsManager.m */; };
 		A666938D1CD4FD4F00195DE7 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = A666938C1CD4FD4F00195DE7 /* Game.m */; };
 		A66693901CD5241D00195DE7 /* Sport.m in Sources */ = {isa = PBXBuildFile; fileRef = A666938F1CD5241D00195DE7 /* Sport.m */; };
+		A69E29821CE8959A0059A5F6 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = A69E29811CE8959A0059A5F6 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A6C953771CD616DA0046F1A9 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953761CD616DA0046F1A9 /* Team.m */; };
 		A6C953861CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C9537A1CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A6C953871CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C9537C1CD68D650046F1A9 /* SPGooglePlacesAutocompleteQuery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -556,6 +557,8 @@
 		A666938C1CD4FD4F00195DE7 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		A666938E1CD5241D00195DE7 /* Sport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sport.h; sourceTree = "<group>"; };
 		A666938F1CD5241D00195DE7 /* Sport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sport.m; sourceTree = "<group>"; };
+		A69E29801CE8959A0059A5F6 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		A69E29811CE8959A0059A5F6 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		A6C953751CD616DA0046F1A9 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
 		A6C953761CD616DA0046F1A9 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		A6C953791CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocompletePlace.h; sourceTree = "<group>"; };
@@ -1120,6 +1123,7 @@
 		46F62CEB1C90ABE500A61B47 /* 3rdPartyLib */ = {
 			isa = PBXGroup;
 			children = (
+				A69E297F1CE8959A0059A5F6 /* base64 */,
 				A6604E151CE25E0600F8C7AF /* AFNetworkingManager */,
 				A6C953781CD68D650046F1A9 /* Google Places Autocomplete */,
 				A6C953811CD68D650046F1A9 /* SVGeocoder */,
@@ -1180,6 +1184,15 @@
 				A666938F1CD5241D00195DE7 /* Sport.m */,
 			);
 			path = SportsManager;
+			sourceTree = "<group>";
+		};
+		A69E297F1CE8959A0059A5F6 /* base64 */ = {
+			isa = PBXGroup;
+			children = (
+				A69E29801CE8959A0059A5F6 /* Base64.h */,
+				A69E29811CE8959A0059A5F6 /* Base64.m */,
+			);
+			path = base64;
 			sourceTree = "<group>";
 		};
 		A6C953781CD68D650046F1A9 /* Google Places Autocomplete */ = {
@@ -1610,6 +1623,7 @@
 				4675AC621CC3EF8A0013FEE3 /* Setting_VC.m in Sources */,
 				A66693871CD4D00800195DE7 /* PlayerManager.m in Sources */,
 				4675AC591CC3EF490013FEE3 /* Play_VC.m in Sources */,
+				A69E29821CE8959A0059A5F6 /* Base64.m in Sources */,
 				A66693901CD5241D00195DE7 /* Sport.m in Sources */,
 				46F161EA1CC6A73400F36EE9 /* TB_Play_Sports.m in Sources */,
 				A66693841CD4CFD800195DE7 /* TeamManager.m in Sources */,

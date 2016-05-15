@@ -18,6 +18,8 @@
 #import "TB_AddTeam.h"
 #import "Team.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface AddTeam ()
 {
     __weak IBOutlet UIPickerView *pickerSports;
@@ -32,7 +34,7 @@
 
     
     __weak IBOutlet UIScrollView *scrollview;
-    __weak IBOutlet UIScrollView *tblTeam;
+    __weak IBOutlet UITableView *tblTeam;
     
     NSString *strSportName,*strSportID,*strTeamname,*strTeamType;
     int teamSize;
@@ -79,6 +81,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    tblTeam.dataSource = self;
+    tblTeam.delegate = self;
+    
+    tblSearchResult.dataSource = self;
+    tblSearchResult.delegate = self;
     
     //
     toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
@@ -113,8 +120,8 @@
     arrTeamPlayers = [NSMutableArray new];
     arrSearchResult = [NSMutableArray new];
     
-    [arrTeamPlayers addObject:@"Sachin"];
-    [arrTeamPlayers addObject:@"Abhi"];
+//    [arrTeamPlayers addObject:@"Sachin"];
+//    [arrTeamPlayers addObject:@"Abhi"];
 //    [arrTeamPlayers addObject:@"Rohit"];
 //    [arrTeamPlayers addObject:@"Sachin"];
 //    [arrTeamPlayers addObject:@"Abhi"];
@@ -124,7 +131,7 @@
     
     NSLog(@"scroll content height %f",scrollview.contentSize.height);
     
-    int heightContent = (int)arrTeamPlayers.count*44;
+    int heightContent = ((int)arrTeamPlayers.count+1)*44;
     contentviewHeight.constant = 185+heightContent;
     
     //contentviewHeight.constant = 2000;
@@ -168,6 +175,7 @@
         team.teamType = TeamTypePrivate;
     team.teamName = strTeamname;
     team.memberLimit = teamSize;
+    team.arrayMembers = arrTeamPlayers;
     
     
     [kAppDelegate.objLoader show];
@@ -190,6 +198,9 @@
                 strTeamType = @"";
                 strTeamname = @"";
                 teamSize = 0;
+                
+                [arrTeamPlayers removeAllObjects];
+                [tblTeam reloadData];
             }
             else
             {
@@ -292,6 +303,8 @@
     toolBarSuperView.hidden = YES;
     searchbar.hidden = YES;
     tblSearchResult.hidden = YES;
+    [arrSearchResult removeAllObjects];
+    [tblSearchResult reloadData];
     
     searchbar.text = @"";
     
@@ -307,8 +320,11 @@
     lblTittle.hidden = NO;
     btnSave.hidden = NO;
     
+    searchbar.text = @"";
     searchbar.hidden = YES;
     tblSearchResult.hidden = YES;
+    [arrSearchResult removeAllObjects];
+    [tblSearchResult reloadData];
     
     strSportName = nil;
     strTeamname = nil;
@@ -477,7 +493,7 @@
         
         
         
-        cell.textLabel.text = [arrSearchResult objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", ((User*)[arrSearchResult objectAtIndex:indexPath.row]).firstName, ((User*)[arrSearchResult objectAtIndex:indexPath.row]).lastName];
         
         cell.backgroundColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor whiteColor];
@@ -500,15 +516,17 @@
         
         cell.imgProfile.layer.cornerRadius = 15;
         cell.imgProfile.layer.masksToBounds = YES;
-        cell.lblName.text = [arrTeamPlayers objectAtIndex:indexPath.row];
         
         
         
-        if (indexPath.row == (arrTeamPlayers.count-1)) {
+        
+        if (indexPath.row == (arrTeamPlayers.count)) {
             cell.imgProfile.image = [UIImage imageNamed:@"add.png"];
+            cell.lblName.text = @"Add team member";
         }
         else{
-            
+            [cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+            cell.lblName.text = [NSString stringWithFormat:@"%@ %@", ((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).firstName, ((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).lastName];
         }
         
         //        Game *game = [arrSports objectAtIndex:indexPath.row];
@@ -553,32 +571,44 @@
     if (theTableView == tblSearchResult) {
         return [arrSearchResult count];
     }
-    return [arrTeamPlayers count];
+    return [arrTeamPlayers count] + 1;
 }
 
 #pragma mark - UITableViewDelegate
 // when user tap the row, what action you want to perform
-- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %ld row", (long)indexPath.row);
-    if(theTableView ==  tblSearchResult)
+    if(tableView ==  tblSearchResult)
     {
         NSLog(@"Search Result Selected");
+        User *selectedUser = [((User*)[arrSearchResult objectAtIndex:indexPath.row]) copy];
+        
+        [arrTeamPlayers addObject:selectedUser];
+        
+        int heightContent = ((int)arrTeamPlayers.count+1)*44;
+        contentviewHeight.constant = 185+heightContent;
+        
+        [tblTeam reloadData];
+        
         btnMenu.hidden = NO;
         lblTittle.hidden = NO;
         btnSave.hidden = NO;
         searchbar.hidden = YES;
+        searchbar.text = @"";
         tblSearchResult.hidden = YES;
+        [arrSearchResult removeAllObjects];
+        [tblSearchResult reloadData];
     }
     else{
-        if (indexPath.row == (arrTeamPlayers.count-1)) {
+        if (indexPath.row == (arrTeamPlayers.count)) {
             NSLog(@"Add new player called");
             
             btnMenu.hidden = YES;
             lblTittle.hidden = YES;
             btnSave.hidden = YES;
             searchbar.hidden = NO;
-            tblSearchResult.hidden = NO;
+            tblSearchResult.hidden = YES;
             
         }
     }
@@ -596,7 +626,7 @@
     if ([[searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
     {
         tblSearchResult.hidden = YES;
-        //[arrSearchResult removeAllObjects];
+        [arrSearchResult removeAllObjects];
         [tblSearchResult reloadData];
     }
     
@@ -635,6 +665,42 @@
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+    
+    //search players
+    if(searchBar.text.length>0)
+    {
+        [kAppDelegate.objLoader show];
+        [model_manager.profileManager searchUsersWithSearchTerm:searchBar.text completion:^(NSDictionary *dictJson,NSMutableArray *users, NSError *error)
+         {
+             
+             [kAppDelegate.objLoader hide];
+             if(!error)
+             {
+                 if([[dictJson valueForKey:@"success"] boolValue])
+                 {
+                     if(users.count>0)
+                         arrSearchResult = users;
+                     [tblSearchResult reloadData];
+                     tblSearchResult.hidden = NO;
+                     [self.view bringSubviewToFront:tblSearchResult];
+                 }
+                 else
+                 {
+                     [self showAlert:[dictJson valueForKey:@"message"]];
+                     [arrSearchResult removeAllObjects];
+                     [tblSearchResult reloadData];
+                     tblSearchResult.hidden = YES;
+                 }
+             }
+         }];
+    }
+    else
+    {
+        [arrSearchResult removeAllObjects];
+        [tblSearchResult reloadData];
+        tblSearchResult.hidden = YES;
+    }
+
 }
 
 
@@ -642,8 +708,6 @@
     
     if([text isEqualToString:@"\n"])
     {
-        tblSearchResult.hidden = NO;
-        [tblSearchResult reloadData];
         [searchBar resignFirstResponder];
         return NO;
     }
@@ -653,6 +717,8 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
+    [arrSearchResult removeAllObjects];
+    [tblSearchResult reloadData];
     tblSearchResult.hidden = YES;
     searchbar.text = @"";
     searchbar.hidden = YES;

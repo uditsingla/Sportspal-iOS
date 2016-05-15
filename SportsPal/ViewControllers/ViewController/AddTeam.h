@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddTeam : UIViewController
+@interface AddTeam : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end
