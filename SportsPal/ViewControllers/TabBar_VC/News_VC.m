@@ -15,6 +15,8 @@
     __weak IBOutlet UITableView *tblNews;
     
     NSMutableArray *arrNews;
+    NSMutableArray * arrLinks;
+    
 }
 - (IBAction)clkSlider:(id)sender;
 
@@ -26,7 +28,13 @@
     
     [[UITabBar appearance] setBarTintColor:[UIColor clearColor]];
     
-    arrNews = [NSMutableArray arrayWithObjects:@"news 1 ",@"news 2",@"news 3",@"news 4", nil];
+    arrNews = [NSMutableArray arrayWithObjects:@"Six lessons that Patanjali teaches India's FMCG sector",@"DECATHLON City Square Mall Opening",@"NIKE HYPERADAPT 1.0 MANIFESTS THE UNIMAGINABLE", nil];
+    
+    arrLinks = [NSMutableArray arrayWithObjects:
+                @"http://economictimes.indiatimes.com/slideshows/biz-entrepreneurship/six-lessons-that-patanjali-teaches-indias-fmcg-sector/6-lessons-that-patanjali-teaches-indias-fmcg-sector/slideshow/51874418.cms",
+                @"https://www.youtube.com/watch?v=Nyu3380Id64",
+                @"http://news.nike.com/news/hyperadapt-adaptive-lacing",
+                 nil];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -82,9 +90,9 @@
     }
     
     //cell.contentView.backgroundColor = [UIColor yellowColor];
-    cell.imgBackground.image = [UIImage imageNamed:@"cricket.png"];
+    cell.imgBackground.image = [UIImage imageNamed:@"basketball.png"];
     cell.lblName.text = [arrNews objectAtIndex:indexPath.row];
-    cell.lblName.textColor = [UIColor blueColor];
+    //cell.lblName.textColor = [UIColor blueColor];
     
     //tblNews.backgroundColor = [UIColor greenColor];
     return cell;
@@ -106,5 +114,11 @@
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %ld row", (long)indexPath.row);
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[arrLinks objectAtIndex:indexPath.row]]];
+    
 }
+
+
+
 @end
