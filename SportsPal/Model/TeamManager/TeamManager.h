@@ -19,7 +19,7 @@
 
 -(void)createNewTeam:(Team*)team completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
--(void)searchTeamWithSportID:(NSString*)sportID andCreatorID:(NSString*)creatorID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+-(void)searchTeamWithSearchTerm:(NSString*)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)resetModelData;
 

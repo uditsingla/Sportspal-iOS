@@ -19,9 +19,11 @@
 
 -(void)getAvailableGames:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
+-(void)getAvailableGamesWithSearchTerm:(NSString *)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
 -(void)createNewGame:(Game*)game completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
--(void)searchNewGameWithSportID:(NSString*)sportID andUserID:(NSString*)userID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+-(void)searchGameWithSearchTerm:(NSString*)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)resetModelData;
 

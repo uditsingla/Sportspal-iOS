@@ -61,9 +61,9 @@
     //__weak IBOutlet NSLayoutConstraint *contImageGap;
     
     NSArray *arrGameType;
-    NSMutableArray *arrTeamName;
+    //NSMutableArray *arrTeamName;
     
-    NSString *strGameType,*strTeamName;
+    NSString *strGameType,*strTeamName,*strTeamID;
     
     __weak IBOutlet UIView *magicView;
     
@@ -121,7 +121,7 @@
     
     arrGameType = [NSArray arrayWithObjects:@"Individual",@"Team", nil];
     
-    arrTeamName = [NSMutableArray new];
+    //arrTeamName = [NSMutableArray new];
     
     [self hideAllPickers];
 
@@ -187,6 +187,15 @@
     }
     else if (btn.tag == kteamname)
     {
+        if(model_manager.profileManager.owner.arrayTeams.count==0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No team available" message:@"Please create new team first." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            
+            strGameType = @"Individual";
+            [btnGameType setTitle:@"Individual" forState:UIControlStateNormal];
+            return;
+        }
         pickerselected = kteamname;
         pickerTeamName.hidden = NO;
         toolBarSuperView.hidden = NO;
@@ -278,7 +287,14 @@
     game.sportID = strSportID;
     game.sportName = strSportName;
     game.creator = model_manager.profileManager.owner;
-    game.gameType = GameTypeIndividual;
+    game.gameName = strGameName;
+    if([strGameType isEqualToString:@"Individual"])
+        game.gameType = GameTypeIndividual;
+    else
+    {
+        game.gameType = GameTypeTeam;
+        game.teamID = strTeamID;
+    }
     game.date = strDate;
     game.time = strTime;
     game.geoLocation = kAppDelegate.myLocation.coordinate;
@@ -300,6 +316,8 @@
                 [btnDate setTitle:@"DD/MM/YYYY" forState:UIControlStateNormal];
                 [btnTime setTitle:@"HH:MM" forState:UIControlStateNormal];
                 [btnAddress setTitle:@"PICK ADDRESS" forState:UIControlStateNormal];
+                [btnGameName setTitle:@"GAME NAME" forState:UIControlStateNormal];
+                [btnGameType setTitle:@"GAME TYPE" forState:UIControlStateNormal];
                 
                 
                 strSportName = @"";
@@ -307,7 +325,9 @@
                 strTeamName = @"";
                 strDate = @"";
                 strTime = @"";
-                
+                strGameName = @"";
+                strGameType = @"";
+                strTeamID = @"";
             }
             else
             {
@@ -358,7 +378,7 @@
     return arrGameType.count;
     
     else if (pickerView == pickerTeamName)
-    return arrTeamName.count;
+    return model_manager.profileManager.owner.arrayTeams.count;
     
     return 0;
 }
@@ -380,7 +400,7 @@
     
     else if (pickerView == pickerTeamName)
     {
-        return arrTeamName[row];
+        return ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
     }
     return  @"";
     
@@ -428,7 +448,8 @@
     
     else if (pickerView == pickerTeamName)
     {
-        strTeamName = arrTeamName[row];
+        strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
+        strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamID;
     }
 }
 
@@ -491,7 +512,8 @@
         
         if (strTeamName == nil)
         {
-            strTeamName = [arrTeamName objectAtIndex:0];
+            strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[0]).teamName;
+            strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[0]).teamID;
         }
         [btnTeamName setTitle:strTeamName forState:UIControlStateNormal];
     }

@@ -12,7 +12,11 @@
 
 @property(nonatomic,strong) NSMutableArray *arrayPlayers;
 
+@property(nonatomic,strong) NSMutableArray *arraySearchedPlayers;
+
 -(void)getNearByUsers:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)searchPlayerWithSearchTerm:(NSString*)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)resetModelData;
 

@@ -102,10 +102,39 @@
              {
                  NSLog(@"resultis:%@",result);
                  
-                 //goto sign up screen
-                 SignUp *homeVC = [kLoginStoryboard instantiateViewControllerWithIdentifier:@"signUp"];
-                 homeVC.fbDetails = (NSDictionary*)result;
-                [self.navigationController pushViewController:homeVC animated:YES];
+                 [kAppDelegate.objLoader show];
+                 
+                 NSString *deviceToken=@"";
+                 if([[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"])
+                 {
+                     deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"];
+                 }
+                 
+                 NSDictionary *loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:[result valueForKey:@"email"], @"email", [result valueForKey:@"id"], @"social_id", @"ios", @"device_type", deviceToken, @"device_token", nil];
+                 
+                 [model_manager.loginManager userLogin:loginInfo completion:^(NSDictionary *dictJson, NSError *error)
+                 {
+                     [kAppDelegate.objLoader hide];
+                     if(!error)
+                     {
+                         if([[dictJson valueForKey:@"success"] boolValue])
+                         {
+                             //user logged in successfully
+                             UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+                             [self.navigationController pushViewController:homeVC animated:YES];
+                         }
+                         else
+                         {
+                             //[self showAlert:[dictJson valueForKey:@"message"]];
+                             //goto sign up screen
+                             SignUp *homeVC = [kLoginStoryboard instantiateViewControllerWithIdentifier:@"signUp"];
+                             homeVC.fbDetails = (NSDictionary*)result;
+                             [self.navigationController pushViewController:homeVC animated:YES];
+                         }
+                     }
+                     
+                 }];
+
              }
              else
              {

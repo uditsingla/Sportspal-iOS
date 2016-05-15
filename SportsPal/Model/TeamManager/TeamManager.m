@@ -77,7 +77,7 @@
     else
         teamType = @"corporate";
     
-    NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:team.sportID,@"sport_id",team.creator.userID,@"creator_id",teamType,@"team_type",team.teamName,@"team_name",[NSNumber numberWithInt:team.memberLimit],@"members_limit",[NSNumber numberWithDouble: team.geoLocation.latitude],@"latitude",[NSNumber numberWithDouble: team.geoLocation.longitude],@"longitude",team.address,@"address", nil];
+    NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:team.sportID,@"sport_id",team.creator.userID,@"creator_id",teamType,@"team_type",team.teamName,@"team_name",[NSNumber numberWithInt:team.memberLimit],@"members_limit",[NSNumber numberWithDouble: team.geoLocation.latitude],@"latitude",[NSNumber numberWithDouble: team.geoLocation.longitude],@"longitude",team.address,@"address",team.arrayMembers,@"team_members", nil];
     
     [RequestManager asynchronousRequestWithPath:teamsPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
      {
@@ -89,6 +89,7 @@
                  team.teamID = [[json valueForKey:@"data"] valueForKey:@"team_id"];
                  
                  [arrayTeams addObject:team];
+                 [model_manager.profileManager.owner.arrayTeams addObject:team];
              }
              
              if(completionBlock)
@@ -101,15 +102,22 @@
      } ];
 }
 
--(void)searchTeamWithSportID:(NSString*)sportID andCreatorID:(NSString*)creatorID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
+-(void)searchTeamWithSearchTerm:(NSString*)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
     NSMutableDictionary *dictParam = [NSMutableDictionary new];
     
-    if(sportID)
-        [dictParam setValue:sportID forKey:@"sport_id"];
+    [dictParam setValue:model_manager.profileManager.owner.userID forKey:@"user_id"];
     
-    if(creatorID)
-        [dictParam setValue:creatorID forKey:@"creator_id"];
+    [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"is_preferred"];
+    
+    [dictParam setValue:[NSNumber numberWithBool:NO] forKey:@"is_nearby"];
+    
+    if(searchTerm)
+    {
+        [dictParam setValue:searchTerm forKey:@"keyword"];
+        [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"is_keyword"];
+    }
+
     
     [RequestManager asynchronousRequestWithPath:searchTeamsPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
      {
