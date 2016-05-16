@@ -15,6 +15,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Profile_VC.h"
+#import "AddTeam.h"
 
 @interface Play_VC ()
 {
@@ -386,11 +387,13 @@
     {
         Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
         viewcontroller.user = (User*)[arrPlayers objectAtIndex:indexPath.row];
-        [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:NO];
+        [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
     }
     else if (theTableView == tblTeams)
     {
-        
+        AddTeam *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"addteam"];
+        viewcontroller.selectedTeam = (Team*)[arrTeams objectAtIndex:indexPath.row];
+        [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
     }
     else if (theTableView == tblSports)
     {

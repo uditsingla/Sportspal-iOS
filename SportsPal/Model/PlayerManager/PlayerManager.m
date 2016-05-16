@@ -171,7 +171,7 @@
                          
                          Sport *sport = [Sport new];
                          sport.sportID = [[arrSports objectAtIndex:j] valueForKey:@"sport_id"];
-                         //sport.sportName = [[[arrSports objectAtIndex:j] valueForKey:@"sport"] valueForKey:@"name"];
+                         sport.sportName = [[[arrSports objectAtIndex:j] valueForKey:@"sport"] valueForKey:@"name"];
                          
                          [user.arrayPreferredSports addObject:sport];
                      }

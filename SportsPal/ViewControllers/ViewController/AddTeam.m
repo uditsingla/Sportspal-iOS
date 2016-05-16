@@ -77,6 +77,9 @@
 @end
 
 @implementation AddTeam
+
+@synthesize selectedTeam;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -142,6 +145,51 @@
     [myItem initWithTitle:@"ADD" image:[UIImage imageNamed:@"addteamplayer.png"] selectedImage:[UIImage imageNamed:@"add.png"]];
     
     imgSelectedImage.hidden = YES;
+    
+    if(selectedTeam)
+    {
+        lblTittle.text = @"TEAM DETAILS";
+        btnSave.hidden = YES;
+        segmentcotrol.hidden = YES;
+        imgSelectedImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[selectedTeam.sportName lowercaseString]]];
+        imgSelectedImage.hidden = NO;
+        btnSportName.enabled = NO;
+        [btnSportName setTitle:selectedTeam.sportName forState:UIControlStateNormal];
+        btnTeamName.enabled = NO;
+        [btnTeamName setTitle:selectedTeam.teamName forState:UIControlStateNormal];
+        NSString *team_type;
+        if(selectedTeam.teamType==TeamTypeCorporate)
+            team_type = @"Corporate";
+        else
+            team_type = @"Private";
+        [btnTeamType setTitle:team_type forState:UIControlStateNormal];
+        btnTeamType.enabled = NO;
+        
+        strSportID = selectedTeam.sportID;
+        strSportName = selectedTeam.sportName;
+        strTeamType = team_type;
+        strTeamname = selectedTeam.teamName;
+        teamSize = 0;
+        
+        [selectedTeam getTeamDetails:^(NSDictionary *dictJson, NSError *error) {
+            if(!error)
+            {
+                if([[dictJson valueForKey:@"success"] boolValue])
+                {
+                    [arrTeamPlayers addObjectsFromArray:selectedTeam.arrayMembers];
+                    int heightContent = ((int)arrTeamPlayers.count+1)*44;
+                    contentviewHeight.constant = 185+heightContent;
+                    [tblTeam reloadData];
+                    
+                    lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+                }
+                else
+                {
+                    [self showAlert:[dictJson valueForKey:@"message"]];
+                }
+            }
+        }];
+    }
     
 }
 
@@ -527,8 +575,16 @@
         
         
         if (indexPath.row == (arrTeamPlayers.count)) {
-            cell.imgProfile.image = [UIImage imageNamed:@"addteamplayer.png"];
-            cell.lblName.text = @"Add team member";
+            if(selectedTeam)
+            {
+                cell.imgProfile.image = nil;
+                cell.lblName.text = @"Join/Leave Team";
+            }
+            else
+            {
+                cell.imgProfile.image = [UIImage imageNamed:@"addteamplayer.png"];
+                cell.lblName.text = @"Add team member";
+            }
         }
         else{
             [cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
@@ -595,6 +651,8 @@
         int heightContent = ((int)arrTeamPlayers.count+1)*44;
         contentviewHeight.constant = 185+heightContent;
         
+        lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+        
         [tblTeam reloadData];
         
         btnMenu.hidden = NO;
@@ -608,14 +666,21 @@
     }
     else{
         if (indexPath.row == (arrTeamPlayers.count)) {
-            NSLog(@"Add new player called");
             
-            btnMenu.hidden = YES;
-            lblTittle.hidden = YES;
-            btnSave.hidden = YES;
-            searchbar.hidden = NO;
-            tblSearchResult.hidden = YES;
-            
+            if(selectedTeam)
+            {
+                NSLog(@"Join/Leave called");
+            }
+            else
+            {
+                NSLog(@"Add new player called");
+                
+                btnMenu.hidden = YES;
+                lblTittle.hidden = YES;
+                btnSave.hidden = YES;
+                searchbar.hidden = NO;
+                tblSearchResult.hidden = YES;
+            }
         }
     }
     
