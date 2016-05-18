@@ -578,7 +578,10 @@
             if(selectedTeam)
             {
                 cell.imgProfile.image = nil;
-                cell.lblName.text = @"Join/Leave Team";
+                if([selectedTeam.creator.userID isEqualToString:model_manager.profileManager.owner.userID])
+                    cell.lblName.text =@"";
+                else
+                    cell.lblName.text = @"Join Team";
             }
             else
             {
@@ -589,6 +592,11 @@
         else{
             [cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
             cell.lblName.text = [NSString stringWithFormat:@"%@ %@", ((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).firstName, ((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).lastName];
+            
+            if(((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).teamStatus)
+                cell.backgroundColor = [UIColor clearColor];
+            else
+                cell.backgroundColor = [UIColor lightGrayColor];
         }
         
         //        Game *game = [arrSports objectAtIndex:indexPath.row];

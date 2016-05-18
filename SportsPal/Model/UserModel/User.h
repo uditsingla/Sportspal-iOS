@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *dob;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *bio;
+@property (nonatomic, assign) BOOL teamStatus;
 @property (nonatomic, strong) NSMutableArray *arrayPreferredSports;
 
 @property (nonatomic, strong) NSMutableArray *arrayGames;

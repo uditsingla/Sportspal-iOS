@@ -4,7 +4,7 @@
 
 @implementation User
 
-@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,bio,arrayPreferredSports,arrayGames,arrayTeams;
+@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,bio,arrayPreferredSports,arrayGames,arrayTeams,teamStatus;
 
 - (id)init
 {
@@ -20,6 +20,7 @@
         dob = @"";
         email = @"";
         bio = @"";
+        teamStatus = NO;
         arrayPreferredSports = [NSMutableArray new];
         arrayGames = [NSMutableArray new];
         arrayTeams = [NSMutableArray new];
@@ -42,7 +43,8 @@
         [copy setUserID:self.userID];
         [copy setGender:self.gender];
         [copy setDob:self.dob];
-        [copy setDob:self.email];
+        [copy setEmail:self.email];
+        [copy setTeamStatus:self.teamStatus];
         
         [copy setArrayPreferredSports:self.arrayPreferredSports];
         [copy setArrayGames:self.arrayGames];
@@ -61,7 +63,7 @@
          {
              if([[json valueForKey:@"success"] boolValue])
              {
-                     self.userID = [[json valueForKey:@"message"] valueForKey:@"id"];
+                     self.userID = [NSString stringWithFormat:@"%i", [[[json valueForKey:@"message"] valueForKey:@"id"] intValue]];
                      self.firstName = [[json valueForKey:@"message"] valueForKey:@"first_name"];
                      self.lastName = [[json valueForKey:@"message"] valueForKey:@"last_name"];
                      self.gender = [[json valueForKey:@"message"] valueForKey:@"gender"];

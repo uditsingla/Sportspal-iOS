@@ -31,4 +31,8 @@ typedef NS_ENUM(int, TeamType)
 
 -(void)getTeamDetails:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
+-(void)acceptTeamRequest:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)declineTeamRequest:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
 @end
