@@ -936,7 +936,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="km.png" translatesAutoresizingMaskIntoConstraints="NO" id="zb2-PT-Ao8">
-                                                    <rect key="frame" x="255" y="10" width="15" height="15"/>
+                                                    <rect key="frame" x="250" y="10" width="15" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="9Ec-oB-Jd4"/>
                                                         <constraint firstAttribute="width" constant="15" id="EQL-1O-Spq"/>
@@ -992,7 +992,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vBw-ob-mix" firstAttribute="leading" secondItem="gUu-ke-YOO" secondAttribute="leading" constant="20" id="1mx-fI-ajF"/>
-                                                <constraint firstItem="DIT-9O-qKb" firstAttribute="leading" secondItem="zb2-PT-Ao8" secondAttribute="trailing" constant="2" id="2HB-VC-cL6"/>
+                                                <constraint firstItem="DIT-9O-qKb" firstAttribute="leading" secondItem="zb2-PT-Ao8" secondAttribute="trailing" constant="7" id="2HB-VC-cL6"/>
                                                 <constraint firstItem="m1v-AP-16W" firstAttribute="leading" secondItem="gUu-ke-YOO" secondAttribute="leading" constant="20" id="4B3-zQ-DFS"/>
                                                 <constraint firstAttribute="bottom" secondItem="d1r-mY-mit" secondAttribute="bottom" constant="14" id="7UQ-HK-Dhm"/>
                                                 <constraint firstAttribute="bottom" secondItem="m1v-AP-16W" secondAttribute="bottom" constant="15" id="D2H-8z-5B4"/>
@@ -1044,7 +1044,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cricket.png" translatesAutoresizingMaskIntoConstraints="NO" id="neo-0c-fDv" userLabel="imgBackground">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="neo-0c-fDv" userLabel="imgBackground">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="a" translatesAutoresizingMaskIntoConstraints="NO" id="QJZ-eG-BBG">
@@ -1155,7 +1155,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSU-Cb-BZy" userLabel="name">
-                                                    <rect key="frame" x="20" y="40" width="280" height="25"/>
+                                                    <rect key="frame" x="20" y="50" width="280" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Jf7-Dd-1F5"/>
                                                     </constraints>
@@ -1181,19 +1181,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xuh-Bb-XrP" userLabel="Game 1">
-                                                    <rect key="frame" x="49" y="70" width="60" height="21"/>
+                                                    <rect key="frame" x="49" y="80" width="60" height="21"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5b-lT-YBH" userLabel="Game 2">
-                                                    <rect key="frame" x="130" y="70" width="180" height="21"/>
+                                                    <rect key="frame" x="130" y="80" width="180" height="21"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="time.png" translatesAutoresizingMaskIntoConstraints="NO" id="MV5-pw-Jdk" userLabel="imgRating">
-                                                    <rect key="frame" x="20" y="70" width="20" height="20"/>
+                                                    <rect key="frame" x="20" y="80" width="20" height="20"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -1206,7 +1206,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="FpO-0D-kFY" secondAttribute="trailing" id="huU-JM-48t"/>
                                                 <constraint firstItem="cSU-Cb-BZy" firstAttribute="leading" secondItem="Cfy-rR-6wM" secondAttribute="leading" constant="20" id="o4g-CS-Aba"/>
                                                 <constraint firstAttribute="trailing" secondItem="3uc-Xz-Vck" secondAttribute="trailing" constant="-90" id="ta5-cC-PeZ"/>
-                                                <constraint firstItem="cSU-Cb-BZy" firstAttribute="top" secondItem="tTi-yW-BUH" secondAttribute="bottom" constant="5" id="w8T-Ci-Qcl"/>
+                                                <constraint firstItem="cSU-Cb-BZy" firstAttribute="top" secondItem="tTi-yW-BUH" secondAttribute="bottom" constant="15" id="w8T-Ci-Qcl"/>
                                                 <constraint firstItem="3uc-Xz-Vck" firstAttribute="top" secondItem="Cfy-rR-6wM" secondAttribute="top" constant="10" id="zeR-oI-0wc"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2113,7 +2113,6 @@
         <image name="chats.png" width="25" height="25"/>
         <image name="check.png" width="26" height="22"/>
         <image name="corporate.png" width="15" height="15"/>
-        <image name="cricket.png" width="320" height="130"/>
         <image name="date.png" width="15" height="15"/>
         <image name="fav.png" width="18" height="18"/>
         <image name="female_white.png" width="32" height="32"/>

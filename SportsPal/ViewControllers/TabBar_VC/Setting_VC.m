@@ -142,6 +142,7 @@
     txtEmail.text = model_manager.profileManager.owner.email;
     txtFirstName.text = model_manager.profileManager.owner.firstName;
     txtLastName.text = model_manager.profileManager.owner.lastName;
+    txtViewDescription.text = model_manager.profileManager.owner.bio;
     
     if(model_manager.profileManager.svp_LocationInfo)
         [btnLocation setTitle:model_manager.profileManager.svp_LocationInfo.formattedAddress forState:UIControlStateNormal];
@@ -182,6 +183,8 @@
 }
 
 - (IBAction)clkupdate:(id)sender {
+    
+    [txtViewDescription resignFirstResponder];
     
     if([[txtFirstName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
     {
@@ -225,7 +228,21 @@
 //            deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushDeviceToken"];
 //        }
         
-        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email",btnDOB.titleLabel.text,@"dob", selectedGender,@"gender",StrEncoded,@"image", txtViewDescription.text,@"bio",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", nil];
+        NSString *strBio = [NSString stringWithFormat:@"%@", txtViewDescription.text];
+
+        NSString *strAddress = model_manager.profileManager.svp_LocationInfo.formattedAddress;
+        
+        
+        NSDictionary *signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name",
+                                         txtLastName.text,@"last_name",
+                                         txtEmail.text, @"email",
+                                         btnDOB.titleLabel.text,@"dob",
+                                         selectedGender,@"gender",
+                                         strBio,@"bio",
+                                         [NSNumber numberWithDouble:latitude],@"latitude",
+                                         [NSNumber numberWithDouble:longitude],@"longitude",
+                                         strAddress,@"address",
+                                         StrEncoded,@"image", nil];
         
         [model_manager.profileManager.owner updateUserDetails:signUpInfo completion:^(NSDictionary *dictJson, NSError *error) {
             [kAppDelegate.objLoader hide];
@@ -305,11 +322,13 @@
 
 - (IBAction)clkDOB:(id)sender
 {
+    [txtViewDescription resignFirstResponder];
     pickerDate.hidden = NO;
     toolBarSuperView.hidden = NO;
     
     
 }
+
 
 - (IBAction)clkGender:(id)sender
 {
@@ -384,6 +403,16 @@
     
 }
 
+#pragma mark - UItextview Delegates
+
+- (BOOL)textView:(UITextView *)txtView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if( [text rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet]].location == NSNotFound ) {
+        return YES;
+    }
+    
+    [txtView resignFirstResponder];
+    return NO;
+}
 #pragma mark - UItextField Delegates
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField

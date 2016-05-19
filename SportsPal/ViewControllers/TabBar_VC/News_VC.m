@@ -18,6 +18,8 @@
     NSMutableArray *arrNews;
     NSMutableArray * arrLinks;
     
+    NSMutableArray *arrTempImages;
+    
 }
 - (IBAction)clkSlider:(id)sender;
 
@@ -47,6 +49,8 @@
     navigationController.viewControllers = controllers;
     //
     [[UITabBar appearance] setBarTintColor:[UIColor clearColor]];
+    
+    arrTempImages = [NSMutableArray arrayWithObjects:@"yoga.png",@"rockclimbing.png",@"golf.png", nil];
     
     arrNews = [NSMutableArray arrayWithObjects:@"Six lessons that Patanjali teaches India's FMCG sector",@"DECATHLON City Square Mall Opening",@"NIKE HYPERADAPT 1.0 MANIFESTS THE UNIMAGINABLE", nil];
     
@@ -110,7 +114,7 @@
     }
     
     //cell.contentView.backgroundColor = [UIColor yellowColor];
-    cell.imgBackground.image = [UIImage imageNamed:@"basketball.png"];
+    cell.imgBackground.image = [UIImage imageNamed:[arrTempImages objectAtIndex:indexPath.row]];
     cell.lblName.text = [arrNews objectAtIndex:indexPath.row];
     //cell.lblName.textColor = [UIColor blueColor];
     

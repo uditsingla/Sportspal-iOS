@@ -596,7 +596,7 @@
             if(((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).teamStatus)
                 cell.backgroundColor = [UIColor clearColor];
             else
-                cell.backgroundColor = [UIColor lightGrayColor];
+                cell.backgroundColor = [UIColor colorWithRed:33.0f green:33.0f / 255.0f blue:33.0f/255.0f alpha:1.0f];
         }
         
         //        Game *game = [arrSports objectAtIndex:indexPath.row];
