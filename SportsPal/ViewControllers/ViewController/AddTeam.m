@@ -581,7 +581,7 @@
                 if([selectedTeam.creator.userID isEqualToString:model_manager.profileManager.owner.userID])
                     cell.lblName.text =@"";
                 else
-                    cell.lblName.text = @"Join Team";
+                    cell.lblName.text = @"";//@"Join Team";
             }
             else
             {

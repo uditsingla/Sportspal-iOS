@@ -87,7 +87,7 @@
          (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
     }
     
-    [GMSServices provideAPIKey:@"AIzaSyC_oR6-tLr-orKRbomItDCA4UAjUsecm0c"];
+    [GMSServices provideAPIKey:@"AIzaSyBtG3L7FCWKlmTo1KmBQkRn0YxulQiXmVo"];
     
     return YES;
 }
