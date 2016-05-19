@@ -603,7 +603,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69u-UE-DLX">
-                                <rect key="frame" x="0.0" y="20" width="45" height="30"/>
+                                <rect key="frame" x="-50" y="20" width="45" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fgO-kg-am5"/>
                                     <constraint firstAttribute="width" constant="45" id="h7u-iu-smz"/>
@@ -631,7 +631,7 @@
                             <constraint firstItem="Xg0-hW-GGp" firstAttribute="leading" secondItem="IkQ-FH-C37" secondAttribute="leading" id="mTw-xd-DJT"/>
                             <constraint firstItem="PIg-hK-V2k" firstAttribute="top" secondItem="Xg0-hW-GGp" secondAttribute="bottom" id="nTS-0w-jn3"/>
                             <constraint firstItem="vCF-Qe-SGt" firstAttribute="top" secondItem="tfW-fc-hHr" secondAttribute="bottom" id="qXa-ty-inP"/>
-                            <constraint firstItem="69u-UE-DLX" firstAttribute="leading" secondItem="IkQ-FH-C37" secondAttribute="leading" id="sWE-xM-AeE"/>
+                            <constraint firstItem="69u-UE-DLX" firstAttribute="leading" secondItem="IkQ-FH-C37" secondAttribute="leading" constant="-50" id="sWE-xM-AeE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TbE-dC-WLO"/>
