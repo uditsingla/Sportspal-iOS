@@ -49,7 +49,7 @@
                      else
                          team.teamType = TeamTypeCorporate;
                      
-                     team.creator.userID = [[arrTeams objectAtIndex:i] valueForKey:@"creator_id"];
+                     team.creator.userID = [NSString stringWithFormat:@"%i",[[[arrTeams objectAtIndex:i] valueForKey:@"creator_id"] intValue]];
                      team.creator.firstName = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"first_name"];
                      team.creator.lastName = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"last_name"];
                      team.creator.email = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"email"];

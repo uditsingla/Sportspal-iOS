@@ -29,4 +29,10 @@ typedef NS_ENUM(int, TeamType)
 
 @property (nonatomic, strong) NSMutableArray *arrayMembers;
 
+-(void)getTeamDetails:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)acceptTeamRequest:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)declineTeamRequest:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
 @end

@@ -10,4 +10,5 @@
 
 @interface AddTeam : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic,strong) Team *selectedTeam;
 @end

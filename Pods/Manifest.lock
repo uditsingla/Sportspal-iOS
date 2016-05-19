@@ -20,13 +20,13 @@ PODS:
   - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.7.0)
-  - CocoaLumberjack (2.2.0):
-    - CocoaLumberjack/Default (= 2.2.0)
-    - CocoaLumberjack/Extensions (= 2.2.0)
-  - CocoaLumberjack/Core (2.2.0)
-  - CocoaLumberjack/Default (2.2.0):
+  - CocoaLumberjack (2.3.0):
+    - CocoaLumberjack/Default (= 2.3.0)
+    - CocoaLumberjack/Extensions (= 2.3.0)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.2.0):
+  - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
@@ -39,11 +39,11 @@ PODS:
     - FBSDKCoreKit
   - GoogleMaps (1.13.2)
   - MFSideMenu (0.5.5)
-  - PubNub (4.3.0):
-    - CocoaLumberjack (= 2.2.0)
-    - PubNub/Core (= 4.3.0)
-  - PubNub/Core (4.3.0):
-    - CocoaLumberjack (= 2.2.0)
+  - PubNub (4.3.3):
+    - CocoaLumberjack (= 2.3.0)
+    - PubNub/Core (= 4.3.3)
+  - PubNub/Core (4.3.3):
+    - CocoaLumberjack (= 2.3.0)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -63,7 +63,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
@@ -71,7 +71,7 @@ SPEC CHECKSUMS:
   FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   GoogleMaps: b20a103ff307f58392e603cf142e59d7e30374c1
   MFSideMenu: 268122e6894f2747fc3a2b48578100b232506c60
-  PubNub: a05f2a2c6cc1f637a0c473f236c4671c0b8c09b1
+  PubNub: 51acd937c947d931a75d2caef654fd12f7573e09
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
 COCOAPODS: 0.39.0
