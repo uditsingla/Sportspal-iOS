@@ -35,14 +35,12 @@
     NSMutableArray *controllers =[navigationController.viewControllers mutableCopy];
     
     
-    for (int i = 0; i < [controllers count]; i++)
+    for (int i = 0; i <= [controllers count] - 2; i++)
     {
-        UIViewController *vc = [controllers objectAtIndex:i];
-        if ([vc isKindOfClass:[Login class]])
+        UIViewController *vc = [controllers objectAtIndex:1];
+        if (![vc isKindOfClass:[UITabBarController class]])
         {
-            [controllers removeObjectAtIndex:i];
-            break;
-            
+            [controllers removeObjectAtIndex:1];
         }
     }
     
