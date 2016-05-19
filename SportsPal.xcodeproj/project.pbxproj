@@ -48,7 +48,6 @@
 		46198E7A1CE263A0009704AF /* tabletennis@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46198E671CE263A0009704AF /* tabletennis@3x.png */; };
 		46198E7B1CE263A0009704AF /* volleyball@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46198E681CE263A0009704AF /* volleyball@3x.png */; };
 		46198E7C1CE263A0009704AF /* yoga@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46198E691CE263A0009704AF /* yoga@3x.png */; };
-		463591921CDB59D200DF83A8 /* cricket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 463591911CDB59D200DF83A8 /* cricket@2x.png */; };
 		463591951CDB648700DF83A8 /* TB_News.m in Sources */ = {isa = PBXBuildFile; fileRef = 463591941CDB648700DF83A8 /* TB_News.m */; };
 		463591981CDBF50D00DF83A8 /* TB_AddTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 463591971CDBF50D00DF83A8 /* TB_AddTeam.m */; };
 		4639FD571CD13F860020D00B /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4639FD4D1CD13F860020D00B /* LoginManager.m */; };
@@ -179,8 +178,8 @@
 		46CA7F751CE7F10700E95C0B /* stars4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA7F5F1CE7F10700E95C0B /* stars4@3x.png */; };
 		46CA7F761CE7F10700E95C0B /* stars5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA7F601CE7F10700E95C0B /* stars5@2x.png */; };
 		46CA7F771CE7F10700E95C0B /* stars5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA7F611CE7F10700E95C0B /* stars5@3x.png */; };
-		46CA7F7A1CE7F45E00E95C0B /* addteamplayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA7F781CE7F45E00E95C0B /* addteamplayer@2x.png */; };
-		46CA7F7B1CE7F45E00E95C0B /* addteamplayer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA7F791CE7F45E00E95C0B /* addteamplayer@3x.png */; };
+		46CA7F7A1CE7F45E00E95C0B /* newteamplayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA7F781CE7F45E00E95C0B /* newteamplayer@2x.png */; };
+		46CA7F7B1CE7F45E00E95C0B /* newteamplayer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46CA7F791CE7F45E00E95C0B /* newteamplayer@3x.png */; };
 		46D7CA181CD6309900DF8B35 /* AddTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D7CA171CD6309900DF8B35 /* AddTeam.m */; };
 		46D7CA1D1CD6781200DF8B35 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D7CA191CD6781200DF8B35 /* check@2x.png */; };
 		46D7CA1E1CD6781200DF8B35 /* check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46D7CA1A1CD6781200DF8B35 /* check@3x.png */; };
@@ -313,7 +312,6 @@
 		46198E671CE263A0009704AF /* tabletennis@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabletennis@3x.png"; sourceTree = "<group>"; };
 		46198E681CE263A0009704AF /* volleyball@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volleyball@3x.png"; sourceTree = "<group>"; };
 		46198E691CE263A0009704AF /* yoga@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yoga@3x.png"; sourceTree = "<group>"; };
-		463591911CDB59D200DF83A8 /* cricket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cricket@2x.png"; sourceTree = "<group>"; };
 		463591931CDB648700DF83A8 /* TB_News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_News.h; sourceTree = "<group>"; };
 		463591941CDB648700DF83A8 /* TB_News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TB_News.m; sourceTree = "<group>"; };
 		463591961CDBF50D00DF83A8 /* TB_AddTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_AddTeam.h; sourceTree = "<group>"; };
@@ -458,8 +456,8 @@
 		46CA7F5F1CE7F10700E95C0B /* stars4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stars4@3x.png"; sourceTree = "<group>"; };
 		46CA7F601CE7F10700E95C0B /* stars5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stars5@2x.png"; sourceTree = "<group>"; };
 		46CA7F611CE7F10700E95C0B /* stars5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stars5@3x.png"; sourceTree = "<group>"; };
-		46CA7F781CE7F45E00E95C0B /* addteamplayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addteamplayer@2x.png"; sourceTree = "<group>"; };
-		46CA7F791CE7F45E00E95C0B /* addteamplayer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addteamplayer@3x.png"; sourceTree = "<group>"; };
+		46CA7F781CE7F45E00E95C0B /* newteamplayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newteamplayer@2x.png"; sourceTree = "<group>"; };
+		46CA7F791CE7F45E00E95C0B /* newteamplayer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newteamplayer@3x.png"; sourceTree = "<group>"; };
 		46D7CA161CD6309900DF8B35 /* AddTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTeam.h; sourceTree = "<group>"; };
 		46D7CA171CD6309900DF8B35 /* AddTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTeam.m; sourceTree = "<group>"; };
 		46D7CA191CD6781200DF8B35 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
@@ -651,7 +649,6 @@
 		463591901CDB571A00DF83A8 /* SportsImages */ = {
 			isa = PBXGroup;
 			children = (
-				463591911CDB59D200DF83A8 /* cricket@2x.png */,
 			);
 			path = SportsImages;
 			sourceTree = "<group>";
@@ -734,8 +731,8 @@
 		4661DE051CC54D330005C567 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				46CA7F781CE7F45E00E95C0B /* addteamplayer@2x.png */,
-				46CA7F791CE7F45E00E95C0B /* addteamplayer@3x.png */,
+				46CA7F781CE7F45E00E95C0B /* newteamplayer@2x.png */,
+				46CA7F791CE7F45E00E95C0B /* newteamplayer@3x.png */,
 				4661DE6E1CC54F270005C567 /* notification@2x.png */,
 				46D7CA191CD6781200DF8B35 /* check@2x.png */,
 				46D7CA1A1CD6781200DF8B35 /* check@3x.png */,
@@ -1409,7 +1406,7 @@
 				464263971CD9249C002CEDBC /* left_menu_home_icon@3x.png in Resources */,
 				46448AD41CE8B48F0068C937 /* left_menu_logout_icon@2x.png in Resources */,
 				4661DDFC1CC54C020005C567 /* add@3x.png in Resources */,
-				46CA7F7A1CE7F45E00E95C0B /* addteamplayer@2x.png in Resources */,
+				46CA7F7A1CE7F45E00E95C0B /* newteamplayer@2x.png in Resources */,
 				46F62CDC1C90901400A61B47 /* Assets.xcassets in Resources */,
 				46F3155B1CC1108400AAA588 /* login@3x.png in Resources */,
 				46448ADA1CE8C5F40068C937 /* left_menu_setting_icon@3x.png in Resources */,
@@ -1496,7 +1493,6 @@
 				46198E6A1CE263A0009704AF /* badminton@3x.png in Resources */,
 				4675ABF11CC3E69B0013FEE3 /* icon_news@3x.png in Resources */,
 				46198E741CE263A0009704AF /* kabaddi@3x.png in Resources */,
-				463591921CDB59D200DF83A8 /* cricket@2x.png in Resources */,
 				46D7CA1E1CD6781200DF8B35 /* check@3x.png in Resources */,
 				46CA7F6F1CE7F10700E95C0B /* stars3.5@3x.png in Resources */,
 				4675ABEE1CC3E69B0013FEE3 /* icon_team@2x.png in Resources */,
@@ -1526,7 +1522,7 @@
 				46F315A11CC2BA9A00AAA588 /* female_white@2x.png in Resources */,
 				46198E6D1CE263A0009704AF /* cycling@3x.png in Resources */,
 				46198E4C1CE25C67009704AF /* tennis@2x.png in Resources */,
-				46CA7F7B1CE7F45E00E95C0B /* addteamplayer@3x.png in Resources */,
+				46CA7F7B1CE7F45E00E95C0B /* newteamplayer@3x.png in Resources */,
 				4661DE501CC54EAA0005C567 /* admin@3x.png in Resources */,
 				4661DE411CC54EAA0005C567 /* fav@2x.png in Resources */,
 				46CA7F761CE7F10700E95C0B /* stars5@2x.png in Resources */,

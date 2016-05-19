@@ -237,14 +237,17 @@
         cell.lblName.text = game.sportName;
         cell.lblSkillLevel.text = game.distance;
         
-        NSLog(@"Game name : %@",game.gameName);
+        
        // cell.lblName.textColor = [UIColor whiteColor];
         
         //NSLog(@"time : %@, %@",game.time,game.date);
         cell.lblGame1.text = game.time;
         cell.lblGame2.text = game.date;
+        NSLog(@"Game name : %@",game.sportName);
         
-        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",game.sportName]];
+        NSString *strGameImage = [game.sportName lowercaseString];
+
+        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strGameImage]];
         
         return cell;
 
@@ -265,10 +268,18 @@
         cell.lblName.text = [NSString stringWithFormat:@"%@ %@",[player.firstName uppercaseString],[player.lastName uppercaseString]];
         cell.lblName.textColor = [UIColor whiteColor];
         
-        cell.lblSkillLevel.text = @"Pro";
+        cell.lblSkillLevel.text = @"Expert";
         if(player.arrayPreferredSports.count>0)
         {
-            cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName]];
+            
+            
+            NSString *strSportImage = ((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName;
+            strSportImage = [strSportImage lowercaseString];
+            
+            
+            NSLog(@"Sport name :  %@",strSportImage);
+            
+            cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strSportImage]];
             if(player.arrayPreferredSports.count>1)
             {
                 cell.lblGame1.text = [NSString stringWithFormat:@"#%@",((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName];
@@ -313,7 +324,9 @@
         
         cell.lblGame2.text = team.address;
         
-        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",team.sportName]];
+        NSString *strTeamSportImage = [team.sportName lowercaseString];
+        
+        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strTeamSportImage]];
         
         return cell;
 

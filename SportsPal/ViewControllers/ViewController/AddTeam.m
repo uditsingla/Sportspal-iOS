@@ -142,7 +142,7 @@
     UITabBar *tabBar = self.tabBarController.tabBar;
     UITabBarItem *myItem = [tabBar.items objectAtIndex:2];
     
-    [myItem initWithTitle:@"ADD" image:[UIImage imageNamed:@"addteamplayer.png"] selectedImage:[UIImage imageNamed:@"add.png"]];
+    [myItem initWithTitle:@"ADD" image:[UIImage imageNamed:@"add.png"] selectedImage:[UIImage imageNamed:@"add.png"]];
     
     imgSelectedImage.hidden = YES;
     
@@ -585,7 +585,7 @@
             }
             else
             {
-                cell.imgProfile.image = [UIImage imageNamed:@"addteamplayer.png"];
+                cell.imgProfile.image = [UIImage imageNamed:@"newteamplayer.png"];
                 cell.lblName.text = @"Add team member";
             }
         }

@@ -544,10 +544,26 @@
     
     else if (pickerselected == kdate)
     {
+        
+        if (strDate == nil)
+        {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+            
+            strDate = [dateFormatter stringFromDate:[NSDate date]];
+        }
+        
         [btnDate setTitle:strDate forState:UIControlStateNormal];
     }
     else if (pickerselected == ktime)
     {
+        if (strTime == nil)
+        {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"hh:mm a"];
+            
+            strTime = [dateFormatter stringFromDate:[NSDate date]];
+        }
         [btnTime setTitle:strTime forState:UIControlStateNormal];
     }
     

@@ -41,7 +41,7 @@
     
     
     
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_signup.png"]];
     //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
 
 }
@@ -97,7 +97,7 @@
     //NSString *imgBundlePath=[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[]];
     cell.imgMenuItem.image = [UIImage imageNamed:[arrMenuItemsImages objectAtIndex:indexPath.row]];
     
-    cell.backgroundColor = [UIColor blackColor];
+//    cell.backgroundColor = [UIColor blackColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;

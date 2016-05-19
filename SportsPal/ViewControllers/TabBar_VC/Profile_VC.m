@@ -25,6 +25,8 @@
     
     __weak IBOutlet UIView *contentView;
     
+    BOOL isFavourite;
+    
 }
 - (IBAction)clkFav:(id)sender;
 - (IBAction)clkSlider:(id)sender;
@@ -41,6 +43,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    isFavourite = false;
+    
     if(user==nil)
     {
         user = model_manager.profileManager.owner;
@@ -54,10 +59,16 @@
     
     lblAge.text = user.dob;
     
+    
+    NSString *strImageProfile = ((Sport*)[user.arrayPreferredSports objectAtIndex:0]).sportName;
+    strImageProfile = [strImageProfile lowercaseString];
+    
+    imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageProfile]];
+    
     int dynamicY = lblAge.frame.origin.y;
     for(int i=0; i<user.arrayPreferredSports.count; i++)
     {
-        imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",((Sport*)[user.arrayPreferredSports objectAtIndex:0]).sportName]];
+        
         
         UIView *viewSport = [[UIView alloc]init];
         
@@ -138,7 +149,18 @@
 
 - (IBAction)clkFav:(id)sender {
     
-    [btnFav setImage:[UIImage imageNamed:@"favOn.png"] forState:UIControlStateNormal];
+    if (isFavourite)
+    {
+         [btnFav setImage:[UIImage imageNamed:@"fav.png"] forState:UIControlStateNormal];
+        isFavourite = false;
+    }
+    else
+    {
+         [btnFav setImage:[UIImage imageNamed:@"favOn.png"] forState:UIControlStateNormal];
+        isFavourite = true;
+    }
+    
+   
 }
 
 - (IBAction)clkSlider:(id)sender {
