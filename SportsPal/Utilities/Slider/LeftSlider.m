@@ -8,6 +8,7 @@
 
 #import "LeftSlider.h"
 #import "LeftSliderCell.h"
+#import "NotificationsViewController.h"
 
 //#import "Appointments.h"
 //#import "History.h"
@@ -28,12 +29,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    arrMenuItems = [NSArray arrayWithObjects:@"Home",@"Share",@"Settings",
+    arrMenuItems = [NSArray arrayWithObjects:@"Home",@"Share",@"Notifications",@"Settings",
                     @"Logout",nil];
     
     
     arrMenuItemsImages = [NSArray arrayWithObjects:@"left_menu_home_icon.png",
                           @"left_menu_share_icon.png",
+                          @"left_menu_setting_icon.png",
                           @"left_menu_setting_icon.png",
                           @"left_menu_logout_icon.png",
                           nil];
@@ -178,7 +180,11 @@
             // executes after the user selects something
         }];
     }
-    
+    else if ([keyName caseInsensitiveCompare:@"Notifications"] == NSOrderedSame)
+    {
+        [kAppDelegate.container.centerViewController pushViewController:[NotificationsViewController new] animated:NO];
+        
+    }
 
     else if ([keyName caseInsensitiveCompare:@"Settings"] == NSOrderedSame)
     {

@@ -149,6 +149,7 @@
     
     if(selectedTeam)
     {
+        [btnMenu setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
         lblTittle.text = @"TEAM DETAILS";
         btnSave.hidden = YES;
         segmentcotrol.hidden = YES;
@@ -303,7 +304,10 @@
 
 
 - (IBAction)clkSlider:(id)sender {
-    [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
+    if(selectedTeam)
+        [self.navigationController popViewControllerAnimated:YES];
+    else
+        [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
 }
 
 - (IBAction)clkButton:(id)sender {

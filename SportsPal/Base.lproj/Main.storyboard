@@ -2020,6 +2020,7 @@
                         <outlet property="btnChallenge" destination="zef-26-p03" id="VVR-kv-sQB"/>
                         <outlet property="btnChat" destination="bAb-Uf-cOq" id="Mgh-aV-y2B"/>
                         <outlet property="btnFav" destination="3J4-ff-osZ" id="beD-lb-eTL"/>
+                        <outlet property="btnMenu" destination="ZJb-QM-jMB" id="ogZ-Pc-Wvf"/>
                         <outlet property="contentView" destination="ZvJ-kV-c65" id="p4s-ur-XqQ"/>
                         <outlet property="imageProfile" destination="QuH-zr-uau" id="Xkv-ae-ayE"/>
                         <outlet property="imgRating" destination="KTL-zI-Rg3" id="rSb-lH-uxe"/>

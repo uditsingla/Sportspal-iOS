@@ -230,7 +230,12 @@
                     //login now
                     [kAppDelegate.objLoader show];
                     
-                    NSDictionary *loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtEmail.text, @"email", txtPassword.text, @"password", @"ios", @"device_type", deviceToken, @"device_token", nil];
+                    NSDictionary *loginInfo;
+                    if(fbDetails)
+                        loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtEmail.text, @"email", [fbDetails valueForKey:@"id"], @"social_id", @"ios", @"device_type", deviceToken, @"device_token", nil];
+                    
+                    else
+                        loginInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtEmail.text, @"email", txtPassword.text, @"password", @"ios", @"device_type", deviceToken, @"device_token", nil];
                     
                     [model_manager.loginManager userLogin:loginInfo completion:^(NSDictionary *dictJson, NSError *error) {
                         [kAppDelegate.objLoader hide];

@@ -25,6 +25,9 @@
     
     __weak IBOutlet UIView *contentView;
     
+    __weak IBOutlet UIButton *btnMenu;
+
+    
     BOOL isFavourite;
     
     UITextView *txtViewDescription;
@@ -53,7 +56,7 @@
     }
     else
     {
-        
+        [btnMenu setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     }
     
     lblName.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
@@ -243,7 +246,10 @@
 }
 
 - (IBAction)clkSlider:(id)sender {
-    [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
+    if(![[NSString stringWithFormat:@"%i",[user.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
+        [self.navigationController popViewControllerAnimated:YES];
+    else
+        [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
 }
 
 - (IBAction)clkChallenge:(id)sender {

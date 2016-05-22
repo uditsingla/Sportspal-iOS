@@ -245,6 +245,7 @@
 		46F62D3A1C93626C00A61B47 /* SignUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D391C93626C00A61B47 /* SignUp.m */; };
 		46F62D3D1C93627800A61B47 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3C1C93627800A61B47 /* Home.m */; };
 		46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3F1C9362F600A61B47 /* TableViewTemplate.m */; };
+		7C6508F91CF202B400D09B16 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6508F81CF202B400D09B16 /* NotificationsViewController.m */; };
 		A610D89A1CD7D3F0008DED71 /* map_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8961CD7D3F0008DED71 /* map_location@2x.png */; };
 		A610D89B1CD7D3F0008DED71 /* map_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8971CD7D3F0008DED71 /* map_location@3x.png */; };
 		A610D89C1CD7D3F0008DED71 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8981CD7D3F0008DED71 /* marker@2x.png */; };
@@ -546,6 +547,8 @@
 		46F62D541C95480500A61B47 /* SportsPal-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SportsPal-Prefix.pch"; sourceTree = "<group>"; };
 		500956D2DC23F6AC86AB97D5 /* libPods-SportsPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SportsPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AEED532CDD94B31B9075DA3 /* Pods-SportsPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.release.xcconfig"; sourceTree = "<group>"; };
+		7C6508F71CF202B400D09B16 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
+		7C6508F81CF202B400D09B16 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		A610D8961CD7D3F0008DED71 /* map_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@2x.png"; sourceTree = "<group>"; };
 		A610D8971CD7D3F0008DED71 /* map_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@3x.png"; sourceTree = "<group>"; };
 		A610D8981CD7D3F0008DED71 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
@@ -1112,6 +1115,7 @@
 		46F62CEA1C90ABA900A61B47 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7C6508F61CF2028C00D09B16 /* NotificationScreen */,
 				A6C9538C1CD68D840046F1A9 /* SetLocationScreen */,
 				46D7CA151CD6305500DF8B35 /* ViewController */,
 				46F161E41CC6A62100F36EE9 /* TableviewCells */,
@@ -1150,6 +1154,15 @@
 				500956D2DC23F6AC86AB97D5 /* libPods-SportsPal.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C6508F61CF2028C00D09B16 /* NotificationScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7C6508F71CF202B400D09B16 /* NotificationsViewController.h */,
+				7C6508F81CF202B400D09B16 /* NotificationsViewController.m */,
+			);
+			path = NotificationScreen;
 			sourceTree = "<group>";
 		};
 		9634FAC9370C4C7252BFDA71 /* Pods */ = {
@@ -1651,6 +1664,7 @@
 				A6604E1B1CE25E0600F8C7AF /* AFHTTPRequestOperationManager.m in Sources */,
 				46F315741CC168BC00AAA588 /* LeftSlider.m in Sources */,
 				46F62D3A1C93626C00A61B47 /* SignUp.m in Sources */,
+				7C6508F91CF202B400D09B16 /* NotificationsViewController.m in Sources */,
 				A6C953861CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				46F161ED1CC6A77900F36EE9 /* TB_Play_Teams.m in Sources */,
 				46F62CCE1C90901400A61B47 /* main.m in Sources */,

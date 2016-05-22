@@ -10,7 +10,7 @@
 
 @implementation TeamManager
 
-@synthesize arrayTeams,arraySearchedTeams;
+@synthesize arrayTeams,arraySearchedTeams,arrayTeamInvites;
 
 - (id)init
 {
@@ -18,6 +18,7 @@
     if (self) {
         arrayTeams = [NSMutableArray new];
         arraySearchedTeams = [NSMutableArray new];
+        arrayTeamInvites = [NSMutableArray new];
     }
     return self;
 }
@@ -155,6 +156,53 @@
                      team.creator.email = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"email"];
                      
                      [arraySearchedTeams addObject:team];
+                 }
+                 
+             }
+             
+             if(completionBlock)
+                 completionBlock(json,nil);
+         }
+         else if(completionBlock)
+             completionBlock(nil,nil);
+         
+         NSLog(@"Here comes the json %@",json);
+     } ];
+}
+
+-(void)getTeamInvitation:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
+{
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/user_team_request/%@",model_manager.profileManager.owner.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+     {
+         
+         if(statusCode==200)
+         {
+             if([[json valueForKey:@"success"] boolValue])
+             {
+                 NSArray *arrTeams = [json valueForKey:@"message"];
+                 [arrayTeamInvites removeAllObjects];
+                 
+                 for (int i=0; i < arrTeams.count; i++) {
+                     
+                     Team *team = [Team new];
+                     team.teamID = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"id"];
+                     team.sportID = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport_id"];
+                     team.sportName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"];
+                     team.teamName = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_name"];
+                     team.memberLimit = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"members_limit"] intValue];
+                     team.geoLocation = CLLocationCoordinate2DMake([[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"latitude"] doubleValue], [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"longitude"] doubleValue]);
+                     team.address = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"address"];
+                     if([[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_type"] isEqualToString:@"private"])
+                         team.teamType = TeamTypePrivate;
+                     else
+                         team.teamType = TeamTypeCorporate;
+                     
+                     team.creator.userID = [NSString stringWithFormat:@"%i",[[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"creator_id"] intValue]];
+                     team.creator.firstName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"first_name"];
+                     team.creator.lastName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"last_name"];
+                     team.creator.email = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"email"];
+                     
+                     [arrayTeamInvites addObject:team];
                  }
                  
              }
