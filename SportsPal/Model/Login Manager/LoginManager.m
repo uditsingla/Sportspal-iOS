@@ -9,7 +9,6 @@
 #import "LoginManager.h"
 //#import "ProfileManager.h"
 #import "AppDelegate.h"
-//#import <GooglePlus/GooglePlus.h>
 
 
 @implementation LoginManager
@@ -42,6 +41,27 @@
                 model_manager.profileManager.owner.gender = [[json valueForKey:@"message"] valueForKey:@"gender"];
                 model_manager.profileManager.owner.profilePic = [[json valueForKey:@"message"] valueForKey:@"image"];
                 model_manager.profileManager.owner.email = [[json valueForKey:@"message"] valueForKey:@"email"];
+                
+                if([[[json valueForKey:@"message"] valueForKey:@"latitude"] doubleValue] && [[[json valueForKey:@"message"] valueForKey:@"longitude"] doubleValue])
+                {
+                    kAppDelegate.myLocation = [[CLLocation alloc] initWithLatitude:[[[json valueForKey:@"message"] valueForKey:@"latitude"] doubleValue] longitude:[[[json valueForKey:@"message"] valueForKey:@"longitude"] doubleValue]];
+                    
+                    [SVGeocoder reverseGeocode:kAppDelegate.myLocation.coordinate
+                                    completion:^(NSArray *placemarks, NSHTTPURLResponse *urlResponse, NSError *error) {
+                                        
+                                        if(error)
+                                        {
+                                            
+                                        }
+                                        else if([placemarks count]>0)
+                                        {
+                                            model_manager.profileManager.svp_LocationInfo = [placemarks firstObject];
+                                            NSLog(@"Dictonary for google location = %@", [placemarks firstObject]);
+                                            
+                                        }
+                                        
+                                    }];
+                }
                 
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"AutoLogin"];
                 
@@ -127,6 +147,11 @@
                  [model_manager.sportsManager resetModelData];
                  [model_manager.playerManager resetModelData];
                  [model_manager.teamManager resetModelData];
+                 
+                 
+                 for (NSHTTPCookie *value in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies) {
+                     [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:value];
+                 }
              }
              completionBlock(json,nil);
          }

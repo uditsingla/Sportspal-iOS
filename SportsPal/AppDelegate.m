@@ -21,7 +21,8 @@
 @implementation AppDelegate
 @synthesize container;
 @synthesize objLoader;
-@synthesize location_Manager,myLocation;
+@synthesize location_Manager,myLocation,tempLocation;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -127,7 +128,10 @@
     if (locations == nil)
         return;
     
-    myLocation = [locations objectAtIndex:0];
+    if(myLocation==nil)
+        myLocation = [locations objectAtIndex:0];
+    
+    tempLocation = [locations objectAtIndex:0];
        
     // Stop Location Manager
     [location_Manager stopUpdatingLocation];

@@ -101,7 +101,9 @@
     if(fbDetails)
     {
         txtPassword.enabled = NO;
+        txtPassword.hidden = YES;
         txtRePassword.enabled = NO;
+        txtRePassword.hidden = YES;
         
         if([fbDetails valueForKey:@"email"])
             txtEmail.text = [fbDetails valueForKey:@"email"];
@@ -181,7 +183,7 @@
     {
         [self showAlert:@"Please enter same password"];
     }
-    else if([[bntBirthdate.titleLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+    else if([[strDOB stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
     {
         [self showAlert:@"Please enter date of birth"];
     }

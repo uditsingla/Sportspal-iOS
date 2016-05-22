@@ -360,6 +360,23 @@
 }
 
 - (IBAction)clkCurrentLocation:(id)sender {
+    
+    [SVGeocoder reverseGeocode:kAppDelegate.tempLocation.coordinate
+                    completion:^(NSArray *placemarks, NSHTTPURLResponse *urlResponse, NSError *error) {
+                        
+                        if(error)
+                        {
+                            
+                        }
+                        else if([placemarks count]>0)
+                        {
+                            model_manager.profileManager.svp_LocationInfo = [placemarks firstObject];
+                            NSLog(@"Dictonary for google location = %@", [placemarks firstObject]);
+                            kAppDelegate.myLocation = kAppDelegate.tempLocation;
+                            [btnLocation setTitle:model_manager.profileManager.svp_LocationInfo.formattedAddress forState:UIControlStateNormal];
+                        }
+                        
+                    }];
 }
 
 -(void)selectDateTime:(id)sender

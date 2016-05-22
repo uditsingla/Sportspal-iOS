@@ -27,6 +27,8 @@
 
 @property(nonatomic,strong) CLLocationManager *location_Manager;
 @property(nonatomic,strong) CLLocation *myLocation;
+@property(nonatomic,strong) CLLocation *tempLocation;
+
 
 @end
 

@@ -1,10 +1,12 @@
 
 #import "User.h"
 #import "Sport.h"
+#import "SVGeocoder.h"
+
 
 @implementation User
 
-@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,bio,arrayPreferredSports,arrayGames,arrayTeams,teamStatus;
+@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,bio,arrayPreferredSports,arrayGames,arrayTeams,teamStatus,teamRequestID;
 
 - (id)init
 {
@@ -21,6 +23,7 @@
         email = @"";
         bio = @"";
         teamStatus = NO;
+        teamRequestID = @"";
         arrayPreferredSports = [NSMutableArray new];
         arrayGames = [NSMutableArray new];
         arrayTeams = [NSMutableArray new];
@@ -45,6 +48,7 @@
         [copy setDob:self.dob];
         [copy setEmail:self.email];
         [copy setTeamStatus:self.teamStatus];
+        [copy setTeamRequestID:self.teamRequestID];
         
         [copy setArrayPreferredSports:self.arrayPreferredSports];
         [copy setArrayGames:self.arrayGames];
@@ -71,6 +75,27 @@
                      self.email = [[json valueForKey:@"message"] valueForKey:@"email"];
                      self.dob = [[json valueForKey:@"message"] valueForKey:@"dob"];
                     self.bio = [[json valueForKey:@"message"] valueForKey:@"bio"];
+                 
+                    if([[[json valueForKey:@"message"] valueForKey:@"latitude"] doubleValue] && [[[json valueForKey:@"message"] valueForKey:@"longitude"] doubleValue])
+                    {
+                        kAppDelegate.myLocation = [[CLLocation alloc] initWithLatitude:[[[json valueForKey:@"message"] valueForKey:@"latitude"] doubleValue] longitude:[[[json valueForKey:@"message"] valueForKey:@"longitude"] doubleValue]];
+                        
+                        [SVGeocoder reverseGeocode:kAppDelegate.myLocation.coordinate
+                                        completion:^(NSArray *placemarks, NSHTTPURLResponse *urlResponse, NSError *error) {
+                                            
+                                            if(error)
+                                            {
+                                                
+                                            }
+                                            else if([placemarks count]>0)
+                                            {
+                                                model_manager.profileManager.svp_LocationInfo = [placemarks firstObject];
+                                                NSLog(@"Dictonary for google location = %@", [placemarks firstObject]);
+                                                
+                                            }
+                                            
+                                        }];
+                    }
                      
                      NSArray *arrSports = [[json valueForKey:@"message"] valueForKey:@"sports_preferences"];
                      if(arrSports.count>0)

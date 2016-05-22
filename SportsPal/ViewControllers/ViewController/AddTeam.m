@@ -48,6 +48,7 @@
     
     NSMutableArray *arrTeamPlayers,*arrSearchResult;
     
+    NSMutableArray *arrayPrefferedSportsUsers;
     
     
     __weak IBOutlet NSLayoutConstraint *contentviewHeight;
@@ -196,6 +197,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    if(selectedTeam==nil)
+    {
+        [arrTeamPlayers removeAllObjects];
+        [tblTeam reloadData];
+    }
     
     [[NSUserDefaults standardUserDefaults]setValue:@"" forKey:@"isLocation"];
 
@@ -209,6 +215,8 @@
     [super viewDidDisappear:YES];
     [self hideAllPickers];
     [self resetAllContent];
+    [arrTeamPlayers removeAllObjects];
+    [tblTeam reloadData];
 }
 
 -(void)createNewTeam
@@ -389,6 +397,7 @@
     [btnTeamType setTitle:@"TEAM TYPE" forState:UIControlStateNormal];
     [btnSportName setTitle:@"TEAM SPORT" forState:UIControlStateNormal];
 
+    lblteamCurrentMembers.text = @"MEMBERS (0)";
 }
 
 #pragma mark PickerView DataSource
@@ -515,6 +524,18 @@
         imgSelectedImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageName]];
         
         [btnSportName setTitle:strSportName forState:UIControlStateNormal];
+        
+        //call the search api for users with same sport preference in nearby region
+        
+        [model_manager.playerManager getNearByUsersWithSportID:strSportID completion:^(NSMutableArray *arrayUsers, NSError *error) {
+            if(!error)
+            {
+                if(arrayUsers.count>0)
+                {
+                    arrayPrefferedSportsUsers = arrayUsers;
+                }
+            }
+        }];
     }
     
     else if (pickerselected == teamtype)
@@ -571,8 +592,9 @@
         cell.imgProfile.layer.cornerRadius = 15;
         cell.imgProfile.layer.masksToBounds = YES;
         
-        
-        
+        cell.lblName.textAlignment = NSTextAlignmentLeft;
+        cell.backgroundColor = [UIColor clearColor];
+
         
         if (indexPath.row == (arrTeamPlayers.count)) {
             if(selectedTeam)
@@ -580,13 +602,38 @@
                 cell.imgProfile.image = nil;
                 if([selectedTeam.creator.userID isEqualToString:model_manager.profileManager.owner.userID])
                     cell.lblName.text =@"";
+                
+                else if(selectedTeam.arrayMembers.count>0)
+                {
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
+                    NSArray *filteredArray = [selectedTeam.arrayMembers filteredArrayUsingPredicate:predicate];
+                    
+                    
+                    if(filteredArray.count>0) {
+                        User *filteredResult = (User*)[filteredArray objectAtIndex:0];
+                        if(!filteredResult.teamStatus)
+                        {
+                            cell.lblName.text = @"JOIN TEAM";
+                            cell.lblName.textAlignment = NSTextAlignmentCenter;
+                            cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
+
+                        }
+                        else
+                            cell.lblName.text = @"";
+
+                    }
+                    else
+                        cell.lblName.text =@"";
+                }
                 else
-                    cell.lblName.text = @"";//@"Join Team";
+                    cell.lblName.text =@"";
+
             }
             else
             {
                 cell.imgProfile.image = [UIImage imageNamed:@"newteamplayer.png"];
                 cell.lblName.text = @"Add team member";
+                cell.backgroundColor = [UIColor clearColor];
             }
         }
         else{
@@ -654,14 +701,20 @@
         NSLog(@"Search Result Selected");
         User *selectedUser = [((User*)[arrSearchResult objectAtIndex:indexPath.row]) copy];
         
-        [arrTeamPlayers addObject:selectedUser];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", selectedUser.userID];
+        NSArray *filteredArray = [arrTeamPlayers filteredArrayUsingPredicate:predicate];
         
-        int heightContent = ((int)arrTeamPlayers.count+1)*44;
-        contentviewHeight.constant = 185+heightContent;
-        
-        lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
-        
-        [tblTeam reloadData];
+        if(filteredArray.count==0) {
+            
+            [arrTeamPlayers addObject:selectedUser];
+            
+            int heightContent = ((int)arrTeamPlayers.count+1)*44;
+            contentviewHeight.constant = 185+heightContent;
+            
+            lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+            
+            [tblTeam reloadData];
+        }
         
         btnMenu.hidden = NO;
         lblTittle.hidden = NO;
@@ -671,6 +724,7 @@
         tblSearchResult.hidden = YES;
         [arrSearchResult removeAllObjects];
         [tblSearchResult reloadData];
+        [searchbar resignFirstResponder];
     }
     else{
         if (indexPath.row == (arrTeamPlayers.count)) {
@@ -678,9 +732,51 @@
             if(selectedTeam)
             {
                 NSLog(@"Join/Leave called");
+                if(selectedTeam.arrayMembers.count>0)
+                {
+                    
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
+                    NSArray *filteredArray = [selectedTeam.arrayMembers filteredArrayUsingPredicate:predicate];
+                    
+                    if(filteredArray.count>0) {
+                        User *filteredResult = (User*)[filteredArray objectAtIndex:0];
+                        
+                        [kAppDelegate.objLoader show];
+                        [selectedTeam acceptTeamRequestWithRequestID:filteredResult.teamRequestID completion:^(NSDictionary *dictJson, NSError *error) {
+                            
+                            [selectedTeam getTeamDetails:^(NSDictionary *dictJson, NSError *error) {
+                                [kAppDelegate.objLoader hide];
+                                if(!error)
+                                {
+                                    if([[dictJson valueForKey:@"success"] boolValue])
+                                    {
+                                        [arrTeamPlayers removeAllObjects];
+                                        [arrTeamPlayers addObjectsFromArray:selectedTeam.arrayMembers];
+                                        int heightContent = ((int)arrTeamPlayers.count+1)*44;
+                                        contentviewHeight.constant = 185+heightContent;
+                                        [tblTeam reloadData];
+                                        
+                                        lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+                                    }
+                                    else
+                                    {
+                                        [self showAlert:[dictJson valueForKey:@"message"]];
+                                    }
+                                }
+                            }];
+                        }];
+                    }
+                }
+                
             }
             else
             {
+                if(strSportID==nil)
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select team sport first" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alert show];
+                    return;
+                }
                 NSLog(@"Add new player called");
                 
                 btnMenu.hidden = YES;
@@ -698,15 +794,36 @@
 
 
 #pragma mark - Searchbar Delegates
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar;
+{
+    [arrSearchResult removeAllObjects];
+    arrSearchResult = [NSMutableArray arrayWithArray:arrayPrefferedSportsUsers];
+    
+    [tblSearchResult reloadData];
+    if(arrSearchResult.count>0)
+    {
+        tblSearchResult.hidden = NO;
+        [self.view bringSubviewToFront:tblSearchResult];
+    }
+    else
+    {
+        tblSearchResult.hidden = YES;
+    }
+}
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     
-    if ([[searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
+    if ([[searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
     {
         tblSearchResult.hidden = YES;
         [arrSearchResult removeAllObjects];
         [tblSearchResult reloadData];
+    }
+    
+    else if(searchBar.text.length>0)
+    {
+        [self updateSearchResults];
     }
     
     /*
@@ -746,41 +863,41 @@
     [searchBar resignFirstResponder];
     
     //search players
-    if(searchBar.text.length>0)
-    {
-        [kAppDelegate.objLoader show];
-        [model_manager.profileManager searchUsersWithSearchTerm:searchBar.text completion:^(NSDictionary *dictJson,NSMutableArray *users, NSError *error)
-         {
-             
-             [kAppDelegate.objLoader hide];
-             if(!error)
-             {
-                 if([[dictJson valueForKey:@"success"] boolValue])
-                 {
-                     if(users.count>0)
-                     {
-                         arrSearchResult = users;
-                         [tblSearchResult reloadData];
-                         tblSearchResult.hidden = NO;
-                         [self.view bringSubviewToFront:tblSearchResult];
-                     }
-                 }
-                 else
-                 {
-                     [self showAlert:[dictJson valueForKey:@"message"]];
-                     [arrSearchResult removeAllObjects];
-                     [tblSearchResult reloadData];
-                     tblSearchResult.hidden = YES;
-                 }
-             }
-         }];
-    }
-    else
-    {
-        [arrSearchResult removeAllObjects];
-        [tblSearchResult reloadData];
-        tblSearchResult.hidden = YES;
-    }
+//    if(searchBar.text.length>0)
+//    {
+//        [kAppDelegate.objLoader show];
+//        [model_manager.profileManager searchUsersWithSearchTerm:searchBar.text completion:^(NSDictionary *dictJson,NSMutableArray *users, NSError *error)
+//         {
+//             
+//             [kAppDelegate.objLoader hide];
+//             if(!error)
+//             {
+//                 if([[dictJson valueForKey:@"success"] boolValue])
+//                 {
+//                     if(users.count>0)
+//                     {
+//                         arrSearchResult = users;
+//                         [tblSearchResult reloadData];
+//                         tblSearchResult.hidden = NO;
+//                         [self.view bringSubviewToFront:tblSearchResult];
+//                     }
+//                 }
+//                 else
+//                 {
+//                     [self showAlert:[dictJson valueForKey:@"message"]];
+//                     [arrSearchResult removeAllObjects];
+//                     [tblSearchResult reloadData];
+//                     tblSearchResult.hidden = YES;
+//                 }
+//             }
+//         }];
+//    }
+//    else
+//    {
+//        [arrSearchResult removeAllObjects];
+//        [tblSearchResult reloadData];
+//        tblSearchResult.hidden = YES;
+//    }
 
 }
 
@@ -810,6 +927,28 @@
     
     [searchbar resignFirstResponder];
 }
+
+-(void)updateSearchResults
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"fullName contains[cd] %@",searchbar.text];
+    
+    NSArray *filteredArray = [arrayPrefferedSportsUsers filteredArrayUsingPredicate:predicate];
+    
+    [arrSearchResult removeAllObjects];
+    arrSearchResult = [filteredArray mutableCopy];
+    
+    [tblSearchResult reloadData];
+    if(arrSearchResult.count>0)
+    {
+        tblSearchResult.hidden = NO;
+        [self.view bringSubviewToFront:tblSearchResult];
+    }
+    else
+    {
+        tblSearchResult.hidden = YES;
+    }
+}
+
 /*
 #pragma mark - Navigation
 

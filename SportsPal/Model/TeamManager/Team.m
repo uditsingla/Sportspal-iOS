@@ -64,7 +64,7 @@
                  for (int i=0; i < arrUsers.count; i++) {
                      
                      User *user = [User new];
-                     user.userID = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"user_id"];
+                     user.userID = [NSString stringWithFormat:@"%i", [[[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"id"] intValue]];
                      user.firstName = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"first_name"];
                      user.lastName = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"last_name"];
                      user.gender = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"gender"];
@@ -73,6 +73,7 @@
                      user.dob = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"dob"];
                      
                      user.teamStatus = [[[arrUsers objectAtIndex:i] valueForKey:@"status"] boolValue];
+                     user.teamRequestID = [[arrUsers objectAtIndex:i] valueForKey:@"id"];
                      [arrayMembers addObject:user];
                  }
                  
@@ -90,13 +91,13 @@
      } ];
 }
 
--(void)acceptTeamRequest:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
+-(void)acceptTeamRequestWithRequestID:(NSString*)requestID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
     NSMutableDictionary *dictParam = [NSMutableDictionary new];
     
     [dictParam setValue:model_manager.profileManager.owner.userID forKey:@"user_id"];
     
-    [dictParam setValue:model_manager.profileManager.owner.userID forKey:@"request_id"];
+    [dictParam setValue:requestID forKey:@"request_id"];
     
     [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"status"];
     
@@ -120,13 +121,13 @@
      } ];
 }
 
--(void)declineTeamRequest:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
+-(void)declineTeamRequestWithRequestID:(NSString*)requestID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
     NSMutableDictionary *dictParam = [NSMutableDictionary new];
     
 //    [dictParam setValue:model_manager.profileManager.owner.userID forKey:@"user_id"];
     
-    [dictParam setValue:model_manager.profileManager.owner.userID forKey:@"request_id"];
+    [dictParam setValue:requestID forKey:@"request_id"];
     
     [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/request/%@",self.teamID] requestType:RequestTypeDELETE params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
      {

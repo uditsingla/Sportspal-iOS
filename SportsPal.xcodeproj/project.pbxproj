@@ -245,7 +245,6 @@
 		46F62D3A1C93626C00A61B47 /* SignUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D391C93626C00A61B47 /* SignUp.m */; };
 		46F62D3D1C93627800A61B47 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3C1C93627800A61B47 /* Home.m */; };
 		46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3F1C9362F600A61B47 /* TableViewTemplate.m */; };
-		4785B6D8446AC7646ECB1EE5 /* libPods-SportsPal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */; };
 		A610D89A1CD7D3F0008DED71 /* map_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8961CD7D3F0008DED71 /* map_location@2x.png */; };
 		A610D89B1CD7D3F0008DED71 /* map_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8971CD7D3F0008DED71 /* map_location@3x.png */; };
 		A610D89C1CD7D3F0008DED71 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8981CD7D3F0008DED71 /* marker@2x.png */; };
@@ -267,10 +266,11 @@
 		A6C9538A1CD68D650046F1A9 /* SVGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953831CD68D650046F1A9 /* SVGeocoder.m */; };
 		A6C9538B1CD68D650046F1A9 /* SVPlacemark.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C953851CD68D650046F1A9 /* SVPlacemark.m */; };
 		A6C9538F1CD68D840046F1A9 /* SetLocationScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C9538E1CD68D840046F1A9 /* SetLocationScreen.m */; };
+		C1F14E88203092F5504ADAC2 /* libPods-SportsPal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 500956D2DC23F6AC86AB97D5 /* libPods-SportsPal.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2DFD5DE52734736C4BB3FDD2 /* Pods-SportsPal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.debug.xcconfig"; sourceTree = "<group>"; };
+		32CBE585C948C4F6396B1C89 /* Pods-SportsPal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.debug.xcconfig"; sourceTree = "<group>"; };
 		46198E251CE25C67009704AF /* badminton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "badminton@2x.png"; sourceTree = "<group>"; };
 		46198E261CE25C67009704AF /* basketball@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basketball@2x.png"; sourceTree = "<group>"; };
 		46198E271CE25C67009704AF /* cricket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cricket@2x.png"; sourceTree = "<group>"; };
@@ -544,7 +544,8 @@
 		46F62D3E1C9362F600A61B47 /* TableViewTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewTemplate.h; sourceTree = "<group>"; };
 		46F62D3F1C9362F600A61B47 /* TableViewTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewTemplate.m; sourceTree = "<group>"; };
 		46F62D541C95480500A61B47 /* SportsPal-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SportsPal-Prefix.pch"; sourceTree = "<group>"; };
-		5ED572898767DCE339BA8964 /* Pods-SportsPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.release.xcconfig"; sourceTree = "<group>"; };
+		500956D2DC23F6AC86AB97D5 /* libPods-SportsPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SportsPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AEED532CDD94B31B9075DA3 /* Pods-SportsPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.release.xcconfig"; sourceTree = "<group>"; };
 		A610D8961CD7D3F0008DED71 /* map_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@2x.png"; sourceTree = "<group>"; };
 		A610D8971CD7D3F0008DED71 /* map_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@3x.png"; sourceTree = "<group>"; };
 		A610D8981CD7D3F0008DED71 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
@@ -583,7 +584,6 @@
 		A6C953851CD68D650046F1A9 /* SVPlacemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVPlacemark.m; sourceTree = "<group>"; };
 		A6C9538D1CD68D840046F1A9 /* SetLocationScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLocationScreen.h; sourceTree = "<group>"; };
 		A6C9538E1CD68D840046F1A9 /* SetLocationScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLocationScreen.m; sourceTree = "<group>"; };
-		DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SportsPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -591,7 +591,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4785B6D8446AC7646ECB1EE5 /* libPods-SportsPal.a in Frameworks */,
+				C1F14E88203092F5504ADAC2 /* libPods-SportsPal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,8 +1034,8 @@
 			children = (
 				46F62CCB1C90901400A61B47 /* SportsPal */,
 				46F62CCA1C90901400A61B47 /* Products */,
-				F859CE6D968A25B51939F7FE /* Pods */,
-				8ECB24146888843D9CC11273 /* Frameworks */,
+				9634FAC9370C4C7252BFDA71 /* Pods */,
+				5691E5266E8D184595424149 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1144,12 +1144,21 @@
 			path = 3rdPartyLib;
 			sourceTree = "<group>";
 		};
-		8ECB24146888843D9CC11273 /* Frameworks */ = {
+		5691E5266E8D184595424149 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DBF4059221E049B1E34B8A5A /* libPods-SportsPal.a */,
+				500956D2DC23F6AC86AB97D5 /* libPods-SportsPal.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9634FAC9370C4C7252BFDA71 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				32CBE585C948C4F6396B1C89 /* Pods-SportsPal.debug.xcconfig */,
+				5AEED532CDD94B31B9075DA3 /* Pods-SportsPal.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		A6604E151CE25E0600F8C7AF /* AFNetworkingManager */ = {
@@ -1253,15 +1262,6 @@
 			path = SetLocation;
 			sourceTree = "<group>";
 		};
-		F859CE6D968A25B51939F7FE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2DFD5DE52734736C4BB3FDD2 /* Pods-SportsPal.debug.xcconfig */,
-				5ED572898767DCE339BA8964 /* Pods-SportsPal.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1269,13 +1269,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46F62CE31C90901400A61B47 /* Build configuration list for PBXNativeTarget "SportsPal" */;
 			buildPhases = (
-				968B40D0DF9B9F6457EC699D /* Check Pods Manifest.lock */,
+				4EFC13BA130293738C2A4B8A /* 📦 Check Pods Manifest.lock */,
 				46F62CC51C90901400A61B47 /* Sources */,
 				46F62CC61C90901400A61B47 /* Frameworks */,
 				46F62CC71C90901400A61B47 /* Resources */,
-				51D2A06C72157F81280FA3B5 /* Embed Pods Frameworks */,
-				D837880D325DC913FF1B7431 /* Copy Pods Resources */,
 				46F62CFD1C90CCEE00A61B47 /* ShellScript */,
+				9668E6A0820B1404DD15A5E0 /* 📦 Embed Pods Frameworks */,
+				F477B8442FA7635E36DB8A5D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1552,29 +1552,14 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 73583dfd930a228b60fa60412885273446a07914 7da3b43d48abb28c5cb47d2fcfdeb57905cb2aed8dd51e858114e2850c7957c3";
 		};
-		51D2A06C72157F81280FA3B5 /* Embed Pods Frameworks */ = {
+		4EFC13BA130293738C2A4B8A /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		968B40D0DF9B9F6457EC699D /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1582,14 +1567,29 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D837880D325DC913FF1B7431 /* Copy Pods Resources */ = {
+		9668E6A0820B1404DD15A5E0 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F477B8442FA7635E36DB8A5D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1764,7 +1764,7 @@
 		};
 		46F62CE41C90901400A61B47 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DFD5DE52734736C4BB3FDD2 /* Pods-SportsPal.debug.xcconfig */;
+			baseConfigurationReference = 32CBE585C948C4F6396B1C89 /* Pods-SportsPal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1787,7 +1787,7 @@
 		};
 		46F62CE51C90901400A61B47 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5ED572898767DCE339BA8964 /* Pods-SportsPal.release.xcconfig */;
+			baseConfigurationReference = 5AEED532CDD94B31B9075DA3 /* Pods-SportsPal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

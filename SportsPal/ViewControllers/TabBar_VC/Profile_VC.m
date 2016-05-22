@@ -60,16 +60,14 @@
     
     lblAge.text = user.dob;
     
-    NSString *strImageProfile = ((Sport*)[user.arrayPreferredSports objectAtIndex:0]).sportName;
-    strImageProfile = [strImageProfile lowercaseString];
-    
-    imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageProfile]];
-
-    
     int dynamicY = lblAge.frame.origin.y;
     for(int i=0; i<user.arrayPreferredSports.count; i++)
     {
+        NSString *strImageProfile = ((Sport*)[user.arrayPreferredSports objectAtIndex:0]).sportName;
+        strImageProfile = [strImageProfile lowercaseString];
         
+        imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageProfile]];
+
         
         UIView *viewSport = [[UIView alloc]init];
         

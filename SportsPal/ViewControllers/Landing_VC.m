@@ -16,6 +16,8 @@
     __weak IBOutlet UIImageView *imgBackground;
     NSArray *myImages;
     NSTimer *updateBCK;
+    
+    FBSDKLoginManager *login;
 }
 @end
 
@@ -46,6 +48,8 @@
         [model_manager.profileManager.owner getUserDetails:nil];
         [model_manager.profileManager.owner getPreferredSports:nil];
     }
+    
+    login = [[FBSDKLoginManager alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +60,7 @@
 #pragma mark - Click Methods
 
 - (IBAction)clk_FBlogin:(id)sender {
-    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+//    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login
      logInWithReadPermissions: @[@"public_profile",@"email"]
      fromViewController:self
@@ -140,6 +144,8 @@
              {
                  NSLog(@"Error %@",error);
              }
+             
+             [login logOut];
          }];
         
     }

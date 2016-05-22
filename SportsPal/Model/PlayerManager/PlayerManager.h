@@ -16,6 +16,8 @@
 
 -(void)getNearByUsers:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
+-(void)getNearByUsersWithSportID:(NSString *)sportID completion:(void(^)(NSMutableArray *arrayUsers, NSError *error))completionBlock;
+
 -(void)searchPlayerWithSearchTerm:(NSString*)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)resetModelData;
