@@ -129,6 +129,10 @@
     if (strSportName == nil) {
         imgSelectedImage.hidden = YES;
     }
+    
+    self.view.backgroundColor = kBlackColor;
+    magicView.backgroundColor = kBlackColor;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated

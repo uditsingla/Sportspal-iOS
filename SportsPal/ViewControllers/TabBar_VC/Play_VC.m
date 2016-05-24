@@ -57,13 +57,13 @@
                          action:@selector(clkSegment:)
                forControlEvents:UIControlEventValueChanged];
     
-    //arrPlayers = [NSMutableArray arrayWithObjects:@"Player 1 ",@"Player 2",@"Player 3",@"Player 4", nil];
+
     arrPlayers = model_manager.playerManager.arrayPlayers;
     
-    //arrSports = [NSMutableArray arrayWithObjects:@"Sports 1 ",@"Sports 2",@"Sports 3",@"Sports 4", nil];
+   
     arrSports = model_manager.sportsManager.arrayGames;
     
-    //arrTeams =[NSMutableArray arrayWithObjects:@"Team 1 ",@"Team 2",@"Team 3",@"Team 4", nil];
+
     arrTeams = model_manager.teamManager.arrayTeams;
     
     arrSearchResult = [NSMutableArray new];
@@ -78,7 +78,11 @@
     
     [super viewDidLoad];
     
-    searchbar.barTintColor = [UIColor blackColor];
+    self.view.backgroundColor = kBlackColor;
+    searchbar.barTintColor = kBlackColor;
+    tblPlayers.backgroundColor = kBlackColor;
+    tblSports.backgroundColor = kBlackColor;
+    tblTeams.backgroundColor = kBlackColor;
 
     txfSearchField = [searchbar valueForKey:@"_searchField"];
     txfSearchField.backgroundColor = [UIColor blackColor];

@@ -53,7 +53,7 @@
 
 #define OrangeColor  [UIColor colorWithRed:248/255.00 green:123/255.00 blue:1/255.00 alpha:1];
 
-#define BlackBackground  [UIColor colorWithRed:39/255.00 green:39/255.00 blue:39/255.00 alpha:1];
+#define kBlackColor  [UIColor colorWithRed:33/255.00 green:33/255.00 blue:33/255.00 alpha:1];
 
 #define Other  [UIColor colorWithRed:34/255.00 green:36/255.00 blue:85/255.00 alpha:1];
 

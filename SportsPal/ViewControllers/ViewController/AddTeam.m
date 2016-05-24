@@ -91,6 +91,13 @@
     tblSearchResult.dataSource = self;
     tblSearchResult.delegate = self;
     
+    self.view.backgroundColor = kBlackColor;
+    tblTeam.backgroundColor = kBlackColor;
+    //searchbar.backgroundColor = kBlackColor;
+    
+    searchbar.tintColor = [UIColor redColor];
+
+    
     //
     toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
     [toolBar setBarStyle:UIBarStyleBlackOpaque];
@@ -192,7 +199,9 @@
             }
         }];
     }
-    
+    searchbar.tintColor = kBlackColor;
+    searchbar.backgroundColor = kBlackColor;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

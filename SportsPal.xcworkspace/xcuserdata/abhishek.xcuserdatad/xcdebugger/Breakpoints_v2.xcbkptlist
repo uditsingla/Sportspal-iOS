@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Add_VC.m"
-            timestampString = "485378419.529898"
+            timestampString = "485811576.474225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "466"
-            endingLineNumber = "466"
+            startingLineNumber = "470"
+            endingLineNumber = "470"
             landmarkName = "-pickerView:didSelectRow:inComponent:"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-            timestampString = "485385247.709992"
+            timestampString = "485812597.279983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
             landmarkName = "-clkProfilePic:"
             landmarkType = "5">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-            timestampString = "485385247.709992"
+            timestampString = "485812597.279983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "481"
-            endingLineNumber = "481"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
             landmarkName = "@implementation Setting_VC"
             landmarkType = "3">
          </BreakpointContent>
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Add_VC.m"
-            timestampString = "485378419.529898"
+            timestampString = "485811576.474225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "490"
-            endingLineNumber = "490"
+            startingLineNumber = "494"
+            endingLineNumber = "494"
             landmarkName = "-timeChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Add_VC.m"
-            timestampString = "485378419.529898"
+            timestampString = "485811576.474225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "494"
-            endingLineNumber = "494"
+            startingLineNumber = "498"
+            endingLineNumber = "498"
             landmarkName = "-timeChanged:"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,38 +122,6 @@
             startingLineNumber = "603"
             endingLineNumber = "603"
             landmarkName = "-searchBarCancelButtonClicked:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SportsPal/ViewControllers/TabBar_VC/Add_VC.m"
-            timestampString = "485378419.529898"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "-resetAllContent"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SportsPal/ViewControllers/TabBar_VC/Add_VC.m"
-            timestampString = "485378419.529898"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -308,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Add_VC.m"
-            timestampString = "485378419.529898"
+            timestampString = "485811576.474225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
             landmarkName = "-clkButton:"
             landmarkType = "5">
          </BreakpointContent>
@@ -345,7 +313,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "162"
             endingLineNumber = "162"
-            landmarkName = "-updateUserDetails:completion:"
+            landmarkName = "-getUserDetails:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -356,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-            timestampString = "485385247.709992"
+            timestampString = "485812597.279983"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "-clkupdate:"
             landmarkType = "5">
             <Locations>
@@ -372,11 +340,11 @@
                   moduleName = "SportsPal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/IOS/In%20House%20Projects/SportsPal/Sportspal-iOS/SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-                  timestampString = "485385520.489739"
+                  timestampString = "485813242.925243"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "247"
-                  endingLineNumber = "247"
+                  startingLineNumber = "251"
+                  endingLineNumber = "251"
                   offsetFromSymbolStart = "3537">
                </Location>
                <Location
@@ -387,11 +355,11 @@
                   moduleName = "SportsPal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/IOS/In%20House%20Projects/SportsPal/Sportspal-iOS/SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-                  timestampString = "485385520.489877"
+                  timestampString = "485813242.925465"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "248"
-                  endingLineNumber = "248"
+                  startingLineNumber = "252"
+                  endingLineNumber = "252"
                   offsetFromSymbolStart = "78">
                </Location>
             </Locations>
@@ -410,6 +378,22 @@
             startingLineNumber = "64"
             endingLineNumber = "64"
             landmarkName = "-getUserDetails:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsPal/ViewControllers/ViewController/AddTeam.m"
+            timestampString = "485813146.700555"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

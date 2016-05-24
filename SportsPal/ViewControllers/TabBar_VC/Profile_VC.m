@@ -125,6 +125,11 @@
     txtViewDescription.backgroundColor =[UIColor clearColor];
     txtViewDescription.text = user.bio;
     txtViewDescription.userInteractionEnabled = NO;
+    
+    self.view.backgroundColor = kBlackColor;
+    contentView.backgroundColor = kBlackColor;
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated

@@ -60,6 +60,9 @@
                 @"http://news.nike.com/news/hyperadapt-adaptive-lacing",
                  nil];
     
+    self.view.backgroundColor = kBlackColor;
+    tblNews.backgroundColor = kBlackColor;
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     

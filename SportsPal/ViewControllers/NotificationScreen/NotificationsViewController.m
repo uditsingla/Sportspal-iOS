@@ -58,6 +58,8 @@
         [tblNotifications reloadData];
     }];
     
+    self.view.backgroundColor = kBlackColor;
+    
 }
 
 #pragma mark tableview delegates

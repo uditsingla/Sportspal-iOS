@@ -35,6 +35,7 @@
     
     __weak IBOutlet UIDatePicker *pickerDate;
     
+    __weak IBOutlet UIView *contentView;
     
     NSString *selectedGender;
     NSString *strDOB;
@@ -52,10 +53,9 @@
     
     UIImagePickerController *imgPicker;
 
-    
-    
-
 }
+
+
 - (IBAction)clkLeftSlider:(id)sender;
 - (IBAction)clkupdate:(id)sender;
 - (IBAction)clkProfilePic:(id)sender;
@@ -134,6 +134,10 @@
     [profilePic sd_setImageWithURL:[NSURL URLWithString:model_manager.profileManager.owner.profilePic] placeholderImage:[UIImage imageNamed:@"members.png"]];
     profilePic.backgroundColor = [UIColor clearColor];
     profilePic.contentMode = UIViewContentModeScaleAspectFit;
+    
+    
+    self.view.backgroundColor = kBlackColor;
+    contentView.backgroundColor = kBlackColor;
     
 }
 
