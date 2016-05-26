@@ -80,7 +80,7 @@
                      game.teamID = [[arrGames objectAtIndex:i] valueForKey:@"team_id"];
                      game.date = [[arrGames objectAtIndex:i] valueForKey:@"date"];
                      game.time = [[arrGames objectAtIndex:i] valueForKey:@"time"];
-                     game.distance = [NSString stringWithFormat:@"%.0fkm",[[[arrGames objectAtIndex:i] valueForKey:@"distance"] floatValue]/1000];
+                     game.distance = [NSString stringWithFormat:@"%.0fkm",[[[arrGames objectAtIndex:i] valueForKey:@"distance"] floatValue]];
                      game.geoLocation = CLLocationCoordinate2DMake([[[arrGames objectAtIndex:i] valueForKey:@"latitude"] doubleValue], [[[arrGames objectAtIndex:i] valueForKey:@"longitude"] doubleValue]);
                      game.address = [[arrGames objectAtIndex:i] valueForKey:@"address"];
                      if([[[arrGames objectAtIndex:i] valueForKey:@"game_type"] isEqualToString:@"individual"])
@@ -124,7 +124,7 @@
                      
                      Game *game = [Game new];
                      game.gameName = [[arrGames objectAtIndex:i] valueForKey:@"name"];
-                     game.distance = game.distance = [NSString stringWithFormat:@"%.0fkm",[[[arrGames objectAtIndex:i] valueForKey:@"distance"] floatValue]/1000];
+                     game.distance = game.distance = [NSString stringWithFormat:@"%.0fkm",[[[arrGames objectAtIndex:i] valueForKey:@"distance"] floatValue]];
                      game.gameID = [[arrGames objectAtIndex:i] valueForKey:@"id"];
                      game.sportID = [[arrGames objectAtIndex:i] valueForKey:@"sport_id"];
                      game.sportName = [[[arrGames objectAtIndex:i] valueForKey:@"sport"] valueForKey:@"name"];
@@ -223,7 +223,7 @@
                      
                      Game *game = [Game new];
                      game.gameName = [[arrGames objectAtIndex:i] valueForKey:@"name"];
-                     game.distance = game.distance = [NSString stringWithFormat:@"%.0fkm",[[[arrGames objectAtIndex:i] valueForKey:@"distance"] floatValue]/1000];
+                     game.distance = game.distance = [NSString stringWithFormat:@"%.0fkm",[[[arrGames objectAtIndex:i] valueForKey:@"distance"] floatValue]];
                      game.gameID = [[arrGames objectAtIndex:i] valueForKey:@"id"];
                      game.sportID = [[arrGames objectAtIndex:i] valueForKey:@"sport_id"];
                      game.sportName = [[[arrGames objectAtIndex:i] valueForKey:@"sport"] valueForKey:@"name"];

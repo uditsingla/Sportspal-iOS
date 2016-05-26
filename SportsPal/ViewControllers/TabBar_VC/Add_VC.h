@@ -10,4 +10,6 @@
 
 @interface Add_VC : UIViewController
 
+@property (nonatomic,strong) Game *selectedGame;
+
 @end

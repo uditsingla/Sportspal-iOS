@@ -908,7 +908,7 @@
                                     <action selector="clkSlider:" destination="wb0-0M-2cb" eventType="touchUpInside" id="Ycp-oc-0RY"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OvL-fQ-fHh" userLabel="Tbl Sports">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OvL-fQ-fHh" userLabel="Tbl Sports">
                                 <rect key="frame" x="0.0" y="95" width="320" height="424"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1794,11 +1794,14 @@
                         <outlet property="btnDate" destination="pJ7-Zt-hgV" id="iPc-v2-u6w"/>
                         <outlet property="btnGameName" destination="Smd-F3-uVD" id="LXj-lU-Fgx"/>
                         <outlet property="btnGameType" destination="kFi-py-7YD" id="Es9-oE-MAc"/>
+                        <outlet property="btnMenu" destination="DCp-jD-9Rw" id="ygN-dx-MN1"/>
+                        <outlet property="btnSave" destination="DxB-UN-otJ" id="6Lh-Yo-yNm"/>
                         <outlet property="btnSportName" destination="ggG-iG-Xur" id="4oZ-AY-wtc"/>
                         <outlet property="btnTeamName" destination="Kj6-E2-T40" id="EX1-rr-3hI"/>
                         <outlet property="btnTime" destination="As1-7x-fn6" id="Kj5-Xf-YXq"/>
                         <outlet property="constraintHeight" destination="tp8-tR-HGW" id="HjI-YP-e3F"/>
                         <outlet property="imgSelectedImage" destination="vx3-kX-Qbs" id="Kzd-om-8jp"/>
+                        <outlet property="lblTittle" destination="yhi-gf-XKP" id="4O8-li-q07"/>
                         <outlet property="magicView" destination="vSK-el-bpS" id="oXI-Pk-WQS"/>
                         <outlet property="pickerGameType" destination="Vo0-Uz-35x" id="iUL-fW-I73"/>
                         <outlet property="pickerSports" destination="bES-2N-xyp" id="u0d-3K-Hvs"/>
