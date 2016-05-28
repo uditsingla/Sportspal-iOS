@@ -16,6 +16,9 @@
 @property (nonatomic, strong) NSString *bio;
 @property (nonatomic, assign) BOOL teamStatus;
 @property (nonatomic, strong) NSString *teamRequestID;
+@property (nonatomic, assign) BOOL gameChallengeStatus;
+@property (nonatomic, strong) NSString *gameChallengeID;
+
 @property (nonatomic, strong) NSMutableArray *arrayPreferredSports;
 
 @property (nonatomic, strong) NSMutableArray *arrayGames;

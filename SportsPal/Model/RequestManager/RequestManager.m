@@ -37,8 +37,11 @@
 
     if(include)
     {
-        [urlRequest setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"username"] forHTTPHeaderField:@"username"];
-        [urlRequest setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"usertoken"] forHTTPHeaderField:@"usertoken"];
+        [urlRequest setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"email"] forHTTPHeaderField:@"username"];
+        if([[NSUserDefaults standardUserDefaults]valueForKey:@"PushDeviceToken"])
+            [urlRequest setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"PushDeviceToken"] forHTTPHeaderField:@"usertoken"];
+        else
+            [urlRequest setValue:@"" forHTTPHeaderField:@"usertoken"];
     }
    
     

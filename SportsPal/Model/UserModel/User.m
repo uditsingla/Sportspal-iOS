@@ -6,7 +6,7 @@
 
 @implementation User
 
-@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,bio,arrayPreferredSports,arrayGames,arrayTeams,teamStatus,teamRequestID;
+@synthesize username,firstName,lastName,fullName,userID,profilePic,gender,dob,email,bio,arrayPreferredSports,arrayGames,arrayTeams,teamStatus,teamRequestID,gameChallengeID,gameChallengeStatus;
 
 - (id)init
 {
@@ -24,6 +24,8 @@
         bio = @"";
         teamStatus = NO;
         teamRequestID = @"";
+        gameChallengeStatus = NO;
+        gameChallengeID = @"";
         arrayPreferredSports = [NSMutableArray new];
         arrayGames = [NSMutableArray new];
         arrayTeams = [NSMutableArray new];
@@ -60,7 +62,7 @@
 
 -(void)getUserDetails:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/index/%@",self.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/index/%@",self.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -181,7 +183,7 @@
 
 -(void)updateUserDetails:(NSDictionary*)dictParam completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/index/%@",self.userID] requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/index/%@",self.userID] requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -210,7 +212,7 @@
 
 -(void)getPreferredSports:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/sports/%@",userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/sports/%@",userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -251,7 +253,7 @@
     
     NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:userID,@"user_id", sportIDs,@"sport_id", nil];
     
-    [RequestManager asynchronousRequestWithPath:@"users/sports" requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:@"users/sports" requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)

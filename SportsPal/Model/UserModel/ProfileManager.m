@@ -40,7 +40,7 @@
         [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"is_keyword"];
     }
     
-    [RequestManager asynchronousRequestWithPath:searchPlayersPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:searchPlayersPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)

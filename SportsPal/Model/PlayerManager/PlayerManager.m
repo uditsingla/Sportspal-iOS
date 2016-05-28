@@ -27,7 +27,7 @@
 
 -(void)getNearByUsers:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/getuser/%@",model_manager.profileManager.owner.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/getuser/%@",model_manager.profileManager.owner.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -130,7 +130,7 @@
 
 -(void)getNearByUsersWithSportID:(NSString *)sportID completion:(void(^)(NSMutableArray *arrayUsers, NSError *error))completionBlock;
 {
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/getuser/%@/%@",model_manager.profileManager.owner.userID,sportID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"users/getuser/%@/%@",model_manager.profileManager.owner.userID,sportID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -249,7 +249,7 @@
         [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"is_keyword"];
     }
     
-    [RequestManager asynchronousRequestWithPath:searchPlayersPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:searchPlayersPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)

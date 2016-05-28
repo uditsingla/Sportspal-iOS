@@ -325,13 +325,21 @@
         cell.lblName.text = team.teamName;
         cell.lblName.textColor = [UIColor whiteColor];
         
-        cell.lblGame1.text = team.sportName;
+        NSLog(@"sport name...%@",team.sportName);
+        if(![team.sportName isEqual:[NSNull null]])
+        {
+            cell.lblGame1.text = team.sportName;
+            
+            NSString *strTeamSportImage = [team.sportName lowercaseString];
+            
+            if(strTeamSportImage)
+                cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strTeamSportImage]];
+
+        }
         
-        cell.lblGame2.text = team.address;
+        if([team.address isEqual:[NSNull null]])
+            cell.lblGame2.text = team.address;
         
-        NSString *strTeamSportImage = [team.sportName lowercaseString];
-        
-        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strTeamSportImage]];
         
         return cell;
 

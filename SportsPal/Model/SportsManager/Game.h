@@ -30,4 +30,13 @@ typedef NS_ENUM(int, GameType)
 @property (nonatomic, strong) User *creator;
 @property (nonatomic, assign) GameType gameType;
 
+@property (nonatomic, strong) NSMutableArray *arrayChallenges;
+
+-(void)getGameChallenges:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)acceptChallengeWithChallengeID:(NSString*)challengeID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)declineChallengeWithChallengeID:(NSString*)challengeID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+
 @end

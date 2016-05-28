@@ -29,7 +29,8 @@
 
 - (void)viewDidLoad {
     
-    
+    [self.menuContainerViewController setPanMode:MFSideMenuPanModeDefault];
+
     //remove Login Controller
     
     UINavigationController *navigationController = self.menuContainerViewController.centerViewController;

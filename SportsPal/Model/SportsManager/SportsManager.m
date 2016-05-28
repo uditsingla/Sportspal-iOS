@@ -26,7 +26,7 @@
 
 -(void)getSports:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:sportsPath requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:sportsPath requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -60,7 +60,7 @@
 
 -(void)getAvailableGames:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"%@/index/%@",gamesPath,model_manager.profileManager.owner.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"%@/index/%@",gamesPath,model_manager.profileManager.owner.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -110,7 +110,7 @@
 
 -(void)getAvailableGamesWithSearchTerm:(NSString *)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"%@/index/%@/%@",gamesPath,model_manager.profileManager.owner.userID,searchTerm] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"%@/index/%@/%@",gamesPath,model_manager.profileManager.owner.userID,searchTerm] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -168,7 +168,7 @@
     
     NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:game.sportID,@"sport_id",game.gameName,@"name",game.creator.userID,@"user_id",gameType,@"game_type",game.teamID,@"team_id",game.date,@"date",game.time,@"time",[NSNumber numberWithDouble: game.geoLocation.latitude],@"latitude",[NSNumber numberWithDouble: game.geoLocation.longitude],@"longitude",game.address,@"address", nil];
     
-    [RequestManager asynchronousRequestWithPath:gamesPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:gamesPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -209,7 +209,7 @@
     
 
     
-    [RequestManager asynchronousRequestWithPath:searchGamesPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:searchGamesPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)

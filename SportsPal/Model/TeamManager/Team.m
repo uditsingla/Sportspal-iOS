@@ -33,7 +33,7 @@
 
 -(void)getTeamDetails:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/singleteam/%@",self.teamID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/singleteam/%@",self.teamID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -101,7 +101,7 @@
     
     [dictParam setValue:[NSNumber numberWithBool:YES] forKey:@"status"];
     
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/request/%@",self.teamID] requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/request/%@",self.teamID] requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -129,7 +129,7 @@
     
     [dictParam setValue:requestID forKey:@"request_id"];
     
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/request/%@",self.teamID] requestType:RequestTypeDELETE params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/request/%@",self.teamID] requestType:RequestTypeDELETE params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)

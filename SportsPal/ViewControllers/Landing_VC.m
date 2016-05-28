@@ -27,6 +27,8 @@
 {
     [self.navigationController setNavigationBarHidden:YES];
     
+    [self.menuContainerViewController setPanMode:MFSideMenuPanModeNone];
+    
     myImages=[NSArray arrayWithObjects:@"1.png",@"2.png",@"3.png",nil];
     
     updateBCK = [NSTimer scheduledTimerWithTimeInterval:(2.0) target:self selector:@selector(changeImage) userInfo:nil repeats:YES];

@@ -25,7 +25,7 @@
 
 -(void)getAvailableTeams:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:teamsPath requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:teamsPath requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -85,7 +85,7 @@
     
     NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:team.sportID,@"sport_id",team.creator.userID,@"creator_id",teamType,@"team_type",team.teamName,@"team_name",[NSNumber numberWithInt:team.memberLimit],@"members_limit",[NSNumber numberWithDouble: team.geoLocation.latitude],@"latitude",[NSNumber numberWithDouble: team.geoLocation.longitude],@"longitude",team.address,@"address",playerIDs,@"team_members", nil];
     
-    [RequestManager asynchronousRequestWithPath:teamsPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:teamsPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -125,7 +125,7 @@
     }
 
     
-    [RequestManager asynchronousRequestWithPath:searchTeamsPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:searchTeamsPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)
@@ -172,7 +172,7 @@
 
 -(void)getTeamInvitation:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/user_team_request/%@",model_manager.profileManager.owner.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"teams/user_team_request/%@",model_manager.profileManager.owner.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          
          if(statusCode==200)

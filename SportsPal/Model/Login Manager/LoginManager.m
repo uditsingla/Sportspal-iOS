@@ -42,6 +42,10 @@
                 model_manager.profileManager.owner.profilePic = [[json valueForKey:@"message"] valueForKey:@"image"];
                 model_manager.profileManager.owner.email = [[json valueForKey:@"message"] valueForKey:@"email"];
                 
+                [[NSUserDefaults standardUserDefaults] setValue:model_manager.profileManager.owner.email forKey:@"email"];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:[[json valueForKey:@"message"] valueForKey:@"usertoken"] forKey:@"PushDeviceToken"];
+                
                 if([[[json valueForKey:@"message"] valueForKey:@"latitude"] doubleValue] && [[[json valueForKey:@"message"] valueForKey:@"longitude"] doubleValue])
                 {
                     kAppDelegate.myLocation = [[CLLocation alloc] initWithLatitude:[[[json valueForKey:@"message"] valueForKey:@"latitude"] doubleValue] longitude:[[[json valueForKey:@"message"] valueForKey:@"longitude"] doubleValue]];
@@ -135,7 +139,7 @@
 
     NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:@"ios",@"device_type", deviceToken,@"device_token", nil];
     
-    [RequestManager asynchronousRequestWithPath:logoutPath requestType:RequestTypeDELETE params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json)
+    [RequestManager asynchronousRequestWithPath:logoutPath requestType:RequestTypeDELETE params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
          if(statusCode==200)
          {
