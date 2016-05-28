@@ -26,6 +26,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    NSLog(@"controller array : %@",self.navigationController.viewControllers);
+
+    
+    
     topNavBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     topNavBar.backgroundColor = [UIColor blackColor];
     [self.view addSubview:topNavBar];
@@ -60,6 +64,28 @@
     
     self.view.backgroundColor = kBlackColor;
     
+}
+
+-(void)viewDidLayoutSubviews
+{
+    
+    NSArray *arrControllers = self.navigationController.viewControllers;
+    UITabBarController *tabController = [arrControllers lastObject];
+    
+    tabController.tabBar.frame = CGRectMake(0, 44, self.view.frame.size.width, 40);
+    
+    CGRect viewFrame = tabController.tabBar.frame;
+    //change these parameters according to you.
+    viewFrame.origin.y = 44;
+    viewFrame.origin.x = 0;
+    viewFrame.size.height = 30;
+    viewFrame.size.width = self.view.frame.size.width;
+    
+    tabController.tabBar.frame = viewFrame;
+    tabController.tabBar.tintColor = [UIColor redColor];
+    //tabController.tabBar.superview.backgroundColor = [UIColor whiteColor];
+    //[[UITabBar appearance] setBarTintColor:[UIColor redColor]];
+
 }
 
 #pragma mark tableview delegates

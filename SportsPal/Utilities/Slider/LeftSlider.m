@@ -10,6 +10,7 @@
 #import "LeftSliderCell.h"
 #import "NotificationsViewController.h"
 
+
 //#import "Appointments.h"
 //#import "History.h"
 
@@ -182,7 +183,11 @@
     }
     else if ([keyName caseInsensitiveCompare:@"Notifications"] == NSOrderedSame)
     {
-        [kAppDelegate.container.centerViewController pushViewController:[NotificationsViewController new] animated:NO];
+        
+        //TabBar Controller in storyboard
+        [kAppDelegate.container.centerViewController pushViewController:[self goToController:@"notification"] animated:NO];
+        
+        //[kAppDelegate.container.centerViewController pushViewController:[self goToController:@"notification_vc"] animated:NO];
         
     }
 
