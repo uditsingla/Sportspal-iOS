@@ -34,6 +34,8 @@ typedef NS_ENUM(int, GameType)
 
 -(void)getGameChallenges:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
+-(void)challengeGame:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
 -(void)acceptChallengeWithChallengeID:(NSString*)challengeID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)declineChallengeWithChallengeID:(NSString*)challengeID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;

@@ -74,6 +74,37 @@
      } ];
 }
 
+-(void)challengeGame:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
+{
+    NSMutableDictionary *dictParam = [NSMutableDictionary new];
+    
+    [dictParam setValue:model_manager.profileManager.owner.userID forKey:@"user_id"];
+    
+    if(gameType==GameTypeTeam)
+        [dictParam setValue:teamID forKey:@"team_id"];
+    
+    
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"games/challenge/%@",self.gameID] requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
+     {
+         
+         if(statusCode==200)
+         {
+             if([[json valueForKey:@"success"] boolValue])
+             {
+                 
+             }
+             
+             if(completionBlock)
+                 completionBlock(json,nil);
+         }
+         else if(completionBlock)
+             completionBlock(nil,nil);
+         
+         NSLog(@"Here comes the json %@",json);
+     } ];
+}
+
+
 -(void)acceptChallengeWithChallengeID:(NSString*)challengeID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
     NSMutableDictionary *dictParam = [NSMutableDictionary new];
