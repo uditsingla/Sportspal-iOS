@@ -72,6 +72,11 @@
     
     
     __weak IBOutlet UIImageView *imgSelectedImage;
+    
+    __weak IBOutlet UIButton *btnMenu;
+    __weak IBOutlet UILabel *lblTittle;
+    __weak IBOutlet UIButton *btnSave;
+
 }
 - (IBAction)clkButton:(id)sender;
 - (IBAction)clkSegment:(UISegmentedControl*)sender;
@@ -81,6 +86,8 @@
 @end
 
 @implementation Add_VC
+
+@synthesize selectedGame;
 
 - (void)viewDidLoad
 {
@@ -132,6 +139,66 @@
     
     self.view.backgroundColor = kBlackColor;
     magicView.backgroundColor = kBlackColor;
+    
+    if(selectedGame)
+    {
+        [btnMenu setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+        lblTittle.text = @"GAME DETAILS";
+        btnSave.hidden = YES;
+        segmentcotrol.hidden = YES;
+        imgSelectedImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[selectedGame.sportName lowercaseString]]];
+        imgSelectedImage.hidden = NO;
+        btnSportName.enabled = NO;
+        [btnSportName setTitle:selectedGame.sportName forState:UIControlStateNormal];
+        btnTeamName.enabled = NO;
+        //[btnTeamName setTitle:selectedGame.teamName forState:UIControlStateNormal];
+        NSString *game_type;
+        if(selectedGame.gameType==GameTypeTeam)
+            game_type = @"Team";
+        else
+            game_type = @"Individual";
+        [btnGameType setTitle:game_type forState:UIControlStateNormal];
+        btnGameType.enabled = NO;
+        
+        [btnGameName setTitle:selectedGame.gameName forState:UIControlStateNormal];
+        btnGameName.enabled = NO;
+
+        [btnDate setTitle:selectedGame.date forState:UIControlStateNormal];
+        btnDate.enabled = NO;
+        
+        [btnTime setTitle:selectedGame.time forState:UIControlStateNormal];
+        btnTime.enabled = NO;
+
+        
+        [btnAddress setTitle:selectedGame.address forState:UIControlStateNormal];
+        btnAddress.enabled = NO;
+
+
+        strSportID = selectedGame.sportID;
+        strSportName = selectedGame.sportName;
+        strGameType = game_type;
+        strGameName = selectedGame.gameName;
+        //strTeamname = selectedGame.teamName;
+        
+//        [selectedTeam getTeamDetails:^(NSDictionary *dictJson, NSError *error) {
+//            if(!error)
+//            {
+//                if([[dictJson valueForKey:@"success"] boolValue])
+//                {
+//                    [arrTeamPlayers addObjectsFromArray:selectedTeam.arrayMembers];
+//                    int heightContent = ((int)arrTeamPlayers.count+1)*44;
+//                    contentviewHeight.constant = 185+heightContent;
+//                    [tblTeam reloadData];
+//                    
+//                    lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+//                }
+//                else
+//                {
+//                    [self showAlert:[dictJson valueForKey:@"message"]];
+//                }
+//            }
+//        }];
+    }
 
 }
 
@@ -152,7 +219,8 @@
     }
     else
     {
-        [self resetAllContent];
+        if(!selectedGame)
+            [self resetAllContent];
     }
     
         
@@ -616,7 +684,10 @@
 }
 
 - (IBAction)clkSlider:(id)sender {
-    [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
+    if(selectedGame)
+        [self.navigationController popViewControllerAnimated:YES];
+    else
+        [self.menuContainerViewController toggleLeftSideMenuCompletion:^{}];
 }
 
 

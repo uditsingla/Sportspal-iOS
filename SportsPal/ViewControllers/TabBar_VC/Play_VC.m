@@ -16,6 +16,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Profile_VC.h"
 #import "AddTeam.h"
+#import "Add_VC.h"
 
 @interface Play_VC ()
 {
@@ -414,7 +415,10 @@
     }
     else if (theTableView == tblSports)
     {
-        
+        Add_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"add_vc"];
+        viewcontroller.selectedGame = (Game*)[arrSports objectAtIndex:indexPath.row];
+        [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+
     }
     else if (theTableView == tblSearch)
     {
