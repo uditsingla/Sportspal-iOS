@@ -36,7 +36,7 @@
     
     arrMenuItemsImages = [NSArray arrayWithObjects:@"left_menu_home_icon.png",
                           @"left_menu_share_icon.png",
-                          @"left_menu_setting_icon.png",
+                          @"left_menu_notification.png",
                           @"left_menu_setting_icon.png",
                           @"left_menu_logout_icon.png",
                           nil];

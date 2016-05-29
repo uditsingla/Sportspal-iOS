@@ -36,7 +36,8 @@
                                   initWithString:placeHolder
                                   attributes:@{NSForegroundColorAttributeName:
                                                    [UIColor whiteColor]}];
-    
+    [textField setFont:[UIFont fontWithName:@"OpenSans" size:16]];
+
 
     UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 41)];
     textField.leftView = paddingView;

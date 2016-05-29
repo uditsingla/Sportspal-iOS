@@ -82,6 +82,7 @@
     
     __weak IBOutlet UITableView *tblChallenges;
 
+    __weak IBOutlet UIView *viewNavigation;
 }
 - (IBAction)clkButton:(id)sender;
 - (IBAction)clkSegment:(UISegmentedControl*)sender;
@@ -144,6 +145,7 @@
     
     self.view.backgroundColor = kBlackColor;
     magicView.backgroundColor = kBlackColor;
+    viewNavigation.backgroundColor = kBlackColor;
     
     tblChallenges.backgroundColor = [UIColor clearColor];
 
