@@ -603,10 +603,10 @@
         }
         
         btn_accept = (UIButton *)[cell.contentView viewWithTag:111];
-        [btn_accept addTarget:self action:@selector(clkAccept) forControlEvents:UIControlEventTouchDown];
+        [btn_accept addTarget:self action:@selector(clkAccept) forControlEvents:UIControlEventTouchUpInside];
 
         btn_reject = (UIButton *)[cell.contentView viewWithTag:222];
-        [btn_reject addTarget:self action:@selector(clkReject) forControlEvents:UIControlEventTouchDown];
+        [btn_reject addTarget:self action:@selector(clkReject) forControlEvents:UIControlEventTouchUpInside];
 
         
         cell.imgProfile.layer.cornerRadius = 15;
@@ -626,7 +626,11 @@
             {
                 cell.imgProfile.image = nil;
                 if([selectedTeam.creator.userID isEqualToString:model_manager.profileManager.owner.userID])
+                {
                     cell.lblName.text =@"";
+                    btn_accept.hidden = YES;
+                    btn_reject.hidden = YES;
+                }
                 
                 else if(selectedTeam.arrayMembers.count>0)
                 {
