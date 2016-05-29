@@ -247,6 +247,7 @@
 		46F62D3D1C93627800A61B47 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3C1C93627800A61B47 /* Home.m */; };
 		46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3F1C9362F600A61B47 /* TableViewTemplate.m */; };
 		7C6508F91CF202B400D09B16 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6508F81CF202B400D09B16 /* NotificationsViewController.m */; };
+		7C80BF801CFB36B400DD14A8 /* TB_Add_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C80BF7F1CFB36B400DD14A8 /* TB_Add_VC.m */; };
 		A610D89A1CD7D3F0008DED71 /* map_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8961CD7D3F0008DED71 /* map_location@2x.png */; };
 		A610D89B1CD7D3F0008DED71 /* map_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8971CD7D3F0008DED71 /* map_location@3x.png */; };
 		A610D89C1CD7D3F0008DED71 /* marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8981CD7D3F0008DED71 /* marker@2x.png */; };
@@ -552,6 +553,8 @@
 		5AEED532CDD94B31B9075DA3 /* Pods-SportsPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.release.xcconfig"; sourceTree = "<group>"; };
 		7C6508F71CF202B400D09B16 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
 		7C6508F81CF202B400D09B16 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
+		7C80BF7E1CFB36B400DD14A8 /* TB_Add_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_Add_VC.h; sourceTree = "<group>"; };
+		7C80BF7F1CFB36B400DD14A8 /* TB_Add_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TB_Add_VC.m; sourceTree = "<group>"; };
 		A610D8961CD7D3F0008DED71 /* map_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@2x.png"; sourceTree = "<group>"; };
 		A610D8971CD7D3F0008DED71 /* map_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@3x.png"; sourceTree = "<group>"; };
 		A610D8981CD7D3F0008DED71 /* marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker@2x.png"; sourceTree = "<group>"; };
@@ -825,6 +828,8 @@
 				4675AC5E1CC3EF760013FEE3 /* Chats_VC.m */,
 				4675AC601CC3EF8A0013FEE3 /* Setting_VC.h */,
 				4675AC611CC3EF8A0013FEE3 /* Setting_VC.m */,
+				7C80BF7E1CFB36B400DD14A8 /* TB_Add_VC.h */,
+				7C80BF7F1CFB36B400DD14A8 /* TB_Add_VC.m */,
 			);
 			path = TabBar_VC;
 			sourceTree = "<group>";
@@ -1653,6 +1658,7 @@
 				4639FD571CD13F860020D00B /* LoginManager.m in Sources */,
 				4675AC5C1CC3EF5B0013FEE3 /* Add_VC.m in Sources */,
 				A6C953881CD68D650046F1A9 /* SPGooglePlacesAutocompleteUtilities.m in Sources */,
+				7C80BF801CFB36B400DD14A8 /* TB_Add_VC.m in Sources */,
 				46D7CA181CD6309900DF8B35 /* AddTeam.m in Sources */,
 				46F3156B1CC125A100AAA588 /* LabeledActivityIndicatorView.m in Sources */,
 				46466AE91CE51779000B750D /* Profile_VC.m in Sources */,

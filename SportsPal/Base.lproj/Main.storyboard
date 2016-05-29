@@ -1893,6 +1893,7 @@
                         <outlet property="pikerDate" destination="YrP-2F-8Dm" id="x7D-OJ-BHc"/>
                         <outlet property="pikerTime" destination="kUd-Rg-JVH" id="g8h-oy-stJ"/>
                         <outlet property="segmentcotrol" destination="8fu-GI-RhL" id="fdr-pb-HeQ"/>
+                        <outlet property="tblChallenges" destination="buU-yj-SlN" id="pPR-bf-XA3"/>
                         <outlet property="toolBarSuperView" destination="ysv-4a-em3" id="fwF-2S-tBM"/>
                     </connections>
                 </viewController>
