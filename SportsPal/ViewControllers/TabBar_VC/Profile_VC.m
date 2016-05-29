@@ -164,7 +164,7 @@
                     int dynamicY = lblAge.frame.origin.y;
                     for(int i=0; i<_user.arrayPreferredSports.count; i++)
                     {
-                        imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",((Sport*)[_user.arrayPreferredSports objectAtIndex:0]).sportName]];
+                        imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[((Sport*)[_user.arrayPreferredSports objectAtIndex:0]).sportName lowercaseString]]];
                         
                         UIView *viewSport = [[UIView alloc]init];
                         

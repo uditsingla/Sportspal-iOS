@@ -44,7 +44,7 @@
                 
                 [[NSUserDefaults standardUserDefaults] setValue:model_manager.profileManager.owner.email forKey:@"email"];
                 
-                [[NSUserDefaults standardUserDefaults] setObject:[[json valueForKey:@"message"] valueForKey:@"usertoken"] forKey:@"PushDeviceToken"];
+                [[NSUserDefaults standardUserDefaults] setObject:[[json valueForKey:@"message"] valueForKey:@"usertoken"] forKey:@"DeviceToken"];
                 
                 if([[[json valueForKey:@"message"] valueForKey:@"latitude"] doubleValue] && [[[json valueForKey:@"message"] valueForKey:@"longitude"] doubleValue])
                 {
