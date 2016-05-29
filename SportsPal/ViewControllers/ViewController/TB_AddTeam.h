@@ -13,6 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgProfile;
 @property (weak, nonatomic) IBOutlet UIImageView *imgAdmin;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
-
+@property (strong,nonatomic) UIButton *btn_accept,*btn_reject;
 
 @end
