@@ -64,6 +64,8 @@
     lblAge.text = user.dob;
     
     int dynamicY = lblAge.frame.origin.y;
+    
+    
     for(int i=0; i<user.arrayPreferredSports.count; i++)
     {
         NSString *strImageProfile = ((Sport*)[user.arrayPreferredSports objectAtIndex:0]).sportName;
@@ -76,6 +78,7 @@
         
         float viewHeight = 25;
         
+        viewSport.tag = i+1;
         
         
         
@@ -111,7 +114,7 @@
             viewSport.frame = CGRectMake(self.view.frame.size.width- 140, dynamicY, 120, viewHeight) ;
         }
 
-        viewSport.backgroundColor = [UIColor clearColor];
+        viewSport.backgroundColor = [UIColor redColor];
         [contentView addSubview:viewSport];
     }
     

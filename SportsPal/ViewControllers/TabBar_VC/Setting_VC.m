@@ -91,6 +91,7 @@
     [[btnDOB layer] setCornerRadius:3.0f];
     [[btnDOB layer] setBorderWidth:1.0f];
     [[btnDOB layer] setBorderColor:[UIColor lightGrayColor].CGColor];
+
     //
     
 //    //
@@ -134,6 +135,28 @@
     [profilePic sd_setImageWithURL:[NSURL URLWithString:model_manager.profileManager.owner.profilePic] placeholderImage:[UIImage imageNamed:@"members.png"]];
     profilePic.backgroundColor = [UIColor clearColor];
     profilePic.contentMode = UIViewContentModeScaleAspectFit;
+    
+    
+    
+    
+    
+    
+    txtViewDescription.alpha = .5;
+    txtViewDescription.backgroundColor = [UIColor grayColor];
+    txtViewDescription.layer.cornerRadius = 3.0f;
+    txtViewDescription.layer.masksToBounds = YES;
+    txtViewDescription.layer.borderColor=[[UIColor lightGrayColor]CGColor];
+    txtViewDescription.layer.borderWidth= 1.0f;
+    
+//    txtViewDescription.attributedPlaceholder = [[NSAttributedString alloc]
+//                                       initWithString:placeHolder
+//                                       attributes:@{NSForegroundColorAttributeName:
+//                                                        [UIColor whiteColor]}];
+    
+    
+//    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 41)];
+//    txtViewDescription.leftView = paddingView;
+//    txtViewDescription.leftViewMode = UITextFieldViewModeAlways;
     
     
     self.view.backgroundColor = kBlackColor;

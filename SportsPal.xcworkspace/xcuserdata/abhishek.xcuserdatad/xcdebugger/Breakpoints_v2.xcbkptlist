@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-            timestampString = "485812597.279983"
+            timestampString = "486243841.522612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "-clkProfilePic:"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-            timestampString = "485812597.279983"
+            timestampString = "486243841.522612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "485"
-            endingLineNumber = "485"
+            startingLineNumber = "507"
+            endingLineNumber = "507"
             landmarkName = "@implementation Setting_VC"
             landmarkType = "3">
          </BreakpointContent>
@@ -276,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-            timestampString = "485812597.279983"
+            timestampString = "486243841.522612"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "-clkupdate:"
             landmarkType = "5">
             <Locations>
