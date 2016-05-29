@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Add_VC : UIViewController
+@interface Add_VC : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) Game *selectedGame;
 
