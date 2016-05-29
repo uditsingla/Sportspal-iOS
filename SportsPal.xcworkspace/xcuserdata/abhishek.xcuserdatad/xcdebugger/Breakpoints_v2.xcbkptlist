@@ -68,12 +68,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Add_VC.m"
-            timestampString = "485811576.474225"
+            timestampString = "486238152.42078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "494"
-            endingLineNumber = "494"
-            landmarkName = "-pickerView:titleForRow:forComponent:"
+            startingLineNumber = "496"
+            endingLineNumber = "496"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -84,12 +84,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Add_VC.m"
-            timestampString = "485811576.474225"
+            timestampString = "486238152.42078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
-            landmarkName = "-pickerView:titleForRow:forComponent:"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -244,11 +244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Add_VC.m"
-            timestampString = "485811576.474225"
+            timestampString = "486238152.42078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "-clkButton:"
             landmarkType = "5">
          </BreakpointContent>
