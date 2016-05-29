@@ -591,11 +591,39 @@
         static NSString *CellIdentifier = @"CellIdentifier";
         TB_AddTeam *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
+        
+        UIButton *btn_accept,*btn_reject;
+
         if (cell == nil)
         {
             cell = [[TB_AddTeam alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+            
+            //btn accept
+            btn_accept = [UIButton buttonWithType:UIButtonTypeCustom];
+            float width = (cell.frame.size.width/2)-20;
+            btn_accept.frame = CGRectMake(cell.frame.origin.x,5,width,30);
+            btn_accept.tag = 1;
+            [btn_accept setTitle:@"Accept" forState:UIControlStateNormal];
+            btn_accept.backgroundColor = GreenColor;
+            btn_reject.titleLabel.textColor = [UIColor whiteColor];
+            [btn_accept addTarget:self action:@selector(clkAccept:) forControlEvents:UIControlEventTouchDown];
+            [cell.contentView addSubview:btn_accept];
+            
+            //btn reject
+            btn_reject = [UIButton buttonWithType:UIButtonTypeCustom];
+            float widthNew = (btn_accept.frame.size.width/2)-20;
+            btn_reject.frame = CGRectMake(btn_accept.frame.size.width+40,5,widthNew,30);
+            btn_reject.tag = 2;
+            btn_reject.backgroundColor = [UIColor redColor];
+            [btn_reject setTitle:@"Reject" forState:UIControlStateNormal];
+            btn_reject.titleLabel.textColor = [UIColor whiteColor];
+            [btn_reject addTarget:self action:@selector(clkReject:) forControlEvents:UIControlEventTouchDown];
+            [cell.contentView addSubview:btn_reject];
         }
         
+        btn_accept = (UIButton *)[cell.contentView viewWithTag:1];
+        btn_reject = (UIButton *)[cell.contentView viewWithTag:2];
+
         
         cell.imgProfile.layer.cornerRadius = 15;
         cell.imgProfile.layer.masksToBounds = YES;
@@ -603,6 +631,7 @@
         cell.lblName.textAlignment = NSTextAlignmentLeft;
         cell.backgroundColor = [UIColor clearColor];
 
+        //check for last row
         
         if (indexPath.row == (arrTeamPlayers.count)) {
             if(selectedTeam)
@@ -621,20 +650,37 @@
                         User *filteredResult = (User*)[filteredArray objectAtIndex:0];
                         if(!filteredResult.teamStatus)
                         {
-                            cell.lblName.text = @"JOIN TEAM";
-                            cell.lblName.textAlignment = NSTextAlignmentCenter;
-                            cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
+//                            cell.lblName.text = @"JOIN TEAM";
+//                            cell.lblName.textAlignment = NSTextAlignmentCenter;
+//                            cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
+                            
+                            btn_accept.hidden = NO;
+                            btn_reject.hidden = NO;
 
                         }
                         else
+                        {
                             cell.lblName.text = @"";
+                            btn_accept.hidden = NO;
+                            btn_reject.hidden = NO;
+
+                        }
 
                     }
                     else
+                    {
                         cell.lblName.text =@"";
+                        btn_accept.hidden = NO;
+                        btn_reject.hidden = NO;
+
+                    }
                 }
                 else
+                {
                     cell.lblName.text =@"";
+                    btn_accept.hidden = NO;
+                    btn_reject.hidden = NO;
+                }
 
             }
             else
@@ -957,6 +1003,17 @@
     }
 }
 
+
+-(void)clkAccept
+{
+    NSLog(@"Accept clicked");
+}
+
+-(void)clkReject
+{
+    NSLog(@"Reject clicked");
+
+}
 /*
 #pragma mark - Navigation
 

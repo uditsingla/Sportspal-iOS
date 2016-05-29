@@ -184,25 +184,32 @@
                  
                  for (int i=0; i < arrTeams.count; i++) {
                      
-                     Team *team = [Team new];
-                     team.teamID = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"id"];
-                     team.sportID = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport_id"];
-                     team.sportName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"];
-                     team.teamName = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_name"];
-                     team.memberLimit = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"members_limit"] intValue];
-                     team.geoLocation = CLLocationCoordinate2DMake([[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"latitude"] doubleValue], [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"longitude"] doubleValue]);
-                     team.address = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"address"];
-                     if([[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_type"] isEqualToString:@"private"])
-                         team.teamType = TeamTypePrivate;
-                     else
-                         team.teamType = TeamTypeCorporate;
                      
-                     team.creator.userID = [NSString stringWithFormat:@"%i",[[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"creator_id"] intValue]];
-                     team.creator.firstName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"first_name"];
-                     team.creator.lastName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"last_name"];
-                     team.creator.email = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"email"];
+                     if ([[arrTeams objectAtIndex:i] valueForKey:@"team"] != [NSNull null])
+                     {
+                         Team *team = [Team new];
+                         
+                         team.teamID = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"id"];
+                         team.sportID = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport_id"];
+                         team.sportName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"];
+                         team.teamName = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_name"];
+                         team.memberLimit = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"members_limit"] intValue];
+                         team.geoLocation = CLLocationCoordinate2DMake([[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"latitude"] doubleValue], [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"longitude"] doubleValue]);
+                         team.address = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"address"];
+                         if([[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_type"] isEqualToString:@"private"])
+                             team.teamType = TeamTypePrivate;
+                         else
+                             team.teamType = TeamTypeCorporate;
+                         
+                         team.creator.userID = [NSString stringWithFormat:@"%i",[[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"creator_id"] intValue]];
+                         team.creator.firstName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"first_name"];
+                         team.creator.lastName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"last_name"];
+                         team.creator.email = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"email"];
+                         
+                         [arrayTeamInvites addObject:team];
+                     }
                      
-                     [arrayTeamInvites addObject:team];
+                     
                  }
                  
              }
