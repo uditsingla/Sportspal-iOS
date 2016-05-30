@@ -103,6 +103,7 @@
     //segmentedcontrol.tintColor = [UIColor colorWithRed:139/255.00 green:195/255.00 blue:74/255.00 alpha:1];
 //    searchbar.backgroundColor = [UIColor blackColor];
     // Do any additional setup after loading the view.
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -113,6 +114,17 @@
     [tblSports reloadData];
     [tblPlayers reloadData];
     [tblTeams reloadData];
+    
+    [model_manager.playerManager getNearByUsers:^(NSDictionary *dictJson, NSError *error) {
+        [tblPlayers reloadData];
+    }];
+    [model_manager.sportsManager getAvailableGames:^(NSDictionary *dictJson, NSError *error) {
+        [tblSports reloadData];
+    }];
+    [model_manager.teamManager getAvailableTeams:^(NSDictionary *dictJson, NSError *error) {
+        [tblTeams reloadData];
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {

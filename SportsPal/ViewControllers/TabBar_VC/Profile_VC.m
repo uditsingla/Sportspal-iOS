@@ -75,10 +75,11 @@
 
         
         UIView *viewSport = [[UIView alloc]init];
+        viewSport.tag = 777;
         
         float viewHeight = 25;
         
-        viewSport.tag = i+1;
+        //viewSport.tag = i+1;
         
         
         
@@ -114,7 +115,7 @@
             viewSport.frame = CGRectMake(self.view.frame.size.width- 140, dynamicY, 120, viewHeight) ;
         }
 
-        viewSport.backgroundColor = [UIColor redColor];
+        //viewSport.backgroundColor = [UIColor redColor];
         [contentView addSubview:viewSport];
     }
     
@@ -162,7 +163,11 @@
                     lblAge.text = _user.dob;
                     
                     
-                    
+                    UIView *removeView;
+                    while((removeView = [contentView viewWithTag:777]) != nil) {
+                        [removeView removeFromSuperview];
+                    }
+
                     
                     int dynamicY = lblAge.frame.origin.y;
                     for(int i=0; i<_user.arrayPreferredSports.count; i++)
@@ -170,7 +175,8 @@
                         imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[((Sport*)[_user.arrayPreferredSports objectAtIndex:0]).sportName lowercaseString]]];
                         
                         UIView *viewSport = [[UIView alloc]init];
-                        
+                        viewSport.tag = 777;
+
                         float viewHeight = 25;
                         
                         
