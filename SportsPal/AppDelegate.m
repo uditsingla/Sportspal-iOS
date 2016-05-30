@@ -124,6 +124,8 @@
     }
     else if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
     {
+        UIViewController *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier: @"notification"];
+        [container.centerViewController pushViewController:viewcontroller animated:NO];
     }
 }
 

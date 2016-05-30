@@ -58,12 +58,16 @@
     tblNotifications.backgroundColor=[UIColor clearColor];
     [self.view addSubview:tblNotifications];
     
-    [model_manager.teamManager getTeamInvitation:^(NSDictionary *dictJson, NSError *error) {
-        [tblNotifications reloadData];
-    }];
     
     self.view.backgroundColor = kBlackColor;
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [model_manager.teamManager getTeamInvitation:^(NSDictionary *dictJson, NSError *error) {
+        [tblNotifications reloadData];
+    }];
 }
 
 -(void)viewDidLayoutSubviews
