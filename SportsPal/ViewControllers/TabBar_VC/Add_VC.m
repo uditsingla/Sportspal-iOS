@@ -147,6 +147,9 @@
     magicView.backgroundColor = kBlackColor;
     viewNavigation.backgroundColor = kBlackColor;
     
+    tblChallenges.backgroundColor = [UIColor clearColor];
+
+    
     if(selectedGame)
     {
         [btnMenu setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
@@ -479,9 +482,9 @@
             
         }
         
-        [cell.btn_accept addTarget:self action:@selector(clkAccept) forControlEvents:UIControlEventTouchDown];
+        [cell.btn_accept addTarget:self action:@selector(clkAccept:) forControlEvents:UIControlEventTouchUpInside];
         
-        [cell.btn_reject addTarget:self action:@selector(clkReject) forControlEvents:UIControlEventTouchDown];
+        [cell.btn_reject addTarget:self action:@selector(clkReject:) forControlEvents:UIControlEventTouchUpInside];
         
         
 //        cell.imgProfile.layer.cornerRadius = 15;
@@ -491,91 +494,111 @@
         cell.btn_accept.hidden = YES;
         cell.btn_reject.hidden = YES;
         
-        cell.lblName.textAlignment = NSTextAlignmentLeft;
+        cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 20);
+        cell.lblName.textAlignment = NSTextAlignmentCenter;
         cell.backgroundColor = [UIColor clearColor];
         
         //check for last row
         
         if (indexPath.row == (selectedGame.arrayChallenges.count)) {
-//            if(selectedTeam)
-//            {
-//                cell.imgProfile.image = nil;
-//                if([selectedTeam.creator.userID isEqualToString:model_manager.profileManager.owner.userID])
-//                    cell.lblName.text =@"";
-//                
-//                else if(selectedTeam.arrayMembers.count>0)
-//                {
-//                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
-//                    NSArray *filteredArray = [selectedTeam.arrayMembers filteredArrayUsingPredicate:predicate];
-//                    
-//                    
-//                    if(filteredArray.count>0) {
-//                        User *filteredResult = (User*)[filteredArray objectAtIndex:0];
-//                        if(!filteredResult.teamStatus)
-//                        {
-//                            //                            cell.lblName.text = @"JOIN TEAM";
-//                            //                            cell.lblName.textAlignment = NSTextAlignmentCenter;
-//                            //                            cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
-//                            
-//                            btn_accept.hidden = NO;
-//                            btn_reject.hidden = NO;
-//                            
-//                        }
-//                        else
-//                        {
-//                            cell.lblName.text = @"";
-//                            btn_accept.hidden = YES;
-//                            btn_reject.hidden = YES;
-//                            
-//                        }
-//                        
-//                    }
-//                    else
-//                    {
-//                        cell.lblName.text =@"";
-//                        btn_accept.hidden = YES;
-//                        btn_reject.hidden = YES;
-//                        
-//                    }
-//                }
-//                else
-//                {
-//                    cell.lblName.text =@"";
-//                    btn_accept.hidden = YES;
-//                    btn_reject.hidden = YES;
-//                }
-//                
-//            }
-//            else
+            if(selectedGame)
             {
-                //cell.imgProfile.image = [UIImage imageNamed:@"newteamplayer.png"];
-                cell.lblName.text = @"Challenge Team";
-                cell.backgroundColor = [UIColor clearColor];
+                cell.imgProfile.image = nil;
+                if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
+                {
+                    cell.lblName.text =@"";
+                    cell.btn_accept.hidden = YES;
+                    cell.btn_reject.hidden = YES;
+                }
+                
+                else if(selectedGame.arrayChallenges.count>0)
+                {
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
+                    NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
+                    
+                    
+                    if(filteredArray.count>0) {
+                        User *filteredResult = (User*)[filteredArray objectAtIndex:0];
+                        if(!filteredResult.gameChallengeStatus)
+                        {
+                            cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                            cell.lblName.text = @"ALREADY CHALLENGED";
+                            cell.lblName.textAlignment = NSTextAlignmentCenter;
+                            cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
+
+                            cell.btn_accept.hidden = YES;
+                            cell.btn_reject.hidden = YES;
+                            
+                        }
+                        else
+                        {
+                            cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                            cell.lblName.text = @"CHALLENGE ACCEPTED";
+                            cell.lblName.textAlignment = NSTextAlignmentCenter;
+                            cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
+                            cell.btn_accept.hidden = YES;
+                            cell.btn_reject.hidden = YES;
+                            
+                        }
+                        
+                    }
+                    else
+                    {
+                        cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                        cell.lblName.text = @"CHALLENGE GAME";
+                        cell.lblName.textAlignment = NSTextAlignmentCenter;
+                        cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
+                        cell.btn_accept.hidden = YES;
+                        cell.btn_reject.hidden = YES;
+                    }
+                }
+                else
+                {
+                    cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                    cell.lblName.text = @"CHALLENGE GAME";
+                    cell.lblName.textAlignment = NSTextAlignmentCenter;
+                    cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
+                    cell.btn_accept.hidden = YES;
+                    cell.btn_reject.hidden = YES;
+                }
+                
             }
+            
         }
         else{
             //[cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
-//            cell.lblName.text = [NSString stringWithFormat:@"%@ %@", ((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).firstName, ((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).lastName];
-//            
-//            if(((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).teamStatus)
-//                cell.backgroundColor = [UIColor clearColor];
-//            else
-//                cell.backgroundColor = [UIColor colorWithRed:33.0f green:33.0f / 255.0f blue:33.0f/255.0f alpha:1.0f];
+            cell.lblName.text = [NSString stringWithFormat:@"%@ %@ challenged the game", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
+            
+            cell.backgroundColor = [UIColor blackColor];
+
+            if(((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).gameChallengeStatus)
+            {
+                cell.lblName.text = [NSString stringWithFormat:@"Game on with %@ %@", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
+                cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+
+                cell.btn_accept.hidden = YES;
+                cell.btn_reject.hidden = YES;
+            }
+            else
+            {
+                cell.backgroundColor = [UIColor clearColor];
+                if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
+                {
+                    cell.btn_accept.hidden = NO;
+                    cell.btn_reject.hidden = NO;
+
+                }
+                else
+                {
+                    cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+
+                    cell.btn_accept.hidden = YES;
+                    cell.btn_reject.hidden = YES;
+                }
+            }
         }
         
-        //        Game *game = [arrSports objectAtIndex:indexPath.row];
-        //
-        //        cell.contentView.backgroundColor = [UIColor blackColor];
-        //        cell.lblName.text = game.sportName;
-        //        // cell.lblName.textColor = [UIColor whiteColor];
-        //
-        //        NSLog(@"time : %@, %@",game.time,game.date);
-        //        cell.lblGame1.text = game.time;
-        //        cell.lblGame2.text = game.date;
-        //
-        //        cell.imgBackground.image = [UIImage imageNamed:@"cricket.png"];
         
-        tblChallenges.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -611,11 +634,129 @@
     return  0;
 }
 
+-(void)clkAccept:(UIButton*)sender
+{
+    NSLog(@"Accept clicked");
+    
+    // getting indexpath from selected button
+    CGPoint center= sender.center;
+    CGPoint rootViewPoint = [sender.superview convertPoint:center toView:tblChallenges];
+    NSIndexPath *indexPath = [tblChallenges indexPathForRowAtPoint:rootViewPoint];
+    
+    User *currentUser = (User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
+    
+    if(selectedGame.arrayChallenges.count>0) {
+        
+        [kAppDelegate.objLoader show];
+        [selectedGame acceptChallengeWithChallengeID:currentUser.gameChallengeID completion:^(NSDictionary *dictJson, NSError *error) {
+            
+            [selectedGame getGameChallenges:^(NSDictionary *dictJson, NSError *error) {
+                [kAppDelegate.objLoader hide];
+                if(!error)
+                {
+                    if([[dictJson valueForKey:@"success"] boolValue])
+                    {
+                        int heightContent = ((int)selectedGame.arrayChallenges.count+1)*44;
+                        contentviewHeight.constant = 185+heightContent;
+                        [tblChallenges reloadData];
+                        
+                        //lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+                    }
+                    else
+                    {
+                        [self showAlert:[dictJson valueForKey:@"message"]];
+                    }
+                }
+            }];
+        }];
+    }
+}
+
+-(void)clkReject:(UIButton*)sender
+{
+    NSLog(@"Reject clicked");
+    // getting indexpath from selected button
+    CGPoint center= sender.center;
+    CGPoint rootViewPoint = [sender.superview convertPoint:center toView:tblChallenges];
+    NSIndexPath *indexPath = [tblChallenges indexPathForRowAtPoint:rootViewPoint];
+    
+    User *currentUser = (User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
+    
+    if(selectedGame.arrayChallenges.count>0) {
+        
+        [kAppDelegate.objLoader show];
+        [selectedGame declineChallengeWithChallengeID:currentUser.gameChallengeID completion:^(NSDictionary *dictJson, NSError *error) {
+            
+            [selectedGame getGameChallenges:^(NSDictionary *dictJson, NSError *error) {
+                [kAppDelegate.objLoader hide];
+                if(!error)
+                {
+                    if([[dictJson valueForKey:@"success"] boolValue])
+                    {
+                        int heightContent = ((int)selectedGame.arrayChallenges.count+1)*44;
+                        contentviewHeight.constant = 185+heightContent;
+                        [tblChallenges reloadData];
+                        
+                        //lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+                    }
+                    else
+                    {
+                        [self showAlert:[dictJson valueForKey:@"message"]];
+                    }
+                }
+            }];
+        }];
+    }
+}
+
 #pragma mark - UITableViewDelegate
 // when user tap the row, what action you want to perform
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %ld row", (long)indexPath.row);
+    
+    if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
+        return;
+    
+    if (indexPath.row == (selectedGame.arrayChallenges.count)) {
+        
+        if(selectedGame)
+        {
+            NSLog(@"Challenge Pressed");
+            {
+
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
+                NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
+
+                if(filteredArray.count==0) {
+
+                    [kAppDelegate.objLoader show];
+                    [selectedGame challengeGame:^(NSDictionary *dictJson, NSError *error) {
+
+                        [selectedGame getGameChallenges:^(NSDictionary *dictJson, NSError *error) {
+                            [kAppDelegate.objLoader hide];
+                            if(!error)
+                            {
+                                if([[dictJson valueForKey:@"success"] boolValue])
+                                {
+                                    int heightContent = ((int)selectedGame.arrayChallenges.count+1)*44;
+                                    contentviewHeight.constant = 185+heightContent;
+                                    [tblChallenges reloadData];
+
+                                    //lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+                                }
+                                else
+                                {
+                                    [self showAlert:[dictJson valueForKey:@"message"]];
+                                }
+                            }
+                        }];
+                    }];
+                }
+            }
+            
+        }
+    }
 }
 
 #pragma mark PickerView DataSource
