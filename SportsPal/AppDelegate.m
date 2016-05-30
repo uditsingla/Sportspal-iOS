@@ -22,6 +22,7 @@
 @synthesize container;
 @synthesize objLoader;
 @synthesize location_Manager,myLocation,tempLocation;
+@synthesize isInternetReachable,internetReachable;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -29,6 +30,8 @@
     
     //crashlytics
     [Fabric with:@[[Crashlytics class]]];
+    
+    [self testInternetConnectivity];
     
     UIViewController *viewController = [kLoginStoryboard instantiateViewControllerWithIdentifier: @"landing_vc"];
     
@@ -180,6 +183,59 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+#pragma mark - Test Internet Connection
+
+- (void)testInternetConnectivity
+{
+    internetReachable = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    __weak typeof(self) weakSelf = self;
+    // Internet is reachable
+    internetReachable.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the internet!");
+            weakSelf.isInternetReachable = YES;
+            
+            NetworkStatus status = [weakSelf.internetReachable currentReachabilityStatus];
+            
+            
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachable.unreachableBlock = ^(Reachability*reach)
+    {
+        AppDelegate *strongSelf = weakSelf;
+        
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Someone broke the internet :(");
+            
+            [strongSelf.window.rootViewController presentViewController:[kAppDelegate showAlert:kInternetUnreachableMessage] animated:YES completion:nil];
+            
+            strongSelf.isInternetReachable = NO;
+            
+        });
+        
+    };
+    
+    [internetReachable startNotifier];
+}
+
+- (UIAlertController*)showAlert:(NSString*)string {
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil message:string preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alert addAction:ok];
+    return alert;
+    //    [_window.rootViewController presentViewController:alert animated:YES completion:nil];
+}
+
 
 //
 #pragma mark - Facebook Methods

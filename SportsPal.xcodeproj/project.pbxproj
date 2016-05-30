@@ -249,6 +249,7 @@
 		46F62D3D1C93627800A61B47 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3C1C93627800A61B47 /* Home.m */; };
 		46F62D401C9362F600A61B47 /* TableViewTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F62D3F1C9362F600A61B47 /* TableViewTemplate.m */; };
 		7C6508F91CF202B400D09B16 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6508F81CF202B400D09B16 /* NotificationsViewController.m */; };
+		7C74E3441CFCA246008DB658 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C74E3431CFCA246008DB658 /* Reachability.m */; };
 		7C80BF801CFB36B400DD14A8 /* TB_Add_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C80BF7F1CFB36B400DD14A8 /* TB_Add_VC.m */; };
 		A610D89A1CD7D3F0008DED71 /* map_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8961CD7D3F0008DED71 /* map_location@2x.png */; };
 		A610D89B1CD7D3F0008DED71 /* map_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A610D8971CD7D3F0008DED71 /* map_location@3x.png */; };
@@ -557,6 +558,8 @@
 		5AEED532CDD94B31B9075DA3 /* Pods-SportsPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportsPal.release.xcconfig"; path = "Pods/Target Support Files/Pods-SportsPal/Pods-SportsPal.release.xcconfig"; sourceTree = "<group>"; };
 		7C6508F71CF202B400D09B16 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
 		7C6508F81CF202B400D09B16 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
+		7C74E3421CFCA246008DB658 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		7C74E3431CFCA246008DB658 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		7C80BF7E1CFB36B400DD14A8 /* TB_Add_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TB_Add_VC.h; sourceTree = "<group>"; };
 		7C80BF7F1CFB36B400DD14A8 /* TB_Add_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TB_Add_VC.m; sourceTree = "<group>"; };
 		A610D8961CD7D3F0008DED71 /* map_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_location@2x.png"; sourceTree = "<group>"; };
@@ -1163,6 +1166,7 @@
 		46F62CEB1C90ABE500A61B47 /* 3rdPartyLib */ = {
 			isa = PBXGroup;
 			children = (
+				7C74E3411CFCA246008DB658 /* Reachability */,
 				A69E297F1CE8959A0059A5F6 /* base64 */,
 				A6604E151CE25E0600F8C7AF /* AFNetworkingManager */,
 				A6C953781CD68D650046F1A9 /* Google Places Autocomplete */,
@@ -1187,6 +1191,15 @@
 				7C6508F81CF202B400D09B16 /* NotificationsViewController.m */,
 			);
 			path = NotificationScreen;
+			sourceTree = "<group>";
+		};
+		7C74E3411CFCA246008DB658 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				7C74E3421CFCA246008DB658 /* Reachability.h */,
+				7C74E3431CFCA246008DB658 /* Reachability.m */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		9634FAC9370C4C7252BFDA71 /* Pods */ = {
@@ -1711,6 +1724,7 @@
 				A6C953861CD68D650046F1A9 /* SPGooglePlacesAutocompletePlace.m in Sources */,
 				46D5187C1CF81C46001E0250 /* Challenges.m in Sources */,
 				46F161ED1CC6A77900F36EE9 /* TB_Play_Teams.m in Sources */,
+				7C74E3441CFCA246008DB658 /* Reachability.m in Sources */,
 				46F62CCE1C90901400A61B47 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

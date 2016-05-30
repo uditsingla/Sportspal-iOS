@@ -73,4 +73,8 @@
 #define model_manager ((ModelManager *)[ModelManager modelManager])
 #define kAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
+//Internet Message Constants
+#define kInternetUnreachableMessage @"Your Internet connection is unavailable."
+
+
 #endif /* Constants_h */

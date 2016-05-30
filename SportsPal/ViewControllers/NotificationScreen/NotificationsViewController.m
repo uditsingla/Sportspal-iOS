@@ -27,7 +27,6 @@
     // Do any additional setup after loading the view.
     
     NSLog(@"controller array : %@",self.navigationController.viewControllers);
-
     
     
     topNavBar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Reachability.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate>
 
@@ -28,6 +29,10 @@
 @property(nonatomic,strong) CLLocationManager *location_Manager;
 @property(nonatomic,strong) CLLocation *myLocation;
 @property(nonatomic,strong) CLLocation *tempLocation;
+
+@property (strong, nonatomic) Reachability *internetReachable;
+@property (assign, nonatomic) BOOL isInternetReachable;
+
 
 
 @end
