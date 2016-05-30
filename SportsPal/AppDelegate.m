@@ -114,9 +114,13 @@
 {
     NSLog(@"received notification%@",userInfo.description);
     
+    [model_manager.sportsManager getAvailableGames:nil];
+    [model_manager.teamManager getAvailableTeams:nil];
+    
     UIApplicationState state = [[UIApplication sharedApplication] applicationState];
     if(state == UIApplicationStateActive)
     {
+        
     }
     else if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
     {

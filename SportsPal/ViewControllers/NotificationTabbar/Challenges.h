@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Challenges : UIViewController
+@interface Challenges : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @end

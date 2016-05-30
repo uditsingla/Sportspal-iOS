@@ -723,6 +723,47 @@
         if(selectedGame)
         {
             NSLog(@"Challenge Pressed");
+            
+            if(selectedGame.gameType==GameTypeTeam)
+            {
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
+                NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
+                
+                if(filteredArray.count==0) {
+                    
+                    if(model_manager.profileManager.owner.arrayTeams.count==0)
+                    {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No team available" message:@"Please create new team first for challenge." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                        [alert show];
+                        
+                        return;
+                    }
+                    
+                    UIAlertController * alert=   [UIAlertController
+                                                  alertControllerWithTitle:@""
+                                                  message:@"Please choose team on behalf of which you want to challenge the game."
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
+                    
+                    
+                    UIAlertAction* ok = [UIAlertAction
+                                         actionWithTitle:@"OK"
+                                         style:UIAlertActionStyleCancel
+                                         handler:^(UIAlertAction * action)
+                                         {
+                                             //Do some thing here
+                                             pickerselected = kteamname;
+                                             pickerTeamName.hidden = NO;
+                                             toolBarSuperView.hidden = NO;
+                                             
+                                         }];
+                    [alert addAction:ok];
+                }
+                
+            }
+            else
             {
 
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
@@ -731,7 +772,7 @@
                 if(filteredArray.count==0) {
 
                     [kAppDelegate.objLoader show];
-                    [selectedGame challengeGame:^(NSDictionary *dictJson, NSError *error) {
+                    [selectedGame challengeGameWithTeamID:nil completion:^(NSDictionary *dictJson, NSError *error) {
 
                         [selectedGame getGameChallenges:^(NSDictionary *dictJson, NSError *error) {
                             [kAppDelegate.objLoader hide];
@@ -776,7 +817,17 @@
     return arrGameType.count;
     
     else if (pickerView == pickerTeamName)
-    return model_manager.profileManager.owner.arrayTeams.count;
+    {
+        if(selectedGame)
+        {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", selectedGame.sportID];
+            NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
+            return filteredArray.count;
+
+        }
+        else
+            return model_manager.profileManager.owner.arrayTeams.count;
+    }
     
     return 0;
 }
@@ -798,7 +849,15 @@
     
     else if (pickerView == pickerTeamName)
     {
-        return ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
+        if(selectedGame)
+        {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", selectedGame.sportID];
+            NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
+            return ((Team*)filteredArray[row]).teamName;
+            
+        }
+        else
+            return ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
     }
     return  @"";
     
@@ -846,8 +905,19 @@
     
     else if (pickerView == pickerTeamName)
     {
-        strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
-        strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamID;
+        if(selectedGame)
+        {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", selectedGame.sportID];
+            NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
+            strTeamName = ((Team*)filteredArray[row]).teamName;
+            strTeamID = ((Team*)filteredArray[row]).teamID;
+
+        }
+        else
+        {
+            strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
+            strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamID;
+        }
     }
 }
 
@@ -910,10 +980,49 @@
         
         if (strTeamName == nil)
         {
-            strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[0]).teamName;
-            strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[0]).teamID;
+            if(selectedGame)
+            {
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", selectedGame.sportID];
+                NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
+                strTeamName = ((Team*)filteredArray[0]).teamName;
+                strTeamID = ((Team*)filteredArray[0]).teamID;
+                
+            }
+            else
+            {
+                strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[0]).teamName;
+                strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[0]).teamID;
+            }
         }
-        [btnTeamName setTitle:strTeamName forState:UIControlStateNormal];
+        
+        if(selectedGame)
+        {
+            
+            [kAppDelegate.objLoader show];
+            [selectedGame challengeGameWithTeamID:strTeamID completion:^(NSDictionary *dictJson, NSError *error) {
+                
+                [selectedGame getGameChallenges:^(NSDictionary *dictJson, NSError *error) {
+                    [kAppDelegate.objLoader hide];
+                    if(!error)
+                    {
+                        if([[dictJson valueForKey:@"success"] boolValue])
+                        {
+                            int heightContent = ((int)selectedGame.arrayChallenges.count+1)*44;
+                            contentviewHeight.constant = 185+heightContent;
+                            [tblChallenges reloadData];
+                            
+                            //lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+                        }
+                        else
+                        {
+                            [self showAlert:[dictJson valueForKey:@"message"]];
+                        }
+                    }
+                }];
+            }];
+        }
+        else
+            [btnTeamName setTitle:strTeamName forState:UIControlStateNormal];
     }
     
    

@@ -37,11 +37,11 @@
     menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [menuBtn addTarget:self action:@selector(menuBtnPressed) forControlEvents:UIControlEventTouchDown];
     menuBtn.backgroundColor=[UIColor clearColor];
-    menuBtn.frame = CGRectMake(0, 7, 40 , 60);
+    menuBtn.frame = CGRectMake(0, 0, 40 , 60);
     [menuBtn setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
     [self.view addSubview:menuBtn];
     
-    UILabel *header= [[UILabel alloc]initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, 50)];
+    UILabel *header= [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     header.text=@"NOTIFICATIONS";
     header.backgroundColor=[UIColor clearColor];
     header.numberOfLines=1;
@@ -51,7 +51,7 @@
     header.font= [UIFont fontWithName:@"TwCenMT-Regular" size:17];
     [self.view addSubview:header];
     
-    tblNotifications=[[UITableView alloc]initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height - 60)];
+    tblNotifications=[[UITableView alloc]initWithFrame:CGRectMake(0, 75, self.view.frame.size.width, self.view.frame.size.height - 75)];
     //TableView Delegates
     tblNotifications.dataSource = self;
     tblNotifications.delegate = self;

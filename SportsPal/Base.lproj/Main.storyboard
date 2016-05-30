@@ -1291,10 +1291,10 @@
             </objects>
             <point key="canvasLocation" x="1428" y="-131"/>
         </scene>
-        <!--Item 2-->
+        <!--Game Challenges-->
         <scene sceneID="ooV-hD-qHA">
             <objects>
-                <viewController id="LiH-Jk-n5q" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="challenges" id="LiH-Jk-n5q" userLabel="Game Challenges" customClass="Challenges" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IlK-rS-FUI"/>
                         <viewControllerLayoutGuide type="bottom" id="SCs-bm-dl5"/>
@@ -1304,16 +1304,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="ILB-Am-bcJ"/>
+                    <tabBarItem key="tabBarItem" title="Game Challenges" id="ILB-Am-bcJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZP0-0M-iV6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1428" y="1179"/>
         </scene>
-        <!--Item 1-->
+        <!--Team Invites-->
         <scene sceneID="3mE-vv-CK0">
             <objects>
-                <viewController storyboardIdentifier="notification_vc" id="muv-yI-uvN" customClass="NotificationsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="notification_vc" id="muv-yI-uvN" userLabel="Team Invites" customClass="NotificationsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sx6-Io-Wqm"/>
                         <viewControllerLayoutGuide type="bottom" id="mOh-ql-6Wc"/>
@@ -1323,7 +1323,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="KPO-7Q-Lws"/>
+                    <tabBarItem key="tabBarItem" title="Team Invites" id="KPO-7Q-Lws"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aXg-zD-wfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
