@@ -21,6 +21,7 @@ typedef NS_ENUM(int, GameType)
 @property (nonatomic, strong) NSString *sportID;
 @property (nonatomic, strong) NSString *sportName;
 @property (nonatomic, strong) NSString *teamID;
+@property (nonatomic, strong) NSString *teamName;
 @property (nonatomic, strong) NSString *date;
 @property (nonatomic, strong) NSString *time;
 @property (nonatomic, assign) CLLocationCoordinate2D geoLocation;

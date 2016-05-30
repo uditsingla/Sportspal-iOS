@@ -15,6 +15,9 @@
 @property(nonatomic,strong) NSMutableArray *arrayGames;
 @property(nonatomic,strong) NSMutableArray *arraySearchedGames;
 
+@property(nonatomic,strong) NSMutableArray *arrayGameChallenges;
+
+
 -(void)getSports:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)getAvailableGames:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
@@ -24,6 +27,8 @@
 -(void)createNewGame:(Game*)game completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)searchGameWithSearchTerm:(NSString*)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)getAllGameChallenges:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)resetModelData;
 

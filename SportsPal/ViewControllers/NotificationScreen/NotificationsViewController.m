@@ -131,7 +131,7 @@
     
     Team *team = ((Team*)[model_manager.teamManager.arrayTeamInvites objectAtIndex:indexPath.row]);
     
-    lbl_heading.text = [NSString stringWithFormat:@"%@ added you in team %@.Wanna join?",[team.creator.firstName capitalizedString], team.teamName];
+    lbl_heading.text = [NSString stringWithFormat:@"%@ added you in team %@.",[team.creator.firstName capitalizedString], team.teamName];
     
     return cellnew;
     

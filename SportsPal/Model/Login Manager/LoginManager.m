@@ -76,6 +76,7 @@
                 [model_manager.teamManager getAvailableTeams:nil];
                 [model_manager.profileManager.owner getPreferredSports:nil];
                 [model_manager.teamManager getTeamInvitation:nil];
+                [model_manager.sportsManager getAllGameChallenges:nil];
             }
             
             completionBlock(json,nil);

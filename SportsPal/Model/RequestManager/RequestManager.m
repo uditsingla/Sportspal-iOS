@@ -24,6 +24,12 @@
                     includeHeaders:(BOOL)include
                       onCompletion:(JSONResponseBlock)completionBlock
 {
+    if(!kAppDelegate.isInternetReachable)
+    {
+        completionBlock(0,nil);
+        return;
+    }
+    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     

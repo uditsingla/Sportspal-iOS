@@ -10,7 +10,7 @@
 
 @implementation Game
 
-@synthesize gameID,gameName,sportID,sportName,teamID,date,time,geoLocation,address,gameType,creator,distance,arrayChallenges;
+@synthesize gameID,gameName,sportID,sportName,teamID,teamName,date,time,geoLocation,address,gameType,creator,distance,arrayChallenges;
 
 - (id)init
 {
@@ -21,6 +21,7 @@
         sportID = @"";
         sportName = @"";
         teamID = @"";
+        teamName = @"";
         date = @"";
         time = @"";
         geoLocation = CLLocationCoordinate2DMake(0, 0);
@@ -69,7 +70,8 @@
                          Team *team = [Team new];
                          team.teamID = [[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"id"];
                          team.sportID = [[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport_id"];
-                         team.sportName = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"];
+                         if([[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"])
+                             team.sportName = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"];
                          team.teamName = [[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_name"];
                          team.memberLimit = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"members_limit"] intValue];
                          team.geoLocation = CLLocationCoordinate2DMake([[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"latitude"] doubleValue], [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"longitude"] doubleValue]);
@@ -79,10 +81,14 @@
                          else
                              team.teamType = TeamTypeCorporate;
                          
-                         team.creator.userID = [[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"creator_id"];
+                         team.creator.userID = [NSString stringWithFormat:@"%i",[[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"creator_id"] intValue]];
                          team.creator.firstName = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"first_name"];
                          team.creator.lastName = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"last_name"];
                          team.creator.email = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"email"];
+                         
+                         team.creator.gameChallengeStatus = [[[arrUsers objectAtIndex:i] valueForKey:@"status"] boolValue];
+                         team.creator.gameChallengeID = [[arrUsers objectAtIndex:i] valueForKey:@"id"];
+                         
                          
                          [arrayChallenges addObject:team];
                      }

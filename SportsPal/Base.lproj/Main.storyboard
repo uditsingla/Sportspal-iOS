@@ -1699,6 +1699,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="byO-6F-ZfY"/>
                                                 </constraints>
+                                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellIdentifier" id="7R3-q0-e4h" customClass="TB_Add_VC">
                                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>

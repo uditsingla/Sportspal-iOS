@@ -22,6 +22,8 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+- (UIAlertController*)showAlert:(NSString*)string;
+
 @property(nonatomic,strong) MFSideMenuContainerViewController *container;
 @property(nonatomic,strong) LabeledActivityIndicatorView *objLoader;
 //-(BOOL)checkInternetConnectivity;

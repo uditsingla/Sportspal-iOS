@@ -7,8 +7,8 @@
 //
 
 #import "Challenges.h"
-#import "Team.h"
-#import "AddTeam.h"
+#import "Game.h"
+#import "Add_VC.h"
 
 @interface Challenges ()
 {
@@ -57,13 +57,18 @@
     tblNotifications.backgroundColor=[UIColor clearColor];
     [self.view addSubview:tblNotifications];
     
-    [model_manager.teamManager getTeamInvitation:^(NSDictionary *dictJson, NSError *error) {
-        [tblNotifications reloadData];
-    }];
     
     self.view.backgroundColor = kBlackColor;
     
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [model_manager.sportsManager getAllGameChallenges:^(NSDictionary *dictJson, NSError *error) {
+        [tblNotifications reloadData];
+    }];
+}
+
 
 -(void)viewDidLayoutSubviews
 {
@@ -91,7 +96,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return model_manager.teamManager.arrayTeamInvites.count;
+    return model_manager.sportsManager.arrayGameChallenges.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
@@ -125,9 +130,9 @@
     [cellnew setSelectionStyle:UITableViewCellSelectionStyleGray];
     lbl_heading = (UILabel *)[cellnew.contentView viewWithTag:2];
     
-    Team *team = ((Team*)[model_manager.teamManager.arrayTeamInvites objectAtIndex:indexPath.row]);
+    Game *game = ((Game*)[model_manager.sportsManager.arrayGameChallenges objectAtIndex:indexPath.row]);
     
-    lbl_heading.text = [NSString stringWithFormat:@"%@ added you in team %@.Wanna join?",[team.creator.firstName capitalizedString], team.teamName];
+    lbl_heading.text = [NSString stringWithFormat:@"Challenge received for %@ game.",[game.gameName capitalizedString]];
     
     return cellnew;
     
@@ -137,8 +142,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AddTeam *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"addteam"];
-    viewcontroller.selectedTeam = ((Team*)[model_manager.teamManager.arrayTeamInvites objectAtIndex:indexPath.row]);
+    Add_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"add_vc"];
+    viewcontroller.selectedGame = (Game*)[model_manager.sportsManager.arrayGameChallenges objectAtIndex:indexPath.row];
     [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

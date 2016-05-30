@@ -30,7 +30,7 @@
     
     //crashlytics
     [Fabric with:@[[Crashlytics class]]];
-    
+    isInternetReachable = YES;
     [self testInternetConnectivity];
     
     UIViewController *viewController = [kLoginStoryboard instantiateViewControllerWithIdentifier: @"landing_vc"];

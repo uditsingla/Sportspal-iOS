@@ -52,6 +52,8 @@
     int pickerselected;
     UIToolbar *toolBar;
     
+    bool isChallengesFetched;
+    
     __weak IBOutlet UISegmentedControl *segmentcotrol;
     
     __weak IBOutlet NSLayoutConstraint *contentviewHeight;
@@ -161,7 +163,7 @@
         btnSportName.enabled = NO;
         [btnSportName setTitle:selectedGame.sportName forState:UIControlStateNormal];
         btnTeamName.enabled = NO;
-        //[btnTeamName setTitle:selectedGame.teamName forState:UIControlStateNormal];
+        [btnTeamName setTitle:selectedGame.teamName forState:UIControlStateNormal];
         NSString *game_type;
         if(selectedGame.gameType==GameTypeTeam)
             game_type = @"Team";
@@ -169,6 +171,18 @@
             game_type = @"Individual";
         [btnGameType setTitle:game_type forState:UIControlStateNormal];
         btnGameType.enabled = NO;
+        
+        if ([game_type isEqualToString:@"Individual"])
+        {
+            constraintHeight.constant = 0;
+            magicView.hidden = YES;
+        }
+        else
+        {
+            constraintHeight.constant = 40;
+            magicView.hidden = NO;
+        }
+        
         
         [btnGameName setTitle:selectedGame.gameName forState:UIControlStateNormal];
         btnGameName.enabled = NO;
@@ -188,13 +202,14 @@
         strSportName = selectedGame.sportName;
         strGameType = game_type;
         strGameName = selectedGame.gameName;
-        //strTeamname = selectedGame.teamName;
+        strTeamName = selectedGame.teamName;
         
         [selectedGame getGameChallenges:^(NSDictionary *dictJson, NSError *error) {
             if(!error)
             {
                 if([[dictJson valueForKey:@"success"] boolValue])
                 {
+                    isChallengesFetched = true;
                     int heightContent = ((int)selectedGame.arrayChallenges.count+1)*44;
                     contentviewHeight.constant = 185+heightContent;
                     [tblChallenges reloadData];
@@ -513,12 +528,21 @@
                 
                 else if(selectedGame.arrayChallenges.count>0)
                 {
-                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
+                    NSPredicate *predicate;
+                    if(selectedGame.gameType==GameTypeIndividual)
+                        predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
+                    else
+                        predicate = [NSPredicate predicateWithFormat:@"SELF.creator.userID == %@", model_manager.profileManager.owner.userID];
+                        
                     NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
                     
                     
                     if(filteredArray.count>0) {
-                        User *filteredResult = (User*)[filteredArray objectAtIndex:0];
+                        User *filteredResult;
+                        if(selectedGame.gameType==GameTypeIndividual)
+                            filteredResult = (User*)[filteredArray objectAtIndex:0];
+                        else
+                            filteredResult = ((Team*)[filteredArray objectAtIndex:0]).creator;
                         if(!filteredResult.gameChallengeStatus)
                         {
                             cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
@@ -567,13 +591,28 @@
         }
         else{
             //[cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
-            cell.lblName.text = [NSString stringWithFormat:@"%@ %@ challenged the game", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
+            if(selectedGame.gameType==GameTypeIndividual)
+                cell.lblName.text = [NSString stringWithFormat:@"%@ %@ challenged the game", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
+            else
+                cell.lblName.text = [NSString stringWithFormat:@"Team %@ challenged the game", [((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).teamName capitalizedString]];
+            
             
             cell.backgroundColor = [UIColor blackColor];
+            
+            bool gameChallengeStatus;
+            if(selectedGame.gameType==GameTypeIndividual)
+                gameChallengeStatus = ((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).gameChallengeStatus;
+            else
+                gameChallengeStatus = ((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).creator.gameChallengeStatus;
 
-            if(((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).gameChallengeStatus)
+
+            if(gameChallengeStatus)
             {
-                cell.lblName.text = [NSString stringWithFormat:@"Game on with %@ %@", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
+                if(selectedGame.gameType==GameTypeIndividual)
+                    cell.lblName.text = [NSString stringWithFormat:@"Game on with %@ %@", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
+                else
+                    cell.lblName.text = [NSString stringWithFormat:@"Game on with team %@", [((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).teamName capitalizedString]];
+                
                 cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
 
                 cell.btn_accept.hidden = YES;
@@ -643,7 +682,12 @@
     CGPoint rootViewPoint = [sender.superview convertPoint:center toView:tblChallenges];
     NSIndexPath *indexPath = [tblChallenges indexPathForRowAtPoint:rootViewPoint];
     
-    User *currentUser = (User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
+    User *currentUser ;
+    if(selectedGame.gameType == GameTypeIndividual)
+        currentUser = (User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
+    else
+        currentUser = ((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).creator;
+
     
     if(selectedGame.arrayChallenges.count>0) {
         
@@ -680,7 +724,11 @@
     CGPoint rootViewPoint = [sender.superview convertPoint:center toView:tblChallenges];
     NSIndexPath *indexPath = [tblChallenges indexPathForRowAtPoint:rootViewPoint];
     
-    User *currentUser = (User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
+    User *currentUser ;
+    if(selectedGame.gameType == GameTypeIndividual)
+        currentUser = (User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
+    else
+        currentUser = ((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).creator;
     
     if(selectedGame.arrayChallenges.count>0) {
         
@@ -715,6 +763,9 @@
 {
     NSLog(@"selected %ld row", (long)indexPath.row);
     
+    if(!isChallengesFetched)
+        return;
+    
     if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
         return;
     
@@ -726,7 +777,7 @@
             
             if(selectedGame.gameType==GameTypeTeam)
             {
-                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.creator.userID == %@", model_manager.profileManager.owner.userID];
                 NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
                 
                 if(filteredArray.count==0) {
