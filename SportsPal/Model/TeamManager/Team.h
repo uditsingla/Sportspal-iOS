@@ -23,6 +23,7 @@ typedef NS_ENUM(int, TeamType)
 @property (nonatomic, assign) int memberLimit;
 @property (nonatomic, assign) CLLocationCoordinate2D geoLocation;
 @property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *createdTime;
 
 @property (nonatomic, strong) User *creator;
 @property (nonatomic, assign) TeamType teamType;

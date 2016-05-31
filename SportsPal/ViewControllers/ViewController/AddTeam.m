@@ -609,7 +609,7 @@
         [btn_reject addTarget:self action:@selector(clkReject) forControlEvents:UIControlEventTouchUpInside];
 
         
-        cell.imgProfile.layer.cornerRadius = 15;
+        cell.imgProfile.layer.cornerRadius = 5;
         cell.imgProfile.layer.masksToBounds = YES;
         
         cell.lblName.text =@"";
@@ -618,6 +618,7 @@
 
         cell.lblName.textAlignment = NSTextAlignmentLeft;
         cell.backgroundColor = [UIColor clearColor];
+        cell.alpha = 1;
 
         //check for last row
         
@@ -684,12 +685,18 @@
         }
         else{
             [cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
-            cell.lblName.text = [NSString stringWithFormat:@"%@ %@", ((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).firstName, ((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).lastName];
+            cell.lblName.text = [NSString stringWithFormat:@"%@ %@", [((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).lastName capitalizedString]];
             
             if(((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).teamStatus)
+            {
                 cell.backgroundColor = [UIColor clearColor];
+                cell.alpha = 1;
+            }
             else
-                cell.backgroundColor = [UIColor colorWithRed:33.0f green:33.0f / 255.0f blue:33.0f/255.0f alpha:1.0f];
+            {
+                cell.backgroundColor = [UIColor grayColor];
+                cell.alpha = 0.5;
+            }
         }
         
         //        Game *game = [arrSports objectAtIndex:indexPath.row];

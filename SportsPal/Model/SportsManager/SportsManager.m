@@ -283,13 +283,12 @@
                          game.gameID = [[arrGames objectAtIndex:k] valueForKey:@"id"];
                          game.gameName = [[arrGames objectAtIndex:k] valueForKey:@"name"];
                          game.sportID = [[arrGames objectAtIndex:k] valueForKey:@"sport_id"];
-                         //game.sportName = [[[arrGames objectAtIndex:k] valueForKey:@"sport"] valueForKey:@"name"];
+                         game.sportName = [[[arrGames objectAtIndex:k] valueForKey:@"sport"] valueForKey:@"name"];
                          game.teamID = [[arrGames objectAtIndex:k] valueForKey:@"team_id"];
                          if([[[arrGames objectAtIndex:k] valueForKey:@"team"] valueForKey:@"team_name"]!=nil && ![[[[arrGames objectAtIndex:k] valueForKey:@"team"] valueForKey:@"team_name"] isEqual:[NSNull null]])
                              game.teamName = [[[arrGames objectAtIndex:k] valueForKey:@"team"] valueForKey:@"team_name"];
                          game.date = [[arrGames objectAtIndex:k] valueForKey:@"date"];
                          game.time = [[arrGames objectAtIndex:k] valueForKey:@"time"];
-                         //game.distance = [NSString stringWithFormat:@"%.0fkm",[[[arrGames objectAtIndex:k] valueForKey:@"distance"] floatValue]];
                          game.geoLocation = CLLocationCoordinate2DMake([[[arrGames objectAtIndex:k] valueForKey:@"latitude"] doubleValue], [[[arrGames objectAtIndex:k] valueForKey:@"longitude"] doubleValue]);
                          game.address = [[arrGames objectAtIndex:k] valueForKey:@"address"];
                          if([[[arrGames objectAtIndex:k] valueForKey:@"game_type"] isEqualToString:@"individual"])
@@ -304,6 +303,8 @@
                          
                          
                          for (int i=0; i < arrUsers.count; i++) {
+                             
+                             game.createdTime = [[arrUsers objectAtIndex:i] valueForKey:@"created"];
                              
                              if([[[arrUsers objectAtIndex:i] valueForKey:@"team_id"] intValue]==0)
                              {

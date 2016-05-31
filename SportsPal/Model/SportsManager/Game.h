@@ -27,6 +27,8 @@ typedef NS_ENUM(int, GameType)
 @property (nonatomic, assign) CLLocationCoordinate2D geoLocation;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *distance;
+@property (nonatomic, strong) NSString *createdTime;
+
 
 @property (nonatomic, strong) User *creator;
 @property (nonatomic, assign) GameType gameType;

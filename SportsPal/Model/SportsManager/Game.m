@@ -10,7 +10,7 @@
 
 @implementation Game
 
-@synthesize gameID,gameName,sportID,sportName,teamID,teamName,date,time,geoLocation,address,gameType,creator,distance,arrayChallenges;
+@synthesize gameID,gameName,sportID,sportName,teamID,teamName,date,time,geoLocation,address,gameType,creator,distance,arrayChallenges,createdTime;
 
 - (id)init
 {
@@ -28,6 +28,7 @@
         address = @"";
         distance = @"";
         gameType = GameTypeIndividual;
+        createdTime = @"";
         creator = [User new];
         arrayChallenges = [NSMutableArray new];
     }

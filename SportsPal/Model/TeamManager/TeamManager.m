@@ -193,6 +193,8 @@
                          team.sportID = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport_id"];
                          team.sportName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"];
                          team.teamName = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_name"];
+                         team.createdTime = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"created"];
+                         
                          team.memberLimit = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"members_limit"] intValue];
                          team.geoLocation = CLLocationCoordinate2DMake([[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"latitude"] doubleValue], [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"longitude"] doubleValue]);
                          team.address = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"address"];
@@ -205,6 +207,8 @@
                          team.creator.firstName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"first_name"];
                          team.creator.lastName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"last_name"];
                          team.creator.email = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"email"];
+                         team.creator.profilePic = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"image"];
+                         
                          
                          [arrayTeamInvites addObject:team];
                      }

@@ -10,7 +10,7 @@
 
 @implementation Team
 
-@synthesize teamID,sportID,sportName,teamName,memberLimit,geoLocation,address,teamType,creator,arrayMembers;
+@synthesize teamID,sportID,sportName,teamName,memberLimit,geoLocation,address,teamType,creator,arrayMembers,createdTime;
 
 - (id)init
 {
@@ -24,6 +24,7 @@
         geoLocation = CLLocationCoordinate2DMake(0, 0);
         address = @"";
         teamType = TeamTypePrivate;
+        createdTime = @"";
         creator = [User new];
         
         arrayMembers = [NSMutableArray new];
