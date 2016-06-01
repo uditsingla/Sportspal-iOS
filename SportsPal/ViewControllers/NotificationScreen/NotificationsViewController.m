@@ -155,7 +155,7 @@
     
     lbl_date.text = [self getDateFromServerTime:team.createdTime];
     
-    [imgView sd_setImageWithURL:[NSURL URLWithString:team.creator.profilePic] placeholderImage:[UIImage imageNamed:@"members.png"]];
+    [imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseUrlPath,team.creator.profilePic]] placeholderImage:[UIImage imageNamed:@"members.png"]];
     
     return cellnew;
     

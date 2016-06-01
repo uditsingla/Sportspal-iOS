@@ -132,7 +132,7 @@
     imgPicker.allowsEditing = YES;
     
     
-    [profilePic sd_setImageWithURL:[NSURL URLWithString:model_manager.profileManager.owner.profilePic] placeholderImage:[UIImage imageNamed:@"members.png"]];
+    [profilePic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseUrlPath,model_manager.profileManager.owner.profilePic]] placeholderImage:[UIImage imageNamed:@"members.png"]];
     profilePic.backgroundColor = [UIColor clearColor];
     profilePic.contentMode = UIViewContentModeScaleAspectFit;
     

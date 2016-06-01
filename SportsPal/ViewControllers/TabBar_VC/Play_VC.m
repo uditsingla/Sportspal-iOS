@@ -316,7 +316,7 @@
         }
         
         if(player.profilePic.length>0)
-            [cell.imgBackground sd_setImageWithURL:[NSURL URLWithString:player.profilePic] placeholderImage:[UIImage imageNamed:@"members.png"]];
+            [cell.imgBackground sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseUrlPath,player.profilePic]] placeholderImage:[UIImage imageNamed:@"members.png"]];
 
         return cell;
 

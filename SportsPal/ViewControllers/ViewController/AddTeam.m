@@ -684,7 +684,7 @@
             }
         }
         else{
-            [cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+            [cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseUrlPath,((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).profilePic]] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
             cell.lblName.text = [NSString stringWithFormat:@"%@ %@", [((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).lastName capitalizedString]];
             
             if(((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).teamStatus)

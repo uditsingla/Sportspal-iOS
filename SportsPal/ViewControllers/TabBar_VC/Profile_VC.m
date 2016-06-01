@@ -53,6 +53,10 @@
     if(user==nil)
     {
         user = model_manager.profileManager.owner;
+        btnChallenge.hidden = YES;
+        btnChat.hidden = YES;
+        btnFav.hidden = YES;
+
     }
     else
     {
