@@ -27,7 +27,7 @@
 {
     [self.navigationController setNavigationBarHidden:YES];
     
-    [self.menuContainerViewController setPanMode:MFSideMenuPanModeNone];
+//    [self.menuContainerViewController setPanMode:MFSideMenuPanModeNone];
     
     myImages=[NSArray arrayWithObjects:@"1.png",@"2.png",@"3.png",nil];
     
@@ -59,6 +59,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.menuContainerViewController setPanMode:MFSideMenuPanModeNone];
 }
 
 #pragma mark - Click Methods

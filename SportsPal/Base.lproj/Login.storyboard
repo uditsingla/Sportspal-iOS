@@ -53,7 +53,6 @@
                                                 <state key="normal" backgroundImage="forgetpassword.png"/>
                                                 <connections>
                                                     <action selector="clk_ForgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wMW-Th-KLa"/>
-                                                    <segue destination="YeQ-1F-Yes" kind="push" id="7hN-Vl-3lO"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FBy-PK-Ya1">
