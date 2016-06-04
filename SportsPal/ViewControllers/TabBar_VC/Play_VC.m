@@ -124,6 +124,10 @@
     [model_manager.teamManager getAvailableTeams:^(NSDictionary *dictJson, NSError *error) {
         [tblTeams reloadData];
     }];
+    
+    segmentedcontrol.selectedSegmentIndex = 0;
+    
+    [segmentedcontrol sendActionsForControlEvents:UIControlEventValueChanged];
 
 }
 

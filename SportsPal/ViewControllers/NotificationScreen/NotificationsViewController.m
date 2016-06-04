@@ -56,6 +56,9 @@
     tblNotifications.dataSource = self;
     tblNotifications.delegate = self;
     tblNotifications.backgroundColor=[UIColor clearColor];
+    // This will remove extra separators from tableview
+    tblNotifications.tableFooterView = [UIView new];
+
     [self.view addSubview:tblNotifications];
     
     

@@ -140,6 +140,8 @@
         }
         navigationController.viewControllers = controllers;
         
+        [[controllers lastObject] setSelectedIndex:0];
+        
         //[kAppDelegate.container.centerViewController pushViewController:[self goToController:@"home"] animated:NO];
     }
     else if ([keyName caseInsensitiveCompare:@"Share"] == NSOrderedSame)

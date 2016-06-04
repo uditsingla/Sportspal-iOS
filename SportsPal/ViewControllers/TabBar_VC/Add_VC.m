@@ -150,6 +150,8 @@
     viewNavigation.backgroundColor = kBlackColor;
     
     tblChallenges.backgroundColor = [UIColor clearColor];
+    // This will remove extra separators from tableview
+    tblChallenges.tableFooterView = [UIView new];
 
     
     if(selectedGame)
@@ -423,7 +425,7 @@
             if([[dictJson valueForKey:@"success"] boolValue])
             {
                 //game created successfully
-                [self showAlert:[dictJson valueForKey:@"message"]];
+                //[self showAlert:[dictJson valueForKey:@"message"]];
                 
                /*
                 [btnSportName setTitle:@"SPORT" forState:UIControlStateNormal];
@@ -446,6 +448,9 @@
                 */
                 
                 [self resetAllContent];
+                
+                [self.tabBarController setSelectedIndex:1];
+
             }
             else
             {
