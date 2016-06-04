@@ -71,7 +71,7 @@
 - (IBAction)clk_FBlogin:(id)sender {
 //    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     [login
-     logInWithReadPermissions: @[@"public_profile",@"email"]
+     logInWithReadPermissions: @[@"public_profile",@"email",@"user_birthday"]
      fromViewController:self
      handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
          if (error) {

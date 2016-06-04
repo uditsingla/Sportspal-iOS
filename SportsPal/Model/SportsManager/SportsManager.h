@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Game.h"
 
+//protocol to notify view controller
+@protocol ViewSportsDelegate <NSObject>
+
+-(void)newGameCreated:(Game*)game;
+
+@end
+
 @interface SportsManager : NSObject
 
 @property(nonatomic,strong) NSMutableArray *arraySports;
@@ -16,6 +23,8 @@
 @property(nonatomic,strong) NSMutableArray *arraySearchedGames;
 
 @property(nonatomic,strong) NSMutableArray *arrayGameChallenges;
+
+@property(weak,nonatomic) id<ViewSportsDelegate> sportsManagerDelegate;
 
 
 -(void)getSports:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;

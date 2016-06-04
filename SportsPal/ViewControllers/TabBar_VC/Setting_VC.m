@@ -142,8 +142,8 @@
     
     
     [profilePic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseUrlPath,model_manager.profileManager.owner.profilePic]] placeholderImage:[UIImage imageNamed:@"members.png"]];
-    profilePic.backgroundColor = [UIColor redColor];
-    //profilePic.contentMode = UIViewContentModeScaleAspectFit;
+    profilePic.backgroundColor = [UIColor blackColor];
+    profilePic.contentMode = UIViewContentModeScaleToFill;
     
     
     txtViewDescription.alpha = kAlpha;

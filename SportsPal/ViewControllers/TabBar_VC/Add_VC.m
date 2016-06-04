@@ -867,7 +867,7 @@
 
 {
     if(pickerView == pickerSports)
-    return  [ModelManager modelManager].sportsManager.arraySports.count;
+    return  model_manager.profileManager.owner.arrayPreferredSports.count;
     
     else if(pickerView == pickerGameType)
     return arrGameType.count;
@@ -893,7 +893,7 @@
     
     if(pickerView == pickerSports)
     {
-        Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
+        Sport *sport = model_manager.profileManager.owner.arrayPreferredSports[row];
         return  sport.sportName;
     }
     
@@ -929,7 +929,7 @@
     
     if(pickerView == pickerSports)
     {
-        Sport *sport = [ModelManager modelManager].sportsManager.arraySports[row];
+        Sport *sport = model_manager.profileManager.owner.arrayPreferredSports[row];
         strSportName=  sport.sportName;
         strSportID = sport.sportID;
     }

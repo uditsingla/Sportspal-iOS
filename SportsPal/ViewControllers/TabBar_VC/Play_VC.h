@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Play_VC : UIViewController
+@interface Play_VC : UIViewController<ViewSportsDelegate,ViewTeamDelegate>
 
 @end

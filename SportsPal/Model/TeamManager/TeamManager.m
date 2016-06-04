@@ -10,7 +10,7 @@
 
 @implementation TeamManager
 
-@synthesize arrayTeams,arraySearchedTeams,arrayTeamInvites;
+@synthesize arrayTeams,arraySearchedTeams,arrayTeamInvites,teamManagerDelegate;
 
 - (id)init
 {
@@ -94,8 +94,10 @@
              {
                  team.teamID = [[json valueForKey:@"data"] valueForKey:@"team_id"];
                  
-                 [arrayTeams addObject:team];
-                 [model_manager.profileManager.owner.arrayTeams addObject:team];
+                 [arrayTeams insertObject:team atIndex:0];
+                 [model_manager.profileManager.owner.arrayTeams insertObject:team atIndex:0];
+                 
+                 [teamManagerDelegate newTeamCreated:team];
              }
              
              if(completionBlock)

@@ -68,7 +68,8 @@
     
     lblAge.text = user.dob;
     
-    imageProfile.contentMode = UIViewContentModeScaleAspectFit;
+    imageProfile.backgroundColor = [UIColor blackColor];
+    imageProfile.contentMode = UIViewContentModeScaleToFill;
     [imageProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseUrlPath,user.profilePic]] placeholderImage:[UIImage imageNamed:@"members.png"]];
     
     int dynamicY = lblAge.frame.origin.y;

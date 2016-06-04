@@ -250,7 +250,7 @@
             if([[dictJson valueForKey:@"success"] boolValue])
             {
                 //game created successfully
-                [self showAlert:[dictJson valueForKey:@"message"]];
+                //[self showAlert:[dictJson valueForKey:@"message"]];
                 
                 
                 [self resetAllContent];
@@ -267,6 +267,9 @@
                 */
                 [arrTeamPlayers removeAllObjects];
                 [tblTeam reloadData];
+                
+                [self.tabBarController setSelectedIndex:1];
+
             }
             else
             {
@@ -343,8 +346,14 @@
             UITextField * namefield = textfields[0];
             
             strTeamname = namefield.text;
-            
             [btnTeamName setTitle:strTeamname forState:UIControlStateNormal];
+            
+            if([[strTeamname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+            {
+                strTeamname = @"";
+                [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
+            }
+            
             NSLog(@"%@",namefield.text);
             
         }]];

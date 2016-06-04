@@ -58,6 +58,9 @@
                          action:@selector(clkSegment:)
                forControlEvents:UIControlEventValueChanged];
     
+    model_manager.sportsManager.sportsManagerDelegate = self;
+    model_manager.teamManager.teamManagerDelegate = self;
+    
 
     arrPlayers = model_manager.playerManager.arrayPlayers;
     
@@ -104,6 +107,7 @@
 //    searchbar.backgroundColor = [UIColor blackColor];
     // Do any additional setup after loading the view.
     
+    segmentedcontrol.selectedSegmentIndex = 0;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -125,10 +129,19 @@
         [tblTeams reloadData];
     }];
     
-    segmentedcontrol.selectedSegmentIndex = 0;
     
     [segmentedcontrol sendActionsForControlEvents:UIControlEventValueChanged];
 
+}
+
+-(void)newGameCreated:(Game *)game
+{
+    segmentedcontrol.selectedSegmentIndex = 0;
+}
+
+-(void)newTeamCreated:(Team *)team
+{
+    segmentedcontrol.selectedSegmentIndex = 2;
 }
 
 - (void)didReceiveMemoryWarning {

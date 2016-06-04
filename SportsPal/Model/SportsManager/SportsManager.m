@@ -11,7 +11,7 @@
 
 @implementation SportsManager
 
-@synthesize arrayGames,arraySports,arraySearchedGames,arrayGameChallenges;
+@synthesize arrayGames,arraySports,arraySearchedGames,arrayGameChallenges,sportsManagerDelegate;
 
 - (id)init
 {
@@ -180,8 +180,10 @@
              {
                  game.gameID = [[json valueForKey:@"data"] valueForKey:@"game_id"];
                  
-                 [arrayGames addObject:game];
-                 [model_manager.profileManager.owner.arrayGames addObject:game];
+                 [arrayGames insertObject:game atIndex:0];
+                 [model_manager.profileManager.owner.arrayGames insertObject:game atIndex:0];
+                 
+                 [sportsManagerDelegate newGameCreated:game];
              }
              
              if(completionBlock)
