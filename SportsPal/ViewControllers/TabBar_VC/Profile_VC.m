@@ -8,6 +8,7 @@
 
 #import "Profile_VC.h"
 #import "Sport.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface Profile_VC ()
 {
@@ -67,6 +68,9 @@
     
     lblAge.text = user.dob;
     
+    imageProfile.contentMode = UIViewContentModeScaleAspectFit;
+    [imageProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseUrlPath,user.profilePic]] placeholderImage:[UIImage imageNamed:@"members.png"]];
+    
     int dynamicY = lblAge.frame.origin.y;
     
     
@@ -75,7 +79,7 @@
         NSString *strImageProfile = ((Sport*)[user.arrayPreferredSports objectAtIndex:0]).sportName;
         strImageProfile = [strImageProfile lowercaseString];
         
-        imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageProfile]];
+        //imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageProfile]];
 
         
         UIView *viewSport = [[UIView alloc]init];
@@ -166,6 +170,8 @@
                     
                     lblAge.text = _user.dob;
                     
+                    [imageProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseUrlPath,user.profilePic]] placeholderImage:[UIImage imageNamed:@"members.png"]];
+                    
                     
                     UIView *removeView;
                     while((removeView = [contentView viewWithTag:777]) != nil) {
@@ -176,7 +182,7 @@
                     int dynamicY = lblAge.frame.origin.y;
                     for(int i=0; i<_user.arrayPreferredSports.count; i++)
                     {
-                        imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[((Sport*)[_user.arrayPreferredSports objectAtIndex:0]).sportName lowercaseString]]];
+                        //imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[((Sport*)[_user.arrayPreferredSports objectAtIndex:0]).sportName lowercaseString]]];
                         
                         UIView *viewSport = [[UIView alloc]init];
                         viewSport.tag = 777;
