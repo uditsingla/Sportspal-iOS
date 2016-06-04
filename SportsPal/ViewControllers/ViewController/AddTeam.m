@@ -66,6 +66,7 @@
     __weak IBOutlet UILabel *lblTittle;
     __weak IBOutlet UIButton *btnSave;
    
+    UITextField *txfSearchField;
     
     
 }
@@ -195,7 +196,21 @@
             }
         }];
     }
+    
     searchbar.barTintColor = kBlackColor;
+    txfSearchField = [searchbar valueForKey:@"_searchField"];
+    txfSearchField.backgroundColor = [UIColor blackColor];
+    txfSearchField.textColor = [UIColor whiteColor];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                                                  [UIColor grayColor],
+                                                                                                  UITextAttributeTextColor,
+                                                                                                  nil,
+                                                                                                  UITextAttributeTextShadowColor,
+                                                                                                  [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
+                                                                                                  UITextAttributeTextShadowOffset,
+                                                                                                  nil]
+                                                                                        forState:UIControlStateNormal];
 
 }
 
@@ -321,6 +336,10 @@
     
     [self hideAllPickers];
     
+    
+    //to get Navigationbar subviews
+    [self showAllViews];
+    
     UIButton *btn = (UIButton*)sender;
     
     
@@ -396,13 +415,16 @@
     
     imgSelectedImage.hidden = YES;
     
-    btnMenu.hidden = NO;
-    lblTittle.hidden = NO;
-    btnSave.hidden = NO;
+//    btnMenu.hidden = NO;
+//    lblTittle.hidden = NO;
+//    btnSave.hidden = NO;
+//    
+//    searchbar.text = @"";
+//    searchbar.hidden = YES;
+//    tblSearchResult.hidden = YES;
     
-    searchbar.text = @"";
-    searchbar.hidden = YES;
-    tblSearchResult.hidden = YES;
+    [self showAllViews];
+    
     [arrSearchResult removeAllObjects];
     [tblSearchResult reloadData];
     
@@ -589,8 +611,9 @@
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", ((User*)[arrSearchResult objectAtIndex:indexPath.row]).firstName, ((User*)[arrSearchResult objectAtIndex:indexPath.row]).lastName];
         
-        cell.backgroundColor = [UIColor whiteColor];
-        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor blackColor];
+        cell.contentView.backgroundColor = [UIColor blackColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         
@@ -778,12 +801,16 @@
             [tblTeam reloadData];
         }
         
-        btnMenu.hidden = NO;
-        lblTittle.hidden = NO;
-        btnSave.hidden = NO;
-        searchbar.hidden = YES;
-        searchbar.text = @"";
-        tblSearchResult.hidden = YES;
+//        btnMenu.hidden = NO;
+//        lblTittle.hidden = NO;
+//        btnSave.hidden = NO;
+//        searchbar.hidden = YES;
+//        searchbar.text = @"";
+//        tblSearchResult.hidden = YES;
+        
+        
+        [self showAllViews];
+        
         [arrSearchResult removeAllObjects];
         [tblSearchResult reloadData];
         [searchbar resignFirstResponder];
@@ -841,13 +868,15 @@
                 }
                 NSLog(@"Add new player called");
                 
-                btnMenu.hidden = YES;
-                lblTittle.hidden = YES;
-                btnSave.hidden = YES;
-                searchbar.hidden = NO;
-                tblSearchResult.hidden = YES;
+//                btnMenu.hidden = YES;
+//                lblTittle.hidden = YES;
+//                btnSave.hidden = YES;
+//                searchbar.hidden = NO;
+//                tblSearchResult.hidden = YES;
                 
-                [self searchBarTextDidEndEditing:searchbar];
+                //[self searchBarTextDidEndEditing:searchbar];
+                [self hideAllViews];
+                [searchbar becomeFirstResponder];
             }
         }
     }
@@ -856,6 +885,28 @@
 }
 
 
+
+
+-(void)hideAllViews
+{
+    btnMenu.hidden = YES;
+    lblTittle.hidden = YES;
+    btnSave.hidden = YES;
+    searchbar.hidden = NO;
+    tblSearchResult.hidden = YES;
+}
+
+-(void)showAllViews
+{
+    tblSearchResult.hidden = YES;
+    searchbar.text = @"";
+    searchbar.hidden = YES;
+    
+    btnMenu.hidden = NO;
+    lblTittle.hidden = NO;
+    btnSave.hidden = NO;
+
+}
 
 #pragma mark - Searchbar Delegates
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar;
@@ -981,13 +1032,8 @@
 {
     [arrSearchResult removeAllObjects];
     [tblSearchResult reloadData];
-    tblSearchResult.hidden = YES;
-    searchbar.text = @"";
-    searchbar.hidden = YES;
     
-    btnMenu.hidden = NO;
-    lblTittle.hidden = NO;
-    btnSave.hidden = NO;
+    [self showAllViews];
     
     [searchbar resignFirstResponder];
 }

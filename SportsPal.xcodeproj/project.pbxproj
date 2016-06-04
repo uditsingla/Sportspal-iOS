@@ -71,6 +71,18 @@
 		4656DE641D030753003DEFC0 /* Nike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE5E1D030753003DEFC0 /* Nike@3x.png */; };
 		4656DE651D030753003DEFC0 /* Ramdev@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE5F1D030753003DEFC0 /* Ramdev@2x.png */; };
 		4656DE661D030753003DEFC0 /* Ramdev@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE601D030753003DEFC0 /* Ramdev@3x.png */; };
+		4656DE6D1D0379F0003DEFC0 /* gymnastics@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE671D0379F0003DEFC0 /* gymnastics@2x.png */; };
+		4656DE6E1D0379F0003DEFC0 /* gymnastics@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE681D0379F0003DEFC0 /* gymnastics@3x.png */; };
+		4656DE6F1D0379F0003DEFC0 /* skiing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE691D0379F0003DEFC0 /* skiing@2x.png */; };
+		4656DE701D0379F0003DEFC0 /* skiing@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE6A1D0379F0003DEFC0 /* skiing@3x.png */; };
+		4656DE711D0379F0003DEFC0 /* snooker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE6B1D0379F0003DEFC0 /* snooker@2x.png */; };
+		4656DE721D0379F0003DEFC0 /* snooker@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE6C1D0379F0003DEFC0 /* snooker@3x.png */; };
+		4656DE751D037A00003DEFC0 /* table tennis@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE731D037A00003DEFC0 /* table tennis@2x.png */; };
+		4656DE761D037A00003DEFC0 /* table tennis@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE741D037A00003DEFC0 /* table tennis@3x.png */; };
+		4656DE7C1D038C3D003DEFC0 /* challenge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE781D038C3D003DEFC0 /* challenge@2x.png */; };
+		4656DE7D1D038C3D003DEFC0 /* challenge@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE791D038C3D003DEFC0 /* challenge@3x.png */; };
+		4656DE7E1D038C3D003DEFC0 /* invitation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE7A1D038C3D003DEFC0 /* invitation@2x.png */; };
+		4656DE7F1D038C3D003DEFC0 /* invitation@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE7B1D038C3D003DEFC0 /* invitation@3x.png */; };
 		4661DDFB1CC54C020005C567 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF11CC54C020005C567 /* add@2x.png */; };
 		4661DDFC1CC54C020005C567 /* add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF21CC54C020005C567 /* add@3x.png */; };
 		4661DDFD1CC54C020005C567 /* chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF31CC54C020005C567 /* chats@2x.png */; };
@@ -355,6 +367,18 @@
 		4656DE5E1D030753003DEFC0 /* Nike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nike@3x.png"; sourceTree = "<group>"; };
 		4656DE5F1D030753003DEFC0 /* Ramdev@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ramdev@2x.png"; sourceTree = "<group>"; };
 		4656DE601D030753003DEFC0 /* Ramdev@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ramdev@3x.png"; sourceTree = "<group>"; };
+		4656DE671D0379F0003DEFC0 /* gymnastics@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gymnastics@2x.png"; sourceTree = "<group>"; };
+		4656DE681D0379F0003DEFC0 /* gymnastics@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gymnastics@3x.png"; sourceTree = "<group>"; };
+		4656DE691D0379F0003DEFC0 /* skiing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skiing@2x.png"; sourceTree = "<group>"; };
+		4656DE6A1D0379F0003DEFC0 /* skiing@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skiing@3x.png"; sourceTree = "<group>"; };
+		4656DE6B1D0379F0003DEFC0 /* snooker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snooker@2x.png"; sourceTree = "<group>"; };
+		4656DE6C1D0379F0003DEFC0 /* snooker@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snooker@3x.png"; sourceTree = "<group>"; };
+		4656DE731D037A00003DEFC0 /* table tennis@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table tennis@2x.png"; sourceTree = "<group>"; };
+		4656DE741D037A00003DEFC0 /* table tennis@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table tennis@3x.png"; sourceTree = "<group>"; };
+		4656DE781D038C3D003DEFC0 /* challenge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "challenge@2x.png"; sourceTree = "<group>"; };
+		4656DE791D038C3D003DEFC0 /* challenge@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "challenge@3x.png"; sourceTree = "<group>"; };
+		4656DE7A1D038C3D003DEFC0 /* invitation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invitation@2x.png"; sourceTree = "<group>"; };
+		4656DE7B1D038C3D003DEFC0 /* invitation@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invitation@3x.png"; sourceTree = "<group>"; };
 		4661DDF11CC54C020005C567 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
 		4661DDF21CC54C020005C567 /* add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@3x.png"; sourceTree = "<group>"; };
 		4661DDF31CC54C020005C567 /* chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chats@2x.png"; sourceTree = "<group>"; };
@@ -630,6 +654,14 @@
 			isa = PBXGroup;
 			children = (
 				46198E571CE263A0009704AF /* badminton@3x.png */,
+				4656DE671D0379F0003DEFC0 /* gymnastics@2x.png */,
+				4656DE681D0379F0003DEFC0 /* gymnastics@3x.png */,
+				4656DE691D0379F0003DEFC0 /* skiing@2x.png */,
+				4656DE731D037A00003DEFC0 /* table tennis@2x.png */,
+				4656DE741D037A00003DEFC0 /* table tennis@3x.png */,
+				4656DE6A1D0379F0003DEFC0 /* skiing@3x.png */,
+				4656DE6B1D0379F0003DEFC0 /* snooker@2x.png */,
+				4656DE6C1D0379F0003DEFC0 /* snooker@3x.png */,
 				46198E581CE263A0009704AF /* basketball@3x.png */,
 				46198E591CE263A0009704AF /* cricket@3x.png */,
 				46198E5A1CE263A0009704AF /* cycling@3x.png */,
@@ -748,6 +780,17 @@
 				4656DE601D030753003DEFC0 /* Ramdev@3x.png */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		4656DE771D038C3D003DEFC0 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				4656DE781D038C3D003DEFC0 /* challenge@2x.png */,
+				4656DE791D038C3D003DEFC0 /* challenge@3x.png */,
+				4656DE7A1D038C3D003DEFC0 /* invitation@2x.png */,
+				4656DE7B1D038C3D003DEFC0 /* invitation@3x.png */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		4661DDF01CC54C020005C567 /* TabBar_icons */ = {
@@ -973,6 +1016,7 @@
 		46F3153E1CC104CA00AAA588 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				4656DE771D038C3D003DEFC0 /* Notification */,
 				4656DE5A1D030753003DEFC0 /* News */,
 				46CA7F4B1CE7F10700E95C0B /* Stars */,
 				46198E241CE25C67009704AF /* AllSports */,
@@ -1409,6 +1453,7 @@
 				4661DE4B1CC54EAA0005C567 /* corporate@3x.png in Resources */,
 				46F3158D1CC2546D00AAA588 /* logo@2x.png in Resources */,
 				4661DE641CC54EAA0005C567 /* birthday@2x.png in Resources */,
+				4656DE6D1D0379F0003DEFC0 /* gymnastics@2x.png in Resources */,
 				46198E721CE263A0009704AF /* gymming@3x.png in Resources */,
 				46CA7F6C1CE7F10700E95C0B /* stars2@2x.png in Resources */,
 				46F315621CC1181200AAA588 /* login_bg@2x.png in Resources */,
@@ -1430,6 +1475,7 @@
 				46F315631CC1181200AAA588 /* login_bg@3x.png in Resources */,
 				4661DE461CC54EAA0005C567 /* people@2x.png in Resources */,
 				4661DDFE1CC54C020005C567 /* chats@3x.png in Resources */,
+				4656DE7C1D038C3D003DEFC0 /* challenge@2x.png in Resources */,
 				46CA7F771CE7F10700E95C0B /* stars5@3x.png in Resources */,
 				4661DE5A1CC54EAA0005C567 /* down@3x.png in Resources */,
 				46198E711CE263A0009704AF /* golf@3x.png in Resources */,
@@ -1439,6 +1485,7 @@
 				46CA7F631CE7F10700E95C0B /* stars0.5@3x.png in Resources */,
 				4661DE5B1CC54EAA0005C567 /* star2@2x.png in Resources */,
 				46CA7F6E1CE7F10700E95C0B /* stars3.5@2x.png in Resources */,
+				4656DE721D0379F0003DEFC0 /* snooker@3x.png in Resources */,
 				4661DE021CC54C020005C567 /* play@3x.png in Resources */,
 				46CA7F731CE7F10700E95C0B /* stars4.5@3x.png in Resources */,
 				4661DE781CC554D70005C567 /* search@2x.png in Resources */,
@@ -1454,6 +1501,7 @@
 				4675ABED1CC3E69B0013FEE3 /* icon_player@2x.png in Resources */,
 				4661DE5C1CC54EAA0005C567 /* lock@3x.png in Resources */,
 				46CA7F711CE7F10700E95C0B /* stars3@3x.png in Resources */,
+				4656DE711D0379F0003DEFC0 /* snooker@2x.png in Resources */,
 				4661DE011CC54C020005C567 /* play@2x.png in Resources */,
 				46198E3E1CE25C67009704AF /* fishing@2x.png in Resources */,
 				4661DE5D1CC54EAA0005C567 /* star@3x.png in Resources */,
@@ -1471,10 +1519,13 @@
 				4661DE6C1CC54EAA0005C567 /* fav@3x.png in Resources */,
 				4661DE471CC54EAA0005C567 /* sports@3x.png in Resources */,
 				4661DE4C1CC54EAA0005C567 /* key@3x.png in Resources */,
+				4656DE751D037A00003DEFC0 /* table tennis@2x.png in Resources */,
 				4656DE661D030753003DEFC0 /* Ramdev@3x.png in Resources */,
 				4661DE421CC54EAA0005C567 /* members@2x.png in Resources */,
 				4675ABF21CC3E69B0013FEE3 /* icon_people@3x.png in Resources */,
 				A610D89D1CD7D3F0008DED71 /* marker@3x.png in Resources */,
+				4656DE6F1D0379F0003DEFC0 /* skiing@2x.png in Resources */,
+				4656DE7D1D038C3D003DEFC0 /* challenge@3x.png in Resources */,
 				4661DE431CC54EAA0005C567 /* occupation@3x.png in Resources */,
 				4661DE6D1CC54EAA0005C567 /* unlock@3x.png in Resources */,
 				46CA7F621CE7F10700E95C0B /* stars0.5@2x.png in Resources */,
@@ -1506,6 +1557,7 @@
 				4661DE621CC54EAA0005C567 /* team@3x.png in Resources */,
 				46F315891CC2546D00AAA588 /* back@2x.png in Resources */,
 				4661DE531CC54EAA0005C567 /* description@3x.png in Resources */,
+				4656DE7F1D038C3D003DEFC0 /* invitation@3x.png in Resources */,
 				46198E6F1CE263A0009704AF /* football@3x.png in Resources */,
 				46F3154E1CC10DC900AAA588 /* 2@2x.png in Resources */,
 				4661DE3E1CC54EAA0005C567 /* challenge@2x.png in Resources */,
@@ -1530,6 +1582,7 @@
 				46F3154C1CC10DC900AAA588 /* 1@2x.png in Resources */,
 				46198E6E1CE263A0009704AF /* fishing@3x.png in Resources */,
 				4661DE481CC54EAA0005C567 /* birthday@3x.png in Resources */,
+				4656DE761D037A00003DEFC0 /* table tennis@3x.png in Resources */,
 				4661DE571CC54EAA0005C567 /* down@2x.png in Resources */,
 				46F315A61CC2BA9A00AAA588 /* male_white@3x.png in Resources */,
 				46198E441CE25C67009704AF /* kabaddi@2x.png in Resources */,
@@ -1559,7 +1612,9 @@
 				46CA7F641CE7F10700E95C0B /* stars0@2x.png in Resources */,
 				46CA7F4A1CE7E09800E95C0B /* New Athletic M54.ttf in Resources */,
 				46198E6C1CE263A0009704AF /* cricket@3x.png in Resources */,
+				4656DE6E1D0379F0003DEFC0 /* gymnastics@3x.png in Resources */,
 				4661DE521CC54EAA0005C567 /* people@3x.png in Resources */,
+				4656DE701D0379F0003DEFC0 /* skiing@3x.png in Resources */,
 				4656DE621D030753003DEFC0 /* Decathlon@3x.png in Resources */,
 				4656DE641D030753003DEFC0 /* Nike@3x.png in Resources */,
 				46F315591CC1108400AAA588 /* facebook@3x.png in Resources */,
@@ -1618,6 +1673,7 @@
 				4661DE561CC54EAA0005C567 /* km@3x.png in Resources */,
 				4661DE761CC554D70005C567 /* pin@2x.png in Resources */,
 				46198E4A1CE25C67009704AF /* swimming@2x.png in Resources */,
+				4656DE7E1D038C3D003DEFC0 /* invitation@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

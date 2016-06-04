@@ -134,7 +134,10 @@
                forControlEvents:UIControlEventValueChanged];
 
     
-    arrGameType = [NSArray arrayWithObjects:@"Individual",@"Team", nil];
+    
+    //arrGameType = [NSArray arrayWithObjects:@"Individual",@"Team", nil];
+    
+    arrGameType = [NSArray arrayWithObjects:@"As individual",@"Play against a team", nil];
     
     //arrTeamName = [NSMutableArray new];
     
@@ -936,7 +939,13 @@
     
     else if(pickerView == pickerGameType)
     {
+        
         strGameType =  arrGameType[row];
+        
+        if ([strGameType isEqualToString:@"As individual"]) {
+            strGameType = @"Individual";
+        }
+        
         
         if ([strGameType isEqualToString:@"Individual"])
         {
@@ -1021,7 +1030,11 @@
     {
         if (strGameType == nil)
         {
-            strGameType = [arrGameType objectAtIndex:0];
+            
+            if ([[arrGameType objectAtIndex:0] isEqualToString:@"As individual"]) {
+                strGameType = @"Individual";
+            }
+            //strGameType = [arrGameType objectAtIndex:0];
             
             constraintHeight.constant = 0;
             magicView.hidden = YES;
