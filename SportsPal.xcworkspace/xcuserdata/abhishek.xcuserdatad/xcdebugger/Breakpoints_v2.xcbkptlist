@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-            timestampString = "486243841.522612"
+            timestampString = "486741409.970719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "-clkProfilePic:"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-            timestampString = "486243841.522612"
+            timestampString = "486742381.098495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "536"
+            endingLineNumber = "536"
             landmarkName = "@implementation Setting_VC"
             landmarkType = "3">
          </BreakpointContent>
@@ -249,7 +249,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "258"
             endingLineNumber = "258"
-            landmarkName = "-clkButton:"
+            landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -276,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-            timestampString = "486243841.522612"
+            timestampString = "486741409.970719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-clkupdate:"
             landmarkType = "5">
             <Locations>
@@ -292,11 +292,11 @@
                   moduleName = "SportsPal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/IOS/In%20House%20Projects/SportsPal/Sportspal-iOS/SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-                  timestampString = "486210556.699671"
+                  timestampString = "486742193.292598"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "251"
-                  endingLineNumber = "251"
+                  startingLineNumber = "280"
+                  endingLineNumber = "280"
                   offsetFromSymbolStart = "3537">
                </Location>
                <Location
@@ -307,11 +307,11 @@
                   moduleName = "SportsPal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/IOS/In%20House%20Projects/SportsPal/Sportspal-iOS/SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
-                  timestampString = "486210556.699805"
+                  timestampString = "486742193.292747"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "252"
-                  endingLineNumber = "252"
+                  startingLineNumber = "281"
+                  endingLineNumber = "281"
                   offsetFromSymbolStart = "78">
                </Location>
             </Locations>
@@ -462,11 +462,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SportsPal/Utilities/Slider/LeftSlider.m"
-            timestampString = "486118365.842641"
+            timestampString = "486743073.511037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -479,6 +479,38 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
+            timestampString = "486741409.970719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SportsPal/ViewControllers/TabBar_VC/Setting_VC.m"
+            timestampString = "486742381.098495"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
+            landmarkName = "-textFieldDidBeginEditing:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

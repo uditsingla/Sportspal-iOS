@@ -32,6 +32,7 @@
 #define TF_TextColor  [UIColor colorWithRed:16/255.00 green:124/255.00 blue:213/255.00 alpha:1];
 #define TF_PlaceHolderTextColor  [UIColor colorWithRed:16/255.00 green:124/255.00 blue:213/255.00 alpha:1];
 #define TF_FontSize ((UIFont *)[UIFont fontWithName:@"Roboto-Regular" size:@"16"])
+#define kAlpha .7
 //
 
 //Button Colors

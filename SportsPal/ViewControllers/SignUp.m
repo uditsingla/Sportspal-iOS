@@ -66,7 +66,7 @@
     [CustomViewViewController customTextField:txtRePassword placeholder:@"Re-Password" rightView:nil];
     
     //UIButton Birthday
-    bntBirthdate.alpha = .5;
+    bntBirthdate.alpha = kAlpha;
     bntBirthdate.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     bntBirthdate.contentEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
 

@@ -51,7 +51,7 @@
     //
     [[UITabBar appearance] setBarTintColor:[UIColor clearColor]];
     
-    arrTempImages = [NSMutableArray arrayWithObjects:@"yoga.png",@"rockclimbing.png",@"golf.png", nil];
+    arrTempImages = [NSMutableArray arrayWithObjects:@"Ramdev.png",@"Decathlon.png",@"Nike.png", nil];
     
     arrNews = [NSMutableArray arrayWithObjects:@"Six lessons that Patanjali teaches India's FMCG sector",@"DECATHLON City Square Mall Opening",@"NIKE HYPERADAPT 1.0 MANIFESTS THE UNIMAGINABLE", nil];
     

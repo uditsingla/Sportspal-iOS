@@ -74,7 +74,7 @@
     // Do any additional setup after loading the view.
     
     
-    bgImage.backgroundColor = [UIColor blackColor];
+    bgImage.backgroundColor = kBlackColor;
     [CustomViewViewController customTextField:txtEmail placeholder:@"Email" rightView:nil];
     [CustomViewViewController customTextField:txtFirstName placeholder:@"First Name" rightView:nil];
     [CustomViewViewController customTextField:txtLastName placeholder:@"Last Name" rightView:nil];
@@ -82,12 +82,13 @@
     
     
     //UIButton Birthday
-    btnDOB.alpha = .5;
+    btnDOB.alpha = kAlpha;
     btnDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     btnDOB.contentEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
     
     [btnDOB setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btnDOB.backgroundColor = [UIColor grayColor];
+    
     [[btnDOB layer] setCornerRadius:3.0f];
     [[btnDOB layer] setBorderWidth:1.0f];
     [[btnDOB layer] setBorderColor:[UIColor lightGrayColor].CGColor];
@@ -107,8 +108,16 @@
 //    //
     
     btnPrefrence.backgroundColor = GreenColor;
+    [[btnPrefrence layer] setCornerRadius:3.0f];
+    [[btnPrefrence layer] setBorderWidth:1.0f];
+
     btnLocation.backgroundColor = GreenColor ;
-    btnCurrentLoction.backgroundColor = GreenColor;
+    [[btnLocation layer] setCornerRadius:3.0f];
+    [[btnLocation layer] setBorderWidth:1.0f];
+    
+    btnCurrentLoction.backgroundColor = [UIColor clearColor];
+//    [[btnCurrentLoction layer] setCornerRadius:3.0f];
+//    [[btnCurrentLoction layer] setBorderWidth:1.0f];
     
     toolBar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,320,44)];
     [toolBar setBarStyle:UIBarStyleBlackOpaque];
@@ -116,7 +125,7 @@
     UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                       style:UIBarButtonItemStyleDone target:self action:@selector(selectDateTime:)];
     toolBar.items = @[barButtonDone];
-    barButtonDone.tintColor=[UIColor whiteColor];
+    barButtonDone.tintColor=[UIColor redColor];
     [toolBarSuperView addSubview:toolBar];
     
     pickerDate.datePickerMode = UIDatePickerModeDate;
@@ -133,21 +142,18 @@
     
     
     [profilePic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseUrlPath,model_manager.profileManager.owner.profilePic]] placeholderImage:[UIImage imageNamed:@"members.png"]];
-    profilePic.backgroundColor = [UIColor clearColor];
-    profilePic.contentMode = UIViewContentModeScaleAspectFit;
+    profilePic.backgroundColor = [UIColor redColor];
+    //profilePic.contentMode = UIViewContentModeScaleAspectFit;
     
     
-    
-    
-    
-    
-    txtViewDescription.alpha = .5;
+    txtViewDescription.alpha = kAlpha;
     txtViewDescription.backgroundColor = [UIColor grayColor];
     txtViewDescription.layer.cornerRadius = 3.0f;
     txtViewDescription.layer.masksToBounds = YES;
     txtViewDescription.layer.borderColor=[[UIColor lightGrayColor]CGColor];
     txtViewDescription.layer.borderWidth= 1.0f;
-    
+    [[UITextView appearance] setTintColor:[UIColor whiteColor]];
+
 //    txtViewDescription.attributedPlaceholder = [[NSAttributedString alloc]
 //                                       initWithString:placeHolder
 //                                       attributes:@{NSForegroundColorAttributeName:
@@ -461,11 +467,34 @@
     [txtView resignFirstResponder];
     return NO;
 }
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [scrollview setContentOffset:CGPointMake(0.0, 120) animated:YES];
+    return YES;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    [scrollview setContentOffset:CGPointMake(0.0, 0) animated:YES];
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [scrollview setContentOffset:CGPointMake(0.0, scrollview.frame.size.height-350) animated:YES];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    [scrollview setContentOffset:CGPointMake(0.0, 0) animated:YES];
+}
+
 #pragma mark - UItextField Delegates
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [scrollview setContentOffset:CGPointMake(0.0, 80) animated:YES];
+   [scrollview setContentOffset:CGPointMake(0.0, scrollview.frame.size.height-350) animated:YES];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField

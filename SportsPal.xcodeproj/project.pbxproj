@@ -65,6 +65,12 @@
 		46448AD91CE8C5F40068C937 /* left_menu_setting_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46448AD71CE8C5F40068C937 /* left_menu_setting_icon@2x.png */; };
 		46448ADA1CE8C5F40068C937 /* left_menu_setting_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46448AD81CE8C5F40068C937 /* left_menu_setting_icon@3x.png */; };
 		46466AE91CE51779000B750D /* Profile_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 46466AE81CE51779000B750D /* Profile_VC.m */; };
+		4656DE611D030753003DEFC0 /* Decathlon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE5B1D030753003DEFC0 /* Decathlon@2x.png */; };
+		4656DE621D030753003DEFC0 /* Decathlon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE5C1D030753003DEFC0 /* Decathlon@3x.png */; };
+		4656DE631D030753003DEFC0 /* Nike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE5D1D030753003DEFC0 /* Nike@2x.png */; };
+		4656DE641D030753003DEFC0 /* Nike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE5E1D030753003DEFC0 /* Nike@3x.png */; };
+		4656DE651D030753003DEFC0 /* Ramdev@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE5F1D030753003DEFC0 /* Ramdev@2x.png */; };
+		4656DE661D030753003DEFC0 /* Ramdev@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE601D030753003DEFC0 /* Ramdev@3x.png */; };
 		4661DDFB1CC54C020005C567 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF11CC54C020005C567 /* add@2x.png */; };
 		4661DDFC1CC54C020005C567 /* add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF21CC54C020005C567 /* add@3x.png */; };
 		4661DDFD1CC54C020005C567 /* chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF31CC54C020005C567 /* chats@2x.png */; };
@@ -343,6 +349,12 @@
 		46448AD81CE8C5F40068C937 /* left_menu_setting_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_menu_setting_icon@3x.png"; sourceTree = "<group>"; };
 		46466AE71CE51779000B750D /* Profile_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile_VC.h; sourceTree = "<group>"; };
 		46466AE81CE51779000B750D /* Profile_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile_VC.m; sourceTree = "<group>"; };
+		4656DE5B1D030753003DEFC0 /* Decathlon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Decathlon@2x.png"; sourceTree = "<group>"; };
+		4656DE5C1D030753003DEFC0 /* Decathlon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Decathlon@3x.png"; sourceTree = "<group>"; };
+		4656DE5D1D030753003DEFC0 /* Nike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nike@2x.png"; sourceTree = "<group>"; };
+		4656DE5E1D030753003DEFC0 /* Nike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nike@3x.png"; sourceTree = "<group>"; };
+		4656DE5F1D030753003DEFC0 /* Ramdev@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ramdev@2x.png"; sourceTree = "<group>"; };
+		4656DE601D030753003DEFC0 /* Ramdev@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ramdev@3x.png"; sourceTree = "<group>"; };
 		4661DDF11CC54C020005C567 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
 		4661DDF21CC54C020005C567 /* add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@3x.png"; sourceTree = "<group>"; };
 		4661DDF31CC54C020005C567 /* chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chats@2x.png"; sourceTree = "<group>"; };
@@ -725,6 +737,19 @@
 			path = LeftMenu;
 			sourceTree = "<group>";
 		};
+		4656DE5A1D030753003DEFC0 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				4656DE5B1D030753003DEFC0 /* Decathlon@2x.png */,
+				4656DE5C1D030753003DEFC0 /* Decathlon@3x.png */,
+				4656DE5D1D030753003DEFC0 /* Nike@2x.png */,
+				4656DE5E1D030753003DEFC0 /* Nike@3x.png */,
+				4656DE5F1D030753003DEFC0 /* Ramdev@2x.png */,
+				4656DE601D030753003DEFC0 /* Ramdev@3x.png */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 		4661DDF01CC54C020005C567 /* TabBar_icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -948,6 +973,7 @@
 		46F3153E1CC104CA00AAA588 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				4656DE5A1D030753003DEFC0 /* News */,
 				46CA7F4B1CE7F10700E95C0B /* Stars */,
 				46198E241CE25C67009704AF /* AllSports */,
 				463591901CDB571A00DF83A8 /* SportsImages */,
@@ -1445,6 +1471,7 @@
 				4661DE6C1CC54EAA0005C567 /* fav@3x.png in Resources */,
 				4661DE471CC54EAA0005C567 /* sports@3x.png in Resources */,
 				4661DE4C1CC54EAA0005C567 /* key@3x.png in Resources */,
+				4656DE661D030753003DEFC0 /* Ramdev@3x.png in Resources */,
 				4661DE421CC54EAA0005C567 /* members@2x.png in Resources */,
 				4675ABF21CC3E69B0013FEE3 /* icon_people@3x.png in Resources */,
 				A610D89D1CD7D3F0008DED71 /* marker@3x.png in Resources */,
@@ -1458,6 +1485,7 @@
 				46448AD41CE8B48F0068C937 /* left_menu_logout_icon@2x.png in Resources */,
 				4661DDFC1CC54C020005C567 /* add@3x.png in Resources */,
 				46CA7F7A1CE7F45E00E95C0B /* newteamplayer@2x.png in Resources */,
+				4656DE611D030753003DEFC0 /* Decathlon@2x.png in Resources */,
 				46F62CDC1C90901400A61B47 /* Assets.xcassets in Resources */,
 				46F3155B1CC1108400AAA588 /* login@3x.png in Resources */,
 				46448ADA1CE8C5F40068C937 /* left_menu_setting_icon@3x.png in Resources */,
@@ -1527,10 +1555,13 @@
 				4661DE4D1CC54EAA0005C567 /* date@2x.png in Resources */,
 				4675ABF41CC3E69B0013FEE3 /* icon_player@3x.png in Resources */,
 				4661DDFD1CC54C020005C567 /* chats@2x.png in Resources */,
+				4656DE651D030753003DEFC0 /* Ramdev@2x.png in Resources */,
 				46CA7F641CE7F10700E95C0B /* stars0@2x.png in Resources */,
 				46CA7F4A1CE7E09800E95C0B /* New Athletic M54.ttf in Resources */,
 				46198E6C1CE263A0009704AF /* cricket@3x.png in Resources */,
 				4661DE521CC54EAA0005C567 /* people@3x.png in Resources */,
+				4656DE621D030753003DEFC0 /* Decathlon@3x.png in Resources */,
+				4656DE641D030753003DEFC0 /* Nike@3x.png in Resources */,
 				46F315591CC1108400AAA588 /* facebook@3x.png in Resources */,
 				46CA7F6D1CE7F10700E95C0B /* stars2@3x.png in Resources */,
 				46198E461CE25C67009704AF /* kiteflying@2x.png in Resources */,
@@ -1576,6 +1607,7 @@
 				46198E6D1CE263A0009704AF /* cycling@3x.png in Resources */,
 				46198E4C1CE25C67009704AF /* tennis@2x.png in Resources */,
 				46CA7F7B1CE7F45E00E95C0B /* newteamplayer@3x.png in Resources */,
+				4656DE631D030753003DEFC0 /* Nike@2x.png in Resources */,
 				4661DE501CC54EAA0005C567 /* admin@3x.png in Resources */,
 				4661DE411CC54EAA0005C567 /* fav@2x.png in Resources */,
 				46CA7F761CE7F10700E95C0B /* stars5@2x.png in Resources */,
@@ -1791,7 +1823,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "ea646487-de82-40f3-805a-001b8861417d";
+				PROVISIONING_PROFILE = "9320825a-3c61-4eec-bcf8-4ba606440c92";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1829,7 +1861,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "ea646487-de82-40f3-805a-001b8861417d";
+				PROVISIONING_PROFILE = "9320825a-3c61-4eec-bcf8-4ba606440c92";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1855,6 +1887,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = games.health.sportspal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9320825a-3c61-4eec-bcf8-4ba606440c92";
 			};
 			name = Debug;
 		};
@@ -1878,6 +1911,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = games.health.sportspal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9320825a-3c61-4eec-bcf8-4ba606440c92";
 			};
 			name = Release;
 		};

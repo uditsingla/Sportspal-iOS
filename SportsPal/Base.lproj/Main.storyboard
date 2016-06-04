@@ -41,7 +41,6 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
-            <string>OpenSans</string>
         </mutableArray>
         <mutableArray key="Tw Cen MT.ttf">
             <string>TwCenMT-Regular</string>
@@ -664,7 +663,7 @@
                                                 </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wdN-Qj-8g9">
-                                                <rect key="frame" x="40" y="373" width="248" height="68"/>
+                                                <rect key="frame" x="33" y="373" width="253" height="68"/>
                                                 <color key="backgroundColor" red="0.28954326923076923" green="0.28954326923076923" blue="0.28954326923076923" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
@@ -673,9 +672,9 @@
                                                     <outlet property="delegate" destination="ZSH-YH-1KF" id="hIu-la-Pih"/>
                                                 </connections>
                                             </textView>
-                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="members.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-6o-Cs3">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="members.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rex-6o-Cs3">
                                                 <rect key="frame" x="32" y="56" width="256" height="80"/>
-                                                <color key="backgroundColor" red="1" green="0.2491059011" blue="0.34229371110000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="256" id="ZA1-GZ-yui"/>
                                                     <constraint firstAttribute="height" constant="80" id="qmU-yb-WR1"/>
@@ -690,7 +689,7 @@
                                             <constraint firstItem="X20-Me-QO0" firstAttribute="leading" secondItem="FYy-xc-cOn" secondAttribute="leading" constant="32" id="3jT-B1-dZg"/>
                                             <constraint firstAttribute="trailing" secondItem="90E-Ri-5zL" secondAttribute="trailing" id="4Ly-cB-Nyc"/>
                                             <constraint firstItem="wdN-Qj-8g9" firstAttribute="top" secondItem="IIT-v3-LMI" secondAttribute="bottom" constant="8" id="6V1-mr-QIq"/>
-                                            <constraint firstItem="wdN-Qj-8g9" firstAttribute="leading" secondItem="FYy-xc-cOn" secondAttribute="leading" constant="40" id="7CQ-wE-8m4"/>
+                                            <constraint firstItem="wdN-Qj-8g9" firstAttribute="leading" secondItem="FYy-xc-cOn" secondAttribute="leading" constant="33" id="7CQ-wE-8m4"/>
                                             <constraint firstItem="dQy-k4-kqb" firstAttribute="leading" secondItem="FYy-xc-cOn" secondAttribute="leading" constant="32" id="7kL-sX-rZ0"/>
                                             <constraint firstItem="F5V-Pw-6Qo" firstAttribute="leading" secondItem="FYy-xc-cOn" secondAttribute="leading" id="82B-FL-NMd"/>
                                             <constraint firstItem="dQy-k4-kqb" firstAttribute="top" secondItem="zlo-5i-n4D" secondAttribute="bottom" constant="18" id="DXJ-HG-kib"/>
@@ -725,7 +724,7 @@
                                             <constraint firstItem="TJk-Vd-k7T" firstAttribute="leading" secondItem="FYy-xc-cOn" secondAttribute="leading" constant="32" id="sbR-vb-IDu"/>
                                             <constraint firstItem="GT0-AH-zWP" firstAttribute="width" secondItem="TJk-Vd-k7T" secondAttribute="width" id="t6c-Iu-Ed0"/>
                                             <constraint firstItem="ELg-86-XHE" firstAttribute="leading" secondItem="X20-Me-QO0" secondAttribute="trailing" constant="6" id="vfn-nm-rKw"/>
-                                            <constraint firstAttribute="trailing" secondItem="wdN-Qj-8g9" secondAttribute="trailing" constant="32" id="vqb-eb-EN8"/>
+                                            <constraint firstAttribute="trailing" secondItem="wdN-Qj-8g9" secondAttribute="trailing" constant="34" id="vqb-eb-EN8"/>
                                             <constraint firstItem="BWu-O4-b44" firstAttribute="top" secondItem="90E-Ri-5zL" secondAttribute="bottom" constant="12" id="wfh-Dd-yrZ"/>
                                             <constraint firstItem="zlo-5i-n4D" firstAttribute="leading" secondItem="FYy-xc-cOn" secondAttribute="leading" constant="32" id="x6a-At-rfz"/>
                                         </constraints>
@@ -1185,13 +1184,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xuh-Bb-XrP" userLabel="Game 1">
-                                                    <rect key="frame" x="49" y="80" width="60" height="21"/>
-                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5b-lT-YBH" userLabel="Game 2">
-                                                    <rect key="frame" x="130" y="80" width="180" height="21"/>
+                                                    <rect key="frame" x="49" y="80" width="180" height="21"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -1218,7 +1211,6 @@
                                             <outlet property="imgBackground" destination="FpO-0D-kFY" id="XQC-wt-uwS"/>
                                             <outlet property="imgRating" destination="MV5-pw-Jdk" id="7CL-ms-Q06"/>
                                             <outlet property="lblGame1" destination="Xuh-Bb-XrP" id="WRM-yM-8MY"/>
-                                            <outlet property="lblGame2" destination="Z5b-lT-YBH" id="RN9-ty-BHJ"/>
                                             <outlet property="lblName" destination="cSU-Cb-BZy" id="Tut-XF-dDA"/>
                                             <outlet property="lblSkillLevel" destination="3uc-Xz-Vck" id="d76-j3-4Of"/>
                                         </connections>

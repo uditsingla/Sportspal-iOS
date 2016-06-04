@@ -42,10 +42,8 @@
                           nil];
 
     
-    
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_signup.png"]];
-    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
+    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:
+                                     [UIImage imageNamed:@"bg_signup.png"]];
 
 }
 

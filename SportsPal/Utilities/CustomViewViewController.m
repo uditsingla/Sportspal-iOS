@@ -27,15 +27,19 @@
 +(void)customTextField:(UITextField*)textField placeholder:(NSString*)placeHolder rightView:(NSString*)rightViewImageName;
 {
     textField.backgroundColor = [UIColor grayColor];
-    textField.alpha = .5;
+    textField.alpha = kAlpha;
     textField.layer.cornerRadius = 3.0f;
     textField.layer.masksToBounds = YES;
     textField.layer.borderColor=[[UIColor lightGrayColor]CGColor];
     textField.layer.borderWidth= 1.0f;
+    [[UITextField appearance] setTintColor:[UIColor whiteColor]];
+
     textField.attributedPlaceholder = [[NSAttributedString alloc]
                                   initWithString:placeHolder
                                   attributes:@{NSForegroundColorAttributeName:
                                                    [UIColor whiteColor]}];
+    //textField.textColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:1];
+
     [textField setFont:[UIFont fontWithName:@"OpenSans" size:16]];
 
 
