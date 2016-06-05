@@ -1816,6 +1816,7 @@
 				46466AE91CE51779000B750D /* Profile_VC.m in Sources */,
 				7CA50B0C1D04ABEB003A26B8 /* SWLongPressGestureRecognizer.m in Sources */,
 				A6C953771CD616DA0046F1A9 /* Team.m in Sources */,
+				4656DE821D04B4A3003DEFC0 /* Requests.m in Sources */,
 				7CA50B0E1D04ABEB003A26B8 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				46F315781CC18E6E00AAA588 /* ResetPassword.m in Sources */,
 				4639FD5D1CD157E20020D00B /* ProfileManager.m in Sources */,
