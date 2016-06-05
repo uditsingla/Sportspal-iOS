@@ -83,11 +83,13 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = kBlackColor;
-    searchbar.barTintColor = kBlackColor;
+    
     tblPlayers.backgroundColor = kBlackColor;
     tblSports.backgroundColor = kBlackColor;
     tblTeams.backgroundColor = kBlackColor;
 
+    //SearchBar UI
+    searchbar.barTintColor = kBlackColor;
     txfSearchField = [searchbar valueForKey:@"_searchField"];
     txfSearchField.backgroundColor = [UIColor blackColor];
     txfSearchField.textColor = [UIColor whiteColor];
@@ -108,7 +110,11 @@
     // Do any additional setup after loading the view.
     
     segmentedcontrol.selectedSegmentIndex = 0;
+    //searchbar.tintColor = [UIColor whiteColor];
+
 }
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -165,6 +171,8 @@
     btnSearch.hidden = YES;
     lblPlay.hidden = YES;
     btnMenu.hidden = YES;
+    
+    [searchbar becomeFirstResponder];
 }
 
 - (IBAction)clkSegment:(UISegmentedControl*)sender
