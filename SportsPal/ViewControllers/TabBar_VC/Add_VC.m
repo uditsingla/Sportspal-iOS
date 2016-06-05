@@ -17,6 +17,15 @@
 #define ktime 6
 #define kaddress 7
 
+#define kprivacy 8
+#define kmaxmembers 9
+
+
+
+
+#define kopen @"Open"
+#define kclose @"Close"
+
 
 
 
@@ -35,12 +44,20 @@
     __weak IBOutlet UIPickerView *pickerSports;
     __weak IBOutlet UIDatePicker *pikerDate;
     __weak IBOutlet UIDatePicker *pikerTime;
+    __weak IBOutlet UIPickerView *pickerPrivacy;
     
     __weak IBOutlet UIButton *btnTime;
     __weak IBOutlet UIButton *btnGameName;
     __weak IBOutlet UIButton *btnAddress;
     __weak IBOutlet UIButton *btnDate;
     __weak IBOutlet UIButton *btnSportName;
+    __weak IBOutlet UIButton *btnPrivacy;
+    __weak IBOutlet UIButton *btnMaxMembers;
+    
+    NSString *maxMembersCount;
+    NSString *strPrivacyType;
+
+
     
     __weak IBOutlet UIButton *btnGameType;
     __weak IBOutlet UIButton *btnTeamName;
@@ -60,18 +77,22 @@
 
     
     __weak IBOutlet NSLayoutConstraint *constraintHeight;
+    
+    __weak IBOutlet NSLayoutConstraint *constraintTeamMebersHeight;
+    
     //__weak IBOutlet NSLayoutConstraint *contImageTeamName;
     
     //__weak IBOutlet NSLayoutConstraint *contBtngap;
     //__weak IBOutlet NSLayoutConstraint *contImageGap;
     
-    NSArray *arrGameType;
+    NSArray *arrGameType,*arrPrivacy;
     //NSMutableArray *arrTeamName;
     
     NSString *strGameType,*strTeamName,*strTeamID,*strLocation;
     
     __weak IBOutlet UIView *magicView;
     
+    __weak IBOutlet UIView *viewTeamMembers;
     
     __weak IBOutlet UIView *toolBarSuperView;
     
@@ -139,6 +160,8 @@
     
     arrGameType = [NSArray arrayWithObjects:@"As individual",@"Play against a team", nil];
     
+    arrPrivacy = [NSArray arrayWithObjects:kopen,kclose, nil];
+    
     //arrTeamName = [NSMutableArray new];
     
     [self hideAllPickers];
@@ -150,6 +173,7 @@
     
     self.view.backgroundColor = kBlackColor;
     magicView.backgroundColor = kBlackColor;
+    viewTeamMembers.backgroundColor = kBlackColor;
     viewNavigation.backgroundColor = kBlackColor;
     
     tblChallenges.backgroundColor = [UIColor clearColor];
@@ -181,11 +205,20 @@
         {
             constraintHeight.constant = 0;
             magicView.hidden = YES;
+            
+            constraintTeamMebersHeight.constant = 40;
+            viewTeamMembers.hidden = NO;
         }
         else
         {
             constraintHeight.constant = 40;
             magicView.hidden = NO;
+            
+            //Team Members View should hide
+            constraintTeamMebersHeight.constant = 0;
+            viewTeamMembers.hidden = YES;
+            
+            
         }
         
         
@@ -263,6 +296,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 /*
 #pragma mark - Navigation
 
@@ -287,9 +322,6 @@
         
         pickerSports.hidden = NO;
         toolBarSuperView.hidden = NO;
-        
-        
-        
     }
     else if (btn.tag == kgametype)
     {
@@ -313,6 +345,43 @@
         pickerTeamName.hidden = NO;
         toolBarSuperView.hidden = NO;
         
+    }
+    
+    else if (btn.tag == kprivacy)
+    {
+        pickerselected = kprivacy;
+        pickerPrivacy.hidden = NO;
+        pickerPrivacy.hidden = NO;
+        toolBarSuperView.hidden = NO;
+    }
+    else if (btn.tag == kmaxmembers)
+    {
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Max. Players"
+                                                                                  message: nil
+                                                                           preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"No. of players";
+            textField.textColor = [UIColor blueColor];
+            textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            textField.borderStyle = UITextBorderStyleRoundedRect;
+            textField.delegate = self;
+        }];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            NSArray * textfields = alertController.textFields;
+            UITextField * namefield = textfields[0];
+            
+            [namefield addTarget:self action:@selector(alertControllerTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+            
+            maxMembersCount = namefield.text;
+            
+            [btnMaxMembers setTitle:maxMembersCount forState:UIControlStateNormal];
+            NSLog(@"%@",namefield.text);
+            
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+
     }
     
     else if (btn.tag == kgamename){
@@ -371,7 +440,9 @@
     pickerSports.hidden =YES;
     pikerDate.hidden = YES;
     pikerTime.hidden = YES;
+    pickerPrivacy.hidden = YES;
     toolBarSuperView.hidden = YES;
+    
     
 }
 
@@ -386,14 +457,21 @@
     strTime = nil;
     strGameType = nil;
     strTeamName = nil;
+    maxMembersCount = nil;
+    strPrivacyType = nil;
     
     constraintHeight.constant = 40;
     magicView.hidden = NO;
+    
+    constraintTeamMebersHeight.constant = 40;
+    viewTeamMembers.hidden = NO;
     
     [btnSportName setTitle:@"SPORT" forState:UIControlStateNormal];
     [btnGameType setTitle:@"GAME TYPE" forState:UIControlStateNormal];
     [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
     [btnGameName setTitle:@"GAME NAME" forState:UIControlStateNormal];
+    [btnPrivacy setTitle:@"PRIVACY" forState:UIControlStateNormal];
+    [btnMaxMembers setTitle:@"MAX. PLAYERS" forState:UIControlStateNormal];
     [btnDate setTitle:@"DD/MM/YYYY" forState:UIControlStateNormal];
     [btnTime setTitle:@"HH:MM" forState:UIControlStateNormal];
     [btnAddress setTitle:@"PICK ADDRESS" forState:UIControlStateNormal];
@@ -888,6 +966,11 @@
             return model_manager.profileManager.owner.arrayTeams.count;
     }
     
+    else if (pickerView == pickerPrivacy)
+    {
+        return arrPrivacy.count;
+    }
+    
     return 0;
 }
 
@@ -918,6 +1001,11 @@
         else
             return ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
     }
+    
+    else if (pickerView == pickerPrivacy)
+    {
+        return arrPrivacy[row];
+    }
     return  @"";
     
 }
@@ -927,9 +1015,6 @@
     
     
    // NSLog(@"Sport Name : %@",strSportName);
-    
-    
-    
     if(pickerView == pickerSports)
     {
         Sport *sport = model_manager.profileManager.owner.arrayPreferredSports[row];
@@ -951,6 +1036,9 @@
         {
             constraintHeight.constant = 0;
             magicView.hidden = YES;
+            
+            constraintTeamMebersHeight.constant = 40;
+            viewTeamMembers.hidden = NO;
 //            contImageTeamName.constant = 0;
 //            contImageGap.constant = 0;
 //            contBtngap.constant = 0;
@@ -960,6 +1048,8 @@
             constraintHeight.constant = 40;
             magicView.hidden = NO;
 
+            constraintTeamMebersHeight.constant = 0;
+            viewTeamMembers.hidden = YES;
 //            contImageTeamName.constant = 23;
 //            contBtngap.constant = 15;
 //            contBtngap.constant = 17;
@@ -983,6 +1073,11 @@
             strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
             strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamID;
         }
+    }
+    
+    else if (pickerView == pickerPrivacy)
+    {
+        strPrivacyType = arrPrivacy[row];
     }
 }
 
@@ -1038,6 +1133,9 @@
             
             constraintHeight.constant = 0;
             magicView.hidden = YES;
+            
+            constraintTeamMebersHeight.constant = 40;
+            viewTeamMembers.hidden = NO;
 
         }
         [btnGameType setTitle:strGameType forState:UIControlStateNormal];
@@ -1094,6 +1192,18 @@
             [btnTeamName setTitle:strTeamName forState:UIControlStateNormal];
     }
     
+    else if (pickerselected == kprivacy)
+    {
+        if (strPrivacyType == nil)
+        {
+
+            if ([[arrPrivacy objectAtIndex:0] isEqualToString:kopen]) {
+                strPrivacyType = kopen;
+            }
+        }
+        [btnPrivacy setTitle:strPrivacyType forState:UIControlStateNormal];
+
+    }
    
     
     else if (pickerselected == kdate)
