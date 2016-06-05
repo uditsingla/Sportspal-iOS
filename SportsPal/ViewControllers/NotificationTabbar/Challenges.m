@@ -9,8 +9,10 @@
 #import "Challenges.h"
 #import "Game.h"
 #import "Add_VC.h"
+#import "SWTableViewCell.h"
 
-@interface Challenges ()
+
+@interface Challenges()<SWTableViewCellDelegate>
 {
     UIImageView *topNavBar;
     UILabel *topHeader;
@@ -113,11 +115,11 @@
     
     
     
-    UITableViewCell *cellnew = [tableView dequeueReusableCellWithIdentifier:_simpleTableIdentifier];
+    SWTableViewCell *cellnew = [tableView dequeueReusableCellWithIdentifier:_simpleTableIdentifier];
     UILabel *lbl_heading,*lbl_date;
     if (cellnew == nil)
     {
-        cellnew = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_simpleTableIdentifier];
+        cellnew = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_simpleTableIdentifier];
         cellnew.backgroundColor=[UIColor clearColor];
         cellnew.selectionStyle=UITableViewCellSelectionStyleNone;
         
@@ -147,6 +149,26 @@
     lbl_heading.text = [NSString stringWithFormat:@"Challenge received for %@ game.",[game.gameName capitalizedString]];
     
     lbl_date.text = [self getDateFromServerTime:game.createdTime];
+    
+    [cellnew setRightUtilityButtons:nil WithButtonWidth:0];
+    [cellnew setDelegate:nil];
+
+    
+    if(game.arrayChallenges.count>0) {
+        
+        User *currentUser ;
+        if(game.gameType == GameTypeIndividual)
+            currentUser = (User*)[game.arrayChallenges objectAtIndex:0];
+        else
+            currentUser = ((Team*)[game.arrayChallenges objectAtIndex:0]).creator;
+        
+        if(!currentUser.gameChallengeStatus)
+        {
+            NSArray *arrayRightBtns = [self rightButtons];
+            [cellnew setRightUtilityButtons:arrayRightBtns WithButtonWidth:70];
+            [cellnew setDelegate:self];
+        }
+    }
 
     
     return cellnew;
@@ -161,6 +183,146 @@
     viewcontroller.selectedGame = (Game*)[model_manager.sportsManager.arrayGameChallenges objectAtIndex:indexPath.row];
     [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Swipe Cell Delegate
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell {
+    return YES;
+}
+
+- (NSArray *)rightButtons
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    
+    UIButton *btn_accept = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn_accept setFrame:CGRectMake(0, 0, 40, 50)];
+    [btn_accept setBackgroundColor:GreenColor];
+    [btn_accept setTitle:NSLocalizedString(@"Accept",nil) forState:UIControlStateNormal];
+    [btn_accept setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn_accept.titleLabel setFont:TF_FontSize];
+    [rightUtilityButtons addObject:btn_accept];
+    
+    UIButton *btn_reject = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn_reject setFrame:CGRectMake(0, 0, 40, 50)];
+    [btn_reject setBackgroundColor:RedColor];
+    [btn_reject setTitle:NSLocalizedString(@"Reject",nil) forState:UIControlStateNormal];
+    [btn_reject setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn_reject.titleLabel setFont:TF_FontSize];
+    [rightUtilityButtons addObject:btn_reject];
+    
+    return rightUtilityButtons;
+}
+
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
+    switch (index) {
+            
+        case 0:
+        {
+            // accept button is pressed
+            NSIndexPath *indexPath;
+            indexPath = [tblNotifications indexPathForCell:cell];
+            
+            Game *selectedGame = ((Game*)[model_manager.sportsManager.arrayGameChallenges objectAtIndex:indexPath.row]);
+
+            
+            if(selectedGame.arrayChallenges.count>0) {
+                
+                User *currentUser ;
+                if(selectedGame.gameType == GameTypeIndividual)
+                    currentUser = (User*)[selectedGame.arrayChallenges objectAtIndex:0];
+                else
+                    currentUser = ((Team*)[selectedGame.arrayChallenges objectAtIndex:0]).creator;
+                
+                
+                [kAppDelegate.objLoader show];
+                [selectedGame acceptChallengeWithChallengeID:currentUser.gameChallengeID completion:^(NSDictionary *dictJson, NSError *error) {
+                    
+                    [model_manager.sportsManager getAllGameChallenges:^(NSDictionary *dictJson, NSError *error) {
+                        [kAppDelegate.objLoader hide];
+                        if(!error)
+                        {
+                            if([[dictJson valueForKey:@"success"] boolValue])
+                            {
+                                [tblNotifications reloadData];
+                            }
+                            else
+                            {
+                                [self showAlert:[dictJson valueForKey:@"message"]];
+                            }
+                        }
+                    }];
+                }];
+            }
+            
+            break;
+        }
+        case 1:
+        {
+            // reject button is pressed
+            NSIndexPath *indexPath;
+            indexPath = [tblNotifications indexPathForCell:cell];
+            
+            Game *selectedGame = ((Game*)[model_manager.sportsManager.arrayGameChallenges objectAtIndex:indexPath.row]);
+            
+            
+            if(selectedGame.arrayChallenges.count>0) {
+                
+                User *currentUser ;
+                if(selectedGame.gameType == GameTypeIndividual)
+                    currentUser = (User*)[selectedGame.arrayChallenges objectAtIndex:0];
+                else
+                    currentUser = ((Team*)[selectedGame.arrayChallenges objectAtIndex:0]).creator;
+                
+                
+                [kAppDelegate.objLoader show];
+                [selectedGame declineChallengeWithChallengeID:currentUser.gameChallengeID completion:^(NSDictionary *dictJson, NSError *error) {
+                    
+                    [model_manager.sportsManager getAllGameChallenges:^(NSDictionary *dictJson, NSError *error) {
+                        [kAppDelegate.objLoader hide];
+                        if(!error)
+                        {
+                            if([[dictJson valueForKey:@"success"] boolValue])
+                            {
+                                [tblNotifications reloadData];
+                            }
+                            else
+                            {
+                                [self showAlert:[dictJson valueForKey:@"message"]];
+                            }
+                        }
+                    }];
+                }];
+            }
+            
+            break;
+        }
+        default: break;
+    }
+}
+
+-(void)showAlert:(NSString *)errorMsg
+{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@""
+                                  message:errorMsg
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleCancel
+                         handler:^(UIAlertAction * action)
+                         {
+                             //Do some thing here
+                             //   [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
 }
 
 -(NSString*)getDateFromServerTime:(NSString*)serverTime

@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) UIImageView *imgProfile;
 @property (strong, nonatomic) UILabel *lblName;
-@property (strong,nonatomic) UIButton *btn_accept,*btn_reject;
+//@property (strong,nonatomic) UIButton *btn_accept,*btn_reject;
 
 @end

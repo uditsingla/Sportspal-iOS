@@ -42,8 +42,8 @@
              if([[json valueForKey:@"success"] boolValue])
              {
                  
-                 self.teamID = [[json valueForKey:@"message"] valueForKey:@"id"];
-                 self.sportID = [[json valueForKey:@"message"] valueForKey:@"sport_id"];
+                 self.teamID = [NSString stringWithFormat:@"%i",[[[json valueForKey:@"message"] valueForKey:@"id"] intValue]];
+                 self.sportID = [NSString stringWithFormat:@"%i",[[[json valueForKey:@"message"] valueForKey:@"sport_id"] intValue]];
                  self.sportName = [[[json valueForKey:@"message"] valueForKey:@"sport"] valueForKey:@"name"];
                  self.teamName = [[json valueForKey:@"message"] valueForKey:@"team_name"];
                  self.memberLimit = [[[json valueForKey:@"message"] valueForKey:@"members_limit"] intValue];
@@ -74,7 +74,7 @@
                      user.dob = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"dob"];
                      
                      user.teamStatus = [[[arrUsers objectAtIndex:i] valueForKey:@"status"] boolValue];
-                     user.teamRequestID = [[arrUsers objectAtIndex:i] valueForKey:@"id"];
+                     user.teamRequestID = [NSString stringWithFormat:@"%i",[[[arrUsers objectAtIndex:i] valueForKey:@"id"] intValue]];
                      [arrayMembers addObject:user];
                  }
                  

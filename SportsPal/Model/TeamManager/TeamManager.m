@@ -38,8 +38,8 @@
                  for (int i=0; i < arrTeams.count; i++) {
                      
                      Team *team = [Team new];
-                     team.teamID = [[arrTeams objectAtIndex:i] valueForKey:@"id"];
-                     team.sportID = [[arrTeams objectAtIndex:i] valueForKey:@"sport_id"];
+                     team.teamID = [NSString stringWithFormat:@"%i",[[[arrTeams objectAtIndex:i] valueForKey:@"id"] intValue]];
+                     team.sportID = [NSString stringWithFormat:@"%i",[[[arrTeams objectAtIndex:i] valueForKey:@"sport_id"] intValue]];
                      team.sportName = [[[arrTeams objectAtIndex:i] valueForKey:@"sport"] valueForKey:@"name"];
                      team.teamName = [[arrTeams objectAtIndex:i] valueForKey:@"team_name"];
                      team.memberLimit = [[[arrTeams objectAtIndex:i] valueForKey:@"members_limit"] intValue];
@@ -140,8 +140,8 @@
                  for (int i=0; i < arrTeams.count; i++) {
                      
                      Team *team = [Team new];
-                     team.teamID = [[arrTeams objectAtIndex:i] valueForKey:@"id"];
-                     team.sportID = [[arrTeams objectAtIndex:i] valueForKey:@"sport_id"];
+                     team.teamID = [NSString stringWithFormat:@"%i",[[[arrTeams objectAtIndex:i] valueForKey:@"id"] intValue]];
+                     team.sportID = [NSString stringWithFormat:@"%i",[[[arrTeams objectAtIndex:i] valueForKey:@"sport_id"] intValue]];
                      team.sportName = [[[arrTeams objectAtIndex:i] valueForKey:@"sport"] valueForKey:@"name"];
                      team.teamName = [[arrTeams objectAtIndex:i] valueForKey:@"team_name"];
                      team.memberLimit = [[[arrTeams objectAtIndex:i] valueForKey:@"members_limit"] intValue];
@@ -152,7 +152,7 @@
                      else
                          team.teamType = TeamTypeCorporate;
                      
-                     team.creator.userID = [[arrTeams objectAtIndex:i] valueForKey:@"creator_id"];
+                     team.creator.userID = [NSString stringWithFormat:@"%i",[[[arrTeams objectAtIndex:i] valueForKey:@"creator_id"] intValue]];
                      team.creator.firstName = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"first_name"];
                      team.creator.lastName = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"last_name"];
                      team.creator.email = [[[arrTeams objectAtIndex:i] valueForKey:@"user"] valueForKey:@"email"];
@@ -191,8 +191,8 @@
                      {
                          Team *team = [Team new];
                          
-                         team.teamID = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"id"];
-                         team.sportID = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport_id"];
+                         team.teamID = [NSString stringWithFormat:@"%i",[[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"id"] intValue]];
+                         team.sportID = [NSString stringWithFormat:@"%i",[[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport_id"] intValue]];
                          team.sportName = [[[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"];
                          team.teamName = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_name"];
                          team.createdTime = [[[arrTeams objectAtIndex:i] valueForKey:@"team"] valueForKey:@"created"];

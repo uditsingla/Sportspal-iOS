@@ -31,7 +31,7 @@
 #define TF_BGColor  [UIColor colorWithRed:16/255.00 green:124/255.00 blue:213/255.00 alpha:1];
 #define TF_TextColor  [UIColor colorWithRed:16/255.00 green:124/255.00 blue:213/255.00 alpha:1];
 #define TF_PlaceHolderTextColor  [UIColor colorWithRed:16/255.00 green:124/255.00 blue:213/255.00 alpha:1];
-#define TF_FontSize ((UIFont *)[UIFont fontWithName:@"Roboto-Regular" size:@"16"])
+#define TF_FontSize [UIFont fontWithName:@"Roboto-Regular" size:16]
 #define kAlpha .7
 //
 
@@ -48,9 +48,9 @@
 
 #define DarkGreyColor  [UIColor colorWithRed:0/255.00 green:0/255.00 blue:0/255.00 alpha:1];
 
-#define RedColor  [UIColor colorWithRed:212/255.00 green:11/255.00 blue:01/255.00 alpha:1];
+#define RedColor  [UIColor colorWithRed:212/255.00 green:11/255.00 blue:01/255.00 alpha:1]
 
-#define GreenColor  [UIColor colorWithRed:58/255.00 green:137/255.00 blue:1/255.00 alpha:1];
+#define GreenColor  [UIColor colorWithRed:58/255.00 green:137/255.00 blue:1/255.00 alpha:1]
 
 #define OrangeColor  [UIColor colorWithRed:248/255.00 green:123/255.00 blue:1/255.00 alpha:1];
 

@@ -346,6 +346,7 @@
     if (btn.tag == sportname)
     {
         pickerselected = sportname;
+        [pickerSports reloadAllComponents];
         pickerSports.hidden = NO;
         toolBarSuperView.hidden = NO;
         
@@ -383,6 +384,7 @@
     {
         
         pickerselected = teamtype;
+        [pickerType reloadAllComponents];
         pickerType.hidden = NO;
         toolBarSuperView.hidden = NO;
         
@@ -428,10 +430,10 @@
     [arrSearchResult removeAllObjects];
     [tblSearchResult reloadData];
     
-    strSportName = nil;
-    strSportID = nil;
-    strTeamname = nil;
-    strTeamType = nil;
+    strSportName = @"";
+    strSportID = @"";
+    strTeamname = @"";
+    strTeamType = @"";
     
     
     [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];

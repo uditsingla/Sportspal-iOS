@@ -35,7 +35,7 @@
         {
             if([[json valueForKey:@"success"] boolValue])
             {
-                model_manager.profileManager.owner.userID = [[json valueForKey:@"message"] valueForKey:@"id"];
+                model_manager.profileManager.owner.userID = [NSString stringWithFormat:@"%i",[[[json valueForKey:@"message"] valueForKey:@"id"] intValue]];
                 model_manager.profileManager.owner.firstName = [[json valueForKey:@"message"] valueForKey:@"first_name"];
                 model_manager.profileManager.owner.lastName = [[json valueForKey:@"message"] valueForKey:@"last_name"];
                 model_manager.profileManager.owner.gender = [[json valueForKey:@"message"] valueForKey:@"gender"];

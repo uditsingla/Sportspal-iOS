@@ -24,7 +24,7 @@
 
 
 #define kopen @"Open"
-#define kclose @"Close"
+#define kclose @"Closed"
 
 
 
@@ -34,6 +34,7 @@
 #import "Sport.h"
 #import "SetLocationScreen.h"
 #import "TB_Add_VC.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 @interface Add_VC ()
@@ -224,6 +225,13 @@
         
         [btnGameName setTitle:selectedGame.gameName forState:UIControlStateNormal];
         btnGameName.enabled = NO;
+        
+        [btnPrivacy setTitle:[selectedGame.gameCategory capitalizedString] forState:UIControlStateNormal];
+        btnPrivacy.enabled = NO;
+
+        [btnMaxMembers setTitle:selectedGame.membersLimit forState:UIControlStateNormal];
+        btnMaxMembers.enabled = NO;
+
 
         [btnDate setTitle:selectedGame.date forState:UIControlStateNormal];
         btnDate.enabled = NO;
@@ -242,24 +250,48 @@
         strGameName = selectedGame.gameName;
         strTeamName = selectedGame.teamName;
         
-        [selectedGame getGameChallenges:^(NSDictionary *dictJson, NSError *error) {
-            if(!error)
-            {
-                if([[dictJson valueForKey:@"success"] boolValue])
+        if(selectedGame.gameType==GameTypeTeam)
+        {
+            [selectedGame getGameChallenges:^(NSDictionary *dictJson, NSError *error) {
+                if(!error)
                 {
-                    isChallengesFetched = true;
-                    int heightContent = ((int)selectedGame.arrayChallenges.count+1)*44;
-                    contentviewHeight.constant = 185+heightContent;
-                    [tblChallenges reloadData];
-                    
-                    //lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+                    if([[dictJson valueForKey:@"success"] boolValue])
+                    {
+                        isChallengesFetched = true;
+                        int heightContent = ((int)selectedGame.arrayChallenges.count+1)*44;
+                        contentviewHeight.constant = 185+heightContent;
+                        [tblChallenges reloadData];
+                        
+                        //lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+                    }
+                    else
+                    {
+                        [self showAlert:[dictJson valueForKey:@"message"]];
+                    }
                 }
-                else
+            }];
+        }
+        else
+        {
+            [selectedGame getGameMembers:^(NSDictionary *dictJson, NSError *error) {
+                if(!error)
                 {
-                    [self showAlert:[dictJson valueForKey:@"message"]];
+                    if([[dictJson valueForKey:@"success"] boolValue])
+                    {
+                        isChallengesFetched = true;
+                        int heightContent = ((int)selectedGame.arrayChallenges.count+1)*44;
+                        contentviewHeight.constant = 185+heightContent;
+                        [tblChallenges reloadData];
+                        
+                        //lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+                    }
+                    else
+                    {
+                        [self showAlert:[dictJson valueForKey:@"message"]];
+                    }
                 }
-            }
-        }];
+            }];
+        }
     }
 
 }
@@ -319,13 +351,14 @@
     {
         
         pickerselected = ksportname;
-        
+        [pickerSports reloadAllComponents];
         pickerSports.hidden = NO;
         toolBarSuperView.hidden = NO;
     }
     else if (btn.tag == kgametype)
     {
         pickerselected = kgametype;
+        [pickerGameType reloadAllComponents];
         pickerGameType.hidden = NO;
         toolBarSuperView.hidden = NO;
 
@@ -360,6 +393,7 @@
             return;
         }
         pickerselected = kteamname;
+        [pickerTeamName reloadAllComponents];
         pickerTeamName.hidden = NO;
         toolBarSuperView.hidden = NO;
         
@@ -368,7 +402,7 @@
     else if (btn.tag == kprivacy)
     {
         pickerselected = kprivacy;
-        pickerPrivacy.hidden = NO;
+        [pickerPrivacy reloadAllComponents];
         pickerPrivacy.hidden = NO;
         toolBarSuperView.hidden = NO;
     }
@@ -403,11 +437,11 @@
     }
     
     else if (btn.tag == kgamename){
-        UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Team Name"
-                                                                                  message: @"Choose your teamname"
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Game Name"
+                                                                                  message: @"Choose your game name"
                                                                            preferredStyle:UIAlertControllerStyleAlert];
         [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.placeholder = @"Team Name";
+            textField.placeholder = @"Game Name";
             textField.textColor = [UIColor blueColor];
             textField.clearButtonMode = UITextFieldViewModeWhileEditing;
             textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -475,6 +509,8 @@
     strTime = @"";
     strGameType = @"";
     strTeamName = @"";
+    maxMembersCount = @"";
+    strPrivacyType = @"";
     
     constraintHeight.constant = 40;
     magicView.hidden = NO;
@@ -508,6 +544,8 @@
         game.gameType = GameTypeTeam;
         game.teamID = strTeamID;
     }
+    game.gameCategory = [strPrivacyType lowercaseString];
+    game.membersLimit = maxMembersCount;
     game.date = strDate;
     game.time = strTime;
     game.geoLocation = kAppDelegate.myLocation.coordinate;
@@ -599,20 +637,20 @@
             
         }
         
-        [cell.btn_accept addTarget:self action:@selector(clkAccept:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [cell.btn_reject addTarget:self action:@selector(clkReject:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell.btn_accept addTarget:self action:@selector(clkAccept:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [cell.btn_reject addTarget:self action:@selector(clkReject:) forControlEvents:UIControlEventTouchUpInside];
         
         
 //        cell.imgProfile.layer.cornerRadius = 15;
 //        cell.imgProfile.layer.masksToBounds = YES;
         
         cell.lblName.text =@"";
-        cell.btn_accept.hidden = YES;
-        cell.btn_reject.hidden = YES;
+//        cell.btn_accept.hidden = YES;
+//        cell.btn_reject.hidden = YES;
         
-        cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 20);
-        cell.lblName.textAlignment = NSTextAlignmentCenter;
+        cell.lblName.frame = CGRectMake(54, 0, self.view.frame.size.width-56, 50);
+        cell.lblName.textAlignment = NSTextAlignmentLeft;
         cell.backgroundColor = [UIColor clearColor];
         
         //check for last row
@@ -621,11 +659,12 @@
             if(selectedGame)
             {
                 cell.imgProfile.image = nil;
+                cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
                 if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
                 {
                     cell.lblName.text =@"";
-                    cell.btn_accept.hidden = YES;
-                    cell.btn_reject.hidden = YES;
+//                    cell.btn_accept.hidden = YES;
+//                    cell.btn_reject.hidden = YES;
                 }
                 
                 else if(selectedGame.arrayChallenges.count>0)
@@ -635,7 +674,12 @@
                         predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
                     else
                         predicate = [NSPredicate predicateWithFormat:@"SELF.creator.userID == %@", model_manager.profileManager.owner.userID];
-                        
+                    
+                    
+//                    NSLog(@"game member id...%@",((User*)[selectedGame.arrayChallenges objectAtIndex:0]).userID);
+//                    NSLog(@"user id...%@",model_manager.profileManager.owner.userID);
+
+                    
                     NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
                     
                     
@@ -647,56 +691,63 @@
                             filteredResult = ((Team*)[filteredArray objectAtIndex:0]).creator;
                         if(!filteredResult.gameChallengeStatus)
                         {
-                            cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
-                            cell.lblName.text = @"ALREADY CHALLENGED";
+                            //cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                            cell.lblName.text = @"REQUEST SENT";
                             cell.lblName.textAlignment = NSTextAlignmentCenter;
                             cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
 
-                            cell.btn_accept.hidden = YES;
-                            cell.btn_reject.hidden = YES;
+//                            cell.btn_accept.hidden = YES;
+//                            cell.btn_reject.hidden = YES;
                             
                         }
                         else
                         {
-                            cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
-                            cell.lblName.text = @"CHALLENGE ACCEPTED";
-                            cell.lblName.textAlignment = NSTextAlignmentCenter;
-                            cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
-                            cell.btn_accept.hidden = YES;
-                            cell.btn_reject.hidden = YES;
+                            //cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                            //cell.lblName.text = @"REQUEST ACCEPTED";
+                            cell.lblName.text = @"";
+                            //cell.lblName.textAlignment = NSTextAlignmentCenter;
+                            //cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
+//                            cell.btn_accept.hidden = YES;
+//                            cell.btn_reject.hidden = YES;
                             
                         }
                         
                     }
                     else
                     {
-                        cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
-                        cell.lblName.text = @"CHALLENGE GAME";
+                        //cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                        cell.lblName.text = @"JOIN GAME";
                         cell.lblName.textAlignment = NSTextAlignmentCenter;
                         cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
-                        cell.btn_accept.hidden = YES;
-                        cell.btn_reject.hidden = YES;
+//                        cell.btn_accept.hidden = YES;
+//                        cell.btn_reject.hidden = YES;
                     }
                 }
-                else
+                else if(isChallengesFetched)
                 {
-                    cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
-                    cell.lblName.text = @"CHALLENGE GAME";
+                    //cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                    cell.lblName.text = @"JOIN GAME";
                     cell.lblName.textAlignment = NSTextAlignmentCenter;
                     cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
-                    cell.btn_accept.hidden = YES;
-                    cell.btn_reject.hidden = YES;
+//                    cell.btn_accept.hidden = YES;
+//                    cell.btn_reject.hidden = YES;
                 }
                 
             }
             
         }
         else{
-            //[cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((User*)[arrTeamPlayers objectAtIndex:indexPath.row]).profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+            
             if(selectedGame.gameType==GameTypeIndividual)
-                cell.lblName.text = [NSString stringWithFormat:@"%@ %@ challenged the game", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
+            {
+                cell.lblName.text = [NSString stringWithFormat:@"%@ %@ requested to join game", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
+                [cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+            }
             else
+            {
                 cell.lblName.text = [NSString stringWithFormat:@"Team %@ challenged the game", [((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).teamName capitalizedString]];
+                [cell.imgProfile sd_setImageWithURL:[NSURL URLWithString:((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).creator.profilePic] placeholderImage:[UIImage imageNamed:@"members.png"] options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+            }
             
             
             cell.backgroundColor = [UIColor blackColor];
@@ -711,30 +762,30 @@
             if(gameChallengeStatus)
             {
                 if(selectedGame.gameType==GameTypeIndividual)
-                    cell.lblName.text = [NSString stringWithFormat:@"Game on with %@ %@", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
+                    cell.lblName.text = [NSString stringWithFormat:@"%@ %@ joined the game", [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).firstName capitalizedString], [((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).lastName capitalizedString]];
                 else
-                    cell.lblName.text = [NSString stringWithFormat:@"Game on with team %@", [((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).teamName capitalizedString]];
+                    cell.lblName.text = [NSString stringWithFormat:@"Team %@ joined the game", [((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).teamName capitalizedString]];
                 
-                cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                //cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
 
-                cell.btn_accept.hidden = YES;
-                cell.btn_reject.hidden = YES;
+//                cell.btn_accept.hidden = YES;
+//                cell.btn_reject.hidden = YES;
             }
             else
             {
                 cell.backgroundColor = [UIColor clearColor];
                 if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
                 {
-                    cell.btn_accept.hidden = NO;
-                    cell.btn_reject.hidden = NO;
+//                    cell.btn_accept.hidden = NO;
+//                    cell.btn_reject.hidden = NO;
 
                 }
                 else
                 {
-                    cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
+                    //cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
 
-                    cell.btn_accept.hidden = YES;
-                    cell.btn_reject.hidden = YES;
+//                    cell.btn_accept.hidden = YES;
+//                    cell.btn_reject.hidden = YES;
                 }
             }
         }
@@ -925,9 +976,9 @@
                 if(filteredArray.count==0) {
 
                     [kAppDelegate.objLoader show];
-                    [selectedGame challengeGameWithTeamID:nil completion:^(NSDictionary *dictJson, NSError *error) {
+                    [selectedGame joinGameWithUserID:model_manager.profileManager.owner.userID completion:^(NSDictionary *dictJson, NSError *error) {
 
-                        [selectedGame getGameChallenges:^(NSDictionary *dictJson, NSError *error) {
+                        [selectedGame getGameMembers:^(NSDictionary *dictJson, NSError *error) {
                             [kAppDelegate.objLoader hide];
                             if(!error)
                             {
