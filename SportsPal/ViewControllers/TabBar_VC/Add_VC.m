@@ -297,6 +297,14 @@
     }
     else if (btn.tag == kteamname)
     {
+        if(strSportID.length==0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please select sport first." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            
+            return;
+        }
+        
         if(model_manager.profileManager.owner.arrayTeams.count==0)
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No team available" message:@"Please create new team first." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
@@ -304,6 +312,16 @@
             
             strGameType = @"Individual";
             [btnGameType setTitle:@"Individual" forState:UIControlStateNormal];
+            return;
+        }
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", strSportID];
+        NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
+        if(filteredArray.count==0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No team available for selected sport" message:@"Please create new team first." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            
             return;
         }
         pickerselected = kteamname;
@@ -376,13 +394,13 @@
 {
     [self hideAllPickers];
     imgSelectedImage.hidden = YES;
-    strSportName = nil;
-    strSportID = nil;
-    strGameName = nil;
-    strDate = nil;
-    strTime = nil;
-    strGameType = nil;
-    strTeamName = nil;
+    strSportName = @"";
+    strSportID = @"";
+    strGameName = @"";
+    strDate = @"";
+    strTime = @"";
+    strGameType = @"";
+    strTeamName = @"";
     
     constraintHeight.constant = 40;
     magicView.hidden = NO;
@@ -882,7 +900,13 @@
 
         }
         else
-            return model_manager.profileManager.owner.arrayTeams.count;
+        {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", strSportID];
+            NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
+            return filteredArray.count;
+
+            //return model_manager.profileManager.owner.arrayTeams.count;
+        }
     }
     
     return 0;
@@ -913,7 +937,13 @@
             
         }
         else
-            return ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
+        {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", strSportID];
+            NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
+            return ((Team*)filteredArray[row]).teamName;
+
+            //return ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
+        }
     }
     return  @"";
     
@@ -931,7 +961,7 @@
     {
         Sport *sport = model_manager.profileManager.owner.arrayPreferredSports[row];
         strSportName=  sport.sportName;
-        strSportID = sport.sportID;
+        strSportID = [NSString stringWithFormat:@"%@",sport.sportID];
     }
     
     else if(pickerView == pickerGameType)
@@ -971,8 +1001,13 @@
         }
         else
         {
-            strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
-            strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamID;
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", strSportID];
+            NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
+            strTeamName = ((Team*)filteredArray[row]).teamName;
+            strTeamID = ((Team*)filteredArray[row]).teamID;
+
+//            strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
+//            strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamID;
         }
     }
 }
