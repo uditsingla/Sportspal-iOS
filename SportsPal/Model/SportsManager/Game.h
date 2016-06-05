@@ -35,6 +35,7 @@ typedef NS_ENUM(int, GameType)
 
 @property (nonatomic, strong) NSMutableArray *arrayChallenges;
 
+//for team
 -(void)getGameChallenges:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)challengeGameWithTeamID:(NSString *)team_ID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
@@ -43,5 +44,13 @@ typedef NS_ENUM(int, GameType)
 
 -(void)declineChallengeWithChallengeID:(NSString*)challengeID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
+//for individual
+-(void)getGameMembers:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)joinGameWithUserID:(NSString *)user_ID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)acceptGameRequestWithChallengeID:(NSString*)challengeID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)declineGameRequestWithChallengeID:(NSString*)challengeID completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 @end
