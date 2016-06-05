@@ -83,6 +83,7 @@
 		4656DE7D1D038C3D003DEFC0 /* challenge@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE791D038C3D003DEFC0 /* challenge@3x.png */; };
 		4656DE7E1D038C3D003DEFC0 /* invitation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE7A1D038C3D003DEFC0 /* invitation@2x.png */; };
 		4656DE7F1D038C3D003DEFC0 /* invitation@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4656DE7B1D038C3D003DEFC0 /* invitation@3x.png */; };
+		4656DE821D04B4A3003DEFC0 /* Requests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4656DE811D04B4A3003DEFC0 /* Requests.m */; };
 		4661DDFB1CC54C020005C567 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF11CC54C020005C567 /* add@2x.png */; };
 		4661DDFC1CC54C020005C567 /* add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF21CC54C020005C567 /* add@3x.png */; };
 		4661DDFD1CC54C020005C567 /* chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4661DDF31CC54C020005C567 /* chats@2x.png */; };
@@ -385,6 +386,8 @@
 		4656DE791D038C3D003DEFC0 /* challenge@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "challenge@3x.png"; sourceTree = "<group>"; };
 		4656DE7A1D038C3D003DEFC0 /* invitation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invitation@2x.png"; sourceTree = "<group>"; };
 		4656DE7B1D038C3D003DEFC0 /* invitation@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "invitation@3x.png"; sourceTree = "<group>"; };
+		4656DE801D04B4A3003DEFC0 /* Requests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Requests.h; sourceTree = "<group>"; };
+		4656DE811D04B4A3003DEFC0 /* Requests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Requests.m; sourceTree = "<group>"; };
 		4661DDF11CC54C020005C567 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
 		4661DDF21CC54C020005C567 /* add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@3x.png"; sourceTree = "<group>"; };
 		4661DDF31CC54C020005C567 /* chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chats@2x.png"; sourceTree = "<group>"; };
@@ -1001,6 +1004,8 @@
 			children = (
 				46D5187A1CF81C46001E0250 /* Challenges.h */,
 				46D5187B1CF81C46001E0250 /* Challenges.m */,
+				4656DE801D04B4A3003DEFC0 /* Requests.h */,
+				4656DE811D04B4A3003DEFC0 /* Requests.m */,
 			);
 			path = NotificationTabbar;
 			sourceTree = "<group>";
