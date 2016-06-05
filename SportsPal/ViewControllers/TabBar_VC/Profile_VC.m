@@ -9,6 +9,7 @@
 #import "Profile_VC.h"
 #import "Sport.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "TB_Play_Sports.h"
 
 @interface Profile_VC ()
 {
@@ -28,11 +29,17 @@
     
     __weak IBOutlet UIButton *btnMenu;
 
+    __weak IBOutlet UITableView *tableGames;
     
     BOOL isFavourite;
     
     UITextView *txtViewDescription;
+    
+    NSArray *arrGames;
+    __weak IBOutlet UISegmentedControl *segmentedControl;
 }
+- (IBAction)clkSegment:(UISegmentedControl*)sender;
+
 - (IBAction)clkFav:(id)sender;
 - (IBAction)clkSlider:(id)sender;
 - (IBAction)clkChallenge:(id)sender;
@@ -143,11 +150,22 @@
     contentView.backgroundColor = kBlackColor;
     
     
+    
+
+    //Array Games
+    //arrGames = [NSArray arrayWithObjects:@"" count:<#(NSUInteger)#>]
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    
+    //Default selected index
+    segmentedControl.selectedSegmentIndex = 0;
+    tableGames.hidden = YES;
+    
     [[NSUserDefaults standardUserDefaults]setValue:@"" forKey:@"isLocation"];
     
     if([[NSString stringWithFormat:@"%i",[user.userID intValue]] isEqualToString:[NSString stringWithFormat:@"%i",[model_manager.profileManager.owner.userID intValue]]])
@@ -254,6 +272,21 @@
 }
 */
 
+- (IBAction)clkSegment:(UISegmentedControl*)sender {
+    
+    NSInteger selectedSegment = sender.selectedSegmentIndex;
+    
+    if (selectedSegment == 0)
+    {
+        tableGames.hidden = NO;
+    }
+    else if (selectedSegment == 1)
+    {
+        tableGames.hidden = YES;
+        [tableGames reloadData];
+    }
+}
+
 - (IBAction)clkFav:(id)sender {
     
     if (isFavourite)
@@ -281,5 +314,85 @@
 }
 
 - (IBAction)clkChat:(id)sender {
+}
+
+
+#pragma mark - Delegates and Datasource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    if (tableView == tableGames) {
+        
+        static NSString *CellIdentifier = @"CellIdentifier";
+        TB_Play_Sports *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[TB_Play_Sports alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        Game *game = [arrGames objectAtIndex:indexPath.row];
+        
+        cell.contentView.backgroundColor = [UIColor blackColor];
+        cell.lblGameName.text = game.gameName;
+        cell.lblName.text = game.sportName;
+        cell.lblSkillLevel.text = game.distance;
+        
+        
+        // cell.lblName.textColor = [UIColor whiteColor];
+        
+        //NSLog(@"time : %@, %@",game.time,game.date);
+        cell.lblGame1.text = game.time;
+        cell.lblGame2.text = game.date;
+        NSLog(@"Game name : %@",game.sportName);
+        
+        NSString *strGameImage = [game.sportName lowercaseString];
+        
+        cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strGameImage]];
+        
+        return cell;
+        
+    }
+    
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 110;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
+{
+    return 1;
+}
+
+// number of row in the section, I assume there is only 1 row
+- (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
+{
+    if (theTableView == tableGames)
+    {
+        return [arrGames count];
+    }
+    
+    return [arrGames count];
+    
+}
+
+
+
+
+#pragma mark - UITableViewDelegate
+// when user tap the row, what action you want to perform
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected %ld row", (long)indexPath.row);
+    
+//    Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
+//    viewcontroller.user = (User*)[arrGames objectAtIndex:indexPath.row];
+//    [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+//    
+    
 }
 @end
