@@ -69,6 +69,7 @@
     else
     {
         [btnMenu setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+        segmentedControl.hidden = YES;
     }
     
     lblName.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];

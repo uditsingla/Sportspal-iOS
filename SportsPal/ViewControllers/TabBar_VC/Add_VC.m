@@ -35,6 +35,7 @@
 #import "SetLocationScreen.h"
 #import "TB_Add_VC.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Profile_VC.h"
 
 
 @interface Add_VC ()
@@ -301,7 +302,7 @@
     [super viewWillAppear:YES];
     
     
-    [segmentcotrol setSelectedSegmentIndex:0];
+    //[segmentcotrol setSelectedSegmentIndex:0];
     
     
     //    NSLog(@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"isLocation"]);
@@ -545,7 +546,8 @@
         game.teamID = strTeamID;
     }
     game.gameCategory = [strPrivacyType lowercaseString];
-    game.membersLimit = maxMembersCount;
+    if([maxMembersCount intValue])
+        game.membersLimit = maxMembersCount;
     game.date = strDate;
     game.time = strTime;
     game.geoLocation = kAppDelegate.myLocation.coordinate;
@@ -721,6 +723,19 @@
                         cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
                         //                        cell.btn_accept.hidden = YES;
                         //                        cell.btn_reject.hidden = YES;
+                        
+                        
+                            NSPredicate *predicate;
+                            if(selectedGame.gameType==GameTypeIndividual)
+                                predicate = [NSPredicate predicateWithFormat:@"gameChallengeStatus == %@",[NSNumber numberWithBool:YES]];
+                            else
+                                predicate = [NSPredicate predicateWithFormat:@"SELF.creator.gameChallengeStatus == %@",[NSNumber numberWithBool:YES]];
+                            NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
+                            if(filteredArray.count>=[selectedGame.membersLimit intValue]) {
+                                cell.lblName.text = @"";
+                                cell.backgroundColor = [UIColor clearColor];
+                            }
+                        
                     }
                 }
                 else if(isChallengesFetched)
@@ -735,6 +750,11 @@
                 
             }
             
+        }
+        else if(indexPath.row==0)
+        {
+            cell.backgroundColor = [UIColor clearColor];
+            cell.lblName.text = [NSString stringWithFormat:@"%@ %@ created the game", [selectedGame.creator.firstName capitalizedString], [selectedGame.creator.lastName capitalizedString]];
         }
         else{
             
@@ -788,6 +808,8 @@
                     //                    cell.btn_reject.hidden = YES;
                 }
             }
+            
+            
         }
         
         
@@ -919,13 +941,16 @@
     if(!isChallengesFetched)
         return;
     
-    if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
-        return;
+    
     
     if (indexPath.row == (selectedGame.arrayChallenges.count)) {
         
+        
         if(selectedGame)
         {
+            if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
+                return;
+            
             NSLog(@"Challenge Pressed");
             
             if(selectedGame.gameType==GameTypeTeam)
@@ -1001,6 +1026,27 @@
             }
             
         }
+    }
+    else
+    {
+        if(selectedGame)
+        {
+            if(selectedGame.gameType==GameTypeTeam)
+            {
+                AddTeam *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"addteam"];
+                viewcontroller.selectedTeam = (Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
+                [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+            }
+            else
+            {
+                User *selectedUser = (User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
+                
+                Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
+                viewcontroller.user = selectedUser;
+                [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+            }
+        }
+
     }
 }
 

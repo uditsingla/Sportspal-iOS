@@ -17,6 +17,7 @@
 #import "Sport.h"
 #import "TB_AddTeam.h"
 #import "Team.h"
+#import "Profile_VC.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -219,6 +220,8 @@
     [super viewWillAppear:YES];
     if(selectedTeam==nil)
     {
+        [self hideAllPickers];
+        [self resetAllContent];
         [arrTeamPlayers removeAllObjects];
         [tblTeam reloadData];
     }
@@ -233,10 +236,10 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:YES];
-    [self hideAllPickers];
-    [self resetAllContent];
-    [arrTeamPlayers removeAllObjects];
-    [tblTeam reloadData];
+//    [self hideAllPickers];
+//    [self resetAllContent];
+//    [arrTeamPlayers removeAllObjects];
+//    [tblTeam reloadData];
 }
 
 -(void)createNewTeam
@@ -893,6 +896,14 @@
                 [self hideAllViews];
                 [searchbar becomeFirstResponder];
             }
+        }
+        else
+        {
+            User *selectedUser = (User*)[arrTeamPlayers objectAtIndex:indexPath.row];
+            
+            Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
+            viewcontroller.user = selectedUser;
+            [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
         }
     }
     
