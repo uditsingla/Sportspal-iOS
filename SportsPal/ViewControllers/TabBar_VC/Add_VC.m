@@ -57,8 +57,8 @@
     
     NSString *maxMembersCount;
     NSString *strPrivacyType;
-
-
+    
+    
     
     __weak IBOutlet UIButton *btnGameType;
     __weak IBOutlet UIButton *btnTeamName;
@@ -75,7 +75,7 @@
     __weak IBOutlet UISegmentedControl *segmentcotrol;
     
     __weak IBOutlet NSLayoutConstraint *contentviewHeight;
-
+    
     
     __weak IBOutlet NSLayoutConstraint *constraintHeight;
     
@@ -105,7 +105,7 @@
     __weak IBOutlet UIButton *btnSave;
     
     __weak IBOutlet UITableView *tblChallenges;
-
+    
     __weak IBOutlet UIView *viewNavigation;
 }
 - (IBAction)clkButton:(id)sender;
@@ -148,13 +148,13 @@
     
     pikerTime.backgroundColor=[UIColor whiteColor];
     pikerTime.backgroundColor=[UIColor whiteColor];
-
+    
     
     
     [segmentcotrol addTarget:self
-                         action:@selector(clkSegment:)
-               forControlEvents:UIControlEventValueChanged];
-
+                      action:@selector(clkSegment:)
+            forControlEvents:UIControlEventValueChanged];
+    
     
     
     //arrGameType = [NSArray arrayWithObjects:@"Individual",@"Team", nil];
@@ -166,8 +166,8 @@
     //arrTeamName = [NSMutableArray new];
     
     [self hideAllPickers];
-
-
+    
+    
     if (strSportName == nil) {
         imgSelectedImage.hidden = YES;
     }
@@ -180,7 +180,7 @@
     tblChallenges.backgroundColor = [UIColor clearColor];
     // This will remove extra separators from tableview
     tblChallenges.tableFooterView = [UIView new];
-
+    
     
     if(selectedGame)
     {
@@ -228,22 +228,22 @@
         
         [btnPrivacy setTitle:[selectedGame.gameCategory capitalizedString] forState:UIControlStateNormal];
         btnPrivacy.enabled = NO;
-
+        
         [btnMaxMembers setTitle:selectedGame.membersLimit forState:UIControlStateNormal];
         btnMaxMembers.enabled = NO;
-
-
+        
+        
         [btnDate setTitle:selectedGame.date forState:UIControlStateNormal];
         btnDate.enabled = NO;
         
         [btnTime setTitle:selectedGame.time forState:UIControlStateNormal];
         btnTime.enabled = NO;
-
+        
         
         [btnAddress setTitle:selectedGame.address forState:UIControlStateNormal];
         btnAddress.enabled = NO;
-
-
+        
+        
         strSportID = selectedGame.sportID;
         strSportName = selectedGame.sportName;
         strGameType = game_type;
@@ -293,7 +293,7 @@
             }];
         }
     }
-
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -304,7 +304,7 @@
     [segmentcotrol setSelectedSegmentIndex:0];
     
     
-//    NSLog(@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"isLocation"]);
+    //    NSLog(@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"isLocation"]);
     
     if ([[[NSUserDefaults standardUserDefaults]valueForKey:@"isLocation"] isEqualToString:@"locationclicked"])
     {
@@ -317,7 +317,7 @@
             [self resetAllContent];
     }
     
-        
+    
 }
 
 
@@ -331,14 +331,14 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)clkButton:(id)sender {
     
@@ -361,7 +361,7 @@
         [pickerGameType reloadAllComponents];
         pickerGameType.hidden = NO;
         toolBarSuperView.hidden = NO;
-
+        
     }
     else if (btn.tag == kteamname)
     {
@@ -433,7 +433,7 @@
         }]];
         [self presentViewController:alertController animated:YES completion:nil];
         
-
+        
     }
     
     else if (btn.tag == kgamename){
@@ -446,18 +446,18 @@
             textField.clearButtonMode = UITextFieldViewModeWhileEditing;
             textField.borderStyle = UITextBorderStyleRoundedRect;
         }];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             NSArray * textfields = alertController.textFields;
             UITextField * namefield = textfields[0];
-                
+            
             strGameName = namefield.text;
-                
+            
             [btnGameName setTitle:strGameName forState:UIControlStateNormal];
             NSLog(@"%@",namefield.text);
             
         }]];
         [self presentViewController:alertController animated:YES completion:nil];
-
+        
     }
     else if (btn.tag == kdate){
         
@@ -502,15 +502,15 @@
 {
     [self hideAllPickers];
     imgSelectedImage.hidden = YES;
-    strSportName = @"";
-    strSportID = @"";
-    strGameName = @"";
-    strDate = @"";
-    strTime = @"";
-    strGameType = @"";
-    strTeamName = @"";
-    maxMembersCount = @"";
-    strPrivacyType = @"";
+    strSportName = nil;
+    strSportID = nil;
+    strGameName = nil;
+    strDate = nil;
+    strTime = nil;
+    strGameType = nil;
+    strTeamName = nil;
+    maxMembersCount = nil;
+    strPrivacyType = nil;
     
     constraintHeight.constant = 40;
     magicView.hidden = NO;
@@ -527,7 +527,7 @@
     [btnDate setTitle:@"DD/MM/YYYY" forState:UIControlStateNormal];
     [btnTime setTitle:@"HH:MM" forState:UIControlStateNormal];
     [btnAddress setTitle:@"PICK ADDRESS" forState:UIControlStateNormal];
-
+    
 }
 
 -(void)createNewGame
@@ -562,30 +562,30 @@
                 //game created successfully
                 //[self showAlert:[dictJson valueForKey:@"message"]];
                 
-               /*
-                [btnSportName setTitle:@"SPORT" forState:UIControlStateNormal];
-                [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
-                [btnDate setTitle:@"DD/MM/YYYY" forState:UIControlStateNormal];
-                [btnTime setTitle:@"HH:MM" forState:UIControlStateNormal];
-                [btnAddress setTitle:@"PICK ADDRESS" forState:UIControlStateNormal];
-                [btnGameName setTitle:@"GAME NAME" forState:UIControlStateNormal];
-                [btnGameType setTitle:@"GAME TYPE" forState:UIControlStateNormal];
-                
-                
-                strSportName = @"";
-                strSportID = @"";
-                strTeamName = @"";
-                strDate = @"";
-                strTime = @"";
-                strGameName = @"";
-                strGameType = @"";
-                strTeamID = @"";
-                */
+                /*
+                 [btnSportName setTitle:@"SPORT" forState:UIControlStateNormal];
+                 [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
+                 [btnDate setTitle:@"DD/MM/YYYY" forState:UIControlStateNormal];
+                 [btnTime setTitle:@"HH:MM" forState:UIControlStateNormal];
+                 [btnAddress setTitle:@"PICK ADDRESS" forState:UIControlStateNormal];
+                 [btnGameName setTitle:@"GAME NAME" forState:UIControlStateNormal];
+                 [btnGameType setTitle:@"GAME TYPE" forState:UIControlStateNormal];
+                 
+                 
+                 strSportName = @"";
+                 strSportID = @"";
+                 strTeamName = @"";
+                 strDate = @"";
+                 strTime = @"";
+                 strGameName = @"";
+                 strGameType = @"";
+                 strTeamID = @"";
+                 */
                 
                 [self resetAllContent];
                 
                 [self.tabBarController setSelectedIndex:1];
-
+                
             }
             else
             {
@@ -637,17 +637,17 @@
             
         }
         
-//        [cell.btn_accept addTarget:self action:@selector(clkAccept:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        [cell.btn_reject addTarget:self action:@selector(clkReject:) forControlEvents:UIControlEventTouchUpInside];
+        //        [cell.btn_accept addTarget:self action:@selector(clkAccept:) forControlEvents:UIControlEventTouchUpInside];
+        //        
+        //        [cell.btn_reject addTarget:self action:@selector(clkReject:) forControlEvents:UIControlEventTouchUpInside];
         
         
-//        cell.imgProfile.layer.cornerRadius = 15;
-//        cell.imgProfile.layer.masksToBounds = YES;
+        //        cell.imgProfile.layer.cornerRadius = 15;
+        //        cell.imgProfile.layer.masksToBounds = YES;
         
         cell.lblName.text =@"";
-//        cell.btn_accept.hidden = YES;
-//        cell.btn_reject.hidden = YES;
+        //        cell.btn_accept.hidden = YES;
+        //        cell.btn_reject.hidden = YES;
         
         cell.lblName.frame = CGRectMake(54, 0, self.view.frame.size.width-56, 50);
         cell.lblName.textAlignment = NSTextAlignmentLeft;
@@ -663,8 +663,8 @@
                 if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
                 {
                     cell.lblName.text =@"";
-//                    cell.btn_accept.hidden = YES;
-//                    cell.btn_reject.hidden = YES;
+                    //                    cell.btn_accept.hidden = YES;
+                    //                    cell.btn_reject.hidden = YES;
                 }
                 
                 else if(selectedGame.arrayChallenges.count>0)
@@ -676,9 +676,9 @@
                         predicate = [NSPredicate predicateWithFormat:@"SELF.creator.userID == %@", model_manager.profileManager.owner.userID];
                     
                     
-//                    NSLog(@"game member id...%@",((User*)[selectedGame.arrayChallenges objectAtIndex:0]).userID);
-//                    NSLog(@"user id...%@",model_manager.profileManager.owner.userID);
-
+                    //                    NSLog(@"game member id...%@",((User*)[selectedGame.arrayChallenges objectAtIndex:0]).userID);
+                    //                    NSLog(@"user id...%@",model_manager.profileManager.owner.userID);
+                    
                     
                     NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
                     
@@ -695,9 +695,9 @@
                             cell.lblName.text = @"REQUEST SENT";
                             cell.lblName.textAlignment = NSTextAlignmentCenter;
                             cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
-
-//                            cell.btn_accept.hidden = YES;
-//                            cell.btn_reject.hidden = YES;
+                            
+                            //                            cell.btn_accept.hidden = YES;
+                            //                            cell.btn_reject.hidden = YES;
                             
                         }
                         else
@@ -707,8 +707,8 @@
                             cell.lblName.text = @"";
                             //cell.lblName.textAlignment = NSTextAlignmentCenter;
                             //cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
-//                            cell.btn_accept.hidden = YES;
-//                            cell.btn_reject.hidden = YES;
+                            //                            cell.btn_accept.hidden = YES;
+                            //                            cell.btn_reject.hidden = YES;
                             
                         }
                         
@@ -719,8 +719,8 @@
                         cell.lblName.text = @"JOIN GAME";
                         cell.lblName.textAlignment = NSTextAlignmentCenter;
                         cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
-//                        cell.btn_accept.hidden = YES;
-//                        cell.btn_reject.hidden = YES;
+                        //                        cell.btn_accept.hidden = YES;
+                        //                        cell.btn_reject.hidden = YES;
                     }
                 }
                 else if(isChallengesFetched)
@@ -729,8 +729,8 @@
                     cell.lblName.text = @"JOIN GAME";
                     cell.lblName.textAlignment = NSTextAlignmentCenter;
                     cell.backgroundColor = [UIColor colorWithRed:114/255.0 green:204/255.0 blue:74/255.0 alpha:1];
-//                    cell.btn_accept.hidden = YES;
-//                    cell.btn_reject.hidden = YES;
+                    //                    cell.btn_accept.hidden = YES;
+                    //                    cell.btn_reject.hidden = YES;
                 }
                 
             }
@@ -757,8 +757,8 @@
                 gameChallengeStatus = ((User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).gameChallengeStatus;
             else
                 gameChallengeStatus = ((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).creator.gameChallengeStatus;
-
-
+            
+            
             if(gameChallengeStatus)
             {
                 if(selectedGame.gameType==GameTypeIndividual)
@@ -767,25 +767,25 @@
                     cell.lblName.text = [NSString stringWithFormat:@"Team %@ joined the game", [((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).teamName capitalizedString]];
                 
                 //cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
-
-//                cell.btn_accept.hidden = YES;
-//                cell.btn_reject.hidden = YES;
+                
+                //                cell.btn_accept.hidden = YES;
+                //                cell.btn_reject.hidden = YES;
             }
             else
             {
                 cell.backgroundColor = [UIColor clearColor];
                 if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
                 {
-//                    cell.btn_accept.hidden = NO;
-//                    cell.btn_reject.hidden = NO;
-
+                    //                    cell.btn_accept.hidden = NO;
+                    //                    cell.btn_reject.hidden = NO;
+                    
                 }
                 else
                 {
                     //cell.lblName.frame = CGRectMake(10, 0, cell.frame.size.width-20, 50);
-
-//                    cell.btn_accept.hidden = YES;
-//                    cell.btn_reject.hidden = YES;
+                    
+                    //                    cell.btn_accept.hidden = YES;
+                    //                    cell.btn_reject.hidden = YES;
                 }
             }
         }
@@ -840,7 +840,7 @@
         currentUser = (User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
     else
         currentUser = ((Team*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row]).creator;
-
+    
     
     if(selectedGame.arrayChallenges.count>0) {
         
@@ -969,15 +969,15 @@
             }
             else
             {
-
+                
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", model_manager.profileManager.owner.userID];
                 NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
-
+                
                 if(filteredArray.count==0) {
-
+                    
                     [kAppDelegate.objLoader show];
                     [selectedGame joinGameWithUserID:model_manager.profileManager.owner.userID completion:^(NSDictionary *dictJson, NSError *error) {
-
+                        
                         [selectedGame getGameMembers:^(NSDictionary *dictJson, NSError *error) {
                             [kAppDelegate.objLoader hide];
                             if(!error)
@@ -987,7 +987,7 @@
                                     int heightContent = ((int)selectedGame.arrayChallenges.count+1)*44;
                                     contentviewHeight.constant = 185+heightContent;
                                     [tblChallenges reloadData];
-
+                                    
                                     //lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
                                 }
                                 else
@@ -1015,10 +1015,10 @@
 
 {
     if(pickerView == pickerSports)
-    return  model_manager.profileManager.owner.arrayPreferredSports.count;
+        return  model_manager.profileManager.owner.arrayPreferredSports.count;
     
     else if(pickerView == pickerGameType)
-    return arrGameType.count;
+        return arrGameType.count;
     
     else if (pickerView == pickerTeamName)
     {
@@ -1027,14 +1027,14 @@
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", selectedGame.sportID];
             NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
             return filteredArray.count;
-
+            
         }
         else
         {
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", strSportID];
             NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
             return filteredArray.count;
-
+            
             //return model_manager.profileManager.owner.arrayTeams.count;
         }
     }
@@ -1059,7 +1059,7 @@
     else if(pickerView == pickerGameType)
     {
         return arrGameType[row];
-
+        
     }
     
     else if (pickerView == pickerTeamName)
@@ -1076,7 +1076,7 @@
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sportID == %@", strSportID];
             NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
             return ((Team*)filteredArray[row]).teamName;
-
+            
             //return ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
         }
     }
@@ -1093,7 +1093,7 @@
 {
     
     
-   // NSLog(@"Sport Name : %@",strSportName);
+    // NSLog(@"Sport Name : %@",strSportName);
     if(pickerView == pickerSports)
     {
         Sport *sport = model_manager.profileManager.owner.arrayPreferredSports[row];
@@ -1118,20 +1118,20 @@
             
             constraintTeamMebersHeight.constant = 40;
             viewTeamMembers.hidden = NO;
-//            contImageTeamName.constant = 0;
-//            contImageGap.constant = 0;
-//            contBtngap.constant = 0;
+            //            contImageTeamName.constant = 0;
+            //            contImageGap.constant = 0;
+            //            contBtngap.constant = 0;
         }
         else
         {
             constraintHeight.constant = 40;
             magicView.hidden = NO;
-
+            
             constraintTeamMebersHeight.constant = 0;
             viewTeamMembers.hidden = YES;
-//            contImageTeamName.constant = 23;
-//            contBtngap.constant = 15;
-//            contBtngap.constant = 17;
+            //            contImageTeamName.constant = 23;
+            //            contBtngap.constant = 15;
+            //            contBtngap.constant = 17;
         }
         
         
@@ -1145,7 +1145,7 @@
             NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
             strTeamName = ((Team*)filteredArray[row]).teamName;
             strTeamID = ((Team*)filteredArray[row]).teamID;
-
+            
         }
         else
         {
@@ -1153,9 +1153,9 @@
             NSArray *filteredArray = [model_manager.profileManager.owner.arrayTeams filteredArrayUsingPredicate:predicate];
             strTeamName = ((Team*)filteredArray[row]).teamName;
             strTeamID = ((Team*)filteredArray[row]).teamID;
-
-//            strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
-//            strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamID;
+            
+            //            strTeamName = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamName;
+            //            strTeamID = ((Team*)model_manager.profileManager.owner.arrayTeams[row]).teamID;
         }
     }
     
@@ -1220,7 +1220,7 @@
             
             constraintTeamMebersHeight.constant = 40;
             viewTeamMembers.hidden = NO;
-
+            
         }
         [btnGameType setTitle:strGameType forState:UIControlStateNormal];
         
@@ -1280,15 +1280,15 @@
     {
         if (strPrivacyType == nil)
         {
-
+            
             if ([[arrPrivacy objectAtIndex:0] isEqualToString:kopen]) {
                 strPrivacyType = kopen;
             }
         }
         [btnPrivacy setTitle:strPrivacyType forState:UIControlStateNormal];
-
+        
     }
-   
+    
     
     else if (pickerselected == kdate)
     {
@@ -1339,7 +1339,7 @@
         NSArray *arrControlers = self.tabBarController.viewControllers;
         
         AddTeam *addTeam = [kMainStoryboard instantiateViewControllerWithIdentifier:@"addteam"];
-
+        
         
         UIViewController *thisIsTheViewControllerIWantToSetNow = addTeam;
         int indexForViewControllerYouWantToReplace = 2;
@@ -1349,7 +1349,7 @@
         [tabbarViewControllers replaceObjectAtIndex:indexForViewControllerYouWantToReplace withObject:thisIsTheViewControllerIWantToSetNow];
         
         self.tabBarController.viewControllers = tabbarViewControllers;
-
+        
     }
 }
 
