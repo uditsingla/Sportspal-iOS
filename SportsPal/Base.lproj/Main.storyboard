@@ -1003,7 +1003,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5qC-ef-8jV">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="admin.png" translatesAutoresizingMaskIntoConstraints="NO" id="5qC-ef-8jV">
                                                     <rect key="frame" x="272" y="88" width="26" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="5qC-ef-8jV" secondAttribute="height" multiplier="1:1" constant="11" id="FnE-eq-PoG"/>
@@ -2322,18 +2322,27 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUA-ew-fvW" userLabel="Game 2">
-                                                    <rect key="frame" x="115" y="85" width="170" height="21"/>
+                                                    <rect key="frame" x="115" y="85" width="130" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="EiS-bp-7iT"/>
-                                                        <constraint firstAttribute="width" constant="170" id="oSu-tc-cWB"/>
+                                                        <constraint firstAttribute="width" constant="130" id="oSu-tc-cWB"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="admin.png" translatesAutoresizingMaskIntoConstraints="NO" id="jhn-Of-rcS">
+                                                    <rect key="frame" x="252" y="88" width="26" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="7J8-b5-qwI"/>
+                                                        <constraint firstAttribute="width" constant="26" id="A0W-W2-4hc"/>
+                                                        <constraint firstAttribute="width" secondItem="jhn-Of-rcS" secondAttribute="height" multiplier="26:15" id="KOK-iM-eJL"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="jhn-Of-rcS" secondAttribute="trailing" constant="12" id="0M5-wt-s1D"/>
                                                 <constraint firstItem="glV-mX-Xab" firstAttribute="leading" secondItem="bbv-IR-zLe" secondAttribute="trailing" constant="7" id="2kv-VM-i5S"/>
                                                 <constraint firstAttribute="bottom" secondItem="fUA-ew-fvW" secondAttribute="bottom" constant="13" id="2wL-EN-MuQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="4Ht-Um-6A5" secondAttribute="trailing" id="64A-iJ-mVI"/>
@@ -2349,6 +2358,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="8MO-y2-cjo" secondAttribute="trailing" constant="20" id="Qp7-f4-QOW"/>
                                                 <constraint firstAttribute="bottom" secondItem="FUp-Tc-b7b" secondAttribute="bottom" constant="13" id="Vkm-I9-OJ7"/>
                                                 <constraint firstItem="glV-mX-Xab" firstAttribute="top" secondItem="f3z-b8-VTc" secondAttribute="top" constant="10" id="ZdY-zv-7ed"/>
+                                                <constraint firstAttribute="bottom" secondItem="jhn-Of-rcS" secondAttribute="bottom" constant="16" id="cu2-I6-Aoq"/>
                                                 <constraint firstItem="wcS-18-V9x" firstAttribute="leading" secondItem="f3z-b8-VTc" secondAttribute="leading" constant="20" id="d5L-qu-wjT"/>
                                                 <constraint firstAttribute="trailing" secondItem="wcS-18-V9x" secondAttribute="trailing" constant="20" id="gkl-rj-eVI"/>
                                                 <constraint firstItem="qrA-XR-NjW" firstAttribute="leading" secondItem="f3z-b8-VTc" secondAttribute="leading" constant="20" id="re3-Wf-khi"/>
