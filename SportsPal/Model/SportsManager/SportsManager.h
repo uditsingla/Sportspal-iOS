@@ -23,6 +23,7 @@
 @property(nonatomic,strong) NSMutableArray *arraySearchedGames;
 
 @property(nonatomic,strong) NSMutableArray *arrayGameChallenges;
+@property(nonatomic,strong) NSMutableArray *arrayIndividualGameRequests;
 
 @property(weak,nonatomic) id<ViewSportsDelegate> sportsManagerDelegate;
 
@@ -38,6 +39,8 @@
 -(void)searchGameWithSearchTerm:(NSString*)searchTerm completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)getAllGameChallenges:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
+
+-(void)getAllIndividualGameRequests:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock;
 
 -(void)resetModelData;
 

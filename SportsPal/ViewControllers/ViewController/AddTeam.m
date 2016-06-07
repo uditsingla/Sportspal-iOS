@@ -17,6 +17,7 @@
 #import "Sport.h"
 #import "TB_AddTeam.h"
 #import "Team.h"
+#import "Profile_VC.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -219,6 +220,8 @@
     [super viewWillAppear:YES];
     if(selectedTeam==nil)
     {
+        [self hideAllPickers];
+        [self resetAllContent];
         [arrTeamPlayers removeAllObjects];
         [tblTeam reloadData];
     }
@@ -233,10 +236,10 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:YES];
-    [self hideAllPickers];
-    [self resetAllContent];
-    [arrTeamPlayers removeAllObjects];
-    [tblTeam reloadData];
+//    [self hideAllPickers];
+//    [self resetAllContent];
+//    [arrTeamPlayers removeAllObjects];
+//    [tblTeam reloadData];
 }
 
 -(void)createNewTeam
@@ -430,10 +433,10 @@
     [arrSearchResult removeAllObjects];
     [tblSearchResult reloadData];
     
-    strSportName = @"";
-    strSportID = @"";
-    strTeamname = @"";
-    strTeamType = @"";
+    strSportName = nil;
+    strSportID = nil;
+    strTeamname = nil;
+    strTeamType = nil;
     
     
     [btnTeamName setTitle:@"TEAM NAME" forState:UIControlStateNormal];
@@ -562,12 +565,25 @@
             strSportID = sport.sportID;
         }
         
+        if(![btnSportName.titleLabel.text isEqualToString:strSportName])
+        {
+            [arrTeamPlayers removeAllObjects];
+            
+            int heightContent = ((int)arrTeamPlayers.count+1)*44;
+            contentviewHeight.constant = 185+heightContent;
+            
+            lblteamCurrentMembers.text = [NSString stringWithFormat:@"MEMBERS (%lu)",(unsigned long)arrTeamPlayers.count];
+            
+            [tblTeam reloadData];
+        }
+        
         imgSelectedImage.hidden = NO;
         NSString *strImageName = [strSportName lowercaseString];
         imgSelectedImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageName]];
         
         [btnSportName setTitle:strSportName forState:UIControlStateNormal];
         
+
         //call the search api for users with same sport preference in nearby region
         
         [model_manager.playerManager getNearByUsersWithSportID:strSportID completion:^(NSMutableArray *arrayUsers, NSError *error) {
@@ -880,6 +896,14 @@
                 [self hideAllViews];
                 [searchbar becomeFirstResponder];
             }
+        }
+        else
+        {
+            User *selectedUser = (User*)[arrTeamPlayers objectAtIndex:indexPath.row];
+            
+            Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
+            viewcontroller.user = selectedUser;
+            [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
         }
     }
     

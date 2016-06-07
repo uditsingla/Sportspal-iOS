@@ -49,6 +49,7 @@
                  
                  NSArray *arrUsers = [json valueForKey:@"message"];
                  [arrayChallenges removeAllObjects];
+                 [arrayChallenges addObject:self.creator];
                  
                  for (int i=0; i < arrUsers.count; i++) {
                      
@@ -210,6 +211,8 @@
                  
                  NSArray *arrUsers = [json valueForKey:@"message"];
                  [arrayChallenges removeAllObjects];
+                 
+                 [arrayChallenges addObject:self.creator];
                  
                  for (int i=0; i < arrUsers.count; i++) {
                      

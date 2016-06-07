@@ -8,6 +8,7 @@
 
 #import "SignUp.h"
 #import "Home.h"
+#import "Base64.h"
 
 @interface SignUp ()
 
@@ -31,13 +32,13 @@
     
     __weak IBOutlet UIDatePicker *pickerDate;
     
-    NSString *selectedGender,*strDOB;
+    NSString *selectedGender,*strDOB,*imgStr;
     
     UIToolbar *toolBar;
     
     __weak IBOutlet UIView *toolBarSuperView;
-
-
+    
+    
 }
 
 - (IBAction)clkGender:(id)sender;
@@ -69,7 +70,7 @@
     bntBirthdate.alpha = kAlpha;
     bntBirthdate.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     bntBirthdate.contentEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
-
+    
     [bntBirthdate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     bntBirthdate.backgroundColor = [UIColor grayColor];
     [[bntBirthdate layer] setCornerRadius:3.0f];
@@ -79,7 +80,7 @@
     //Btn SignUp
     btnSignUp.backgroundColor = BrightGreen;
     [[btnSignUp layer] setCornerRadius:3.0f];
-
+    
     selectedGender = @"";
     
     
@@ -130,7 +131,31 @@
                 [btnMale setImage:[UIImage imageNamed:@"male_green.png"] forState:UIControlStateNormal];
                 [btnFemale setImage:[UIImage imageNamed:@"female_white.png"] forState:UIControlStateNormal];
             }
-
+            
+        }
+        
+        if([[[fbDetails valueForKey:@"picture"]valueForKey:@"data"]valueForKey:@"url"])
+        {
+            [kAppDelegate.objLoader show];
+            
+            NSURL *imgURL = [NSURL URLWithString:[[[fbDetails valueForKey:@"picture"]valueForKey:@"data"]valueForKey:@"url"]];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+                // block1
+                
+                
+                NSData *data= [NSData dataWithContentsOfURL:imgURL];
+                [Base64 initialize];
+                
+                imgStr = [Base64 encode:data];
+                
+                
+                dispatch_async(dispatch_get_main_queue(), ^ {
+                    [kAppDelegate.objLoader hide];
+                });
+            });
+            
+            
         }
     }
 }
@@ -215,7 +240,7 @@
         
         NSDictionary *signUpInfo;
         if(fbDetails)
-            signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email", [fbDetails valueForKey:@"id"], @"social_id",bntBirthdate.titleLabel.text,@"dob", selectedGender,@"gender",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", @"ios", @"device_type", deviceToken, @"device_token", nil];
+            signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email", [fbDetails valueForKey:@"id"], @"social_id",bntBirthdate.titleLabel.text,@"dob", selectedGender,@"gender",imgStr,@"image",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", @"ios", @"device_type", deviceToken, @"device_token", nil];
         else
             signUpInfo = [NSDictionary dictionaryWithObjectsAndKeys:txtFirstName.text,@"first_name", txtLastName.text,@"last_name", txtEmail.text, @"email", txtPassword.text, @"password",bntBirthdate.titleLabel.text,@"dob", selectedGender,@"gender",[NSNumber numberWithDouble:latitude],@"latitude", [NSNumber numberWithDouble:longitude],@"longitude", @"ios", @"device_type", deviceToken, @"device_token", nil];
         
@@ -244,8 +269,8 @@
                             if([[dictJson valueForKey:@"success"] boolValue])
                             {
                                 //user registered successfully
-//                                UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
-//                                [self.navigationController pushViewController:homeVC animated:YES];
+                                //                                UIViewController *homeVC = [kMainStoryboard instantiateInitialViewController];
+                                //                                [self.navigationController pushViewController:homeVC animated:YES];
                                 
                                 UIViewController *homeVC = [kLoginStoryboard instantiateViewControllerWithIdentifier:@"prefrences"];
                                 [self.navigationController pushViewController:homeVC animated:YES];
@@ -258,7 +283,7 @@
                         }
                         
                     }];
-
+                    
                 }
                 else
                 {

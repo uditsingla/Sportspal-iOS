@@ -11,7 +11,7 @@
 
 @implementation SportsManager
 
-@synthesize arrayGames,arraySports,arraySearchedGames,arrayGameChallenges,sportsManagerDelegate;
+@synthesize arrayGames,arraySports,arraySearchedGames,arrayGameChallenges,sportsManagerDelegate,arrayIndividualGameRequests;
 
 - (id)init
 {
@@ -21,6 +21,7 @@
         arraySports = [NSMutableArray new];
         arraySearchedGames = [NSMutableArray new];
         arrayGameChallenges = [NSMutableArray new];
+        arrayIndividualGameRequests = [NSMutableArray new];
     }
     return self;
 }
@@ -98,6 +99,7 @@
                      game.creator.firstName = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"first_name"];
                      game.creator.lastName = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"last_name"];
                      game.creator.email = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"email"];
+                     game.creator.profilePic = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"image"];
                      
                      [arrayGames addObject:game];
                  }
@@ -169,13 +171,21 @@
 
 -(void)createNewGame:(Game*)game completion:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
+    
+    NSDictionary *dictParam;
+    
     NSString *gameType;
     if(game.gameType == GameTypeIndividual)
+    {
         gameType = @"individual";
+        dictParam = [NSDictionary dictionaryWithObjectsAndKeys:game.sportID,@"sport_id",game.gameName,@"name",game.creator.userID,@"user_id",gameType,@"game_type",game.teamID,@"team_id",game.gameCategory,@"game_status",game.membersLimit,@"member_limit",game.date,@"date",game.time,@"time",[NSNumber numberWithDouble: game.geoLocation.latitude],@"latitude",[NSNumber numberWithDouble: game.geoLocation.longitude],@"longitude",game.address,@"address", nil];
+    }
     else
+    {
         gameType = @"team";
     
-    NSDictionary *dictParam = [NSDictionary dictionaryWithObjectsAndKeys:game.sportID,@"sport_id",game.gameName,@"name",game.creator.userID,@"user_id",gameType,@"game_type",game.teamID,@"team_id",game.gameCategory,@"game_status",game.membersLimit,@"member_limit",game.date,@"date",game.time,@"time",[NSNumber numberWithDouble: game.geoLocation.latitude],@"latitude",[NSNumber numberWithDouble: game.geoLocation.longitude],@"longitude",game.address,@"address", nil];
+        dictParam = [NSDictionary dictionaryWithObjectsAndKeys:game.sportID,@"sport_id",game.gameName,@"name",game.creator.userID,@"user_id",gameType,@"game_type",game.teamID,@"team_id",game.gameCategory,@"game_status",@"1",@"member_limit",game.date,@"date",game.time,@"time",[NSNumber numberWithDouble: game.geoLocation.latitude],@"latitude",[NSNumber numberWithDouble: game.geoLocation.longitude],@"longitude",game.address,@"address", nil];
+    }
     
     [RequestManager asynchronousRequestWithPath:gamesPath requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
      {
@@ -270,6 +280,7 @@
      } ];
 }
 
+//for team games
 -(void)getAllGameChallenges:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
 {
     [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"games/users/%@",model_manager.profileManager.owner.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
@@ -366,6 +377,123 @@
                              [arrayGameChallenges addObject:game];
                          }
 
+                     }
+                 }
+             }
+             
+             if(completionBlock)
+                 completionBlock(json,nil);
+         }
+         else if(completionBlock)
+             completionBlock(nil,nil);
+         
+         NSLog(@"Here comes the json %@",json);
+     } ];
+}
+
+-(void)getAllIndividualGameRequests:(void(^)(NSDictionary *dictJson, NSError *error))completionBlock
+{
+    [RequestManager asynchronousRequestWithPath:[NSString stringWithFormat:@"games/memberrequests/%@",model_manager.profileManager.owner.userID] requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json)
+     {
+         
+         if(statusCode==200)
+         {
+             if([[json valueForKey:@"success"] boolValue])
+             {
+                 [arrayIndividualGameRequests removeAllObjects];
+                 
+                 NSArray *arrGames = [json valueForKey:@"message"];
+                 
+                 for (int k=0; k < arrGames.count; k++) {
+                     
+                     NSArray *arrUsers = [[arrGames objectAtIndex:k] valueForKey:@"game_members"];
+                     if(arrUsers.count>0)
+                     {
+                         
+                         
+                         for (int i=0; i < arrUsers.count; i++) {
+                             
+                             if([[[arrUsers objectAtIndex:i] valueForKey:@"status"] boolValue])
+                             {
+                                 
+                             }
+                             else
+                             {
+                                 Game *game = [Game new];
+                                 
+                                 game.gameID = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"id"] intValue]];
+                                 game.gameName = [[arrGames objectAtIndex:k] valueForKey:@"name"];
+                                 game.sportID = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"sport_id"] intValue]];
+                                 game.sportName = [[[arrGames objectAtIndex:k] valueForKey:@"sport"] valueForKey:@"name"];
+                                 game.teamID = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"team_id"] intValue]];
+                                 if([[[arrGames objectAtIndex:k] valueForKey:@"team"] valueForKey:@"team_name"]!=nil && ![[[[arrGames objectAtIndex:k] valueForKey:@"team"] valueForKey:@"team_name"] isEqual:[NSNull null]])
+                                     game.teamName = [[[arrGames objectAtIndex:k] valueForKey:@"team"] valueForKey:@"team_name"];
+                                 game.date = [[arrGames objectAtIndex:k] valueForKey:@"date"];
+                                 game.time = [[arrGames objectAtIndex:k] valueForKey:@"time"];
+                                 game.geoLocation = CLLocationCoordinate2DMake([[[arrGames objectAtIndex:k] valueForKey:@"latitude"] doubleValue], [[[arrGames objectAtIndex:k] valueForKey:@"longitude"] doubleValue]);
+                                 game.address = [[arrGames objectAtIndex:k] valueForKey:@"address"];
+                                 if([[[arrGames objectAtIndex:k] valueForKey:@"game_type"] isEqualToString:@"individual"])
+                                     game.gameType = GameTypeIndividual;
+                                 else
+                                     game.gameType = GameTypeTeam;
+                                 
+                                 game.creator.userID = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"user_id"] intValue]];
+                                 //game.creator.firstName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"first_name"];
+                                 //game.creator.lastName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"last_name"];
+                                 //game.creator.email = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"email"];
+                                 
+                                 
+                                 game.createdTime = [[arrUsers objectAtIndex:i] valueForKey:@"created"];
+                                 
+                                 if([[[arrUsers objectAtIndex:i] valueForKey:@"team_id"] intValue]==0)
+                                 {
+                                     User *user = [User new];
+                                     user.userID = [NSString stringWithFormat:@"%i", [[[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"id"] intValue]];
+                                     user.firstName = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"first_name"];
+                                     user.lastName = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"last_name"];
+                                     user.gender = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"gender"];
+                                     user.profilePic = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"image"];
+                                     user.email = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"email"];
+                                     user.dob = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"dob"];
+                                     
+                                     user.gameChallengeStatus = [[[arrUsers objectAtIndex:i] valueForKey:@"status"] boolValue];
+                                     user.gameChallengeID = [NSString stringWithFormat:@"%i",[[[arrUsers objectAtIndex:i] valueForKey:@"id"] intValue]];
+                                     [game.arrayChallenges addObject:user];
+                                 }
+                                 else
+                                 {
+                                     
+                                     Team *team = [Team new];
+                                     team.teamID = [NSString stringWithFormat:@"%i",[[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"id"] intValue]];
+                                     team.sportID = [NSString stringWithFormat:@"%i",[[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport_id"] intValue]];
+                                     if([[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"])
+                                         team.sportName = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"sport"] valueForKey:@"name"];
+                                     if([[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_name"])
+                                         team.teamName = [[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_name"];
+                                     team.memberLimit = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"members_limit"] intValue];
+                                     team.geoLocation = CLLocationCoordinate2DMake([[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"latitude"] doubleValue], [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"longitude"] doubleValue]);
+                                     team.address = [[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"address"];
+                                     if([[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"team_type"] isEqualToString:@"private"])
+                                         team.teamType = TeamTypePrivate;
+                                     else
+                                         team.teamType = TeamTypeCorporate;
+                                     
+                                     team.creator.userID = [NSString stringWithFormat:@"%i",[[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"creator_id"] intValue]];
+                                     team.creator.firstName = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"first_name"];
+                                     team.creator.lastName = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"last_name"];
+                                     team.creator.email = [[[[arrUsers objectAtIndex:i] valueForKey:@"team"] valueForKey:@"user"] valueForKey:@"email"];
+                                     
+                                     team.creator.gameChallengeStatus = [[[arrUsers objectAtIndex:i] valueForKey:@"status"] boolValue];
+                                     team.creator.gameChallengeID = [NSString stringWithFormat:@"%i",[[[arrUsers objectAtIndex:i] valueForKey:@"id"] intValue]];
+                                     
+                                     
+                                     [game.arrayChallenges addObject:team];
+                                 }
+                                 
+                                 [arrayIndividualGameRequests addObject:game];
+                             }
+                         }
+                         
                      }
                  }
              }

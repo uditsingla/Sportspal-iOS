@@ -10,6 +10,7 @@
 #import "Sport.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "TB_Play_Sports.h"
+#import "Add_VC.h"
 
 @interface Profile_VC ()
 {
@@ -28,9 +29,10 @@
     __weak IBOutlet UIView *contentView;
     
     __weak IBOutlet UIButton *btnMenu;
-
+    
     __weak IBOutlet UITableView *tableGames;
     
+    __weak IBOutlet UIView *viewNavbar;
     BOOL isFavourite;
     
     UITextView *txtViewDescription;
@@ -64,11 +66,12 @@
         btnChallenge.hidden = YES;
         btnChat.hidden = YES;
         btnFav.hidden = YES;
-
+        
     }
     else
     {
         [btnMenu setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+        segmentedControl.hidden = YES;
     }
     
     lblName.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
@@ -84,11 +87,11 @@
     
     for(int i=0; i<user.arrayPreferredSports.count; i++)
     {
-        NSString *strImageProfile = ((Sport*)[user.arrayPreferredSports objectAtIndex:0]).sportName;
-        strImageProfile = [strImageProfile lowercaseString];
+        //NSString *strImageProfile = ((Sport*)[user.arrayPreferredSports objectAtIndex:0]).sportName;
+        //strImageProfile = [strImageProfile lowercaseString];
         
         //imageProfile.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strImageProfile]];
-
+        
         
         UIView *viewSport = [[UIView alloc]init];
         viewSport.tag = 777;
@@ -130,7 +133,7 @@
         {
             viewSport.frame = CGRectMake(self.view.frame.size.width- 140, dynamicY, 120, viewHeight) ;
         }
-
+        
         //viewSport.backgroundColor = [UIColor redColor];
         [contentView addSubview:viewSport];
     }
@@ -148,12 +151,8 @@
     
     self.view.backgroundColor = kBlackColor;
     contentView.backgroundColor = kBlackColor;
-    
-    
-    
-
-    //Array Games
-    //arrGames = [NSArray arrayWithObjects:@"" count:<#(NSUInteger)#>]
+    viewNavbar.backgroundColor = kBlackColor;
+    tableGames.backgroundColor = kBlackColor;
     
     
 }
@@ -162,9 +161,14 @@
 {
     [super viewWillAppear:YES];
     
+    //Array Games
+    arrGames = model_manager.profileManager.owner.arrayGames;
+    
+    
     //Default selected index
     segmentedControl.selectedSegmentIndex = 0;
     tableGames.hidden = YES;
+    [tableGames reloadData];
     
     [[NSUserDefaults standardUserDefaults]setValue:@"" forKey:@"isLocation"];
     
@@ -196,7 +200,7 @@
                     while((removeView = [contentView viewWithTag:777]) != nil) {
                         [removeView removeFromSuperview];
                     }
-
+                    
                     
                     int dynamicY = lblAge.frame.origin.y;
                     for(int i=0; i<_user.arrayPreferredSports.count; i++)
@@ -205,7 +209,7 @@
                         
                         UIView *viewSport = [[UIView alloc]init];
                         viewSport.tag = 777;
-
+                        
                         float viewHeight = 25;
                         
                         
@@ -263,14 +267,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)clkSegment:(UISegmentedControl*)sender {
     
@@ -278,11 +282,11 @@
     
     if (selectedSegment == 0)
     {
-        tableGames.hidden = NO;
+        tableGames.hidden = YES;
     }
     else if (selectedSegment == 1)
     {
-        tableGames.hidden = YES;
+        tableGames.hidden = NO;
         [tableGames reloadData];
     }
 }
@@ -291,16 +295,16 @@
     
     if (isFavourite)
     {
-         [btnFav setImage:[UIImage imageNamed:@"fav.png"] forState:UIControlStateNormal];
+        [btnFav setImage:[UIImage imageNamed:@"fav.png"] forState:UIControlStateNormal];
         isFavourite = false;
     }
     else
     {
-         [btnFav setImage:[UIImage imageNamed:@"favOn.png"] forState:UIControlStateNormal];
+        [btnFav setImage:[UIImage imageNamed:@"favOn.png"] forState:UIControlStateNormal];
         isFavourite = true;
     }
     
-   
+    
 }
 
 - (IBAction)clkSlider:(id)sender {
@@ -351,6 +355,8 @@
         
         cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strGameImage]];
         
+        cell.contentView.backgroundColor =  kBlackColor;
+        
         return cell;
         
     }
@@ -389,10 +395,9 @@
 {
     NSLog(@"selected %ld row", (long)indexPath.row);
     
-//    Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
-//    viewcontroller.user = (User*)[arrGames objectAtIndex:indexPath.row];
-//    [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
-//    
+    Add_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"add_vc"];
+    viewcontroller.selectedGame = (Game*)[arrGames objectAtIndex:indexPath.row];
+    [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
     
 }
 @end

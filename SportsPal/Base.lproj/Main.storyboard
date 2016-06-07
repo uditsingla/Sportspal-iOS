@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="New Athletic M54.ttf">
@@ -992,16 +993,24 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6b-Ei-DoS" userLabel="Game 2">
-                                                    <rect key="frame" x="115" y="85" width="170" height="21"/>
+                                                    <rect key="frame" x="115" y="85" width="141" height="21"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="hRb-uE-Via"/>
-                                                        <constraint firstAttribute="width" constant="170" id="pW2-oZ-lhm"/>
+                                                        <constraint firstAttribute="width" constant="141" id="pW2-oZ-lhm"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5qC-ef-8jV">
+                                                    <rect key="frame" x="272" y="88" width="26" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="5qC-ef-8jV" secondAttribute="height" multiplier="1:1" constant="11" id="FnE-eq-PoG"/>
+                                                        <constraint firstAttribute="height" constant="15" id="Gwj-Yd-KBP"/>
+                                                        <constraint firstAttribute="width" constant="26" id="sLn-jk-bnJ"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vBw-ob-mix" firstAttribute="leading" secondItem="gUu-ke-YOO" secondAttribute="leading" constant="20" id="1mx-fI-ajF"/>
@@ -1020,15 +1029,18 @@
                                                 <constraint firstItem="DIT-9O-qKb" firstAttribute="top" secondItem="gUu-ke-YOO" secondAttribute="top" constant="10" id="hSn-kY-L8L"/>
                                                 <constraint firstItem="4wT-Rr-eKq" firstAttribute="top" secondItem="gUu-ke-YOO" secondAttribute="top" constant="30" id="ix7-tj-F1q"/>
                                                 <constraint firstAttribute="trailing" secondItem="knn-vV-QrT" secondAttribute="trailing" id="lIQ-Ku-Mpo"/>
+                                                <constraint firstAttribute="bottom" secondItem="5qC-ef-8jV" secondAttribute="bottom" constant="17" id="tJl-yt-mhF"/>
                                                 <constraint firstItem="b6b-Ei-DoS" firstAttribute="leading" secondItem="d1r-mY-mit" secondAttribute="trailing" constant="1" id="uuU-qw-LQ2"/>
                                                 <constraint firstAttribute="bottom" secondItem="knn-vV-QrT" secondAttribute="bottom" id="vi3-Ii-nBr"/>
                                                 <constraint firstItem="knn-vV-QrT" firstAttribute="leading" secondItem="gUu-ke-YOO" secondAttribute="leading" id="xQ2-BP-SFN"/>
+                                                <constraint firstAttribute="trailing" secondItem="5qC-ef-8jV" secondAttribute="trailing" constant="22" id="yqq-e3-qFU"/>
                                                 <constraint firstAttribute="trailing" secondItem="vBw-ob-mix" secondAttribute="trailing" constant="20" id="z2G-S9-DZq"/>
                                                 <constraint firstItem="4wT-Rr-eKq" firstAttribute="leading" secondItem="gUu-ke-YOO" secondAttribute="leading" constant="20" id="zpt-tP-hqS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imgBackground" destination="knn-vV-QrT" id="YBU-sg-c44"/>
+                                            <outlet property="imgIsAdmin" destination="5qC-ef-8jV" id="BmE-ZJ-Hmd"/>
                                             <outlet property="imgRating" destination="m1v-AP-16W" id="6gJ-1k-ss4"/>
                                             <outlet property="lblGame1" destination="d1r-mY-mit" id="zt0-6K-dqM"/>
                                             <outlet property="lblGame2" destination="b6b-Ei-DoS" id="K2g-xj-MZq"/>
@@ -1202,15 +1214,25 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="time.png" translatesAutoresizingMaskIntoConstraints="NO" id="MV5-pw-Jdk" userLabel="imgRating">
                                                     <rect key="frame" x="20" y="80" width="20" height="20"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="admin.png" translatesAutoresizingMaskIntoConstraints="NO" id="nBH-2k-DTo">
+                                                    <rect key="frame" x="272" y="83" width="26" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="nBH-2k-DTo" secondAttribute="height" multiplier="1:1" constant="11" id="I4D-nY-Vvv"/>
+                                                        <constraint firstAttribute="width" constant="26" id="JES-8O-m4w"/>
+                                                        <constraint firstAttribute="height" constant="15" id="z76-OJ-kFE"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="FpO-0D-kFY" firstAttribute="top" secondItem="Cfy-rR-6wM" secondAttribute="top" id="Blj-m2-ROy"/>
                                                 <constraint firstItem="tTi-yW-BUH" firstAttribute="top" secondItem="Cfy-rR-6wM" secondAttribute="top" constant="10" id="CzK-Ev-pI8"/>
+                                                <constraint firstAttribute="trailing" secondItem="nBH-2k-DTo" secondAttribute="trailing" constant="22" id="Gu3-Mh-ujl"/>
                                                 <constraint firstItem="3uc-Xz-Vck" firstAttribute="leading" secondItem="tTi-yW-BUH" secondAttribute="trailing" constant="8" id="LBF-2x-ntC"/>
                                                 <constraint firstItem="FpO-0D-kFY" firstAttribute="leading" secondItem="Cfy-rR-6wM" secondAttribute="leading" id="Qkz-ha-Unn"/>
                                                 <constraint firstAttribute="bottom" secondItem="FpO-0D-kFY" secondAttribute="bottom" id="ZSS-Hg-C9p"/>
                                                 <constraint firstAttribute="trailing" secondItem="cSU-Cb-BZy" secondAttribute="trailing" constant="20" id="bGA-Mr-RrH"/>
                                                 <constraint firstAttribute="trailing" secondItem="FpO-0D-kFY" secondAttribute="trailing" id="huU-JM-48t"/>
+                                                <constraint firstAttribute="bottom" secondItem="nBH-2k-DTo" secondAttribute="bottom" constant="22" id="knT-RU-x7d"/>
                                                 <constraint firstItem="cSU-Cb-BZy" firstAttribute="leading" secondItem="Cfy-rR-6wM" secondAttribute="leading" constant="20" id="o4g-CS-Aba"/>
                                                 <constraint firstAttribute="trailing" secondItem="3uc-Xz-Vck" secondAttribute="trailing" constant="-90" id="ta5-cC-PeZ"/>
                                                 <constraint firstItem="cSU-Cb-BZy" firstAttribute="top" secondItem="tTi-yW-BUH" secondAttribute="bottom" constant="15" id="w8T-Ci-Qcl"/>
@@ -1219,6 +1241,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imgBackground" destination="FpO-0D-kFY" id="XQC-wt-uwS"/>
+                                            <outlet property="imgIsAdmin" destination="nBH-2k-DTo" id="jbG-7B-AVA"/>
                                             <outlet property="imgRating" destination="MV5-pw-Jdk" id="7CL-ms-Q06"/>
                                             <outlet property="lblGame1" destination="Xuh-Bb-XrP" id="WRM-yM-8MY"/>
                                             <outlet property="lblName" destination="cSU-Cb-BZy" id="Tut-XF-dDA"/>
@@ -1344,7 +1367,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="REQUESTS" id="8LP-FT-bDJ"/>
+                    <tabBarItem key="tabBarItem" title="REQUESTS" image="request.png" id="8LP-FT-bDJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yZg-2V-uAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2384,6 +2407,7 @@
                         <outlet property="lblName" destination="tP4-NP-n7F" id="MHk-R3-TJd"/>
                         <outlet property="segmentedControl" destination="yQR-tm-Jp7" id="qIj-HM-Kr2"/>
                         <outlet property="tableGames" destination="Hx3-3Z-8KO" id="Rcx-DF-MRv"/>
+                        <outlet property="viewNavbar" destination="blJ-2h-mbi" id="Pgn-em-joE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TzD-gN-1Ug" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2465,6 +2489,7 @@
     <resources>
         <image name="a" width="375" height="666"/>
         <image name="add.png" width="25" height="25"/>
+        <image name="admin.png" width="26" height="15"/>
         <image name="basketball.png" width="320" height="130"/>
         <image name="birthday.png" width="15" height="15"/>
         <image name="challenge.png" width="33" height="18"/>
@@ -2486,6 +2511,7 @@
         <image name="pin_bar.png" width="15" height="15"/>
         <image name="play.png" width="25" height="25"/>
         <image name="profile.png" width="25" height="25"/>
+        <image name="request.png" width="18" height="18"/>
         <image name="search.png" width="22" height="22"/>
         <image name="sports.png" width="15" height="15"/>
         <image name="sports_Pic.png" width="67" height="67"/>
