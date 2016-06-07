@@ -143,11 +143,14 @@
 -(void)newGameCreated:(Game *)game
 {
     segmentedcontrol.selectedSegmentIndex = 0;
+    [tblSports setContentOffset:CGPointZero animated:YES];
+
 }
 
 -(void)newTeamCreated:(Team *)team
 {
     segmentedcontrol.selectedSegmentIndex = 2;
+    [tblTeams setContentOffset:CGPointZero animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -291,6 +294,11 @@
 
         cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strGameImage]];
         
+        if([game.creator.userID isEqualToString:model_manager.profileManager.owner.userID])
+            cell.imgIsAdmin.hidden = NO;
+        else
+            cell.imgIsAdmin.hidden = YES;
+        
         return cell;
 
     }
@@ -316,6 +324,7 @@
             
             
             NSString *strSportImage = ((Sport*)[player.arrayPreferredSports objectAtIndex:0]).sportName;
+            if(![strSportImage isEqual:[NSNull null]])
             strSportImage = [strSportImage lowercaseString];
             
             
@@ -377,6 +386,10 @@
         if([team.address isEqual:[NSNull null]])
             cell.lblGame2.text = team.address;
         
+        if([team.creator.userID isEqualToString:model_manager.profileManager.owner.userID])
+            cell.imgIsAdmin.hidden = NO;
+        else
+            cell.imgIsAdmin.hidden = YES;
         
         return cell;
 

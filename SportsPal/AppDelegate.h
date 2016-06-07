@@ -12,6 +12,10 @@
 #import "Reachability.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate>
+{
+    UIView *inAppNotificationView;
+    BOOL isAlertAnimating;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

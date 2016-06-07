@@ -100,6 +100,7 @@
                      game.creator.lastName = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"last_name"];
                      game.creator.email = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"email"];
                      game.creator.profilePic = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"image"];
+                     game.creator.dob = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"dob"];
                      
                      [arrayGames addObject:game];
                  }
@@ -153,6 +154,8 @@
                      game.creator.firstName = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"first_name"];
                      game.creator.lastName = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"last_name"];
                      game.creator.email = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"email"];
+                     game.creator.profilePic = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"image"];
+                     game.creator.dob = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"dob"];
                      
                      [arraySearchedGames addObject:game];
                  }
@@ -264,6 +267,8 @@
                      game.creator.firstName = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"first_name"];
                      game.creator.lastName = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"last_name"];
                      game.creator.email = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"email"];
+                     game.creator.profilePic = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"image"];
+                     game.creator.dob = [[[arrGames objectAtIndex:i] valueForKey:@"user"] valueForKey:@"dob"];
                      
                      [arraySearchedGames addObject:game];
                  }
@@ -438,9 +443,11 @@
                                      game.gameType = GameTypeTeam;
                                  
                                  game.creator.userID = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"user_id"] intValue]];
-                                 //game.creator.firstName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"first_name"];
-                                 //game.creator.lastName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"last_name"];
-                                 //game.creator.email = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"email"];
+                                 game.creator.firstName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"first_name"];
+                                 game.creator.lastName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"last_name"];
+                                 game.creator.email = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"email"];
+                                 game.creator.profilePic = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"image"];
+                                 game.creator.dob = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"dob"];
                                  
                                  
                                  game.createdTime = [[arrUsers objectAtIndex:i] valueForKey:@"created"];
@@ -458,6 +465,19 @@
                                      
                                      user.gameChallengeStatus = [[[arrUsers objectAtIndex:i] valueForKey:@"status"] boolValue];
                                      user.gameChallengeID = [NSString stringWithFormat:@"%i",[[[arrUsers objectAtIndex:i] valueForKey:@"id"] intValue]];
+                                     
+                                     NSArray *arrSports = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"sports_preferences"];
+                                     if(arrSports.count>0)
+                                         [user.arrayPreferredSports removeAllObjects];
+                                     for (int j=0; j < arrSports.count; j++) {
+                                         
+                                         Sport *sport = [Sport new];
+                                         sport.sportID = [NSString stringWithFormat:@"%i",[[[arrSports objectAtIndex:j] valueForKey:@"sport_id"] intValue]];
+                                         sport.sportName = [[[arrSports objectAtIndex:j] valueForKey:@"sport"] valueForKey:@"name"];
+                                         
+                                         [user.arrayPreferredSports addObject:sport];
+                                     }
+                                     
                                      [game.arrayChallenges addObject:user];
                                  }
                                  else

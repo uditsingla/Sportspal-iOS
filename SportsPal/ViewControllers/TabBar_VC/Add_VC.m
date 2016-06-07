@@ -753,7 +753,7 @@
         }
         else if(indexPath.row==0)
         {
-            cell.backgroundColor = [UIColor clearColor];
+            cell.backgroundColor = [UIColor grayColor];
             cell.lblName.text = [NSString stringWithFormat:@"%@ %@ created the game", [selectedGame.creator.firstName capitalizedString], [selectedGame.creator.lastName capitalizedString]];
         }
         else{
@@ -941,7 +941,18 @@
     if(!isChallengesFetched)
         return;
     
-    
+    if(indexPath.row==0)
+    {
+        if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
+            return;
+        else
+        {
+            Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
+            viewcontroller.user = selectedGame.creator;
+            [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+            return;
+        }
+    }
     
     if (indexPath.row == (selectedGame.arrayChallenges.count)) {
         
@@ -950,6 +961,17 @@
         {
             if([[NSString stringWithFormat:@"%i",[selectedGame.creator.userID intValue]] isEqualToString:model_manager.profileManager.owner.userID])
                 return;
+            
+            NSPredicate *predicate;
+            if(selectedGame.gameType==GameTypeIndividual)
+                predicate = [NSPredicate predicateWithFormat:@"gameChallengeStatus == %@",[NSNumber numberWithBool:YES]];
+            else
+                predicate = [NSPredicate predicateWithFormat:@"SELF.creator.gameChallengeStatus == %@",[NSNumber numberWithBool:YES]];
+            NSArray *filteredArray = [selectedGame.arrayChallenges filteredArrayUsingPredicate:predicate];
+            if(filteredArray.count>=[selectedGame.membersLimit intValue]) {
+                return;
+            }
+
             
             NSLog(@"Challenge Pressed");
             
@@ -1040,10 +1062,12 @@
             else
             {
                 User *selectedUser = (User*)[selectedGame.arrayChallenges objectAtIndex:indexPath.row];
-                
-                Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
-                viewcontroller.user = selectedUser;
-                [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+                if(![selectedUser.userID isEqualToString:model_manager.profileManager.owner.userID])
+                {
+                    Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
+                    viewcontroller.user = selectedUser;
+                    [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+                }
             }
         }
 

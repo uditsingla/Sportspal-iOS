@@ -10,7 +10,7 @@
 #import "Game.h"
 #import "Add_VC.h"
 #import "SWTableViewCell.h"
-
+#import "Profile_VC.h"
 
 @interface Requests ()<SWTableViewCellDelegate>
 {
@@ -179,9 +179,24 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Add_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"add_vc"];
-    viewcontroller.selectedGame = (Game*)[model_manager.sportsManager.arrayIndividualGameRequests objectAtIndex:indexPath.row];
-    [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+//    Add_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"add_vc"];
+//    viewcontroller.selectedGame = (Game*)[model_manager.sportsManager.arrayIndividualGameRequests objectAtIndex:indexPath.row];
+//    [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+    
+    Game *game = ((Game*)[model_manager.sportsManager.arrayGameChallenges objectAtIndex:indexPath.row]);
+    User *currentUser ;
+    if(game.gameType == GameTypeIndividual)
+        currentUser = (User*)[game.arrayChallenges objectAtIndex:0];
+    else
+        currentUser = ((Team*)[game.arrayChallenges objectAtIndex:0]).creator;
+    
+    if(![currentUser.userID isEqualToString:model_manager.profileManager.owner.userID])
+    {
+        Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
+        viewcontroller.user = currentUser;
+        [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+    }
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

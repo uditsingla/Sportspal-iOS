@@ -900,10 +900,12 @@
         else
         {
             User *selectedUser = (User*)[arrTeamPlayers objectAtIndex:indexPath.row];
-            
-            Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
-            viewcontroller.user = selectedUser;
-            [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+            if(![selectedUser.userID isEqualToString:model_manager.profileManager.owner.userID])
+            {
+                Profile_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"profile_vc"];
+                viewcontroller.user = selectedUser;
+                [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+            }
         }
     }
     

@@ -154,6 +154,8 @@
     viewNavbar.backgroundColor = kBlackColor;
     tableGames.backgroundColor = kBlackColor;
     
+    // This will remove extra separators from tableview
+    tableGames.tableFooterView = [UIView new];
     
 }
 
@@ -356,6 +358,11 @@
         cell.imgBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",strGameImage]];
         
         cell.contentView.backgroundColor =  kBlackColor;
+        
+        if([game.creator.userID isEqualToString:model_manager.profileManager.owner.userID])
+            cell.imgIsAdmin.hidden = NO;
+        else
+            cell.imgIsAdmin.hidden = YES;
         
         return cell;
         

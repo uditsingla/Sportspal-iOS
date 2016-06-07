@@ -10,6 +10,8 @@
 #import "Game.h"
 #import "Add_VC.h"
 #import "SWTableViewCell.h"
+#import "Profile_VC.h"
+#import "AddTeam.h"
 
 
 @interface Challenges()<SWTableViewCellDelegate>
@@ -179,9 +181,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Add_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"add_vc"];
-    viewcontroller.selectedGame = (Game*)[model_manager.sportsManager.arrayGameChallenges objectAtIndex:indexPath.row];
-    [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+//    Add_VC *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"add_vc"];
+//    viewcontroller.selectedGame = (Game*)[model_manager.sportsManager.arrayGameChallenges objectAtIndex:indexPath.row];
+//    [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+    
+    Game *selectedGame = ((Game*)[model_manager.sportsManager.arrayGameChallenges objectAtIndex:indexPath.row]);
+    
+    if(selectedGame.gameType==GameTypeTeam)
+    {
+        AddTeam *viewcontroller = [kMainStoryboard instantiateViewControllerWithIdentifier:@"addteam"];
+        viewcontroller.selectedTeam = (Team*)[selectedGame.arrayChallenges objectAtIndex:0];
+        [kAppDelegate.container.centerViewController pushViewController:viewcontroller animated:YES];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

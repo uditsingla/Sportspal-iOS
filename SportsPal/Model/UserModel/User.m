@@ -120,14 +120,14 @@
                      Game *game = [Game new];
                      game.gameID = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"id"] intValue]];
                      game.sportID = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"sport_id"] intValue]];
-                     //game.sportName = [[[arrGames objectAtIndex:k] valueForKey:@"sport"] valueForKey:@"name"];
+                     game.sportName = [[[arrGames objectAtIndex:k] valueForKey:@"sport"] valueForKey:@"name"];
                      game.gameName = [[arrGames objectAtIndex:k] valueForKey:@"name"];
                      game.teamID = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"team_id"] intValue]];
                      game.date = [[arrGames objectAtIndex:k] valueForKey:@"date"];
                      game.time = [[arrGames objectAtIndex:k] valueForKey:@"time"];
                      if([[[arrGames objectAtIndex:k] valueForKey:@"team"] valueForKey:@"team_name"]!=nil && ![[[[arrGames objectAtIndex:k] valueForKey:@"team"] valueForKey:@"team_name"] isEqual:[NSNull null]])
                          game.teamName = [[[arrGames objectAtIndex:k] valueForKey:@"team"] valueForKey:@"team_name"];
-                     //game.distance = [NSString stringWithFormat:@"%.0fkm",[[[arrGames objectAtIndex:k] valueForKey:@"distance"] floatValue]];
+                     game.distance = [NSString stringWithFormat:@"%.0fkm",[[[arrGames objectAtIndex:k] valueForKey:@"distance"] floatValue]];
                      
                      game.geoLocation = CLLocationCoordinate2DMake([[[arrGames objectAtIndex:k] valueForKey:@"latitude"] doubleValue], [[[arrGames objectAtIndex:k] valueForKey:@"longitude"] doubleValue]);
                      game.address = [[arrGames objectAtIndex:k] valueForKey:@"address"];
@@ -136,10 +136,27 @@
                      else
                          game.gameType = GameTypeTeam;
                      
+                     game.gameCategory = [[arrGames objectAtIndex:k] valueForKey:@"game_status"];
+                     game.membersLimit = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"member_limit"] intValue]];
+                     
                      game.creator.userID = [NSString stringWithFormat:@"%i",[[[arrGames objectAtIndex:k] valueForKey:@"user_id"] intValue]];
-                     //                         game.creator.firstName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"first_name"];
-                     //                         game.creator.lastName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"last_name"];
-                     //                         game.creator.email = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"email"];
+                      game.creator.firstName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"first_name"];
+                      game.creator.lastName = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"last_name"];
+                      game.creator.email = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"email"];
+                     game.creator.profilePic = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"image"];
+                     game.creator.dob = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"dob"];
+
+                     NSArray *arrSports = [[[arrGames objectAtIndex:k] valueForKey:@"user"] valueForKey:@"sports_preferences"];
+                     if(arrSports.count>0)
+                         [game.creator.arrayPreferredSports removeAllObjects];
+                     for (int j=0; j < arrSports.count; j++) {
+                         
+                         Sport *sport = [Sport new];
+                         sport.sportID = [NSString stringWithFormat:@"%i",[[[arrSports objectAtIndex:j] valueForKey:@"sport_id"] intValue]];
+                         sport.sportName = [[[arrSports objectAtIndex:j] valueForKey:@"sport"] valueForKey:@"name"];
+                         
+                         [game.creator.arrayPreferredSports addObject:sport];
+                     }
                      
                      [self.arrayGames addObject:game];
                  }
@@ -265,7 +282,11 @@
          {
              if([[json valueForKey:@"success"] boolValue])
              {
+                 [arrayPreferredSports removeAllObjects];
                  [arrayPreferredSports addObjectsFromArray:arraySports];
+                 
+                 [model_manager.profileManager.owner.arrayPreferredSports removeAllObjects];
+                 [model_manager.profileManager.owner.arrayPreferredSports addObjectsFromArray:arraySports];
              }
              
              if(completionBlock)

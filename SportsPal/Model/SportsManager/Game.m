@@ -7,6 +7,7 @@
 //
 
 #import "Game.h"
+#import "Sport.h"
 
 @implementation Game
 
@@ -228,6 +229,20 @@
                          
                          user.gameChallengeStatus = [[[arrUsers objectAtIndex:i] valueForKey:@"status"] boolValue];
                          user.gameChallengeID = [NSString stringWithFormat:@"%i",[[[arrUsers objectAtIndex:i] valueForKey:@"id"] intValue]];
+                         
+                         NSArray *arrSports = [[[arrUsers objectAtIndex:i] valueForKey:@"user"] valueForKey:@"sports_preferences"];
+                         if(arrSports.count>0)
+                             [user.arrayPreferredSports removeAllObjects];
+                         for (int j=0; j < arrSports.count; j++) {
+                             
+                             Sport *sport = [Sport new];
+                             sport.sportID = [NSString stringWithFormat:@"%i",[[[arrSports objectAtIndex:j] valueForKey:@"sport_id"] intValue]];
+                             sport.sportName = [[[arrSports objectAtIndex:j] valueForKey:@"sport"] valueForKey:@"name"];
+                             
+                             [user.arrayPreferredSports addObject:sport];
+                         }
+
+                         
                          [arrayChallenges addObject:user];
                      }
                      
